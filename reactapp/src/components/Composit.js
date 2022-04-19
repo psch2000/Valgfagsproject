@@ -1,5 +1,7 @@
 import { Component } from "react";
 
+// MANGLER KOMMENTAR
+
 export class Composit extends Component {
 
     constructor(){

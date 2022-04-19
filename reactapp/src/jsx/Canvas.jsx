@@ -6,6 +6,7 @@ export const Canvas = ({width, height, onDraw}) => {
 
     const canvasRef = useRef(null);
 
+    // Initializes the canvas and invokes it's onDraw function
     useEffect(() => {
         const canvas = canvasRef.current;
         const context = canvas.getContext('2d');
