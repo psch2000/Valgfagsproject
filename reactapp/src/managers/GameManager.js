@@ -22,6 +22,7 @@ export const GameManager = (function() {
     // Instantiates a root composit component
     function instantiate (composit) {
         composits.push(composit);
+
         return composit;
     }
 
@@ -32,12 +33,11 @@ export const GameManager = (function() {
             _context = context;
         }
 
+        _context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
         composits.forEach(root => {
             root.update();
-            _context.beginPath();
-            _context.clearRect(0, 0, window.innerWidth, window.innerHeight);
             root.draw(_context);
-            _context.stroke();
         })
     }
 

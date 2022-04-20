@@ -10,13 +10,16 @@ export class SquareRenderer extends Component{
     }
 
     draw(ctx){
-        ctx.beginPath();
+
+        // console.log(ctx);
+
         ctx.fillStyle = "blue";
 
-        var position = this.transform.position;
-        ctx.fillRect(position.x, position.y, this.width, this.height);
-        ctx.stroke();
+        var x = this.transform.position.x;
+        var y = this.transform.position.y;
 
+
+        ctx.fillRect(x, y, this.width, this.height);
     }
 
    

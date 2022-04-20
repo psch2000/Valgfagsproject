@@ -14,7 +14,7 @@ import { Canvas } from "./Canvas"
 export const App = () => {
 
     const [n, setN] = useState(0);
-    const interval = useInterval(() => {run()}, 0);
+    const interval = useInterval(() => {run()}, 10);
     const appStateManager = new StateManager(new TestState());
     var isRunning = false;
     
@@ -29,12 +29,7 @@ export const App = () => {
     useEffect(() =>{
 
         appStateManager.execute();
-        var factory = new SquareFactory();
-
-        var p = factory.makeProduct();
-
-        // console.log(p.getComponent("Transform"));
-        GameManager.getInstance().instantiate(p);
+        
 
     }, [])
 

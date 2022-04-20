@@ -22,7 +22,7 @@ export class Composit extends Component {
 
     getComponent(type){
         var temp = null;
-        
+
         this.components.forEach(c => {
             if (c.type == type){
                 temp = c;
@@ -33,12 +33,14 @@ export class Composit extends Component {
     }
 
     update(){
+        if (this.isActive === false) return;
         this.components.forEach(c => {
             try {  c.update();} catch{}   
         });
     }
 
     draw(context){
+        if (this.isActive === false) return;
         this.components.forEach(c => {
             try {c.draw(context);} catch{}
         });
