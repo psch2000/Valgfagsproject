@@ -1,22 +1,28 @@
-import { Component } from "react";
+import { Component } from "./Component";
+import { Transform } from "./components/Transform";
 
 // MANGLER KOMMENTAR
 
 export class Composit extends Component {
 
+    
     constructor(){
         super();
         this.components = [];
+        this.transform = new Transform();
+        this.addComponent(this.transform);
     }
 
     addComponent(component){
         this.components.push(component);
+        component.transform = this.transform;
+        component.parent = this;
         return component;
     }
 
     getComponent(type){
         var temp = null;
-
+        
         this.components.forEach(c => {
             if (c.type == type){
                 temp = c;
@@ -28,13 +34,13 @@ export class Composit extends Component {
 
     update(){
         this.components.forEach(c => {
-            c.update();
+            try {  c.update();} catch{}   
         });
     }
 
-    draw(){
+    draw(context){
         this.components.forEach(c => {
-            c.draw();
+            try {c.draw(context);} catch{}
         });
     }
 

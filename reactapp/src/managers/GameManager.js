@@ -2,8 +2,11 @@
 // A singleton that manages the games flow
 export const GameManager = (function() {
 
+    
     // private
-    var instance = null;
+    var _instance = null;
+    var _context = null;
+    
 
     // public
     var composits = [];
@@ -12,32 +15,40 @@ export const GameManager = (function() {
     // private
     function makeInstance(){
 
-        return {composits, instantiate };
+        return {composits, instantiate, update };
     }
 
     // public
     // Instantiates a root composit component
     function instantiate (composit) {
         composits.push(composit);
+        return composit;
     }
 
     // POSSIBLE REFACTORING
-    // Runs the game loop.
-    function run(){
-        while (true){
-            composits.forEach(root => {
-                root.update();
-                root.draw();
-            })
+    // Updates the game loop.
+    function update(context){
+        if (_context == null){
+            _context = context;
         }
+
+        composits.forEach(root => {
+            root.update();
+            _context.beginPath();
+            _context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+            root.draw(_context);
+            _context.stroke();
+        })
     }
+
+ 
 
     // Gets the current instance of type GameManager object
     function getInstance (){
-        if (instance == null){
-            instance = makeInstance();
+        if (_instance == null){
+            _instance = makeInstance();
         }
-        return instance;
+        return _instance;
     }
 
     return{
