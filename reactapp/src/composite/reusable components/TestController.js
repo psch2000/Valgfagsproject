@@ -1,6 +1,6 @@
 import { getKey, getKeyDown } from "../../../events/keyCodeEvents";
-import { GameManager } from "../../../Managers/GameManager";
-import { BulletPool } from "../../../creationals/pooling pattern/pools/BulletPool";
+import { GameManager } from "../../../managers/GameManager";
+import { BulletPool } from "../../../creational/pooling pattern/pools/BulletPool";
 import { Component } from "../../Component";
 import { Composit } from "../../Composit";
 import { MoveDirection } from "./MoveDirection";

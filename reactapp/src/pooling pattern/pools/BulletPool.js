@@ -1,7 +1,7 @@
-import { MoveDirection } from "../../../composite/common/components/MoveDirection";
+import { MoveDirection } from "../../../composit pattern/components/MoveDirection";
 import { SquareRenderer } from "../../compositPattern/components/SquareRenderer";
 import { Composit } from "../../compositPattern/Composit";
-import { GameManager } from "../../../Managers/GameManager";
+import { GameManager } from "../../../managers/GameManager";
 import { ReuseablePool } from "../ReuseablePool";
 
 
