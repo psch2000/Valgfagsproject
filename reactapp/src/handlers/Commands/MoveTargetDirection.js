@@ -13,8 +13,9 @@ export class MoveTargetDirection extends Command{
 
 
     execute(){
-        var prevPos = this.transform.position;
-        console.log(prevPos);
+        console.log("moving");
+        // var prevPos = this.transform.position;
+        // console.log(prevPos);
     }
 
 }

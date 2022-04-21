@@ -1,17 +1,22 @@
+import { getKey, getKeyDown } from "../events/keyCodeEvents";
 
 
-export class InputHandler {
+export const InputHandler = () =>{
 
-    _commands;
+    const commands = [];
 
-    constructor(){
-        this._commands = [];
-
+    function addCommand(keyCode, command){
+        var c = {keyCode, command};
+        commands.push(c);
     }
 
-
-    addCommand(keyCode, command){
-        this._commands.push({keyCode, command});
+    function update(){      
+        commands.forEach(c => {
+            if(getKey(c.keyCode) == true){
+                c.command.execute();
+            }
+        })
     }
 
+    return {addCommand,}
 }

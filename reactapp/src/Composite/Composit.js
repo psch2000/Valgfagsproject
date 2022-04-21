@@ -1,5 +1,5 @@
 import { Component } from "./Component";
-import { Transform } from "./components/Transform";
+import { Transform } from "./common/components/Transform";
 
 // MANGLER KOMMENTAR
 

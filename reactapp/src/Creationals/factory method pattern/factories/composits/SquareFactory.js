@@ -2,10 +2,10 @@ import { SquareRenderer } from "../../compositPattern/components/SquareRenderer"
 import { TestController } from "../../compositPattern/components/TestController";
 
 import { Composit } from "../../compositPattern/Composit";
-import { GameManager } from "../../managers/GameManager";
+import { GameManager } from "../../../../Managers/GameManager";
 
 
-import { BaseFactory } from "../BaseFactory";
+import { BaseFactory } from "../../backend/creational functionality/factory method/BaseFactory";
 
 
 export class SquareFactory extends BaseFactory{

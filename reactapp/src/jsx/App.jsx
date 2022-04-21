@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
-import { useInterval } from "../Hooks/useInterval"
-import { TestState } from "../Executeable states/states/TestState"
-import {GameManager} from "../Managers/GameManager"
-import { Canvas } from "./Canvas"
-import { StateManager } from "../Executeable states/StateManager"
+import { useInterval } from "../hooks/useInterval";
+import { StateManager } from "../statePattern/StateManager";
+import { TestState } from "../statePattern/states/TestState";
+import { GameManager } from "../managers/GameManager";
+import { Canvas } from "../jsx/Canvas";
 
 // MANGLER KOMMENTAR
 
@@ -20,6 +20,7 @@ export const App = () => {
 
     function run(context){
         GameManager.getInstance().update(context);
+        
     }
 
     useEffect(() =>{
@@ -27,7 +28,8 @@ export const App = () => {
         appStateManager.execute();
         // var test = new TestClass();
 
-    }, [])
+
+    }, []);
 
 
 
