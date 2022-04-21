@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react"
-import { Component } from "../compositPattern/Component"
-import { Transform } from "../compositPattern/components/Transform"
-import { Composit } from "../compositPattern/Composit"
-import { SquareFactory } from "../factoryMethod/factories/SquareFactory"
 import { useInterval } from "../hooks/useInterval"
-import { StateManager } from "../js/StateManager"
-import { TestState } from "../js/states/TestState"
+import { StateManager } from "../state patterns/StateManager"
+import { TestState } from "../state patterns/states/TestState"
 import {GameManager} from "../managers/GameManager"
 import { Canvas } from "./Canvas"
 
@@ -29,7 +25,7 @@ export const App = () => {
     useEffect(() =>{
 
         appStateManager.execute();
-        
+        // var test = new TestClass();
 
     }, [])
 
