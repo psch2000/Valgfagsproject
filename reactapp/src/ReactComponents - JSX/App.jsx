@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
-import { useInterval } from "../hooks/useInterval"
-import { StateManager } from "../state patterns/StateManager"
-import { TestState } from "../state patterns/states/TestState"
-import {GameManager} from "../managers/GameManager"
+import { useInterval } from "../Hooks/useInterval"
+import { TestState } from "../Executeable states/states/TestState"
+import {GameManager} from "../Managers/GameManager"
 import { Canvas } from "./Canvas"
+import { StateManager } from "../Executeable states/StateManager"
 
 // MANGLER KOMMENTAR
 
