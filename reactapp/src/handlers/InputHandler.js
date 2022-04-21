@@ -18,5 +18,5 @@ export const InputHandler = () =>{
         })
     }
 
-    return {addCommand,}
+    return {addCommand, update}
 }

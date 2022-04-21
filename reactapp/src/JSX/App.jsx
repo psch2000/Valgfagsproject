@@ -3,7 +3,12 @@ import { useInterval } from "../hooks/useInterval";
 import { StateManager } from "../statePattern/StateManager";
 import { TestState } from "../statePattern/states/TestState";
 import { GameManager } from "../managers/GameManager";
-import { Canvas } from "../jsx/Canvas";
+import { Canvas } from "./Canvas";
+import { InputHandler } from "../handlers/InputHandler";
+import { TestCommand } from "../handlers/commands/TestCommand";
+import { EventHandler } from "../EventHandler/EventHandler";
+import { TestListener } from "../EventHandler/listeners/TestListener";
+import { getKeyDown } from "../events/keyCodeEvents";
 
 // MANGLER KOMMENTAR
 
@@ -13,6 +18,9 @@ export const App = () => {
     const interval = useInterval(() => {run()}, 10);
     const appStateManager = new StateManager(new TestState());
     var isRunning = false;
+    var i = InputHandler();
+
+    var event = new EventHandler();
     
     function onClick(){ 
         setN(n + 1);
@@ -20,14 +28,19 @@ export const App = () => {
 
     function run(context){
         GameManager.getInstance().update(context);
-        
+        i.update();
+
+        if (getKeyDown('j')){
+            event.notify();
+        }
     }
 
     useEffect(() =>{
 
+        i.addCommand('j', new TestCommand());
         appStateManager.execute();
         // var test = new TestClass();
-
+        event.addListener(new TestListener());
 
     }, []);
 
