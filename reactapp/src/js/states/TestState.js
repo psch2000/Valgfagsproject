@@ -1,6 +1,7 @@
 import { SquareFactory } from "../../factoryMethod/factories/SquareFactory";
 import { GameManager } from "../../managers/GameManager";
 import { State } from "../State";
+import { UpdateUIState } from "./UpdateUIState";
 
 
 export class TestState extends State {
@@ -16,5 +17,9 @@ export class TestState extends State {
         var p = factory.makeProduct();
 
         GameManager.getInstance().instantiate(p);
+        console.log(this.context);
+
+        this.context.setState(new UpdateUIState());
+        this.context.execute();
     }
 }

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react"
+import "../css/index.css"
 
 
 // Creates a HTML element that is used for drawing graphics on a 2d texture.
@@ -13,7 +14,7 @@ export const Canvas = ({width, height, onDraw}) => {
         onDraw(context);
     }, []);
 
-    return <canvas 
+    return <canvas className="Canvas"
         width={width}
         height={height}
 

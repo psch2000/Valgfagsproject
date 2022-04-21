@@ -1,0 +1,30 @@
+/*Body */
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+/*React component Game Title*/
+.GameTitle{
+    text-align: center;
+    text-transform: uppercase;
+    justify-content: center;
+    color: orange;
+    font-size: 3em;
+}
+
+/*
+.GameTitle:hover{
+    transform: scale(1.2);
+    color: red;
+    justify-content: center;
+}
+*/
+
+
+/*Canvas
+margin: 100px 100px;  
+*/
+.Canvas{
+    border-color: orange;
+     
+}

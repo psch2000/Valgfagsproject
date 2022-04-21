@@ -8,6 +8,7 @@ import { StateManager } from "../js/StateManager"
 import { TestState } from "../js/states/TestState"
 import {GameManager} from "../managers/GameManager"
 import { Canvas } from "./Canvas"
+import { GameTitle } from "./GameTitle"
 
 // MANGLER KOMMENTAR
 
@@ -37,6 +38,7 @@ export const App = () => {
 
 
     return <div>
+        <GameTitle></GameTitle>
         <button onClick={onClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{n}</button>
         <Canvas width={window.innerWidth} height={window.innerHeight} onDraw={run}></Canvas>
     </div>
