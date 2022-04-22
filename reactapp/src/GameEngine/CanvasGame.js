@@ -1,6 +1,7 @@
 import { Canvas } from "./Canvas";
 import { EventHandler } from "../base/baseBehaviour/EventHandler";
 import { InputHandler } from "./input/InputHandler";
+import { ThreadStart } from "../base/ThreadStart";
 
 
 export class CanvasGame {
@@ -9,6 +10,7 @@ export class CanvasGame {
     #composits = [];
     #compositsToInstantiate = [];
     #onStart = new EventHandler();
+    #isRunning = false;
 
     constructor(x, y, size){
         this.window = new Canvas(x, y, size);
@@ -16,8 +18,10 @@ export class CanvasGame {
     }
 
     run(){
-        this.#thread = setInterval(() => this.#invoke(), 0);
-    } 
+        this.#thread = ThreadStart(() => this.#invoke(), 1000);
+    }
+
+
 
     #invoke(){
         InputHandler.onUpdate();
@@ -29,10 +33,9 @@ export class CanvasGame {
 
 
     #onInstantiate(){
-        this.#compositsToInstantiate.forEach(comp => {
-
-            this.#onStart.addListener(comp.onStart);
-            this.#composits.push(comp);
+        this.#compositsToInstantiate.forEach(root => {
+            this.#onStart.addListener(root.onStart);
+            this.#composits.push(root);
         });
 
         this.#compositsToInstantiate = [];
@@ -45,26 +48,39 @@ export class CanvasGame {
 
     #updateComposits(){
 
-        this.#composits.forEach(comp => {
-            comp.onUpdate();
+        this.#composits.forEach(root => {
+            root.onUpdate();
         });
     }
 
     #drawComposits(){
         this.window.clear();
-        this.#composits.forEach(comp => {
-            comp.onDraw(this.window.getContext());
+        this.#composits.forEach(root => {
+            root.onDraw(this.window.getContext());
         });
     }
 
 
-   
+    findObjectWithName(name){
+        var temp = null;
+
+        this.#onInstantiate();
+       
+        this.#composits.forEach(root => {
+
+            if (root.name == name){
+                temp = root;
+            }
+        })
+        return temp;
+    }
 
     instantiate(gameObject, position){
+        this.#compositsToInstantiate.push(gameObject);
+        
         if (position !== undefined){
             gameObject.transform.position = position;
         }
-        this.#compositsToInstantiate.push(gameObject);
     }
     
 }

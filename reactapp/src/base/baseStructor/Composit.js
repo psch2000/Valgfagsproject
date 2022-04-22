@@ -7,9 +7,10 @@ export class Composit extends Component {
 
     #components = [];
 
-    constructor(){
+    constructor(name){
         super();
         this.transform = new Transform();
+        this.name = name;
         this.addComponent(this.transform);
         this.components = this.#components; // debugging
     }
@@ -25,6 +26,11 @@ export class Composit extends Component {
         var i = this.#components.indexOf(component);
         this.#components.splice(i);
     }
+
+ 
+
+
+   
 
     getComponent(type){
         var temp = null;
@@ -57,8 +63,6 @@ export class Composit extends Component {
 
     onDraw(context){
         if (this.isActive === false) return;
-
-
         this.#components.forEach(c => {
             try {c.onDraw(context);} 
             catch{}
