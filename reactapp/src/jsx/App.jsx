@@ -15,7 +15,7 @@ import { GameTitle } from "./GameTitle"
 export const App = () => {
 
     const [n, setN] = useState(0);
-    const interval = useInterval(() => {run()}, 10);
+    const interval = useInterval(() => {run()}, 0);
     const appStateManager = new StateManager(new TestState());
     var isRunning = false;
     

@@ -17,8 +17,8 @@ export class TestState extends State {
         var p = factory.makeProduct();
 
         GameManager.getInstance().instantiate(p);
-        console.log(this.context);
 
+        console.log(p);
         this.context.setState(new UpdateUIState());
         this.context.execute();
     }
