@@ -53,6 +53,16 @@ export class UpdateUIState extends State{
         WaveText.transform.position.y = 60;
         waveText.text = "Wave: " + 0;
 
+        //draw shop UI
+        var ShopUI = new Composit();
+        var shopUI = ShopUI.addComponent(new DrawIcon());
+        ShopUI.transform.position.x = 1050;
+        ShopUI.transform.position.y = 0;
+        ShopUI.transform.size.height = 600;
+        ShopUI.transform.size.width = 300;
+        shopUI.img = document.getElementById("shopui");
+
+        GameManager.getInstance().instantiate(ShopUI);
         GameManager.getInstance().instantiate(WaveText);
         GameManager.getInstance().instantiate(MoneyText);
         GameManager.getInstance().instantiate(MoneyIcon);

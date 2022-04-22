@@ -1,6 +1,4 @@
 import { Component } from "../Component";
-import "../../css/index.css";
-
 
 
 export class DrawText extends Component{
@@ -11,10 +9,10 @@ export class DrawText extends Component{
     }
 
     draw(context){
-        context.font = "30px Arial";
+        context.font = "30px Arial"
+        context.fillStyle = "black";
 
-        var position = this.transform.position;
-        
+        var position = this.transform.position;        
         context.fillText(this.text, position.x, position.y); 
     }
 
