@@ -18,7 +18,7 @@ export class CanvasGame {
     }
 
     run(){
-        this.#thread = ThreadStart(() => this.#invoke(), 1000);
+        this.#thread = ThreadStart(() => this.#invoke(), 0);
     }
 
 
@@ -80,6 +80,7 @@ export class CanvasGame {
         
         if (position !== undefined){
             gameObject.transform.position = position;
+            console.log(gameObject);
         }
     }
     

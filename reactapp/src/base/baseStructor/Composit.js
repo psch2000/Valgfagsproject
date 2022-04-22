@@ -19,6 +19,15 @@ export class Composit extends Component {
         this.#components.push(component);
         component.transform = this.transform;
         component.parent = this;
+
+        try{
+            component.components.forEach(c => {
+                c.transform = this.transform;
+            });
+        }
+        catch{}
+        
+
         return component;
     }
 
@@ -47,6 +56,7 @@ export class Composit extends Component {
     onStart = () => {
         
         this.#components.forEach(c => {
+            
         try {  c.onStart();} 
         catch{}   
         }

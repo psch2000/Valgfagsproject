@@ -14,7 +14,6 @@ export class ReuseablePool {
 
     acquireReuseable(){
 
-        console.log(this.#reuseables.length);
         if (this.#reuseables.length != 0){
             var reuseable = this.#reuseables.pop();
             reuseable.isActive = true;

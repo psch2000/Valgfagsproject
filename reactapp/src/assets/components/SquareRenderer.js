@@ -17,7 +17,7 @@ export class SquareRenderer extends Component{
 
         var {x ,y} = this.transform.position;
 
-        ctx.fillStyle = color;
+        ctx.fillStyle = this.color;
         ctx.fillRect(x, y, this.width, this.height);
     }
 
