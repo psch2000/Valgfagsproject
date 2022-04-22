@@ -4,9 +4,10 @@ export class StateHandler {
 
     constructor(state){
         this.state = state;
+        state.context = this;
     }
 
-    setState(state){
+    transitionTo(state){
         this.state = state;
         state.context = this;
     }

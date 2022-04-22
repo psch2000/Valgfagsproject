@@ -1,13 +1,14 @@
-import { Component } from "../GameEngine/compositeStructor/Component";
-import { Input } from "../GameEngine/input/Input";
+import { Component } from "../../base/baseStructor/Component";
+import { Input } from "../../GameEngine/input/Input";
 
 
 export class SquareRenderer extends Component{
 
-    constructor(width, height){
+    constructor(width, height, color){
         super();
         this.width = width;   
         this.height = height;
+        this.color = color;
     }
 
   
@@ -16,12 +17,8 @@ export class SquareRenderer extends Component{
 
         var {x ,y} = this.transform.position;
 
-        ctx.fillStyle = "blue";
+        ctx.fillStyle = color;
         ctx.fillRect(x, y, this.width, this.height);
-        
-     
-
-
     }
 
    
