@@ -32,7 +32,7 @@ export class Vector2d {
         return new Vector2d(first.x + second.x, first.y + second.y);
     }
 
-    static substract(first, second) {
+    static subtract(first, second) {
         return new Vector2d(first.x - second.x, first.y - second.y);
     }
 
