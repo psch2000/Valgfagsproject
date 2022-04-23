@@ -9,6 +9,8 @@ export class Transform extends Component{
         this.position = new Vector2d(0, 0);
     }
 
-        
+    translate(vector) {
+        this.position.x += vector.x;
+        this.position.y += vector.y;
     }
 }
