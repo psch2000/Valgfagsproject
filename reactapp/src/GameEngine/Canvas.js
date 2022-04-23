@@ -41,8 +41,8 @@ export class Canvas {
     setX = (value) => this.#canvasStyle.left = `${value}px`;
     setY = (value) => this.#canvasStyle.top = `${value}px`;
     setSize = (size) => {
-        this.#canvasStyle.width = `${size * 2}px`
-        this.#canvasStyle.height = `${size}px`
+        this.#canvasStyle.width = `${size}px`
+        this.#canvasStyle.height = `${size/2}px`
     }
 
     getContext = () => this.#context;
