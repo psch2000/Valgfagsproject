@@ -7,9 +7,10 @@ export class DrawIcon extends Component{
         this.img="null"
     }
 
-    draw(context){
+    onDraw(context){
         var position = this.transform.position;
         var size = this.transform.size;
+
         
         context.drawImage(this.img, position.x, position.y, size.width, size.height);
     }

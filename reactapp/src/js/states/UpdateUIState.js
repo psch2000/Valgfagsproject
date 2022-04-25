@@ -1,9 +1,10 @@
 import { DrawIcon } from "../../base/baseStructor/DrawIcon";
 import { DrawText } from "../../base/baseStructor/DrawText";
-import { Transform } from "../../base/baseStructor/Transform";
 import { Composit } from "../../base/baseStructor/Composit";
 import { CanvasGame } from "../../GameEngine/CanvasGame";
 import { State } from "../../base/baseBehaviour/State";
+import { Game } from "../../assets/app/App";
+import { SquareRenderer } from "../../assets/components/SquareRenderer";
 
 
 export class UpdateUIState extends State{
@@ -17,18 +18,20 @@ export class UpdateUIState extends State{
         //draw health icon
         var HealthIcon = new Composit();
         var heartIcon = HealthIcon.addComponent(new DrawIcon());
-        HealthIcon.transform.position.x = 25;
-        HealthIcon.transform.position.y = 25;
+        HealthIcon.transform.position.x = 5;
+        HealthIcon.transform.position.y = 0;
         HealthIcon.transform.size.height = 50;
         HealthIcon.transform.size.width = 50;
         heartIcon.img = document.getElementById("hearticon");
 
+
+
         //draw health text
         var HealthText = new Composit();
         var heartText = HealthText.addComponent(new DrawText());
-        HealthText.transform.position.x = 75;
-        HealthText.transform.position.y = 60;
         heartText.text = 100;
+
+
 
         //draw money icon
         var MoneyIcon = new Composit();
@@ -62,12 +65,19 @@ export class UpdateUIState extends State{
         ShopUI.transform.size.width = 300;
         shopUI.img = document.getElementById("shopui");
 
-        CanvasGame.getInstance().instantiate(ShopUI);
-        CanvasGame.getInstance().instantiate(WaveText);
-        CanvasGame.getInstance().instantiate(MoneyText);
-        CanvasGame.getInstance().instantiate(MoneyIcon);
-        CanvasGame.getInstance().instantiate(HealthIcon);
-        CanvasGame.getInstance().instantiate(HealthText);
+        //instantiate gameobjects
+
+        // Game.instantiate(ShopUI);
+        // Game.instantiate(WaveText);
+        // Game.instantiate(MoneyText);
+        // Game.instantiate(MoneyIcon);
+        Game.instantiate(HealthIcon);
+        Game.instantiate(HealthText, {x:20, y: 10});
+
+
+        console.log(HealthText)
+
+
     }
 
 }
