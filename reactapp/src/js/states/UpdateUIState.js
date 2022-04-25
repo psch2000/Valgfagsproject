@@ -1,9 +1,9 @@
-import { DrawIcon } from "../../compositPattern/components/DrawIcon";
-import { DrawText } from "../../compositPattern/components/DrawText";
-import { Transform } from "../../compositPattern/components/Transform";
-import { Composit } from "../../compositPattern/Composit";
-import { GameManager } from "../../managers/GameManager";
-import { State } from "../State";
+import { DrawIcon } from "../../base/baseStructor/DrawIcon";
+import { DrawText } from "../../base/baseStructor/DrawText";
+import { Transform } from "../../base/baseStructor/Transform";
+import { Composit } from "../../base/baseStructor/Composit";
+import { CanvasGame } from "../../GameEngine/CanvasGame";
+import { State } from "../../base/baseBehaviour/State";
 
 
 export class UpdateUIState extends State{
@@ -62,12 +62,12 @@ export class UpdateUIState extends State{
         ShopUI.transform.size.width = 300;
         shopUI.img = document.getElementById("shopui");
 
-        GameManager.getInstance().instantiate(ShopUI);
-        GameManager.getInstance().instantiate(WaveText);
-        GameManager.getInstance().instantiate(MoneyText);
-        GameManager.getInstance().instantiate(MoneyIcon);
-        GameManager.getInstance().instantiate(HealthIcon);
-        GameManager.getInstance().instantiate(HealthText);
+        CanvasGame.getInstance().instantiate(ShopUI);
+        CanvasGame.getInstance().instantiate(WaveText);
+        CanvasGame.getInstance().instantiate(MoneyText);
+        CanvasGame.getInstance().instantiate(MoneyIcon);
+        CanvasGame.getInstance().instantiate(HealthIcon);
+        CanvasGame.getInstance().instantiate(HealthText);
     }
 
 }

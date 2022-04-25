@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+/*import React, { useEffect, useState } from "react"
 import { Component } from "../compositPattern/Component"
 import { Transform } from "../compositPattern/components/Transform"
 import { Composit } from "../compositPattern/Composit"
@@ -11,6 +11,7 @@ import { Canvas } from "./Canvas"
 import { GameTitle } from "./GameTitle"
 
 // MANGLER KOMMENTAR
+export const Game = new CanvasGame(window.innerWidth/2 -540, window.innerHeight/2-270, 	1080);
 
 export const App = () => {
 
@@ -43,3 +44,4 @@ export const App = () => {
         <Canvas width={window.innerWidth} height={window.innerHeight} onDraw={run}></Canvas>
     </div>
 }
+*/

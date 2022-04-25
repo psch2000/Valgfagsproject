@@ -1,4 +1,4 @@
-import { Component } from "../Component";
+import { Component } from "./Component";
 
 export class DrawIcon extends Component{
 
