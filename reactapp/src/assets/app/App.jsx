@@ -8,9 +8,10 @@ import { UpdateUIState } from "../../js/states/UpdateUIState"
 import { Canvas } from "../../GameEngine/Canvas"
 import { GameTitle } from "../../jsx/GameTitle"
 import { CanvasGame } from "../../GameEngine/CanvasGame";
+import { DrawGrid } from "../../base/baseStructor/DrawGrid"
 // MANGLER KOMMENTAR
 
-export const Game = new CanvasGame(window.innerWidth/2 -540, window.innerHeight/2-270, 1080);
+export const Game = new CanvasGame(window.innerWidth/2 -540, window.innerHeight/2-270, 1000, 500);
 
 export const App = () => {
 
@@ -31,7 +32,9 @@ export const App = () => {
         Game.run();
         appStateManager.execute();
         
-
+        // var c = new Composit();
+        // c.addComponent(new DrawGrid());
+        // Game.instantiate(c);
     }, [])
 
 
