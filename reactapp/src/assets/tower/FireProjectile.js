@@ -1,5 +1,5 @@
 import { Composit } from "../../base/baseStructor/Composit";
-import { Vector2d } from "../../temp/Vector2d";
+import { Vector2d } from "../../base/baseStructor/Vector2d";
 import { Game } from "../app/App";
 import { MoveDirection } from "../components/MoveDirection";
 import { SquareRenderer } from "../components/SquareRenderer";
