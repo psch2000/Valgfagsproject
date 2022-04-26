@@ -11,7 +11,6 @@ export const PlaceTower = () => {
     c.addComponent(new SquareRenderer(10, 10, 'blue'));
 
     var mousePos = Game.window.getMousePosition();
-    console.log(mousePos);
     Game.instantiate(c, {x: mousePos.x, y: mousePos.y});
 
 }
