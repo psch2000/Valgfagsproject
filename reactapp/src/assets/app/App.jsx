@@ -13,6 +13,9 @@ import { TestState } from "./states/initializestates/TestState"
 import { MoneyText } from "../MoneyText"
 import { BuyButton } from "../BuyButton"
 import { Tower } from "../components/Tower"
+import { EventHandler } from "../../base/baseBehaviour/EventHandler"
+import { Weapon } from "../components/Weapon"
+import { Vector2d } from "../../base/baseStructor/Vector2d"
 
 
 export const Game = new CanvasGame(0, window.innerHeight/2-270, 1000, 500);
@@ -31,16 +34,26 @@ export const App = () => {
     function run(context){
         // CanvasGame.getInstance().update(context);
     }
+    var onClick = new EventHandler();
 
     useEffect(() =>{
 
         Game.run();
         appStateManager.execute();
+
         
         var c = new Composit();
 
-        c.addComponent(new Tower());
 
+        // console.log(v.x);
+        // c.addComponent(new Tower(onClick));
+
+
+        // var weapon = c.addComponent(new Weapon(Vector2d.right, 1));
+        c.addComponent(new Tower(onClick));
+
+
+        Game.instantiate(c);
         // var c = new Composit();
         // c.addComponent(new DrawGrid());
         // Game.instantiate(c);
@@ -49,7 +62,7 @@ export const App = () => {
     return <div>
         <MoneyText></MoneyText>
         <GameTitle></GameTitle>
-        <BuyButton></BuyButton>
+        <BuyButton onClickeEventHandler={onClick}></BuyButton>
         {/* <button onClick={onClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{n}</button> */}
     </div>
 }
