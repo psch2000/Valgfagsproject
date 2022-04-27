@@ -9,6 +9,7 @@ import { Canvas } from "../../GameEngine/Canvas"
 import { GameTitle } from "../../jsx/GameTitle"
 import { CanvasGame } from "../../GameEngine/CanvasGame";
 import { DrawGrid } from "../../base/baseStructor/DrawGrid"
+import { TowerMenuSystem } from "../jsx/TowerMenuSystem"
 // MANGLER KOMMENTAR
 
 export const Game = new CanvasGame(window.innerWidth/2 -540, window.innerHeight/2-270, 1000, 500);
@@ -39,6 +40,7 @@ export const App = () => {
 
 
     return <div>
+        <TowerMenuSystem></TowerMenuSystem>
         <GameTitle></GameTitle>
         <button onClick={onClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{n}</button>
     </div>
