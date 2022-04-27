@@ -12,6 +12,7 @@ import { DrawGrid } from "../../base/baseStructor/DrawGrid"
 import { TestState } from "./states/initializestates/TestState"
 import { MoneyText } from "../MoneyText"
 import { BuyButton } from "../BuyButton"
+import { Tower } from "../components/Tower"
 
 
 export const Game = new CanvasGame(0, window.innerHeight/2-270, 1000, 500);
@@ -36,14 +37,14 @@ export const App = () => {
         Game.run();
         appStateManager.execute();
         
+        var c = new Composit();
+
+        c.addComponent(new Tower());
+
         // var c = new Composit();
         // c.addComponent(new DrawGrid());
         // Game.instantiate(c);
     }, [])
-
-        Game.window.onMouseDown.addListener(PlaceTower);
-        Game.window.onMouseDown.addListener(FireProjectile);
-
 
     return <div>
         <MoneyText></MoneyText>

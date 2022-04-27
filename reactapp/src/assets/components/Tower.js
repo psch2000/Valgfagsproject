@@ -7,9 +7,23 @@ export class Tower extends Component{
     constructor(){
         super();
 
-        // this.mousePosition = Game.window.mousep;
     }
 
+
+    onDraw(context){
+        
+        console.log("here");
+        context.fillStyle = 'green';
+
+
+        var {x, y} = Game.window.getMousePosition();
+
+        // console.log({x , y})
+
+        context.fillRect(x, y, 10, 10);
+
+
+    }
     
 
 }
