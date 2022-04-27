@@ -1,3 +1,4 @@
+import { EventHandler } from "../base/baseBehaviour/EventHandler";
 
 
 
@@ -6,6 +7,7 @@ export class Canvas {
     #canvasHTML;
     #canvasStyle;
     #context;
+    #mousePosition = {x: 0, y: 0};
         
     constructor(x, y, width, height){
         this.#canvasHTML =this.#makeCanvas();
@@ -15,6 +17,17 @@ export class Canvas {
         this.#context.imageSmoothingEnabled = false;
         
         // this.#context.imageSmoothingQuality = flase;
+        this.onMouseDown = new EventHandler();
+    }
+
+    #onMouseMove(event){
+        var rect = this.#canvasHTML.getBoundingClientRect();
+
+        var scaleX = this.#canvasHTML.width / rect.width;
+        var scaleY = this.#canvasHTML.height / rect.height;
+
+        this.#mousePosition.x = (event.clientX - rect.left) * scaleX;
+        this.#mousePosition.y = (event.clientY - rect.top) * scaleY;
     }
 
     #makeCanvas(){
@@ -22,9 +35,10 @@ export class Canvas {
         temp.style.position = 'absolute';
         temp.style.backgroundColor = 'lightBlue';
         temp.style.zIndex = '-1';
+        temp.onmousemove = (event) => this.#onMouseMove(event);
         document.body.prepend(temp);
+        temp.onmousedown = () => this.onMouseDown.invoke();
 
-        console.log("here");
 
         return temp;
     }
@@ -43,6 +57,8 @@ export class Canvas {
         this.setHeight(height);
     }
 
+    getMousePosition = () => this.#mousePosition;
+
     getX = () => this.#canvasStyle.left;
     getY = () => this.#canvasStyle.top;
     getWidth = () => this.#canvasHTML.width;
@@ -53,6 +69,7 @@ export class Canvas {
     setWidth = (value) => {
         this.#canvasHTML.width = value;
         this.#canvasStyle.width = `${value}px`;
+
     }
     setHeight = (value) => {
         console.log(value);

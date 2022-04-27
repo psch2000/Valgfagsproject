@@ -10,7 +10,6 @@ export class CanvasGame {
     #composits = [];
     #compositsToInstantiate = [];
     #onStart = new EventHandler();
-    #isRunning = false;
 
     constructor(x, y, width, height){
         this.window = new Canvas(x, y, width, height);
@@ -80,7 +79,6 @@ export class CanvasGame {
         
         if (position !== undefined){
             gameObject.transform.position = position;
-            console.log(gameObject);
         }
     }
     
