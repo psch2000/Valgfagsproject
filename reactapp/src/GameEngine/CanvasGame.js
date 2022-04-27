@@ -19,6 +19,7 @@ export class CanvasGame {
 
     run(){
         this.#thread = ThreadStart(() => this.#invoke(), 0);
+        
     }
 
 
