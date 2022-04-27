@@ -8,7 +8,7 @@ export class DrawIcon extends Component{
         this.img="null"
 
         this.image = new Image();
-        this.image.src = "./images/heart.png";
+        this.image.src = "./images/sprite_heart.png";
 
 
         // this.image.width *= 1;
@@ -30,7 +30,7 @@ export class DrawIcon extends Component{
         // console.log(this.img.height)
         // console.log(this.img.height)
         // this.DrawCachedImage(context, this.img, 1/window.pixelRatio, position.x, position.y);
-        context.drawImage(this.image, 200, 0);
+        context.drawImage(this.image, position.x, position.y);
     }
     
   

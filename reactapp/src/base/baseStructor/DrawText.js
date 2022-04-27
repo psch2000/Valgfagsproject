@@ -9,12 +9,12 @@ export class DrawText extends Component{
     }
 
     onDraw(context){
-        context.font = "10px Arial"
+        context.font = "30px Arial"
         context.fillStyle = "black";
 
 
         var position = this.transform.position;        
-        context.fillText(this.text, 0, 4); 
+        context.fillText(this.text, position.x, position.y); 
     }
 
 }

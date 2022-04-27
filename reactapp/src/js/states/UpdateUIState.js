@@ -18,11 +18,7 @@ export class UpdateUIState extends State{
         //draw health icon
         var HealthIcon = new Composit();
         var heartIcon = HealthIcon.addComponent(new DrawIcon());
-        HealthIcon.transform.position.x = 5;
-        HealthIcon.transform.position.y = 0;
-        HealthIcon.transform.size.height = 50;
-        HealthIcon.transform.size.width = 50;
-        heartIcon.img = document.getElementById("hearticon");
+        //heartIcon.img = document.getElementById("hearticon");
 
 
 
@@ -71,8 +67,8 @@ export class UpdateUIState extends State{
         // Game.instantiate(WaveText);
         // Game.instantiate(MoneyText);
         // Game.instantiate(MoneyIcon);
-        Game.instantiate(HealthIcon);
-        Game.instantiate(HealthText, {x:20, y: 10});
+        Game.instantiate(HealthIcon, {x: 50, y: 50});
+        Game.instantiate(HealthText, {x:40, y: 30});
 
 
         console.log(HealthText)
