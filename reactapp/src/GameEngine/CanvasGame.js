@@ -12,8 +12,8 @@ export class CanvasGame {
     #onStart = new EventHandler();
     #isRunning = false;
 
-    constructor(x, y, size){
-        this.window = new Canvas(x, y, size);
+    constructor(x, y, width, height){
+        this.window = new Canvas(x, y, width, height);
 
     }
 

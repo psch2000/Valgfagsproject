@@ -14,7 +14,7 @@ export class DrawText extends Component{
 
 
         var position = this.transform.position;        
-        context.fillText(this.text, position.x, position.y); 
+        context.fillText(this.text, 0, 4); 
     }
 
 }
