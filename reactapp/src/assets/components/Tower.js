@@ -1,7 +1,6 @@
 import { Component } from "../../base/baseStructor/Component";
 import { Composit } from "../../base/baseStructor/Composit";
 import { Game } from "../app/App";
-import { OnClickBuyButton } from "../BuyButton";
 import { SquareRenderer } from "./SquareRenderer";
 
 

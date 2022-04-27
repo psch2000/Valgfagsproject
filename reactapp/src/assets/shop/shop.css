@@ -1,0 +1,15 @@
+
+
+.shopMenu{
+    position: absolute;
+    left: 740px;
+    top: 150px;
+    row-gap: 27px;
+    column-gap: 30px;
+}
+
+
+.shopButton{
+    width: 95px;
+    height: 110px;
+}

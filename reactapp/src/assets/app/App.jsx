@@ -2,22 +2,13 @@ import React, { useEffect, useState } from "react"
 import {Component } from "../../base/baseStructor/Component"
 import { Transform } from "../../base/baseStructor/Transform"
 import { Composit } from "../../base/baseStructor/Composit"
-import { useInterval } from "../hooks/useInterval"
 import { StateHandler } from "../../base/baseBehaviour/StateHandler"
 import { UpdateUIState } from "../../js/states/UpdateUIState"
-import { Canvas } from "../../GameEngine/Canvas"
 import { GameTitle } from "../../jsx/GameTitle"
-import { CanvasGame } from "../../GameEngine/CanvasGame";
-import { DrawGrid } from "../../base/baseStructor/DrawGrid"
-import { TowerMenuSystem } from "../jsx/TowerMenuSystem"
-// MANGLER KOMMENTAR
-import { TestState } from "./states/initializestates/TestState"
-import { MoneyText } from "../MoneyText"
-import { BuyButton } from "../BuyButton"
 import { Tower } from "../components/Tower"
 import { EventHandler } from "../../base/baseBehaviour/EventHandler"
-import { Weapon } from "../components/Weapon"
-import { Vector2d } from "../../base/baseStructor/Vector2d"
+import { CanvasGame } from "../../GameEngine/CanvasGame"
+import { ShopMenu } from "../shop/ShopMenu"
 
 
 export const Game = new CanvasGame(0, window.innerHeight/2-270, 1000, 500);
@@ -62,7 +53,8 @@ export const App = () => {
     }, [])
 
     return <div>
-        <TowerMenuSystem></TowerMenuSystem>
+        <ShopMenu></ShopMenu>
+        {/* <TowerMenuSystem></TowerMenuSystem> */}
         {/* <MoneyText></MoneyText> */}
         <GameTitle></GameTitle>
         {/* <BuyButton onClickeEventHandler={onClick}></BuyButton> */}
