@@ -7,6 +7,7 @@ import { Game } from "../../assets/app/App";
 import { SquareRenderer } from "../../assets/components/SquareRenderer";
 
 
+
 export class UpdateUIState extends State{
 
     constructor(){
@@ -15,64 +16,42 @@ export class UpdateUIState extends State{
 
     execute(){
 
-        //draw health icon
+        //draw icons
         var HealthIcon = new Composit();
-        var heartIcon = HealthIcon.addComponent(new DrawIcon());
-        //heartIcon.img = document.getElementById("hearticon");
+        HealthIcon.addComponent(new DrawIcon("./images/sprite_heart.png"));
+        
+        var MoneyIcon = new Composit();
+        MoneyIcon.addComponent(new DrawIcon("./images/sprite_coin.png"));
+
+        var ShopUI = new Composit();
+        ShopUI.addComponent(new DrawIcon("./images/sprite_shop.png"));
 
 
 
-        //draw health text
+        //draw texts
         var HealthText = new Composit();
         var heartText = HealthText.addComponent(new DrawText());
         heartText.text = 100;
 
-
-
-        //draw money icon
-        var MoneyIcon = new Composit();
-        var coinIcon = MoneyIcon.addComponent(new DrawIcon());
-        MoneyIcon.transform.position.x = 150;
-        MoneyIcon.transform.position.y = 28;
-        MoneyIcon.transform.size.height = 45;
-        MoneyIcon.transform.size.width = 45;
-        coinIcon.img = document.getElementById("moneyicon");
-
-        //draw money text
         var MoneyText = new Composit();
         var coinText = MoneyText.addComponent(new DrawText());
-        MoneyText.transform.position.x = 200;
-        MoneyText.transform.position.y = 60;
         coinText.text = "$" + 20000;
 
-        //draw wave text
         var WaveText = new Composit();
         var waveText = WaveText.addComponent(new DrawText());
-        WaveText.transform.position.x = 900;
-        WaveText.transform.position.y = 60;
         waveText.text = "Wave: " + 0;
 
-        //draw shop UI
-        var ShopUI = new Composit();
-        var shopUI = ShopUI.addComponent(new DrawIcon());
-        ShopUI.transform.position.x = 1050;
-        ShopUI.transform.position.y = 0;
-        ShopUI.transform.size.height = 600;
-        ShopUI.transform.size.width = 300;
-        shopUI.img = document.getElementById("shopui");
+        
+        //nstantiate gameobjects
+            //Icons and images
+            Game.instantiate(HealthIcon, {x: 10, y: 5});
+            Game.instantiate(MoneyIcon, {x: 130, y: 5});
+            Game.instantiate(ShopUI, {x: 700, y: 0});
 
-        //instantiate gameobjects
-
-        // Game.instantiate(ShopUI);
-        // Game.instantiate(WaveText);
-        // Game.instantiate(MoneyText);
-        // Game.instantiate(MoneyIcon);
-        Game.instantiate(HealthIcon, {x: 50, y: 50});
-        Game.instantiate(HealthText, {x:40, y: 30});
-
-
-        console.log(HealthText)
-
+            //Texts
+            Game.instantiate(HealthText, {x:45, y: 30});
+            Game.instantiate(MoneyText, {x:165, y: 30});
+            Game.instantiate(WaveText, {x:580, y:30});
 
     }
 

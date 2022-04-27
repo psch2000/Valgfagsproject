@@ -3,12 +3,11 @@ import { Component } from "./Component";
 
 export class DrawIcon extends Component{
 
-    constructor(){
+    constructor(path){
         super();
-        this.img="null"
+        this.img= new Image();
+        this.img.src = path;
 
-        this.image = new Image();
-        this.image.src = "./images/sprite_heart.png";
 
 
         // this.image.width *= 1;
@@ -27,10 +26,8 @@ export class DrawIcon extends Component{
         // downscaledImage.style.color = 'transparent';
 
 
-        // console.log(this.img.height)
-        // console.log(this.img.height)
-        // this.DrawCachedImage(context, this.img, 1/window.pixelRatio, position.x, position.y);
-        context.drawImage(this.image, position.x, position.y);
+        context.drawImage(this.img, position.x, position.y);
+
     }
     
   
