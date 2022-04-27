@@ -26,7 +26,7 @@ export const Game = new CanvasGame(0, window.innerHeight/2-270, 1000, 500);
 export const App = () => {
 
     const [n, setN] = useState(0);
-    const appStateManager = new StateHandler(new TestState());
+    const appStateManager = new StateHandler(new UpdateUIState());
     var isRunning = false;
 
     function onClick(){ 
