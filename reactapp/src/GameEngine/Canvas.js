@@ -13,6 +13,7 @@ export class Canvas {
         this.#setCanvas({x,y, width, height});
         this.#context = this.#canvasHTML.getContext('2d');
         this.#context.imageSmoothingEnabled = false;
+        
         // this.#context.imageSmoothingQuality = flase;
     }
 
@@ -20,7 +21,8 @@ export class Canvas {
         var temp = document.createElement("canvas");
         temp.style.position = 'absolute';
         temp.style.backgroundColor = 'lightBlue';
-        document.body.append(temp);
+        temp.style.zIndex = '-1';
+        document.body.prepend(temp);
 
         console.log("here");
 
