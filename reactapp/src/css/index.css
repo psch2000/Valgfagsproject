@@ -11,21 +11,3 @@ body{
     color: orange;
     font-size: 3em;
 }
-
-
-/*
-.GameTitle:hover{
-    transform: scale(1.2);
-    color: red;
-    justify-content: center;
-}
-*/
-
-
-/*Canvas
-margin: 100px 100px;  
-*/
-.Canvas{
-    border-color: orange;
-     
-}
