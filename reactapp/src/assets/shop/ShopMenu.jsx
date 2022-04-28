@@ -1,17 +1,17 @@
 import {shop} from "./shop.css"
-import { ShopItem } from "./ShopItem"
-import { ShopItemObj } from "./ShopItemObject";
+import { ShopItemComponent } from "./ShopItemComponent"
+import { ShopItem } from "./ShopItem";
 
 
 
 export const ShopMenuObject = {
     items: [
-        new ShopItemObj("./images/test_tower.png", 200),
-        new ShopItemObj("./images/test_tower.png", 300),
-        new ShopItemObj("./images/test_tower.png", 350),
-        new ShopItemObj("./images/test_tower.png", 400),
-        new ShopItemObj("./images/test_tower.png", 500),
-        new ShopItemObj("./images/test_tower.png", 650),
+        new ShopItem("./images/test_tower.png", 200),
+        new ShopItem("./images/test_tower.png", 300),
+        new ShopItem("./images/test_tower.png", 350),
+        new ShopItem("./images/test_tower.png", 400),
+        new ShopItem("./images/test_tower.png", 500),
+        new ShopItem("./images/test_tower.png", 650),
     ]
 
 }
@@ -27,7 +27,7 @@ export const ShopMenu = () =>{
         {items.map((item, index) => {
 
             {console.log(item.imagePath)}
-            return (<ShopItem key={index} price={item.price} imagePath={item.imagePath}></ShopItem>);
+            return (<ShopItemComponent key={index} price={item.price} imagePath={item.imagePath}></ShopItemComponent>);
             
 
         })}

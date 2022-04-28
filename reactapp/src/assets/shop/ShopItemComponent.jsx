@@ -2,7 +2,7 @@ import {shop} from "./shop.css"
 
 
 
-export const ShopItem = ({imagePath, price}) => {
+export const ShopItemComponent = ({imagePath, price}) => {
 
 
     return <button className=" shopButton
