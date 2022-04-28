@@ -8,7 +8,7 @@ import { UpdateUIState } from "../../js/states/UpdateUIState"
 import { Canvas } from "../../GameEngine/Canvas"
 import { GameTitle } from "../../jsx/GameTitle"
 import { CanvasGame } from "../../GameEngine/CanvasGame";
-import { ShopButton, Toggle } from "../../jsx/ShopButton"
+import Button, { ShopButton, Toggle } from "../../jsx/ShopButton"
 // MANGLER KOMMENTAR
 
 export const Game = new CanvasGame(window.innerWidth/2 -500, window.innerHeight/2-250, 1000, 500);
@@ -37,12 +37,9 @@ export const App = () => {
 
 
     return <div>
-
-        <div>
-            <ShopButton/>
-        </div>
         <GameTitle></GameTitle>
         <button onClick={onClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{n}</button>
+        <ShopButton>Basic Tower</ShopButton>
     </div>
     
 }
