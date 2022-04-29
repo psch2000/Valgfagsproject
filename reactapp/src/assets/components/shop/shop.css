@@ -81,13 +81,13 @@
 .shopMenu{
     position: absolute;
     left: 920px;
-    top: 190px;
+    top: 200px;
     row-gap: 20px;
     column-gap: 20px;
 }
 
 
 .shopButton{
-    width: 104px;
-    height: 118px;
+    width: 100px;
+    height: 110px;
 }
