@@ -1,5 +1,5 @@
 import {shop} from "./shop.css"
-import { ShopItem } from "./ShopItem"
+import { ShopButton, ShopItem } from "./ShopItem"
 import { ShopItemObj } from "./ShopItemObject";
 
 
@@ -27,7 +27,8 @@ export const ShopMenu = () =>{
         {items.map((item, index) => {
 
             {console.log(item.imagePath)}
-            return (<ShopItem key={index} price={item.price} imagePath={item.imagePath}></ShopItem>);
+            //return (<ShopItem key={index} price={item.price} imagePath={item.imagePath}></ShopItem>);
+            return (<ShopButton key={index} price={item.price} imagePath={item.imagePath}></ShopButton>)
             
 
         })}
