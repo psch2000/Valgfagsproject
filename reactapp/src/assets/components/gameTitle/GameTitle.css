@@ -1,0 +1,9 @@
+/*React component Game Title*/
+.GameTitle{
+    text-align: center;
+    justify-content: center;
+    text-transform: uppercase;
+    color: orange;
+    font-size: 3em;
+    font-weight: 500;
+}
