@@ -1,4 +1,4 @@
-import {shop} from "./shop.css"
+import "./shop.css"
 import { ShopButton, ShopItem } from "./ShopItem"
 import { ShopItemObj } from "./ShopItemObject";
 
