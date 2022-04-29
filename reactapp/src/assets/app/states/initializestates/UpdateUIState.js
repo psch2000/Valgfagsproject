@@ -1,11 +1,8 @@
-import { DrawIcon } from "../../base/baseStructor/DrawIcon";
-import { DrawText } from "../../base/baseStructor/DrawText";
-import { Composit } from "../../base/baseStructor/Composit";
-import { CanvasGame } from "../../GameEngine/CanvasGame";
-import { State } from "../../base/baseBehaviour/State";
-import { Game } from "../../assets/app/App";
-import { SquareRenderer } from "../../assets/components/SquareRenderer";
-
+import { DrawIcon } from "../../../../base/baseStructor/DrawIcon";
+import { DrawText } from "../../../../base/baseStructor/DrawText";
+import { Composit } from "../../../../base/baseStructor/Composit";
+import { State } from "../../../../base/baseBehaviour/State";
+import { Game } from "../../../../assets/app/App";
 
 
 export class UpdateUIState extends State{

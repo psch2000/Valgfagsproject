@@ -1,4 +1,4 @@
-import "../css/index.css"
+import "../gameTitle/GameTitle.css"
 
 export const GameTitle = () => {
     return <div className="GameTitle">
