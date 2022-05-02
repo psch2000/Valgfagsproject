@@ -6,6 +6,7 @@ import { StateHandler } from "../../base/baseBehaviour/StateHandler"
 import { UpdateUIState } from "./states/initializestates/UpdateUIState"
 import { ShopMenu } from "../components/shop/ShopMenu"
 import { GameTitle } from "../components/gameTitle/GameTitle"
+import { TowerPlacere } from "../components/TowerPlacer"
 // export const Game = new CanvasGame(window.innerWidth/2 -500, window.innerHeight/2-250, 1000, 500);
 
 export const AppComponent = () => {
@@ -15,6 +16,9 @@ export const AppComponent = () => {
         init.execute();
         OnEndResize.addListener(onEndResize, 0);
         App.run();
+        TowerPlacere.getInstance();
+        TowerPlacere.getInstance().setActive(false);
+
     }, [])
 
     const setWindowRect = () => {

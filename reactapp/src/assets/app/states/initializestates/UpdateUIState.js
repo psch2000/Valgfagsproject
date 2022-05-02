@@ -4,6 +4,8 @@ import { Composit } from "../../../../base/baseStructor/Composit";
 import { State } from "../../../../base/baseBehaviour/State";
 import { Game } from "../../../../assets/app/App";
 import { instantiate } from "../../functions/instantiate";
+import { CircleRenderer } from "../../../components/CircleRenderer";
+import { FollowCanvasMouse } from "../../../components/FollowCanvasMouse";
 
 
 export class UpdateUIState extends State{
@@ -50,6 +52,12 @@ export class UpdateUIState extends State{
         instantiate(HealthText, {x:45, y: 30});
         instantiate(MoneyText, {x:165, y: 30});
         instantiate(WaveText, {x:580, y:30});
+
+
+        var c = new Composit();
+        c.addComponent(new CircleRenderer(3, 'white', true));
+        c.addComponent(new FollowCanvasMouse());
+        instantiate(c);
 
     }
 

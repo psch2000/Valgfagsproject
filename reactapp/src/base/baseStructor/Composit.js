@@ -16,6 +16,7 @@ export class Composit extends Component {
     }
 
 
+   
 
     #addTransform(){
         this.transform = new Transform();

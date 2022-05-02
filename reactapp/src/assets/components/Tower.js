@@ -1,6 +1,9 @@
 import { Component } from "../../base/baseStructor/Component";
 import { Composit } from "../../base/baseStructor/Composit";
+import { Vector2d } from "../../base/baseStructor/Vector2d";
 import { Game } from "../app/App";
+import { getCanvasMousePosition } from "../app/functions/getCanvasMousePosition";
+import { ProjectilePool } from "../pools/ProjectilePool";
 import { SquareRenderer } from "./SquareRenderer";
 
 
@@ -9,38 +12,30 @@ export class Tower extends Component{
 
 
 
-    constructor(onClickEventHandler){
+    constructor(towerType){
         super();
-
-        console.log(this)
-        onClickEventHandler.addListener(() => this.onClick(this));
-        Game.window.onMouseDown.addListener(() => this.onClickCanvas(this));
-
-        this.flag = false;
+        this.towerType = towerType;
+        this.time = 0;
     }
 
-    onClick(callBack){
+    onUpdate(){
 
-        callBack.flag = true;
-    }
+        // quick test
+        this.time += 1;
 
-    onClickCanvas(callBack){
-        if (callBack.flag == false) return;
+        if (this.time == 100){
+            var from = this.transform.position;
+            var to = getCanvasMousePosition();
 
-        var c = new Composit();
-        c.addComponent(new SquareRenderer(10, 10, 'green'));
-        var {x, y} = Game.window.getMousePosition();
+            var direction = Vector2d.subtract(to, from).normalize();
+            ProjectilePool.getInstance().color = this.towerType.color;
+            var instance = ProjectilePool.getInstance().acquireReuseable();
+            instance.transform.position.x = this.transform.position.x;
+            instance.transform.position.y = this.transform.position.y;
 
-        Game.instantiate(c, {x, y});
-        callBack.flag = false;
-    }
-
-    onDraw(context){
-        
-        if (this.flag == false) return;
-        context.fillStyle = 'green';
-        var {x, y} = Game.window.getMousePosition();
-        context.fillRect(x, y, 10, 10);
+            instance.getComponent("MoveDirection").direction = direction;
+            this.time = 0;
+        }
     }
     
 
