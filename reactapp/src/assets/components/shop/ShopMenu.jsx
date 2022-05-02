@@ -27,7 +27,6 @@ export const ShopMenu = () =>{
         {items.map((item, index) => {
 
             {console.log(item.imagePath)}
-            //return (<ShopItem key={index} price={item.price} imagePath={item.imagePath}></ShopItem>);
             return (<ShopButton key={index} price={item.price} imagePath={item.imagePath}></ShopButton>)
             
 
