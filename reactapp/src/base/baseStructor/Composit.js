@@ -1,22 +1,30 @@
 import { Component } from "./Component";
 import { Transform } from "./Transform";
 
-// MANGLER KOMMENTAR
-
 export class Composit extends Component {
-
+    
     #components = [];
 
     constructor(name){
         super();
-        this.transform = new Transform();
+        this.layer = 0;
         this.name = name;
-        this.addComponent(this.transform);
-        this.components = this.#components; // debugging
+        this.#addTransform();
+
+        // Debugging only.
+        this.components = this.#components;
     }
 
-    addComponent(component){
-        this.#components.push(component);
+
+
+    #addTransform(){
+        this.transform = new Transform();
+        this.addComponent(this.transform);
+    }
+
+
+
+    addComponent(component, index){
         component.transform = this.transform;
         component.parent = this;
 
@@ -28,6 +36,14 @@ export class Composit extends Component {
         catch{}
         
 
+        if (index == undefined){
+            this.#components.push(component);
+        }
+        else{
+            this.#components.splice(index, 0, component);
+        }
+
+
         return component;
     }
 
@@ -35,11 +51,6 @@ export class Composit extends Component {
         var i = this.#components.indexOf(component);
         this.#components.splice(i);
     }
-
- 
-
-
-   
 
     getComponent(type){
         var temp = null;
@@ -53,29 +64,31 @@ export class Composit extends Component {
         return temp;
     }
 
-    onStart = () => {
-        
-        this.#components.forEach(c => {
-            
-        try {  c.onStart();} 
-        catch{}   
-        }
-    );}
+    onStart() {  
+        this.#components.forEach(c => {            
+            try {  c.onStart();} 
+            catch{}   
+        });
+    }
 
     onUpdate(){
         if (this.isActive === false) return;
-
         this.#components.forEach(c => {
-            try {  c.onUpdate();} 
-            catch{}   
+            if (c.isActive == true){
+                try {  c.onUpdate();} 
+                catch{} 
+            }
+              
         });
     }
 
     onDraw(context){
         if (this.isActive === false) return;
         this.#components.forEach(c => {
-            try {c.onDraw(context);} 
-            catch{}
+            if (c.isActive == true){
+                try {c.onDraw(context);} 
+                catch{}
+            }       
         });
     }
 

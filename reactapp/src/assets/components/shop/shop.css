@@ -80,8 +80,6 @@
 
 .shopMenu{
     position: absolute;
-    left: 920px;
-    top: 200px;
     row-gap: 20px;
     column-gap: 20px;
 }
