@@ -1,0 +1,93 @@
+:root{
+    --primay: #00BFFF;
+    --secondary: #0020C2;
+    --warning: #ffd028;
+    --danger: #eb3f27;
+    --succes: #75fa83;
+    --white: #fdfdfd;
+    --black: #181717;
+}
+
+.btn{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    box-shadow: 1px 1px 20px rgba(0,75,100,.4);
+}
+
+.btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 1px 1px 20px rgba(0,75,100,1);
+}
+
+/* Button Colors and Styles */
+
+.btn--primary--solid{
+    background-color: var(--primay);
+    color: var(--white);
+    border: 2px solid var(--secondary);
+}
+
+.btn--warning--solid{
+    background-color: var(--warning);
+    color: var(--dark);
+    border: 2px solid var(--warning);
+}
+
+.btn--danger--solid{
+    background-color: var(--danger);
+    color: var(--white);
+    border: 2px solid var(--warning);
+}
+
+.btn--succes--solid{
+    background-color: var(--succes);
+    color: var(--white);
+    border: 2px solid var(--warning);
+}
+
+/* Button Sizes*/
+
+.btn--medium{
+    width: 104px;
+    height: 120px;
+}
+
+.btn--large{
+    padding: 15px 30px;
+    font-size: 20px;
+}
+
+.shopInfo{
+    margin: auto;
+    width: 50%;
+    justify-content: center;
+}
+
+.shopImage{
+    margin: auto;
+    justify-content: center;
+}
+
+.shopPrice{
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+    text-shadow: 2px 2px 2px var(--black);
+}
+
+.shopMenu{
+    position: absolute;
+    left: 920px;
+    top: 200px;
+    row-gap: 20px;
+    column-gap: 20px;
+}
+
+
+.shopButton{
+    width: 100px;
+    height: 110px;
+}
