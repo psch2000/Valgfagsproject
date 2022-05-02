@@ -1,7 +1,13 @@
+<<<<<<< HEAD:reactapp/src/assets/shop/ShopMenu.jsx
 import {shop} from "./shop.css"
 import { ShopButton } from "./ShopButton";
 import { ShopButtonComponent } from "./ShopButtonComponent"
 import { ShopItem } from "./ShopItem";
+=======
+import "./shop.css"
+import { ShopButton, ShopItem } from "./ShopItem"
+import { ShopItemObj } from "./ShopItemObject";
+>>>>>>> mergeBranche:reactapp/src/assets/components/shop/ShopMenu.jsx
 
 
 
@@ -28,7 +34,15 @@ export const ShopMenu = () =>{
         
         {items.map((item, index) => {
 
+<<<<<<< HEAD:reactapp/src/assets/shop/ShopMenu.jsx
             return (<ShopButtonComponent key={index}  price={item.price} imagePath={item.imagePath}></ShopButtonComponent>);
+=======
+            {console.log(item.imagePath)}
+            //return (<ShopItem key={index} price={item.price} imagePath={item.imagePath}></ShopItem>);
+            return (<ShopButton key={index} price={item.price} imagePath={item.imagePath}></ShopButton>)
+            
+
+>>>>>>> mergeBranche:reactapp/src/assets/components/shop/ShopMenu.jsx
         })}
 
 
