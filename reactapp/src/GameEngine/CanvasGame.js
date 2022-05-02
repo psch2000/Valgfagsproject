@@ -17,8 +17,7 @@ export class CanvasGame {
     }
 
     run(){
-        this.#thread = ThreadStart(() => this.#invoke(), 0);
-        
+        this.#thread = ThreadStart(() => this.#invoke(), 0);   
     }
 
 
@@ -34,7 +33,7 @@ export class CanvasGame {
 
     #onInstantiate(){
         this.#compositsToInstantiate.forEach(root => {
-            this.#onStart.addListener(root.onStart);
+            this.#onStart.addListener(() => root.onStart())
             this.#composits.push(root);
         });
 

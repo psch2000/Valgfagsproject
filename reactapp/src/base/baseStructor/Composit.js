@@ -1,7 +1,6 @@
 import { Component } from "./Component";
 import { Transform } from "./Transform";
 
-// MANGLER KOMMENTAR
 
 export class Composit extends Component {
 
@@ -17,6 +16,7 @@ export class Composit extends Component {
 
     addComponent(component){
         this.#components.push(component);
+
         component.transform = this.transform;
         component.parent = this;
 
@@ -36,11 +36,6 @@ export class Composit extends Component {
         this.#components.splice(i);
     }
 
- 
-
-
-   
-
     getComponent(type){
         var temp = null;
 
@@ -53,14 +48,14 @@ export class Composit extends Component {
         return temp;
     }
 
-    onStart = () => {
+    onStart() {
         
         this.#components.forEach(c => {
             
-        try {  c.onStart();} 
-        catch{}   
-        }
-    );}
+            try {  c.onStart();} 
+            catch{}   
+        });
+    }
 
     onUpdate(){
         if (this.isActive === false) return;

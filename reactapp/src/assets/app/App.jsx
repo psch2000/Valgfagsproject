@@ -9,6 +9,9 @@ import { Tower } from "../components/Tower"
 import { EventHandler } from "../../base/baseBehaviour/EventHandler"
 import { CanvasGame } from "../../GameEngine/CanvasGame"
 import { ShopMenu } from "../shop/ShopMenu"
+import { FollowMouse } from "../components/FollowMouse"
+import { Cursor } from "../components/composits/Cursor"
+import { TowerPlacer } from "../components/TowerPlacer"
 
 
 export const Game = new CanvasGame(0, window.innerHeight/2-270, 1000, 500);
@@ -43,10 +46,11 @@ export const App = () => {
 
 
         // var weapon = c.addComponent(new Weapon(Vector2d.right, 1));
-        c.addComponent(new Tower(onClick));
+        // c.addComponent(new Tower(onClick));
+
+        console.log(c)
 
 
-        Game.instantiate(c);
         // var c = new Composit();
         // c.addComponent(new DrawGrid());
         // Game.instantiate(c);

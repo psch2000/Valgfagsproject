@@ -7,6 +7,8 @@ export class ShopItem {
         this.imagePath = imagePath;
         this.price = price;
     }
+
+
 }
 
 

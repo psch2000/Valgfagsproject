@@ -50,7 +50,6 @@ export class Canvas {
     #setCanvas(rect){
        var {x,y, width, height} = rect;
 
-       console.log(rect);
         this.setX(x);
         this.setY(y);
         this.setWidth(width);
@@ -72,7 +71,6 @@ export class Canvas {
 
     }
     setHeight = (value) => {
-        console.log(value);
         this.#canvasHTML.height = value;
         this.#canvasStyle.height = `${value}px`;
     }

@@ -11,6 +11,10 @@ export class SquareRenderer extends Component{
         this.color = color;
     }
 
+
+    onStart(){
+        console.log("here")
+    }
   
 
     onDraw(ctx){

@@ -1,5 +1,6 @@
 import {shop} from "./shop.css"
-import { ShopItemComponent } from "./ShopItemComponent"
+import { ShopButton } from "./ShopButton";
+import { ShopButtonComponent } from "./ShopButtonComponent"
 import { ShopItem } from "./ShopItem";
 
 
@@ -7,11 +8,12 @@ import { ShopItem } from "./ShopItem";
 export const ShopMenuObject = {
     items: [
         new ShopItem("./images/test_tower.png", 200),
-        new ShopItem("./images/test_tower.png", 300),
-        new ShopItem("./images/test_tower.png", 350),
-        new ShopItem("./images/test_tower.png", 400),
-        new ShopItem("./images/test_tower.png", 500),
-        new ShopItem("./images/test_tower.png", 650),
+        new ShopItem("./images/sprite_ball_black.png", 300),
+        new ShopItem("./images/sprite_ball_blue.png", 400),
+        new ShopItem("./images/sprite_ball_red.png", 500),
+        new ShopItem("./images/sprite_ball_white.png", 600),
+        new ShopItem("./images/sprite_ball_yellow.png", 700),
+       
     ]
 
 }
@@ -26,10 +28,7 @@ export const ShopMenu = () =>{
         
         {items.map((item, index) => {
 
-            {console.log(item.imagePath)}
-            return (<ShopItemComponent key={index} price={item.price} imagePath={item.imagePath}></ShopItemComponent>);
-            
-
+            return (<ShopButtonComponent key={index}  price={item.price} imagePath={item.imagePath}></ShopButtonComponent>);
         })}
 
 
