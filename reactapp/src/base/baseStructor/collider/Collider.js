@@ -9,10 +9,10 @@ export class Collider extends Component {
     }
 
     doesOverlap(other) {
-        Intersect.intersects(this, other);
+        return Intersect.intersects(this, other);
     }
 
     static doesOverlap(first, second) {
-        Intersect.intersects(first, second);
+        return Intersect.intersects(first, second);
     }
 }
