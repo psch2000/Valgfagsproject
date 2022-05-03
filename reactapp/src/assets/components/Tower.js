@@ -16,6 +16,7 @@ export class Tower extends Component{
         super();
         this.towerType = towerType;
         this.time = 0;
+        this.canFire = false;
     }
 
     onUpdate(){
