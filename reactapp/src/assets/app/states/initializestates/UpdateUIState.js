@@ -8,7 +8,6 @@ import { CircleRenderer } from "../../../components/CircleRenderer";
 import { FollowCanvasMouse } from "../../../components/FollowCanvasMouse";
 import { Map } from "../../../components/Map";
 import { Rectangle } from "../../../../base/baseStructor/Rectangle";
-import { CircleCollider } from "../../../components/CircleCollider";
 import { TowerRange } from "../../../components/TowerRange";
 
 

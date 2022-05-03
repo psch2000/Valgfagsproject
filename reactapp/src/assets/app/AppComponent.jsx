@@ -20,7 +20,6 @@ export const AppComponent = () => {
         App.run();
         TowerPlacere.getInstance();
         TowerPlacere.getInstance().setActive(false);
-
     }, [])
 
     const setWindowRect = () => {

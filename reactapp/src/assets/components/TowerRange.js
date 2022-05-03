@@ -1,6 +1,5 @@
 import { Circle } from "../../base/baseStructor/Circle";
 import { Component } from "../../base/baseStructor/Component";
-import { CircleCollider } from "./CircleCollider";
 
 
 export class TowerRange extends Component{
@@ -11,7 +10,7 @@ export class TowerRange extends Component{
     constructor(range){
         super();
         this.#range = range;
-        this.#circleCollider = new CircleCollider(range);
+        // this.#circleCollider = new CircleCollider(range);
     }
 
     setRange(value){
@@ -19,9 +18,13 @@ export class TowerRange extends Component{
         this.#range = value;
     }
 
+
+
     onStart(){
-        this.parent.addComponent(this.#circleCollider);
+        // this.parent.addComponent(this.#circleCollider);
     }
+
+
 
 
 
