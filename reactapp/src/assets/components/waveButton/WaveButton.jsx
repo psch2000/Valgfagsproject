@@ -28,7 +28,9 @@ const Styles = [
     return(
       <button 
         className={`btn ${CheckButtonStyle} ${CheckButtonSize}`} onClick={onClick}>
-            <img className="waveIcon" src="./images/test_tower.png"></img>
+          <div className="waveContainer">
+            <img className="waveIcon" src="./images/sprite_play.png"></img>
+          </div>
       </button>
     )
   };

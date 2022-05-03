@@ -6,7 +6,7 @@
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.3s ease;
-    box-shadow: 1px 1px 20px rgba(0,75,100,.4);
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
 }
 
 .btn:hover{
@@ -43,15 +43,23 @@
 /* WaveButton setup*/
 .btn--wave{
     width: 200px;
-    height: 60px;
+    height: 64px;
     padding: 15px 30px;
     position: absolute;
     left: 935px;
     top: 560px;    
+    padding:0px 0px 0px 0px;
 }
 
 .btn--wave:hover{
     box-shadow: 1px 1px 20px rgb(0, 100, 38);
+}
+
+.waveContainer{
+    position: relative;
+    margin: auto;
+    width: 50%;
+    justify-content: center;
 }
 
 .waveIcon{

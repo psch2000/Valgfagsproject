@@ -38,8 +38,17 @@ export class UpdateUIState extends State{
         var waveText = WaveText.addComponent(new DrawText());
         waveText.text = "Wave: " + 0;
 
+
+        //draw map
+        var MapImage = new Composit();
+        MapImage.addComponent(new DrawIcon("./images/Sprite_map.png"))
+
         
         //nstantiate gameobjects
+
+            //map 
+            Game.instantiate(MapImage, {x:0, y:0})
+
             //Icons and images
             Game.instantiate(HealthIcon, {x: 10, y: 5});
             Game.instantiate(MoneyIcon, {x: 130, y: 5});
@@ -49,6 +58,8 @@ export class UpdateUIState extends State{
             Game.instantiate(HealthText, {x:45, y: 30});
             Game.instantiate(MoneyText, {x:165, y: 30});
             Game.instantiate(WaveText, {x:580, y:30});
+
+            
 
     }
 
