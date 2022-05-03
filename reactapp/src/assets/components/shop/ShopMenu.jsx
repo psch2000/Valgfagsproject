@@ -44,9 +44,6 @@ export const ShopMenu = ({rect, offset}) =>{
 
     return <div style={style} className="shopMenu grid-rows-3 grid  grid-flow-col">
 
-        {console.log("here")}
-    
-        
         {towerTypes.map((item, index) => {
 
             return (<ShopButton towerType={item}  key={index} ></ShopButton>)
