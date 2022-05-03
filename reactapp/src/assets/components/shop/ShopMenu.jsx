@@ -16,11 +16,17 @@ export const ShopMenuObject = {
 
 }
 
-export const ShopMenu = () =>{
+export const ShopMenu = ({rect, offset}) =>{
+
+
+    const style = {
+        left: `${rect.x + offset.x}px`,
+        top: `${rect.y + offset.y}px`,
+    }
 
     const items = ShopMenuObject.items;
 
-    return <div className="shopMenu grid-rows-3 grid  grid-flow-col">
+    return <div style={style} className="shopMenu grid-rows-3 grid  grid-flow-col">
 
     
         

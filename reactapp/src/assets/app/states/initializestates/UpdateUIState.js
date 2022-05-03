@@ -3,6 +3,7 @@ import { DrawText } from "../../../../base/baseStructor/DrawText";
 import { Composit } from "../../../../base/baseStructor/Composit";
 import { State } from "../../../../base/baseBehaviour/State";
 import { Game } from "../../../../assets/app/App";
+import { instantiate } from "../../functions/instantiate";
 
 
 export class UpdateUIState extends State{
@@ -38,17 +39,17 @@ export class UpdateUIState extends State{
         var waveText = WaveText.addComponent(new DrawText());
         waveText.text = "Wave: " + 0;
 
+        // Instantiate:
         
-        //nstantiate gameobjects
-            //Icons and images
-            Game.instantiate(HealthIcon, {x: 10, y: 5});
-            Game.instantiate(MoneyIcon, {x: 130, y: 5});
-            Game.instantiate(ShopUI, {x: 700, y: 0});
+        //Icons and images
+        instantiate(HealthIcon, {x: 10, y: 5});
+        instantiate(MoneyIcon, {x: 130, y: 5});
+        instantiate(ShopUI, {x: 700, y: 0});
 
-            //Texts
-            Game.instantiate(HealthText, {x:45, y: 30});
-            Game.instantiate(MoneyText, {x:165, y: 30});
-            Game.instantiate(WaveText, {x:580, y:30});
+        //Texts
+        instantiate(HealthText, {x:45, y: 30});
+        instantiate(MoneyText, {x:165, y: 30});
+        instantiate(WaveText, {x:580, y:30});
 
     }
 
