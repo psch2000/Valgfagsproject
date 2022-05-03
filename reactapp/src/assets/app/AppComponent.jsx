@@ -38,7 +38,7 @@ export const AppComponent = () => {
 
     return <div>
         <CanvasComponent canvas={App.canvas}></CanvasComponent>
-        <ShopMenu offset={{x:730, y:75}} rect={App.windowRect}></ShopMenu>
+        <ShopMenu offset={{x:750, y:65}} rect={App.windowRect}></ShopMenu>
         <GameTitle></GameTitle>
         <WaveButton></WaveButton>
     </div>
