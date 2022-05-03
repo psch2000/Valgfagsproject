@@ -1,36 +1,36 @@
-import { CircleCollider } from "./collider/CircleCollider";
-import { RectangleCollider } from "./collider/RectangleCollider";
+// import { CircleCollider } from "./collider/CircleCollider";
+// import { RectangleCollider } from "./collider/RectangleCollider";
 
 export class Intersect {
     static intersects(first, second) {
-        const SUPPORTED_INTERSECT_CLASSES = [CircleCollider, RectangleCollider];
+        const SUPPORTED_INTERSECT_CLASSES = ["CircleCollider", "RectangleCollider"];
 
         // if either first or second class are not supported, throw an error
         if (
-            SUPPORTED_INTERSECT_CLASSES.includes(first.constructor) === false ||
-            SUPPORTED_INTERSECT_CLASSES.includes(second.constructor) === false
+            SUPPORTED_INTERSECT_CLASSES.includes(first.constructor.name) === false ||
+            SUPPORTED_INTERSECT_CLASSES.includes(second.constructor.name) === false
         ) {
             throw new Error("use of not supprted classes in Intersect.intersects");
         }
 
         // both Rectangle instances
-        if (first.constructor === RectangleCollider && second.constructor === RectangleCollider) {
+        if (first.constructor.name === "RectangleCollider" && second.constructor.name === "RectangleCollider") {
             return Intersect.rectangles(first, second);
         }
 
         // one Rectangle and one Circle instance
         if (
-            (first.constructor === RectangleCollider && second.constructor === CircleCollider) ||
-            (first.constructor === CircleCollider && second.constructor === RectangleCollider)
+            (first.constructor.name === "RectangleCollider" && second.constructor.name === "CircleCollider") ||
+            (first.constructor.name === "CircleCollider" && second.constructor.name === "RectangleCollider")
         ) {
-            let rectangleObject = first.constructor === RectangleCollider ? first : second;
-            let circleObject = first.constructor === CircleCollider ? first : second;
+            let rectangleObject = first.constructor.name === "RectangleCollider" ? first : second;
+            let circleObject = first.constructor.name === "CircleCollider" ? first : second;
 
             return Intersect.rectangleCircle(rectangleObject, circleObject);
         }
 
         // both Circle instances
-        if (first.constructor === CircleCollider && second.constructor === CircleCollider) {
+        if (first.constructor.name === "CircleCollider" && second.constructor.name === "CircleCollider") {
             return Intersect.circles(first, second);
         }
     }
