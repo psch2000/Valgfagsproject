@@ -8,6 +8,8 @@ import { CircleRenderer } from "../../../components/CircleRenderer";
 import { FollowCanvasMouse } from "../../../components/FollowCanvasMouse";
 import { Map } from "../../../components/Map";
 import { Rectangle } from "../../../../base/baseStructor/Rectangle";
+import { CircleCollider } from "../../../components/CircleCollider";
+import { TowerRange } from "../../../components/TowerRange";
 
 
 export class UpdateUIState extends State{
@@ -22,6 +24,11 @@ export class UpdateUIState extends State{
         var mapRect = new Rectangle(0, 0,700, 500);
         map.addComponent(new Map(mapRect, 'transparent'));
         instantiate(map);
+
+        var collider = new Composit();
+        collider.addComponent(new FollowCanvasMouse());
+        collider.addComponent(new TowerRange(50));
+        instantiate(collider);
 
         //draw icons
         var HealthIcon = new Composit();
