@@ -30,7 +30,7 @@ export class Path extends Component {
             let height =
                 direction.equals(Vector2d.left) || direction.equals(Vector2d.right)
                     ? this.pathWidth
-                    : Math.abs(waypoint2.y - waypoint1.y);
+                    : Math.abs(waypoint2.y - waypoint1.y) + this.pathWidth; // + this.pathWidth to avoid corner gaps
             let width =
                 direction.equals(Vector2d.up) || direction.equals(Vector2d.down)
                     ? this.pathWidth
@@ -40,7 +40,7 @@ export class Path extends Component {
             let topLeft = direction.equals(Vector2d.down) || direction.equals(Vector2d.right) ? waypoint1 : waypoint2;
 
             // create rectangle
-            let rectangle = new RectangleCollider(topLeft.x, topLeft.y, width, height);
+            let rectangle = new RectangleCollider(width, height);
             rectangle.transform.position = topLeft;
 
             this.rectangles.push(rectangle);
