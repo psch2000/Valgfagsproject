@@ -18,7 +18,7 @@ export class Path extends Component {
 
     #createRectanglesOnPath() {
         for (let i = 0; i < this.waypoints.length; i++) {
-            if (i == 0) continue;
+            if (i === 0) continue;
 
             // renaming only
             let waypoint1 = this.waypoints[i - 1];
