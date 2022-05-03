@@ -1,6 +1,8 @@
 // import { CircleCollider } from "./collider/CircleCollider";
 // import { RectangleCollider } from "./collider/RectangleCollider";
 
+import { Vector2d } from "./Vector2d";
+
 export class Intersect {
     static intersects(first, second) {
         const SUPPORTED_INTERSECT_CLASSES = ["CircleCollider", "RectangleCollider"];
@@ -53,17 +55,24 @@ export class Intersect {
     }
 
     static rectangles(firstRect, secondRect) {
-        let firstLeft = firstRect.transform.position.x;
-        let firstRight = firstRect.transform.position.x + firstRect.width;
-        let firstTop = firstRect.transform.position.y;
-        let firstBottom = firstRect.transform.position.y + firstRect.height;
+        let firstTopLeft = new Vector2d(firstRect.transform.position.x, firstRect.transform.position.y);
+        let firstBottomRight = new Vector2d(
+            firstRect.transform.position.x + firstRect.width,
+            firstRect.transform.position.y + firstRect.height
+        );
 
-        let secondLeft = secondRect.transform.position.x;
-        let secondRight = secondRect.transform.position.x + secondRect.width;
-        let secondTop = secondRect.transform.position.y;
-        let secondBottom = secondRect.transform.position.y + secondRect.height;
+        let secondTopLeft = new Vector2d(secondRect.transform.position.x, secondRect.transform.position.y);
+        let secondBottomRight = new Vector2d(
+            secondRect.transform.position.x + secondRect.width,
+            secondRect.transform.position.y + secondRect.height
+        );
 
-        return firstLeft < secondRight && firstRight > secondLeft && firstTop < secondBottom && firstBottom > secondTop;
+        return (
+            firstTopLeft.x < secondBottomRight.x &&
+            firstBottomRight.x > secondTopLeft.x &&
+            firstTopLeft.y < secondBottomRight.y &&
+            firstBottomRight.y > secondTopLeft.y
+        );
     }
 
     static circles(firstCircle, secondCircle) {
