@@ -8,13 +8,9 @@ const Styles = [
     "btn--warning--solid",
     "btn--danger--solid",
     "btn--succes--solid",
-    "btn--primary--outline",
-    "btn--warning--outline",
-    "btn--danger--outline",
-    "btn--succes--outline",
   ];
 
-  const Sizes = ["btn--medium", "btn--large"];
+  const Sizes = ["btn--shop", "btn--wave"];
 
 export const ShopItem = ({imagePath, price}) => {
 

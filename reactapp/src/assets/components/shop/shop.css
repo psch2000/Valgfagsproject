@@ -1,26 +1,18 @@
-:root{
-    --primay: #00BFFF;
-    --secondary: #0020C2;
-    --warning: #ffd028;
-    --danger: #eb3f27;
-    --succes: #75fa83;
-    --white: #fdfdfd;
-    --black: #181717;
-}
 
+/*General button setup*/
 .btn{
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.3s ease;
-    box-shadow: 1px 1px 20px rgba(0,75,100,.4);
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
 }
 
 .btn:hover{
     transform: translateY(-3px);
-    box-shadow: 1px 1px 20px rgba(0,75,100,1);
 }
+
 
 /* Button Colors and Styles */
 
@@ -45,20 +37,48 @@
 .btn--succes--solid{
     background-color: var(--succes);
     color: var(--white);
-    border: 2px solid var(--warning);
+    border: 2px solid var(--green2);
 }
 
-/* Button Sizes*/
-
-.btn--medium{
-    width: 104px;
-    height: 120px;
-}
-
-.btn--large{
+/* WaveButton setup*/
+.btn--wave{
+    width: 200px;
+    height: 64px;
     padding: 15px 30px;
-    font-size: 20px;
+    position: absolute;
+    left: 935px;
+    top: 560px;    
+    padding:0px 0px 0px 0px;
 }
+
+.btn--wave:hover{
+    box-shadow: 1px 1px 20px rgb(0, 100, 38);
+}
+
+.waveContainer{
+    position: relative;
+    margin: auto;
+    width: 50%;
+    justify-content: center;
+}
+
+.waveIcon{
+    margin: auto;
+    justify-content: center;
+}
+
+/* Shopbutton setup*/
+
+.btn--shop{
+    width: 90px;
+    height: 100px;
+}
+
+.btn--shop:hover{
+    box-shadow: 1px 1px 20px rgba(0,75,100,1);
+}
+
+/* Shop setups*/
 
 .shopInfo{
     margin: auto;
@@ -82,10 +102,4 @@
     position: absolute;
     row-gap: 20px;
     column-gap: 20px;
-}
-
-
-.shopButton{
-    width: 100px;
-    height: 110px;
 }
