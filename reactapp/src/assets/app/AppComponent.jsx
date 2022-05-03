@@ -7,10 +7,12 @@ import { UpdateUIState } from "./states/initializestates/UpdateUIState"
 import { ShopMenu } from "../components/shop/ShopMenu"
 import { GameTitle } from "../components/gameTitle/GameTitle"
 import { TowerPlacere } from "../components/TowerPlacer"
+import { useForceRerenderer } from "../hooks/useForceRenderer"
 // export const Game = new CanvasGame(window.innerWidth/2 -500, window.innerHeight/2-250, 1000, 500);
 
 export const AppComponent = () => {
     const init = new StateHandler(new UpdateUIState());
+    const rerenderer = useForceRerenderer();
     
     useEffect(() =>{
         init.execute();
@@ -31,6 +33,7 @@ export const AppComponent = () => {
 
     const onEndResize = () => {
         setWindowRect();
+        rerenderer();
     }
 
     setWindowRect();
