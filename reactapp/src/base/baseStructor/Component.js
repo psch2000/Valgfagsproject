@@ -9,6 +9,10 @@ export class Component {
         this.isActive = true;
     }
 
+    setActive(value){
+        this.parent.isActive = value;
+    }
+
     onStart(){}
     onUpdate(){}
     onDraw(context){}
