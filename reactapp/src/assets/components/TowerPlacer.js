@@ -24,7 +24,6 @@ export class TowerPlacere extends Component{
         if (TowerPlacere.#instance == null){
             super();
             this.#map = App.game.find("Map").getComponent('Map');
-            console.log(this.#map);
         }
     }
 
@@ -42,7 +41,8 @@ export class TowerPlacere extends Component{
             
             if(this.parent.isActive == true){
                 
-                
+                if (this.#map.getRect().isPointInBounds(this.transform.position) == false) return;
+                console.log("here");
                 var c = TowerPool.getInstance().acquireReuseable();
                 c.transform.setPosition(this.transform.position);
                 this.setActive(false);

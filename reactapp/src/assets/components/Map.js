@@ -17,8 +17,9 @@ export class Map extends Component {
         this.#rectangle = rectangle;
         this.#squareRenderer.width = this.#rectangle.width;
         this.#squareRenderer.height = this.#rectangle.height;
-
     }
+
+    getRect = () => this.#rectangle;
 
     onStart(){
         this.parent.addComponent(this.#squareRenderer);
