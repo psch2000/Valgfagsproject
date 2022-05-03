@@ -6,6 +6,8 @@ import { Game } from "../../../../assets/app/App";
 import { instantiate } from "../../functions/instantiate";
 import { CircleRenderer } from "../../../components/CircleRenderer";
 import { FollowCanvasMouse } from "../../../components/FollowCanvasMouse";
+import { Map } from "../../../components/Map";
+import { Rectangle } from "../../../../base/baseStructor/Rectangle";
 
 
 export class UpdateUIState extends State{
@@ -15,6 +17,11 @@ export class UpdateUIState extends State{
     }
 
     execute(){
+
+        var map = new Composit("Map");
+        var mapRect = new Rectangle(0, 0,700, 500);
+        map.addComponent(new Map(mapRect, 'transparent'));
+        instantiate(map);
 
         //draw icons
         var HealthIcon = new Composit();
@@ -54,11 +61,12 @@ export class UpdateUIState extends State{
         instantiate(WaveText, {x:580, y:30});
 
 
-        var c = new Composit();
-        c.addComponent(new CircleRenderer(3, 'white', true));
-        c.addComponent(new FollowCanvasMouse());
-        instantiate(c);
+        var cursor = new Composit();
+        cursor.addComponent(new CircleRenderer(3, 'white', true));
+        cursor.addComponent(new FollowCanvasMouse());
+        instantiate(cursor);
 
+      
     }
 
 }

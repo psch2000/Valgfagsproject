@@ -1,6 +1,7 @@
 import { Component } from "../../base/baseStructor/Component";
 import { Composit } from "../../base/baseStructor/Composit";
 import { Input } from "../../GameEngine/input/Input";
+import { App } from "../app/App";
 import { instantiate } from "../app/functions/instantiate";
 import { TowerPool } from "../pools/TowerPool";
 import { CircleRenderer } from "./CircleRenderer";
@@ -11,14 +12,19 @@ export class TowerPlacere extends Component{
 
     static #instance;
 
+    #map;
     #rangeRenderer;
     #spriteRenderer;
     #followMouse;
+
+    
 
     #towerType;
     constructor(){
         if (TowerPlacere.#instance == null){
             super();
+            this.#map = App.game.find("Map").getComponent('Map');
+            console.log(this.#map);
         }
     }
 
@@ -35,6 +41,8 @@ export class TowerPlacere extends Component{
         if(Input.getKeyDown('0')){
             
             if(this.parent.isActive == true){
+                
+                
                 var c = TowerPool.getInstance().acquireReuseable();
                 c.transform.setPosition(this.transform.position);
                 this.setActive(false);

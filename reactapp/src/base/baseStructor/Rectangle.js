@@ -7,6 +7,21 @@ export class Rectangle {
         this.height = height;
     }
 
+    isPointInBounds(point){
+        let firstLeft = this.position.x;
+        let firstRight = this.position.x + this.width;
+        let firstTop = this.position.y;
+        let firstBottom = this.position.y + this.height;
+
+        return(
+            point.x > firstLeft &&
+            point.x < firstRight &&
+            point.y > firstTop &&
+            point.y < firstBottom
+        );
+        
+    }
+
     static doesOverlap(first, second) {
         let firstLeft = first.position.x;
         let firstRight = first.position.x + first.width;

@@ -1,4 +1,5 @@
 import { EventHandler } from "../base/baseBehaviour/EventHandler";
+import { callAndSetInterval } from "../base/callAndSetInterval";
 
 export class Game {
     #compositLayers = [];
@@ -6,6 +7,7 @@ export class Game {
     #onStart = new EventHandler();
 
     #context;
+    #isRunning;
 
     constructor(canvas){
         this.canvas = canvas;
@@ -13,15 +15,22 @@ export class Game {
     }
 
     run(){
+
+        if (this.#isRunning == true) return;
         this.#context = this.canvas.context;
 
-        setInterval(() => {
+        
+
+        callAndSetInterval(() => {
             this.#instantiate();
             this.#start();
             this.#update();
             this.#draw();
             this.#updateCompositsLayerPlacement();
-        }, 0);
+        }, 0)
+
+   
+        this.#isRunning = true;
     }
 
     #instantiate(){
@@ -83,6 +92,21 @@ export class Game {
         
         this.#compositLayers[composit.layer].push(composit);
 
+    }
+
+    find(name){
+
+        var temp = null;
+
+        this.#compositLayers.forEach(layer => {
+            layer.forEach(root => {
+                if (root.name == name){
+                    temp = root;
+                }
+            })
+        })
+
+        return temp;
     }
 
     addComposit(composit){
