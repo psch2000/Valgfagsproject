@@ -4,6 +4,7 @@ import { RectangleCollider } from "../../base/baseStructor/collider/RectangleCol
 import { Composit } from "../../base/baseStructor/Composit";
 import { SquareRenderer } from "./SquareRenderer";
 import { instantiate } from "../app/functions/instantiate";
+import { Intersect } from "../../base/baseStructor/Intersect";
 
 export class Path extends Component {
     constructor(waypointsArray) {
@@ -53,9 +54,9 @@ export class Path extends Component {
         }
     }
 
-    doesRectangleOverlapPath(rectangle) {
+    doesOverlapPath(rectangle) {
         for (let i = 0; i < this.rectangles.length; i++) {
-            if (RectangleCollider.doesOverlap(rectangle, this.rectangles[i])) return true;
+            if (Intersect.intersects(rectangle, this.rectangles[i])) return true;
         }
         return false;
     }
