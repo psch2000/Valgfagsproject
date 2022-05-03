@@ -55,6 +55,8 @@ export class Intersect {
     }
 
     static rectangles(firstRect, secondRect) {
+        // code inspired from https://silentmatt.com/rectangle-intersection/
+
         let firstTopLeft = new Vector2d(firstRect.transform.position.x, firstRect.transform.position.y);
         let firstBottomRight = new Vector2d(
             firstRect.transform.position.x + firstRect.width,
