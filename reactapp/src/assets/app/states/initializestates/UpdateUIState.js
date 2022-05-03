@@ -41,7 +41,15 @@ export class UpdateUIState extends State{
         var waveText = WaveText.addComponent(new DrawText());
         waveText.text = "Wave: " + 0;
 
+        
+        //map
+        var MapImage = new Composit();
+        MapImage.addComponent(new DrawIcon("./images/Sprite_map.png"))
+
         // Instantiate:
+
+        //Map
+        instantiate(MapImage, {x:0, y:0})
         
         //Icons and images
         instantiate(HealthIcon, {x: 10, y: 5});
