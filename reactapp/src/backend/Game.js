@@ -27,7 +27,7 @@ export class Game {
             this.#update();
             this.#draw();
             this.#updateCompositsLayerPlacement();
-        }, 0)
+        }, 10)
 
    
         this.#isRunning = true;

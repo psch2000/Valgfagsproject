@@ -46,13 +46,8 @@ export class Vector2d {
         return new Vector2d(first.x / second.x, first.y / second.y);
     }
 
-
-    
     static right = new Vector2d(1, 0);
     static left = new Vector2d(-1, 0);
     static down = new Vector2d(0, 1);
     static up = new Vector2d(0, -1);
-
-
-
 }
