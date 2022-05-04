@@ -7,15 +7,15 @@ export class TowerRange extends Component{
     #range;
     #circleRenderer;
     
-    constructor(range){
+    constructor(range, circleRenderer){
         super();
         this.#range = range;
-        this.#circleRenderer = new CircleRenderer(50, "#000000CC", true);
+        this.#circleRenderer = circleRenderer;
     }
 
 
     onStart(){
-        this.parent.addComponent(this.#circleRenderer);
+        // this.parent.addComponent(this.#circleRenderer, 0);
     }
 
     setRange(value){
