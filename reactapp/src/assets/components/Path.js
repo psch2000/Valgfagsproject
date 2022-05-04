@@ -54,9 +54,9 @@ export class Path extends Component {
         }
     }
 
-    doesOverlapPath(rectangle) {
+    doesOverlapPath(other) {
         for (let i = 0; i < this.rectangles.length; i++) {
-            if (Intersect.intersects(rectangle, this.rectangles[i])) return true;
+            if (Intersect.intersects(other, this.rectangles[i])) return true;
         }
         return false;
     }
