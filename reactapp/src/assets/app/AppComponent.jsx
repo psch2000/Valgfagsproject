@@ -26,34 +26,6 @@ export const AppComponent = () => {
         TowerPlacere.getInstance();
         TowerPlacere.getInstance().setActive(false);
 
-        console.log("useEffect in AppComponent");
-
-        let enemyPath = new Path([
-            new Vector2d(100, 100),
-            new Vector2d(200, 100),
-            new Vector2d(200, 150),
-            new Vector2d(100, 150),
-            new Vector2d(100, 200),
-            new Vector2d(200, 200),
-            new Vector2d(200, 250),
-            new Vector2d(100, 250),
-            new Vector2d(100, 300),
-            new Vector2d(250, 300),
-            new Vector2d(250, 100),
-            new Vector2d(300, 100),
-            new Vector2d(300, 300),
-        ]);
-
-        let enemyComposit = new Composit("testEnemy");
-        enemyComposit.addComponent(new SquareRenderer(10, 10, "red"));
-        enemyComposit.addComponent(new FollowPath(enemyPath));
-        enemyComposit.transform.position = new Vector2d(enemyPath.waypoints[0].x, enemyPath.waypoints[0].y);
-        instantiate(enemyComposit);
-
-        let testRectangle = new RectangleCollider(10, 10);
-        testRectangle.transform.position = new Vector2d(95, 95);
-
-        console.log(enemyPath.doesRectangleOverlapPath(testRectangle));
 
     }, [])
 
