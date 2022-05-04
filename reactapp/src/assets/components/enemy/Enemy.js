@@ -67,5 +67,7 @@ export class Enemy extends Component {
     attack(other) {
         other.takeDamage(this.damage);
         this.#resetAttackCooldown();
+
+        App.game.removeComposit(this.parent);
     }
 }
