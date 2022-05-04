@@ -43,7 +43,7 @@ export const AppComponent = () => {
         <CanvasComponent canvas={App.canvas}></CanvasComponent>
         <ShopMenu offset={{x:750, y:65}} rect={App.windowRect}></ShopMenu>
         <GameTitle></GameTitle>
-        <WaveButton></WaveButton>
+        <WaveButton offset={{x:10, y:10}} rect={App.windowRect}></WaveButton>
         <MoneyText></MoneyText>
         <HealthText></HealthText>
         <WaveText></WaveText>
