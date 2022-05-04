@@ -32,7 +32,7 @@ export class Game {
         this.#compositLayers.forEach(layer => {
             layer.forEach((component, componentIndex) => {
                 this.#compositsToRemove.forEach(compositToRemove => {
-                    if (component.name === compositToRemove.name) {console.log("Removed composit: " + compositToRemove.name); layer.splice(componentIndex, 1)};
+                    if (component === compositToRemove) {console.log("Removed composit: " + compositToRemove.name); layer.splice(componentIndex, 1)};
                 })
             })
         })
