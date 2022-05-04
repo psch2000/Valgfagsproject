@@ -13,7 +13,10 @@ export class Component {
         this.parent.isActive = value;
     }
 
+    onEnter(other){}
     onOverlap(other) {}
+    onExit(other) {}
+
     onStart(){}
     onUpdate(){}
     onDraw(context){}

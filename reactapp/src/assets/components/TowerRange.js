@@ -7,10 +7,10 @@ export class TowerRange extends Component{
     #range;
     #circleCollider;
     
-    constructor(range){
+    
+    constructor(range, circleRenderer){
         super();
         this.#range = range;
-        // this.#circleCollider = new CircleCollider(range);
     }
 
     setRange(value){
@@ -20,9 +20,6 @@ export class TowerRange extends Component{
 
 
 
-    onStart(){
-        // this.parent.addComponent(this.#circleCollider);
-    }
 
 
 

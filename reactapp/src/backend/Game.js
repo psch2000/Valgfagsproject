@@ -1,7 +1,9 @@
 import { EventHandler } from "../base/baseBehaviour/EventHandler";
 import { Collider } from "../base/baseStructor/collider/Collider";
+import { Composit } from "../base/baseStructor/Composit";
 import { Intersect } from "../base/baseStructor/Intersect";
 import { callAndSetInterval } from "../base/callAndSetInterval";
+import { KeyValuePair } from "./data-structors/KeyValuePair";
 
 export class Game {
     #composits = [];
@@ -19,6 +21,9 @@ export class Game {
     }
 
     run(){
+
+      ;
+     
 
         if (this.#isRunning == true) return;
         this.#context = this.canvas.context;
@@ -53,9 +58,37 @@ export class Game {
                     if (c != other){
                         otherCollider = other.getComponent(Collider);
 
+
                         if (otherCollider != null){
+
+                            var pair = collider.overlaps;
+
                             if (Intersect.intersects(collider, otherCollider)){
-                                c.onOverlap(other);
+                                
+                                
+                                if (pair.hasKey(other) == false){
+                                    pair.addKeyValue(other, false);
+                                }
+                           
+                                if (pair.getValue(other) == false){
+                                    c.onEnter(other);
+                                    pair.setValue(other, true);
+                                }
+                                else{
+                                    c.onOverlap(other);
+                                }
+
+                            }
+                            else{
+
+                                if (pair.hasKey(other) == true){
+                                    if (pair.getValue(other) == true){
+                                        c.onExit(other);
+                                        pair.setValue(other, false);
+                                    }
+                                }
+                           
+                                
                             }
                         }
                     }
@@ -67,7 +100,7 @@ export class Game {
 
     }
 
-
+    
 
 
     #instantiate(){

@@ -45,7 +45,6 @@ export class Composit extends Component {
             this.#components.splice(index, 0, component);
         }
 
-
         return component;
     }
 
@@ -71,9 +70,23 @@ export class Composit extends Component {
         return temp;
     }
 
+    onEnter(other){
+        this.#components.forEach(c => {            
+            try {  c.onEnter(other);} 
+            catch{}   
+        });
+    }
+
     onOverlap(other){
         this.#components.forEach(c => {            
             try {  c.onOverlap(other);} 
+            catch{}   
+        });
+    }
+
+    onExit(other){
+        this.#components.forEach(c => {            
+            try {  c.onExit(other);} 
             catch{}   
         });
     }

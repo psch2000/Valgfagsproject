@@ -11,6 +11,7 @@ import { Rect } from "../../../../backend/data-structors/Rect";
 import { RectangleCollider } from "../../../../base/baseStructor/collider/RectangleCollider";
 import { Collider } from "../../../../base/baseStructor/collider/Collider";
 import { CircleCollider } from "../../../../base/baseStructor/collider/CircleCollider";
+import { Vector2d } from "../../../../base/baseStructor/Vector2d";
 
 
 export class UpdateUIState extends State{
@@ -22,10 +23,11 @@ export class UpdateUIState extends State{
     execute(){
 
         var map = new Composit("Map");
-        map.addComponent(new Map(new Rect(0,0,750, 500), 'transparent'));
-        map.addComponent(new RectangleCollider(750, 500));
+        map.addComponent(new Map(new Rect(0,0,698, 500), 'transparent'));
+        map.addComponent(new RectangleCollider(400, 400));
         console.log(map.getComponent(Collider));
-        instantiate(map);
+        map.layer = 2;
+        instantiate(map, new Vector2d(20, 20));
 
         //draw icons
         var HealthIcon = new Composit();
@@ -68,7 +70,6 @@ export class UpdateUIState extends State{
         var cursor = new Composit();
         cursor.addComponent(new CircleRenderer(3, 'white', true));
         cursor.addComponent(new FollowCanvasMouse());
-        cursor.addComponent(new RectangleCollider(1, 1));
         instantiate(cursor);
 
       

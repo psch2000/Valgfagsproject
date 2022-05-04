@@ -15,6 +15,7 @@ import { Path } from "../components/Path";
 import { Vector2d } from "../../base/baseStructor/Vector2d";
 import { instantiate } from "./functions/instantiate";
 import { RectangleCollider } from "../../base/baseStructor/collider/RectangleCollider";
+// export const Game = new CanvasGame(window.innerWidth/2 -500, window.innerHeight/2-250, 1000, 500);
 
 export const AppComponent = () => {
     const init = new StateHandler(new UpdateUIState());

@@ -12,8 +12,13 @@ export class RectangleCollider extends Collider {
         ctx.strokeStyle = 'lightgreen';
         ctx.beginPath();
 
+
+        // console.log(this.transform.position)
+
         var {x, y} = this.transform.position;
 
+
+        // console.log(this.name + " " + x);
 
         ctx.rect(x, y, this.width, this.height);
 
