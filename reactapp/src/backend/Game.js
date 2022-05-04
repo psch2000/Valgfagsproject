@@ -22,8 +22,6 @@ export class Game {
 
     run(){
 
-      ;
-     
 
         if (this.#isRunning == true) return;
         this.#context = this.canvas.context;
@@ -41,34 +39,40 @@ export class Game {
 
    
         this.#isRunning = true;
+
+        
+   
     }
 
     #checkCollision(){
 
-        var collider = null;
-        var otherCollider = null;
-        this.#composits.forEach(c => {
+        var composits = this.#composits;
+        var length = this.#composits.length;
 
-            collider = c.getComponent(Collider);
-            
-            if (collider != null){
+        var col, otherCol;
 
-                this.#composits.forEach(other => {
+        for (let i = 0; i < length; i++){
 
-                    if (c != other){
-                        otherCollider = other.getComponent(Collider);
+            col = composits[i].getComponent(Collider);
+            if (col == null) return;
 
+            for (let n = 0; n < length; n++){
+                if (n == i) continue;
+                otherCol = composits[n].getComponent(Collider);
+                if (otherCol == null) return;
 
-                        if (otherCollider != null){
+                var pair = collider.overlaps;
 
-                            var pair = collider.overlaps;
+                if (Intersect.intersects(col, otherCol) == true){
+                    if (pair.hasKey(other) == false){
+                        pair.addKeyValue(other, false);
+                    }
 
-                            if (Intersect.intersects(collider, otherCollider)){
+                    // if (pair.getValue(other) == fa)
+                }
+            }
+        }
                                 
-                                
-                                if (pair.hasKey(other) == false){
-                                    pair.addKeyValue(other, false);
-                                }
                            
                                 if (pair.getValue(other) == false){
                                     c.onEnter(other);
