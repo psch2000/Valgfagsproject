@@ -22,12 +22,7 @@ export class UpdateUIState extends State{
 
     execute(){
 
-        var map = new Composit("Map");
-        map.addComponent(new Map(new Rect(0,0,698, 500), 'transparent'));
-        map.addComponent(new RectangleCollider(400, 400));
-        console.log(map.getComponent(Collider));
-        map.layer = 2;
-        instantiate(map, new Vector2d(20, 20));
+
 
         //draw icons
         var HealthIcon = new Composit();

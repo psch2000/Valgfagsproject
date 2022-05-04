@@ -30,9 +30,7 @@ export class TowerPlacere extends Component{
     }
 
     onEnter(other){
-        console.log("here")
         if (other.name == "Map"){
-            console.log("enter");
         }
     }
 
@@ -41,7 +39,6 @@ export class TowerPlacere extends Component{
         if(other.name == "Map"){
 
             this.#canPlaceTower = true;
-            // console.log("stay");
 
         }
 
@@ -49,7 +46,6 @@ export class TowerPlacere extends Component{
 
     onExit(other){
         if(other.name == "Map"){
-            console.log("exit");
         }
     }
 
