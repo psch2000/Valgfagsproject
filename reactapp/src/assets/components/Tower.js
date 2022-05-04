@@ -1,29 +1,23 @@
 import { Component } from "../../base/baseStructor/Component";
-import { Composit } from "../../base/baseStructor/Composit";
 import { Vector2d } from "../../base/baseStructor/Vector2d";
-import { Game } from "../app/App";
 import { getCanvasMousePosition } from "../app/functions/getCanvasMousePosition";
 import { ProjectilePool } from "../pools/ProjectilePool";
-import { SquareRenderer } from "./SquareRenderer";
 
-
-
-export class Tower extends Component{
-
-
-
-    constructor(towerType){
+export class Tower extends Component {
+    constructor(towerType) {
         super();
         this.towerType = towerType;
-        this.time = 0;
+
+        this.cooldownShoot = 2;
+        this.oldTime = new Date();
     }
 
-    onUpdate(){
+    onUpdate() {
+        let timeDiff = (new Date().getTime() - this.oldTime.getTime()) / 1000;
 
-        // quick test
-        this.time += 1;
+        if (timeDiff >= this.cooldownShoot) {
+            this.#resetCooldown();
 
-        if (this.time == 100){
             var from = this.transform.position;
             var to = getCanvasMousePosition();
 
@@ -37,6 +31,8 @@ export class Tower extends Component{
             this.time = 0;
         }
     }
-    
 
+    #resetCooldown() {
+        this.oldTime = new Date();
+    }
 }
