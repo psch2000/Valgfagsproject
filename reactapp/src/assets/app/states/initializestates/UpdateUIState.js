@@ -25,39 +25,28 @@ export class UpdateUIState extends State{
 
         var ShopUI = new Composit();
         ShopUI.addComponent(new DrawIcon("./images/sprite_shop.png"));
-
-
-
-        //draw texts
-        var HealthText = new Composit();
-        var heartText = HealthText.addComponent(new DrawText());
-        heartText.text = 100;
-
-        var MoneyText = new Composit();
-        var coinText = MoneyText.addComponent(new DrawText());
-        coinText.text = "$" + 20000;
-
-        var WaveText = new Composit();
-        var waveText = WaveText.addComponent(new DrawText());
-        waveText.text = "Wave: " + 0;
+        
+        //map
+        var MapImage = new Composit();
+        MapImage.addComponent(new DrawIcon("./images/Sprite_map.png"))
 
         // Instantiate:
+
+        //Map
+        instantiate(MapImage, {x:0, y:0})
         
         //Icons and images
         instantiate(HealthIcon, {x: 10, y: 5});
         instantiate(MoneyIcon, {x: 130, y: 5});
         instantiate(ShopUI, {x: 700, y: 0});
 
-        //Texts
-        instantiate(HealthText, {x:45, y: 30});
-        instantiate(MoneyText, {x:165, y: 30});
-        instantiate(WaveText, {x:580, y:30});
-
 
         var c = new Composit();
         c.addComponent(new CircleRenderer(3, 'white', true));
         c.addComponent(new FollowCanvasMouse());
         instantiate(c);
+
+            
 
     }
 

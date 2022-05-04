@@ -14,6 +14,10 @@ import { Path } from "../components/Path";
 import { Vector2d } from "../../base/baseStructor/Vector2d";
 import { instantiate } from "./functions/instantiate";
 import { RectangleCollider } from "../../base/baseStructor/collider/RectangleCollider";
+import { MoneyText } from "../components/stats/MoneyText";
+import { WaveButton } from "../components/waveButton/WaveButton";
+import { HealthText } from "../components/stats/HealthText";
+import { WaveText } from "../components/stats/WaveText";
 // export const Game = new CanvasGame(window.innerWidth/2 -500, window.innerHeight/2-250, 1000, 500);
 
 export const AppComponent = () => {
@@ -45,8 +49,12 @@ export const AppComponent = () => {
 
     return <div>
         <CanvasComponent canvas={App.canvas}></CanvasComponent>
-        <ShopMenu offset={{x:730, y:75}} rect={App.windowRect}></ShopMenu>
+        <ShopMenu offset={{x:750, y:65}} rect={App.windowRect}></ShopMenu>
         <GameTitle></GameTitle>
+        <WaveButton></WaveButton>
+        <MoneyText></MoneyText>
+        <HealthText></HealthText>
+        <WaveText></WaveText>
     </div>
 
 }
