@@ -35,7 +35,8 @@ export class Enemy extends Component {
             console.log("baseToAttack is dead!");
         };
 
-        let timeDiffCooldown = (new Date().getTime() - this.oldTime.getTime()) / 1000;
+        // time since last attack
+        let timeDiffCooldown = (new Date().getTime() - this.oldAttackTime.getTime()) / 1000;
 
         // if still in cooldown
         if (timeDiffCooldown < this.cooldownAttack) return;
@@ -52,7 +53,7 @@ export class Enemy extends Component {
     }
 
     #resetAttackCooldown() {
-        this.oldTime = new Date();
+        this.oldAttackTime = new Date();
     }
 
     takeDamage(incomingDamage) {
