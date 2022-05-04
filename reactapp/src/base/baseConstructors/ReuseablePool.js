@@ -2,20 +2,20 @@
 
 export class ReuseablePool {
     
-    #reuseables;
+    _reuseables;
 
     constructor(){
         if (this.constructor === ReuseablePool){
             throw new Error("Can't construct an abstract class");
         }
 
-        this.#reuseables = [];
+        this._reuseables = [];
     }
 
     acquireReuseable(){
 
-        if (this.#reuseables.length != 0){
-            var reuseable = this.#reuseables.pop();
+        if (this._reuseables.length != 0){
+            var reuseable = this._reuseables.pop();
             reuseable.isActive = true;
             return reuseable;
         }
@@ -26,7 +26,7 @@ export class ReuseablePool {
     releaseReuseable = (reuseable) => {
         if (reuseable === null) return;
         reuseable.isActive = false;
-        this.#reuseables.push(reuseable);
+        this._reuseables.push(reuseable);
     }
 
     makeReuseable(){
