@@ -22,8 +22,6 @@ export class Game {
 
     run(){
 
-      ;
-     
 
         if (this.#isRunning == true) return;
         this.#context = this.canvas.context;
@@ -41,63 +39,55 @@ export class Game {
 
    
         this.#isRunning = true;
+
+        
+   
     }
 
     #checkCollision(){
 
+        var composits = this.#composits;
+        var length = this.#composits.length;
+
         var collider = null;
         var otherCollider = null;
-        this.#composits.forEach(c => {
 
+        for (let i = 0; i < length; i++){
+            var c = composits[i];
             collider = c.getComponent(Collider);
-            
-            if (collider != null){
+            if (collider == null) continue;
 
-                this.#composits.forEach(other => {
+            for (let n = 0; n < length; n++){
+                if (n == i) continue;
+                var other = composits[n];
+                otherCollider = other.getComponent(Collider);
+                if (otherCollider == null) continue;
 
-                    if (c != other){
-                        otherCollider = other.getComponent(Collider);
 
+                var pair = collider.overlaps;
 
-                        if (otherCollider != null){
-
-                            var pair = collider.overlaps;
-
-                            if (Intersect.intersects(collider, otherCollider)){
-                                
-                                
-                                if (pair.hasKey(other) == false){
-                                    pair.addKeyValue(other, false);
-                                }
-                           
-                                if (pair.getValue(other) == false){
-                                    c.onEnter(other);
-                                    pair.setValue(other, true);
-                                }
-                                else{
-                                    c.onOverlap(other);
-                                }
-
-                            }
-                            else{
-
-                                if (pair.hasKey(other) == true){
-                                    if (pair.getValue(other) == true){
-                                        c.onExit(other);
-                                        pair.setValue(other, false);
-                                    }
-                                }
-                           
-                                
-                            }
-                        }
+                if (Intersect.intersects(collider, otherCollider) == true){
+                    if (pair.hasKey(other) == false){
+                        pair.addKeyValue(other, false);
                     }
-                    
-                })
+
+                    if (pair.getValue(other) == false){
+                        c.onEnter(other);
+                        pair.setValue(other, true);
+                        continue;
+                    }
+
+                    c.onOverlap(other);
+                    continue;
+                }
+
+                if (pair.hasKey(other) == false) continue;
+                if (pair.getValue(other) == false) continue;
+
+                c.onExit(other);
+                pair.setValue(other, false);
             }
-
-        })
-
+        }
     }
 
     
