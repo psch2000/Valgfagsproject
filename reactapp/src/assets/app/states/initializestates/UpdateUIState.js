@@ -39,11 +39,15 @@ export class UpdateUIState extends State{
         var ShopUI = new Composit();
         ShopUI.addComponent(new DrawIcon("./images/sprite_shop.png"));
 
+        var MapImage = new Composit();
+        MapImage.addComponent(new DrawIcon("./images/Sprite_map.png"))
+
         // Instantiate:
         
         //Icons and images
-        instantiate(HealthIcon, {x: 10, y: 5});
-        instantiate(MoneyIcon, {x: 130, y: 5});
+        instantiate(MapImage, {x: 0, y: 0});
+        instantiate(HealthIcon, {x: 10, y: 7});
+        instantiate(MoneyIcon, {x: 130, y: 7});
         instantiate(ShopUI, {x: 700, y: 0});
 
 
