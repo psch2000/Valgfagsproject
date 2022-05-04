@@ -4,22 +4,36 @@ import { Vector2d } from "../../base/baseStructor/Vector2d";
 import { Game } from "../app/App";
 import { getCanvasMousePosition } from "../app/functions/getCanvasMousePosition";
 import { ProjectilePool } from "../pools/ProjectilePool";
+import { Enemy } from "./enemy/Enemy";
 import { SquareRenderer } from "./SquareRenderer";
 
 
 
 export class Tower extends Component{
 
-
+    #enemiesInRange = [];
 
     constructor(towerType){
         super();
         this.towerType = towerType;
         this.time = 0;
+        this.canFire = false;
     }
 
-    onUpdate(){
+    onOverlap(other){
 
+        if (other.getComponent(Enemy) != null){
+            this.#enemiesInRange.push(other);
+        }
+    }
+
+    onStart(){
+
+    }
+
+
+
+    onUpdate(){
         // quick test
         this.time += 1;
 

@@ -1,6 +1,8 @@
+import { RectangleCollider } from "../../base/baseStructor/collider/RectangleCollider";
 import { Component } from "../../base/baseStructor/Component";
 import { Composit } from "../../base/baseStructor/Composit";
 import { Input } from "../../GameEngine/input/Input";
+import { App } from "../app/App";
 import { instantiate } from "../app/functions/instantiate";
 import { TowerPool } from "../pools/TowerPool";
 import { CircleRenderer } from "./CircleRenderer";
@@ -11,23 +13,53 @@ export class TowerPlacere extends Component{
 
     static #instance;
 
+    #map;
     #rangeRenderer;
     #spriteRenderer;
     #followMouse;
 
+    
+    #canPlaceTower;
     #towerType;
     constructor(){
         if (TowerPlacere.#instance == null){
             super();
+            this.#map = App.game.find("Map").getComponent(Map);
+            this.#canPlaceTower = false;
         }
     }
 
-  
+    onEnter(other){
+        console.log("here")
+        if (other.name == "Map"){
+            console.log("enter");
+        }
+    }
+
+    onOverlap(other){
+
+        if(other.name == "Map"){
+
+            this.#canPlaceTower = true;
+            // console.log("stay");
+
+        }
+
+    }
+
+    onExit(other){
+        if(other.name == "Map"){
+            console.log("exit");
+        }
+    }
 
     onStart(){
         this.#rangeRenderer = this.parent.addComponent(new CircleRenderer(20, '#030f11', true));
         this.#spriteRenderer = this.parent.addComponent(new CircleRenderer(10, 'white', false));
         this.#followMouse = this.parent.addComponent(new FollowCanvasMouse());
+
+        this.parent.addComponent(new RectangleCollider(1, 1));
+
     }
 
     onUpdate(){
@@ -35,12 +67,21 @@ export class TowerPlacere extends Component{
         if(Input.getKeyDown('0')){
             
             if(this.parent.isActive == true){
+                
+                if(this.#canPlaceTower == false) return;
                 var c = TowerPool.getInstance().acquireReuseable();
                 c.transform.setPosition(this.transform.position);
                 this.setActive(false);
+                this.#canPlaceTower = false;
+
             }
         }
+        this.#canPlaceTower = false;
+
+        
     }
+
+
 
     getTowerType(){
         return this.#towerType;
