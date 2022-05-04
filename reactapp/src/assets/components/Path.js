@@ -51,6 +51,7 @@ export class Path extends Component {
             let canvasRectangle = new Composit("test rectangle");
             canvasRectangle.addComponent(new SquareRenderer(rectangle.width, rectangle.height, this.pathColor));
             canvasRectangle.transform.position = rectangle.transform.position;
+            canvasRectangle.addComponent(rectangle);
             instantiate(canvasRectangle);
         }
     }
