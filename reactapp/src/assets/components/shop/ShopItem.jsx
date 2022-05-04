@@ -1,4 +1,5 @@
 import React from "react";
+import { TowerPlacere } from "../TowerPlacer";
 import "./shop.css"
 
 
@@ -7,13 +8,9 @@ const Styles = [
     "btn--warning--solid",
     "btn--danger--solid",
     "btn--succes--solid",
-    "btn--primary--outline",
-    "btn--warning--outline",
-    "btn--danger--outline",
-    "btn--succes--outline",
   ];
 
-  const Sizes = ["btn--medium", "btn--large"];
+  const Sizes = ["btn--shop", "btn--wave"];
 
 export const ShopItem = ({imagePath, price}) => {
 
@@ -30,12 +27,15 @@ export const ShopItem = ({imagePath, price}) => {
 }
 
 export const ShopButton = ({ 
-    onClick, 
-    imagePath,
-    price,
     buttonStyle, 
-    buttonSize
+    buttonSize,
+    towerType
   }) => {
+
+    const onClick = () => {
+      TowerPlacere.getInstance().setTowerType(towerType);
+      TowerPlacere.getInstance().setActive(true);
+    }
   
     const CheckButtonStyle = Styles.includes(buttonStyle) 
     ? buttonStyle 
@@ -51,8 +51,8 @@ export const ShopButton = ({
         onClick={onClick} 
       >
         <div className="shopInfo">
-            <img className="shopImage" src={imagePath}></img>
-            <p className="shopPrice">{price}$</p>
+            <img className="shopImage" src={towerType.imagePath}></img>
+            <p className="shopPrice">{towerType.price}$</p>
         </div>
       </button>
     )

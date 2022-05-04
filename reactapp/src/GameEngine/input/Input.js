@@ -1,6 +1,7 @@
 
 
 
+
 export class Input {
 
     static #currentKeyStates = {};
@@ -11,19 +12,33 @@ export class Input {
     static addEvents = () => {
         window.addEventListener('keydown', (event) => this.#onKeyDown(event), true);
         window.addEventListener('keyup', (event) => this.#onKeyUp(event), true);
+        window.addEventListener('mousedown', (event) => this.#onMouseDown(event));
+        window.addEventListener('mouseup', (event) => this.#onMouseUp(event));
     }
 
-    static #onKeyDown(event){
-        var key = event.key;
+    static #onMouseDown(event){
+        var button = event.button;
+        this.#onDown(button);
+    }
+
+    static #onDown(key){
         this.#currentKeyStates[key] = true;
         this.#isKeyReleased[key] = false;
 
         this.#previousPressedKey = key;
     }
 
-    static #onKeyUp(event){
+    static #onKeyDown(event){
         var key = event.key;
+        this.#onDown(key);
+    }
 
+    static #onMouseUp(event){
+        var button = event.button;
+        this.#onUp(button);
+    }
+
+    static #onUp(key){
         this.#currentKeyStates[key] = false;
 
         if(this.#isKeyPressed !== undefined){
@@ -33,7 +48,11 @@ export class Input {
         if (this.#isKeyReleased[key] !== undefined){
             this.#isKeyReleased[key] = true;
         }
-        
+    }
+
+    static #onKeyUp(event){
+        var key = event.key;
+        this.#onUp(key);
     }
 
     getPreviousPressedKey = () => this.#previousPressedKey;

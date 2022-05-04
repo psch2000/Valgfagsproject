@@ -10,7 +10,7 @@ export class DrawText extends Component{
 
     onDraw(context){
         context.font = "30px Arial"
-        context.fillStyle = "black";
+        context.fillStyle = "white";
 
 
         var position = this.transform.position;        

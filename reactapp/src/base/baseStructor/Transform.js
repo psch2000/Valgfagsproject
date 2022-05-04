@@ -13,4 +13,8 @@ export class Transform extends Component {
         this.position.x += vector.x;
         this.position.y += vector.y;
     }
+
+    setPosition(vector){
+        this.position = vector;
+    }
 }

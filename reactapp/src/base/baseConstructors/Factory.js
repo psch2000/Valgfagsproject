@@ -4,7 +4,7 @@
  * @class BaseFactory
  */
 
- export class BaseFactory {
+ export class Factory {
 
     constructor() {
       if (this.constructor == BaseFactory) {
