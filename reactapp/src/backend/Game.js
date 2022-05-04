@@ -52,8 +52,6 @@ export class Game {
         var collider = null;
         var otherCollider = null;
 
-
-
         for (let i = 0; i < length; i++){
             var c = composits[i];
             collider = c.getComponent(Collider);
@@ -76,11 +74,8 @@ export class Game {
                     if (pair.getValue(other) == false){
                         c.onEnter(other);
                         pair.setValue(other, true);
-                        console.log("enter")
                         continue;
                     }
-
-                    console.log("stay")
 
                     c.onOverlap(other);
                     continue;
@@ -88,8 +83,6 @@ export class Game {
 
                 if (pair.hasKey(other) == false) continue;
                 if (pair.getValue(other) == false) continue;
-
-                console.log("exit")
 
                 c.onExit(other);
                 pair.setValue(other, false);
