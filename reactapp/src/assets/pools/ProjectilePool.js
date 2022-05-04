@@ -18,7 +18,7 @@ export class ProjectilePool extends ReuseablePool{
     constructor(){
         if (ProjectilePool.#instance != null) return;
         super();
-        this.color = 'white';
+        this.radius = 5;
     }
 
     static getInstance() {
@@ -30,16 +30,35 @@ export class ProjectilePool extends ReuseablePool{
         return this.#instance;
     }
 
+    acquireReuseable(color){
+        let reuseable = this.#getReuseableWithColor(color);
+        
+        if (reuseable === null) return this.makeReuseable(color);
 
-    makeReuseable() {
-        let radius = 5;
+        reuseable.isActive = true;
+        return reuseable;
+    }
 
+    makeReuseable(color) {
         var c = new Composit("projectile");
-        c.addComponent(new CircleRenderer(radius, this.color, false));
+        c.addComponent(new CircleRenderer(this.radius, color, false));
         c.addComponent(new MoveDirection(new Vector2d(0,0), 1));
-        c.addComponent(new CircleCollider(radius))
+        c.addComponent(new CircleCollider(this.radius))
         c.addComponent(new OutOfBounceDelete(this.releaseReuseable));
         return instantiate(c);
+    }
+
+    #getReuseableWithColor(color) {
+        for (let index = 0; index < this._reuseables.length; index++) {
+            const reuseable = this._reuseables[index];
+            
+            if (reuseable.getComponent("CircleRenderer").color === color) {
+                this._reuseables.splice(index, 1);
+                return reuseable;
+            }
+        }
+
+        return null;
     }
 
 }

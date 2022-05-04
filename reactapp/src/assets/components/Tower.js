@@ -22,8 +22,9 @@ export class Tower extends Component {
             var to = getCanvasMousePosition();
 
             var direction = Vector2d.subtract(to, from).normalize();
-            ProjectilePool.getInstance().color = this.towerType.color;
-            var instance = ProjectilePool.getInstance().acquireReuseable();
+
+            // ProjectilePool.getInstance().color = this.towerType.color;
+            var instance = ProjectilePool.getInstance().acquireReuseable(this.towerType.color);
             instance.transform.position.x = this.transform.position.x;
             instance.transform.position.y = this.transform.position.y;
 
