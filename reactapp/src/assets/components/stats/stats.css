@@ -1,0 +1,28 @@
+/*general*/
+
+.text--style--1{
+    position: absolute;
+    font-weight: 500;
+    font-size: 30px;
+    color: var(--white);
+
+    top: 133px;
+
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+
+/* WaveText */
+.WaveInfo{
+    left: 765px;
+}
+
+/* MoneyText*/
+.MoneyInfo{
+    left: 350px;
+}
+
+.HealthInfo{
+    left: 230px;
+}
