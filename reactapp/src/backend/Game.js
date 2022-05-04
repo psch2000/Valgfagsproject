@@ -90,7 +90,17 @@ export class Game {
     }
 
  
+    getComposit(name) {
+        let temp = null;
 
+        this.#compositLayers.forEach(layer => {
+            layer.forEach(composit => {
+                if (composit.name === name) temp = composit;
+            })
+        })
+        
+        return temp;
+    }
 
 
 }
