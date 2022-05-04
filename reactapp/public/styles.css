@@ -1,18 +1,22 @@
 :root{
-    --primay: #00BFFF;
+    --primay: #00cfef;
     --secondary: #0020C2;
+    --darkBlue: #001e3a;
+    --orange: #fe6a00;
+    --darkOrange: #580300;
     --warning: #ffd028;
     --danger: #eb3f27;
     --succes: #75fa83;
     --green2: #048211;
     --white: #fdfdfd;
     --black: #181717;
+    --BGColor: #282828;
 }
 
 body {
     margin: 0;
     font-family: "Luckiest Guy", sans-serif;
-    background: #022c43;
+    background: var(--BGColor);
     overflow: hidden;
     display: block;
     -webkit-font-smoothing: antialiased;

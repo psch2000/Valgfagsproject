@@ -37,8 +37,6 @@ export const ShopMenu = ({rect, offset}) =>{
     const towerTypes = ShopMenuObject.towerTypes;
 
     return <div style={style} className="shopMenu grid-rows-3 grid  grid-flow-col">
-
-    
         
         {towerTypes.map((item, index) => {
 

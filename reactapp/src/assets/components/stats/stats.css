@@ -6,23 +6,6 @@
     font-size: 30px;
     color: var(--white);
 
-    top: 133px;
-
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
-}
-
-
-/* WaveText */
-.WaveInfo{
-    left: 750px;
-}
-
-/* MoneyText*/
-.MoneyInfo{
-    left: 350px;
-}
-
-.HealthInfo{
-    left: 230px;
 }
