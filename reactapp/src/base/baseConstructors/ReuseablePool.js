@@ -23,7 +23,7 @@ export class ReuseablePool {
         return this.makeReuseable();
     }
 
-    releaseReuseable(reuseable){
+    releaseReuseable = (reuseable) => {
         if (reuseable === null) return;
         reuseable.isActive = false;
         this.#reuseables.push(reuseable);
