@@ -5,6 +5,7 @@
     font-weight: 500;
     font-size: 30px;
     color: var(--white);
+    text-shadow: 2px 2px 2px var(--black);
 
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;

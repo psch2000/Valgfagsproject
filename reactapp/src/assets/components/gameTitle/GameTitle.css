@@ -6,6 +6,7 @@
     color: var(--primay);
     font-size: 5em;
     font-weight: 600;
+    text-shadow: 2px 2px 2px var(--black);
 
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: var(--darkBlue);

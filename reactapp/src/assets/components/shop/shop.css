@@ -1,12 +1,16 @@
 
 /*General button setup*/
 .btn{
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
+    font-family: "Luckiest Guy", sans-serif;
+    font-weight: 500;
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.3s ease;
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
+    color: var(--white);
+
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 
 .btn:hover{
