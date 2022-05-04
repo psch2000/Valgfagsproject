@@ -6,6 +6,9 @@ export class Collider extends Component {
     constructor() {
         super();
         this.transform = new Transform();
+
+
+        
     }
 
     doesOverlap(other) {

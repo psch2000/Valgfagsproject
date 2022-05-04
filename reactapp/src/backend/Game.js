@@ -1,8 +1,12 @@
 import { EventHandler } from "../base/baseBehaviour/EventHandler";
+import { Collider } from "../base/baseStructor/collider/Collider";
+import { Intersect } from "../base/baseStructor/Intersect";
 import { callAndSetInterval } from "../base/callAndSetInterval";
 
 export class Game {
+    #composits = [];
     #compositLayers = [];
+    
     #compositsToInstantiate = [];
     #onStart = new EventHandler();
 
@@ -27,11 +31,44 @@ export class Game {
             this.#update();
             this.#draw();
             this.#updateCompositsLayerPlacement();
+            this.#checkCollision();
         }, 10)
 
    
         this.#isRunning = true;
     }
+
+    #checkCollision(){
+
+        var collider = null;
+        var otherCollider = null;
+        this.#composits.forEach(c => {
+
+            collider = c.getComponent(Collider);
+            
+            if (collider != null){
+
+                this.#composits.forEach(other => {
+
+                    if (c != other){
+                        otherCollider = other.getComponent(Collider);
+
+                        if (otherCollider != null){
+                            if (Intersect.intersects(collider, otherCollider)){
+                                c.onOverlap(other);
+                            }
+                        }
+                    }
+                    
+                })
+            }
+
+        })
+
+    }
+
+
+
 
     #instantiate(){
         this.#compositsToInstantiate.forEach(root => {
@@ -110,7 +147,8 @@ export class Game {
     }
 
     addComposit(composit){
-        this.#compositsToInstantiate.push(composit); 
+        this.#compositsToInstantiate.push(composit);
+        this.#composits.push(composit); 
     }
 
  

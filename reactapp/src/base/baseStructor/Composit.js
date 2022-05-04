@@ -1,3 +1,4 @@
+import { Collider } from "./collider/Collider";
 import { Component } from "./Component";
 import { Transform } from "./Transform";
 
@@ -9,6 +10,7 @@ export class Composit extends Component {
         super();
         this.layer = 0;
         this.name = name;
+        this.collider = null;
         this.#addTransform();
 
         // Debugging only.
@@ -24,11 +26,10 @@ export class Composit extends Component {
     }
 
 
-
     addComponent(component, index){
         component.transform = this.transform;
         component.parent = this;
-
+   
         try{
             component.components.forEach(c => {
                 c.transform = this.transform;
@@ -56,13 +57,25 @@ export class Composit extends Component {
     getComponent(type){
         var temp = null;
 
+
         this.#components.forEach(c => {
-            if (c.type == type){
+            if (c.constructor.name == type.name){
+                temp = c;
+            }
+
+            if (c.constructor.prototype  instanceof type){
                 temp = c;
             }
         });
 
         return temp;
+    }
+
+    onOverlap(other){
+        this.#components.forEach(c => {            
+            try {  c.onOverlap(other);} 
+            catch{}   
+        });
     }
 
     onStart() {  
@@ -79,7 +92,6 @@ export class Composit extends Component {
                 try {  c.onUpdate();} 
                 catch{} 
             }
-              
         });
     }
 

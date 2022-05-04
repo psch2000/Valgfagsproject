@@ -13,6 +13,7 @@ export class Component {
         this.parent.isActive = value;
     }
 
+    onOverlap(other) {}
     onStart(){}
     onUpdate(){}
     onDraw(context){}

@@ -7,8 +7,10 @@ import { instantiate } from "../../functions/instantiate";
 import { CircleRenderer } from "../../../components/CircleRenderer";
 import { FollowCanvasMouse } from "../../../components/FollowCanvasMouse";
 import { Map } from "../../../components/Map";
-import { Rectangle } from "../../../../base/baseStructor/Rectangle";
-import { TowerRange } from "../../../components/TowerRange";
+import { Rect } from "../../../../backend/data-structors/Rect";
+import { RectangleCollider } from "../../../../base/baseStructor/collider/RectangleCollider";
+import { Collider } from "../../../../base/baseStructor/collider/Collider";
+import { CircleCollider } from "../../../../base/baseStructor/collider/CircleCollider";
 
 
 export class UpdateUIState extends State{
@@ -20,14 +22,10 @@ export class UpdateUIState extends State{
     execute(){
 
         var map = new Composit("Map");
-        var mapRect = new Rectangle(0, 0,700, 500);
-        map.addComponent(new Map(mapRect, 'transparent'));
+        map.addComponent(new Map(new Rect(0,0,750, 500), 'transparent'));
+        map.addComponent(new RectangleCollider(750, 500));
+        console.log(map.getComponent(Collider));
         instantiate(map);
-
-        var collider = new Composit();
-        collider.addComponent(new FollowCanvasMouse());
-        collider.addComponent(new TowerRange(50));
-        instantiate(collider);
 
         //draw icons
         var HealthIcon = new Composit();
@@ -70,6 +68,7 @@ export class UpdateUIState extends State{
         var cursor = new Composit();
         cursor.addComponent(new CircleRenderer(3, 'white', true));
         cursor.addComponent(new FollowCanvasMouse());
+        cursor.addComponent(new RectangleCollider(1, 1));
         instantiate(cursor);
 
       

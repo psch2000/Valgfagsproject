@@ -23,7 +23,7 @@ export class TowerPlacere extends Component{
     constructor(){
         if (TowerPlacere.#instance == null){
             super();
-            this.#map = App.game.find("Map").getComponent('Map');
+            this.#map = App.game.find("Map").getComponent(Map);
         }
     }
 
