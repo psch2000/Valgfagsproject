@@ -102,7 +102,7 @@ export class Game {
         this.#compositsToInstantiate.push(composit); 
     }
 
-    removeComposit(composit) {
+    removeComposit = (composit) => {
         this.#compositsToRemove.push(composit);
     }
  
