@@ -8,13 +8,18 @@ const Styles = [
 ];
 
 
-export const WaveText = ({textStyle}) => {
+export const WaveText = ({textStyle, rect, offset}) => {
+
+    const style = {
+        left: `${rect.x + offset.x}px`,
+        top: `${rect.y + offset.y}px`,
+    }
 
     const CheckTextStyle = Styles.includes(textStyle)
     ? textStyle
     : Styles[0];
 
-    return <p className={`WaveInfo ${CheckTextStyle}`}>
-    {"Wave " + WAVE}
+    return <p style={style} className={`WaveInfo ${CheckTextStyle}`}>
+    {"ROUND " + WAVE}
     </p>
 }

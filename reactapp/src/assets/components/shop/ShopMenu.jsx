@@ -31,14 +31,10 @@ export const ShopMenuObject = {
 
 export const ShopMenu = ({rect, offset}) =>{
 
-
     var style = {
         left: `${rect.x + offset.x}px`,
         top: `${rect.y + offset.y}px`,
-    }
-
-
-    
+    }    
     
     const towerTypes = ShopMenuObject.towerTypes;
 

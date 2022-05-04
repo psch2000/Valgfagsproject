@@ -8,13 +8,18 @@ const Styles = [
 ];
 
 
-export const MoneyText = ({textStyle}) => {
+export const MoneyText = ({textStyle, rect, offset}) => {
+
+    const style = {
+        left: `${rect.x + offset.x}px`,
+        top: `${rect.y + offset.y}px`,
+    }
 
     const CheckTextStyle = Styles.includes(textStyle)
     ? textStyle
     : Styles[0];
 
-    return <p className={`MoneyInfo ${CheckTextStyle}`}>
+    return <p style={style} className={`MoneyInfo ${CheckTextStyle}`}>
     {"$" + MONEY}
     </p>
 }

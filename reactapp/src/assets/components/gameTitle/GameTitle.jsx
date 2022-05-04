@@ -1,9 +1,10 @@
 import "../gameTitle/GameTitle.css"
 
 export const GameTitle = () => {
+
     return <div className="GameTitle">
         <h1>
-            CrazyBalls TD
+            Balls <span> TD </span>
         </h1>
     </div>
 }
