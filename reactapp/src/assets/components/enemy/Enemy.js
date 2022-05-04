@@ -32,7 +32,7 @@ export class Enemy extends Component {
         if (this.baseToAttack.isDead()) {
             this.baseToAttack = null;
             return;
-        };
+        }
 
         // time since last attack
         let timeDiffCooldown = (new Date().getTime() - this.oldAttackTime.getTime()) / 1000;
