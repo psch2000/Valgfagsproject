@@ -7,11 +7,11 @@ import { instantiate } from "../app/functions/instantiate";
 import { Intersect } from "../../base/baseStructor/Intersect";
 
 export class Path extends Component {
-    constructor(waypointsArray, pathColor = "#00000000") {
+    constructor(waypointsArray, pathColor = "#00000000", pathWidth = 10) {
         super();
         this.waypoints = waypointsArray;
         this.rectangles = [];
-        this.pathWidth = 10;
+        this.pathWidth = pathWidth;
         this.pathColor = pathColor;
 
         this.#createRectanglesOnPath();
