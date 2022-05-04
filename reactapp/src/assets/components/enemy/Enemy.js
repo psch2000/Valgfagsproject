@@ -13,7 +13,8 @@ export class Enemy extends Component {
 
         // cooldown in seconds
         this.cooldownAttack = 2;
-        this.oldTime = new Date();
+
+        this.#resetAttackCooldown();
     }
 
     isDead() {
@@ -27,22 +28,31 @@ export class Enemy extends Component {
     #tryAttack() {
         if (this.baseToAttack === null) {
             this.baseToAttack = App.game.getComposit("playerBase")?.getComponent("PlayerBase");
-        }
-
-        if (this.baseToAttack.isDead()) {
-            this.baseToAttack = null
-            console.log("baseToAttack is dead!")
         };
 
-        let timeDiff = (new Date().getTime() - this.oldTime.getTime()) / 1000;
+        if (this.baseToAttack.isDead()) {
+            this.baseToAttack = null;
+            console.log("baseToAttack is dead!");
+        };
+
+        let timeDiffCooldown = (new Date().getTime() - this.oldTime.getTime()) / 1000;
 
         // if still in cooldown
-        if (timeDiff < this.cooldownAttack) return;
+        if (timeDiffCooldown < this.cooldownAttack) return;
+
         // if not in range of baseToAttack
-        if (Vector2d.distance(this.transform.position, this.baseToAttack.transform.position) > this.attackRange) return;
-        
-        this.oldTime = new Date();
+        if (!this.#inAttackRange()) return;
+
+        this.#resetAttackCooldown();
         this.attack(this.baseToAttack);
+    }
+
+    #inAttackRange() {
+        return Vector2d.distance(this.transform.position, this.baseToAttack.transform.position) < this.attackRange;
+    }
+
+    #resetAttackCooldown() {
+        this.oldTime = new Date();
     }
 
     takeDamage(incomingDamage) {
