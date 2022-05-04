@@ -22,17 +22,16 @@ export class Enemy extends Component {
     }
 
     onUpdate() {
+        this.#getBaseToAttack();
         this.#tryAttack();
     }
 
     #tryAttack() {
-        if (this.baseToAttack === null) {
-            this.baseToAttack = App.game.getComposit("playerBase")?.getComponent("PlayerBase");
-        };
+        if (this.baseToAttack === null) return;
 
         if (this.baseToAttack.isDead()) {
             this.baseToAttack = null;
-            console.log("baseToAttack is dead!");
+            return;
         };
 
         // time since last attack
@@ -44,7 +43,6 @@ export class Enemy extends Component {
         // if not in range of baseToAttack
         if (!this.#inAttackRange()) return;
 
-        this.#resetAttackCooldown();
         this.attack(this.baseToAttack);
     }
 
@@ -56,11 +54,18 @@ export class Enemy extends Component {
         this.oldAttackTime = new Date();
     }
 
+    #getBaseToAttack() {
+        if (this.baseToAttack !== null) return;
+
+        this.baseToAttack = App.game.getComposit("playerBase")?.getComponent("PlayerBase");
+    }
+
     takeDamage(incomingDamage) {
         this.health -= incomingDamage;
     }
 
     attack(other) {
         other.takeDamage(this.damage);
+        this.#resetAttackCooldown();
     }
 }
