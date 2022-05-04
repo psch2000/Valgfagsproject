@@ -1,7 +1,8 @@
 import { Collider } from "./Collider";
 
 export class CircleCollider extends Collider {
-    constructor() {
+    constructor(radius) {
         super();
+        this.radius = radius;
     } 
 }
