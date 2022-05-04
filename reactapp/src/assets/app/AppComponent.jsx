@@ -80,7 +80,7 @@ export const AppComponent = () => {
 
     return <div>
         <CanvasComponent canvas={App.canvas}></CanvasComponent>
-        <ShopMenu offset={{x:730, y:75}} rect={App.windowRect}></ShopMenu>
+        <ShopMenu offset={{x:750, y:60}} rect={App.windowRect}></ShopMenu>
         <GameTitle></GameTitle>
         <WaveButton offset={{x:750, y:420}} rect={App.windowRect}></WaveButton>
         <MoneyText offset={{x:170, y:0}} rect={App.windowRect}></MoneyText>

@@ -44,8 +44,7 @@ export const ShopMenu = ({rect, offset}) =>{
 
             return (<ShopButton towerType={item}  key={index} ></ShopButton>)
             //{console.log(item.imagePath)}
-            //return (<ShopButton key={index} price={item.price} imagePath={item.imagePath}></ShopButton>)
-            
+            //return (<ShopButton key={index} price={item.price} imagePath={item.imagePath}></ShopButton>)           
 
         })}
 
