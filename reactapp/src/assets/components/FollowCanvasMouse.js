@@ -10,8 +10,6 @@ export class FollowCanvasMouse extends Component{
         this.isFollowing = isFollowing;
     }
 
-
-
     onUpdate(){
         if (this.isFollowing == false) return;
         var mousePos = getCanvasMousePosition();
