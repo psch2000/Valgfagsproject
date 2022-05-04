@@ -32,7 +32,7 @@ export class ProjectilePool extends ReuseablePool{
 
 
     makeReuseable() {
-        let radius = 15;
+        let radius = 5;
 
         var c = new Composit("projectile");
         c.addComponent(new CircleRenderer(radius, this.color, false));
