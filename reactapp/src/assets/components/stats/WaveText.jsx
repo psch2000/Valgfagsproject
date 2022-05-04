@@ -15,6 +15,6 @@ export const WaveText = ({textStyle}) => {
     : Styles[0];
 
     return <p className={`WaveInfo ${CheckTextStyle}`}>
-    {"Wave " + WAVE}
+    {"ROUND " + WAVE}
     </p>
 }

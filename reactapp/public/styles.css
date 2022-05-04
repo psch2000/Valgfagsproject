@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
-
 :root{
     --primay: #00BFFF;
     --secondary: #0020C2;
@@ -10,3 +8,14 @@
     --white: #fdfdfd;
     --black: #181717;
 }
+
+body {
+    margin: 0;
+    font-family: "Luckiest Guy", sans-serif;
+    background: #022c43;
+    overflow: hidden;
+    display: block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
