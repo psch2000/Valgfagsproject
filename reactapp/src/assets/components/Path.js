@@ -7,11 +7,12 @@ import { instantiate } from "../app/functions/instantiate";
 import { Intersect } from "../../base/baseStructor/Intersect";
 
 export class Path extends Component {
-    constructor(waypointsArray) {
+    constructor(waypointsArray, pathColor = "#00000000") {
         super();
         this.waypoints = waypointsArray;
         this.rectangles = [];
         this.pathWidth = 10;
+        this.pathColor = pathColor;
 
         this.#createRectanglesOnPath();
     }
@@ -48,7 +49,7 @@ export class Path extends Component {
 
             // visualize rectangle on game canvas - debug
             let canvasRectangle = new Composit("test rectangle");
-            canvasRectangle.addComponent(new SquareRenderer(rectangle.width, rectangle.height, "green"));
+            canvasRectangle.addComponent(new SquareRenderer(rectangle.width, rectangle.height, this.pathColor));
             canvasRectangle.transform.position = rectangle.transform.position;
             instantiate(canvasRectangle);
         }
