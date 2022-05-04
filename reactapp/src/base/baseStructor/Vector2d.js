@@ -23,6 +23,10 @@ export class Vector2d {
     //     return Vector2d.distance(this, other);
     // }
 
+    copy() {
+        return new Vector2d(this.x, this.y);
+    }
+
     static distance(first, second) {
         // sqrt((s.x - f.x)^2 + (s.y - f.y)^2)
         return Math.sqrt(
