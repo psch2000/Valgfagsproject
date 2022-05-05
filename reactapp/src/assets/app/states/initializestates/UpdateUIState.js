@@ -6,6 +6,7 @@ import { Game } from "../../../../assets/app/App";
 import { instantiate } from "../../functions/instantiate";
 import { CircleRenderer } from "../../../components/CircleRenderer";
 import { FollowCanvasMouse } from "../../../components/FollowCanvasMouse";
+import { Vector2d } from "../../../../base/baseStructor/Vector2d";
 
 
 export class UpdateUIState extends State{
@@ -33,12 +34,12 @@ export class UpdateUIState extends State{
         // Instantiate:
 
         //Map
-        instantiate(MapImage, {x:0, y:0})
+        instantiate(MapImage, new Vector2d(0, 0))
         
         //Icons and images
-        instantiate(HealthIcon, {x: 10, y: 5});
-        instantiate(MoneyIcon, {x: 130, y: 5});
-        instantiate(ShopUI, {x: 700, y: 0});
+        instantiate(HealthIcon, new Vector2d(10, 5));
+        instantiate(MoneyIcon, new Vector2d(130, 5));
+        instantiate(ShopUI, new Vector2d(700, 0));
 
 
         var c = new Composit();
