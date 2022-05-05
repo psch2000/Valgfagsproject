@@ -90,7 +90,7 @@ export class Game {
     }
 
     #addCompositToLayers(composit){
-        if (this.#compositLayers[composit.layer] == null){
+        if (this.#compositLayers[composit.layer] === undefined){
             this.#compositLayers[composit.layer] = [];
         }
 

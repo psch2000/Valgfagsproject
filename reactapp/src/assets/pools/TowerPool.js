@@ -11,13 +11,13 @@ export class TowerPool extends ReuseablePool{
     static #instance;
 
     constructor(){
-        if (TowerPool.#instance != null) return;
+        if (TowerPool.#instance !== undefined) return;
         super();
     }
 
 
     static getInstance (){
-        if (this.#instance == null){
+        if (this.#instance === undefined){
             this.#instance = new TowerPool();
         }
 

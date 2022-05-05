@@ -17,12 +17,9 @@ export class TowerPlacere extends Component{
 
     #towerType;
     constructor(){
-        if (TowerPlacere.#instance == null){
-            super();
-        }
+        if (TowerPlacere.#instance !== undefined) return
+        super();
     }
-
-  
 
     onStart(){
         this.#rangeRenderer = this.parent.addComponent(new CircleRenderer(20, '#030f1191', true));
@@ -33,7 +30,6 @@ export class TowerPlacere extends Component{
     onUpdate(){
         // left mouse input
         if(Input.getKeyDown('0')){
-            
             if(this.parent.isActive == true){
                 var c = TowerPool.getInstance().acquireReuseable();
                 c.transform.setPosition(this.transform.position);
@@ -54,7 +50,7 @@ export class TowerPlacere extends Component{
 
     static getInstance(){
 
-        if (this.#instance == null){
+        if (this.#instance === undefined) {
             var c = new Composit();
             c.layer = 1;
             this.#instance = c.addComponent(new TowerPlacere());

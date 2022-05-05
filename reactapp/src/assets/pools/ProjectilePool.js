@@ -16,14 +16,14 @@ export class ProjectilePool extends ReuseablePool{
 
     static #instance;
     constructor(){
-        if (ProjectilePool.#instance != null) return;
+        if (ProjectilePool.#instance !== undefined) return;
         super();
         this.radius = 5;
     }
 
     static getInstance() {
 
-        if (this.#instance == null){
+        if (this.#instance === undefined){
             this.#instance = new ProjectilePool();
         }
 
