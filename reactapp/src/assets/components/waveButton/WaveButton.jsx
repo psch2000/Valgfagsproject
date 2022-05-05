@@ -8,12 +8,14 @@ const Styles = [
     "btn--succes--solid",
   ];
 
-  const Sizes = ["btn--shop", "btn--wave"];
+  const Sizes = ["btn--shop", "btn--wave"]; 
 
   export const WaveButton = ({ 
     onClick,
     buttonStyle, 
-    buttonSize
+    buttonSize,
+    rect, 
+    offset
   }) => {
   
     const CheckButtonStyle = Styles.includes(buttonStyle) 
@@ -23,10 +25,14 @@ const Styles = [
     const CheckButtonSize = Sizes.includes(buttonSize)
     ? buttonSize
     : Sizes[1];
-    
+
+    const style = {
+      left: `${rect.x + offset.x}px`,
+      top: `${rect.y + offset.y}px`,
+    }    
     
     return(
-      <button 
+      <button style={style}
         className={`btn ${CheckButtonStyle} ${CheckButtonSize}`} onClick={onClick}>
           <div className="waveContainer">
             <img className="waveIcon" src="./images/sprite_play.png"></img>

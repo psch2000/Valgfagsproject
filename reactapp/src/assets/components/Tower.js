@@ -2,12 +2,18 @@ import { Component } from "../../base/baseStructor/Component";
 import { Vector2d } from "../../base/baseStructor/Vector2d";
 import { getCanvasMousePosition } from "../app/functions/getCanvasMousePosition";
 import { ProjectilePool } from "../pools/ProjectilePool";
+import { Enemy } from "./enemy/Enemy";
+import { MoveDirection } from "./MoveDirection";
+import { SquareRenderer } from "./SquareRenderer";
 
 export class Tower extends Component {
+    #enemiesInRange = [];
+
     constructor(towerType) {
         super();
         this.towerType = towerType;
 
+        this.canFire = false;
         this.cooldownShoot = 2;
         this.oldTime = new Date();
     }
@@ -27,11 +33,24 @@ export class Tower extends Component {
             var instance = ProjectilePool.getInstance().acquireReuseable(this.towerType.color);
             instance.transform.position = this.transform.position.copy();
 
-            instance.getComponent("MoveDirection").direction = direction;
+            instance.getComponent(MoveDirection).direction = direction;
         }
+
+        
     }
 
     #resetCooldown() {
         this.oldTime = new Date();
+    }
+
+    onOverlap(other){
+
+        if (other.getComponent(Enemy) != null){
+            this.#enemiesInRange.push(other);
+        }
+    }
+
+    onStart(){
+
     }
 }

@@ -1,12 +1,20 @@
 import { EventHandler } from "../base/baseBehaviour/EventHandler";
+import { Collider } from "../base/baseStructor/collider/Collider";
+import { Composit } from "../base/baseStructor/Composit";
+import { Intersect } from "../base/baseStructor/Intersect";
+import { callAndSetInterval } from "../base/callAndSetInterval";
+import { KeyValuePair } from "./data-structors/KeyValuePair";
 
 export class Game {
+    #composits = [];
     #compositLayers = [];
+    
     #compositsToInstantiate = [];
     #compositsToRemove = [];
     #onStart = new EventHandler();
 
     #context;
+    #isRunning;
 
     constructor(canvas){
         this.canvas = canvas;
@@ -14,16 +22,28 @@ export class Game {
     }
 
     run(){
+
+
+        if (this.#isRunning == true) return;
         this.#context = this.canvas.context;
 
-        setInterval(() => {
+        
+
+        callAndSetInterval(() => {
             this.#removeComposits();
             this.#instantiate();
             this.#start();
             this.#update();
             this.#draw();
             this.#updateCompositsLayerPlacement();
-        }, 10);
+            this.#checkCollision();
+        }, 10)
+
+   
+        this.#isRunning = true;
+
+        
+   
     }
 
     #removeComposits() {
@@ -37,6 +57,55 @@ export class Game {
             })
         })
     }
+
+    #checkCollision(){
+
+        var composits = this.#composits;
+        var length = this.#composits.length;
+
+        var collider = null;
+        var otherCollider = null;
+
+        for (let i = 0; i < length; i++){
+            var c = composits[i];
+            collider = c.getComponent(Collider);
+            if (collider == null) continue;
+
+            for (let n = 0; n < length; n++){
+                if (n == i) continue;
+                var other = composits[n];
+                otherCollider = other.getComponent(Collider);
+                if (otherCollider == null) continue;
+
+
+                var pair = collider.overlaps;
+
+                if (Intersect.intersects(collider, otherCollider) == true){
+                    if (pair.hasKey(other) == false){
+                        pair.addKeyValue(other, false);
+                    }
+
+                    if (pair.getValue(other) == false){
+                        c.onEnter(other);
+                        pair.setValue(other, true);
+                        continue;
+                    }
+
+                    c.onOverlap(other);
+                    continue;
+                }
+
+                if (pair.hasKey(other) == false) continue;
+                if (pair.getValue(other) == false) continue;
+
+                c.onExit(other);
+                pair.setValue(other, false);
+            }
+        }
+    }
+
+    
+
 
     #instantiate(){
         this.#compositsToInstantiate.forEach(root => {
@@ -98,8 +167,24 @@ export class Game {
         this.#compositLayers[composit.layer].push(composit);
     }
 
+    find(name){
+
+        var temp = null;
+
+        this.#compositLayers.forEach(layer => {
+            layer.forEach(root => {
+                if (root.name == name){
+                    temp = root;
+                }
+            })
+        })
+
+        return temp;
+    }
+
     addComposit(composit){
-        this.#compositsToInstantiate.push(composit); 
+        this.#compositsToInstantiate.push(composit);
+        this.#composits.push(composit); 
     }
 
     removeComposit = (composit) => {

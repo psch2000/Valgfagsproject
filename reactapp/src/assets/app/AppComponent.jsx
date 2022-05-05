@@ -3,9 +3,13 @@ import { App } from "./App";
 import { CanvasComponent } from "../components/canvas/CanvasComponent";
 import { OnEndResize } from "../../events/OnEndResize";
 import { StateHandler } from "../../base/baseBehaviour/StateHandler";
-import { UpdateUIState } from "./states/initializestates/UpdateUIState";
-import { ShopMenu } from "../components/shop/ShopMenu";
+import { OnEndResize } from "../../events/OnEndResize";
+import { CanvasComponent } from "../components/canvas/CanvasComponent";
 import { GameTitle } from "../components/gameTitle/GameTitle";
+import { ShopMenu } from "../components/shop/ShopMenu";
+import { HealthText } from "../components/stats/HealthText";
+import { MoneyText } from "../components/stats/MoneyText";
+import { WaveText } from "../components/stats/WaveText";
 import { TowerPlacere } from "../components/TowerPlacer";
 import { Composit } from "../../base/baseStructor/Composit";
 import { SquareRenderer } from "../components/SquareRenderer";
@@ -21,9 +25,15 @@ import { WaveText } from "../components/stats/WaveText";
 import { PlayerBase } from "../components/PlayerBase";
 import { Enemy } from "../components/enemy/Enemy";
 // export const Game = new CanvasGame(window.innerWidth/2 -500, window.innerHeight/2-250, 1000, 500);
+import { useForceRerenderer } from "../hooks/useForceRenderer";
+import { App } from "./App";
+import { MakeMapState } from "./states/initializestates/MakeMapState";
+
 
 export const AppComponent = () => {
-    const init = new StateHandler(new UpdateUIState());
+    const init = new StateHandler(new MakeMapState());
+    const rerenderer = useForceRerenderer();
+    
 
     useEffect(() =>{
         init.execute();
@@ -46,18 +56,20 @@ export const AppComponent = () => {
 
     const onEndResize = () => {
         setWindowRect();
+        rerenderer();
     }
 
     setWindowRect();
 
     return <div>
         <CanvasComponent canvas={App.canvas}></CanvasComponent>
-        <ShopMenu offset={{x:750, y:65}} rect={App.windowRect}></ShopMenu>
+        <ShopMenu offset={{x:730, y:75}} rect={App.windowRect}></ShopMenu>
         <GameTitle></GameTitle>
-        <WaveButton></WaveButton>
-        <MoneyText></MoneyText>
-        <HealthText></HealthText>
-        <WaveText></WaveText>
+
+        <WaveButton offset={{x:730, y:420}} rect={App.windowRect}></WaveButton>
+        <MoneyText offset={{x:170, y: 0}} rect={App.windowRect}></MoneyText>
+        <HealthText offset={{x:50, y:0}} rect={App.windowRect}></HealthText>
+        <WaveText offset={{x: 550, y:0}} rect={App.windowRect}></WaveText>
     </div>
 
 }
