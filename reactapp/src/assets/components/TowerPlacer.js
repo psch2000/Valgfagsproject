@@ -50,6 +50,7 @@ export class TowerPlacere extends Component{
                 this.#canPlaceTower = false;
             }
         }
+    }
         else {
             this.#canPlaceTower = false;
         }
@@ -57,6 +58,7 @@ export class TowerPlacere extends Component{
 
     onExit(other){
         if(other.name == "Map"){
+
         }
     }
 
