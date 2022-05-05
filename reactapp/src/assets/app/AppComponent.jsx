@@ -6,6 +6,7 @@ import { GameTitle } from "../components/gameTitle/GameTitle";
 import { ShopMenu } from "../components/shop/ShopMenu";
 import { HealthText } from "../components/stats/HealthText";
 import { MoneyText } from "../components/stats/MoneyText";
+import { Test } from "../components/stats/Test";
 import { WaveText } from "../components/stats/WaveText";
 import { TowerPlacere } from "../components/TowerPlacer";
 import { WaveButton } from "../components/waveButton/WaveButton";
@@ -24,7 +25,7 @@ export const AppComponent = () => {
         OnEndResize.addListener(onEndResize, 0);
         App.run();
         TowerPlacere.getInstance();
-        TowerPlacere.getInstance().setActive(false);
+        TowerPlacere.getInstance().parent.setActive(false);
 
         // console.log("useEffect in AppComponent");
 

@@ -23,7 +23,6 @@ export const CanvasComponent = ({canvas}) => {
 
     const onEndResize = () => {
         rect.setRect(App.windowRect);
-        // rerenderer();
     }
  
 

@@ -10,7 +10,7 @@ export class Component {
     }
 
     setActive(value){
-        this.parent.isActive = value;
+        this.isActive = value;
     }
 
     onEnter(other){}

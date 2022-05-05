@@ -7,6 +7,7 @@ import { instantiate } from "../app/functions/instantiate";
 import { TowerPool } from "../pools/TowerPool";
 import { CircleRenderer } from "./CircleRenderer";
 import { FollowCanvasMouse } from "./FollowCanvasMouse";
+import { TowerRange } from "./TowerRange";
 
 
 export class TowerPlacere extends Component{
@@ -67,7 +68,8 @@ export class TowerPlacere extends Component{
                 if(this.#canPlaceTower == false) return;
                 var c = TowerPool.getInstance().acquireReuseable();
                 c.transform.setPosition(this.transform.position);
-                this.setActive(false);
+                c.getComponent(TowerRange).setIsShowingRange(false);
+                this.parent.setActive(false);
                 this.#canPlaceTower = false;
 
             }

@@ -34,7 +34,7 @@ export const ShopButton = ({
 
     const onClick = () => {
       TowerPlacere.getInstance().setTowerType(towerType);
-      TowerPlacere.getInstance().setActive(true);
+      TowerPlacere.getInstance().parent.setActive(true);
     }
   
     const CheckButtonStyle = Styles.includes(buttonStyle) 
