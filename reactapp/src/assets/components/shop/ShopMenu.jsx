@@ -31,14 +31,10 @@ export const ShopMenuObject = {
 
 export const ShopMenu = ({rect, offset}) =>{
 
-
     var style = {
         left: `${rect.x + offset.x}px`,
         top: `${rect.y + offset.y}px`,
-    }
-
-
-    
+    }    
     
     const towerTypes = ShopMenuObject.towerTypes;
 
@@ -48,8 +44,7 @@ export const ShopMenu = ({rect, offset}) =>{
 
             return (<ShopButton towerType={item}  key={index} ></ShopButton>)
             //{console.log(item.imagePath)}
-            //return (<ShopButton key={index} price={item.price} imagePath={item.imagePath}></ShopButton>)
-            
+            //return (<ShopButton key={index} price={item.price} imagePath={item.imagePath}></ShopButton>)           
 
         })}
 

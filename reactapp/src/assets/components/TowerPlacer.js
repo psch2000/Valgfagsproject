@@ -31,18 +31,15 @@ export class TowerPlacere extends Component{
     }
 
     onEnter(other){
-        console.log("here")
         if (other.name == "Map"){
-            console.log("enter");
         }
     }
 
     onOverlap(other){
 
-        
-        //if(other.getComponent(PatchRectangle)) {
-          //  console.log("Path");
-        //}
+        if(other.name == "Map"){
+
+            this.#canPlaceTower = true;
 
         if(other.name === "Map"){
             //console.log(other);
@@ -60,7 +57,6 @@ export class TowerPlacere extends Component{
 
     onExit(other){
         if(other.name == "Map"){
-            console.log("exit");
         }
     }
 

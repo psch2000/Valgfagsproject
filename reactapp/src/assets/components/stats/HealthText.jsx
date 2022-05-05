@@ -8,13 +8,18 @@ const Styles = [
 ];
 
 
-export const HealthText = ({textStyle}) => {
+export const HealthText = ({textStyle, rect, offset}) => {
 
+    const style = {
+        left: `${rect.x + offset.x}px`,
+        top: `${rect.y + offset.y}px`,
+    }   
+      
     const CheckTextStyle = Styles.includes(textStyle)
     ? textStyle
     : Styles[0];
 
-    return <p className={`HealthInfo ${CheckTextStyle}`}>
+    return <p style={style} className={`HealthInfo ${CheckTextStyle}`}>
     {HEALTH}
     </p>
 }

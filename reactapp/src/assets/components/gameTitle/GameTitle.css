@@ -3,7 +3,17 @@
     text-align: center;
     justify-content: center;
     text-transform: uppercase;
-    color: orange;
-    font-size: 3em;
-    font-weight: 500;
+    color: var(--primay);
+    font-size: 5em;
+    font-weight: 600;
+    text-shadow: 2px 2px 2px var(--black);
+
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: var(--darkBlue);
+}
+
+span{
+    color: var(--orange);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: var(--darkOrange);
 }
