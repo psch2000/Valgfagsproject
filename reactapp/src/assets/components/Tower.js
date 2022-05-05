@@ -29,7 +29,6 @@ export class Tower extends Component {
             instance.transform.position.y = this.transform.position.y;
 
             instance.getComponent("MoveDirection").direction = direction;
-            this.time = 0;
         }
     }
 
