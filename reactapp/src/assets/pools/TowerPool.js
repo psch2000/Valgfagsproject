@@ -27,7 +27,7 @@ export class TowerPool extends ReuseablePool{
     makeReuseable(){
         var towerType = TowerPlacere.getInstance().getTowerType();
 
-        var c = new Composit();
+        var c = new Composit("tower");
         c.addComponent(new CircleRenderer(towerType.range, '#030f1191', true));
         c.addComponent(new CircleRenderer(10, towerType.color, false));
         c.addComponent(new Tower(towerType));
