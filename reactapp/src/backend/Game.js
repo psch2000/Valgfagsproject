@@ -10,6 +10,7 @@ export class Game {
     #compositLayers = [];
     
     #compositsToInstantiate = [];
+    #compositsToRemove = [];
     #onStart = new EventHandler();
 
     #context;
@@ -29,6 +30,8 @@ export class Game {
         
 
         callAndSetInterval(() => {
+        setInterval(() => {
+            this.#removeComposits();
             this.#instantiate();
             this.#start();
             this.#update();
@@ -93,6 +96,18 @@ export class Game {
     
 
 
+    #removeComposits() {
+        if (this.#compositsToRemove.length === 0) return;
+
+        this.#compositLayers.forEach(layer => {
+            layer.forEach((component, componentIndex) => {
+                this.#compositsToRemove.forEach(compositToRemove => {
+                    if (component === compositToRemove) {console.log("Removed composit: " + compositToRemove.name); layer.splice(componentIndex, 1)};
+                })
+            })
+        })
+    }
+
     #instantiate(){
         this.#compositsToInstantiate.forEach(root => {
 
@@ -151,7 +166,6 @@ export class Game {
 
         
         this.#compositLayers[composit.layer].push(composit);
-
     }
 
     find(name){
@@ -174,8 +188,21 @@ export class Game {
         this.#composits.push(composit); 
     }
 
+    removeComposit = (composit) => {
+        this.#compositsToRemove.push(composit);
+    }
  
+    getComposit(name) {
+        let temp = null;
 
+        this.#compositLayers.forEach(layer => {
+            layer.forEach(composit => {
+                if (composit.name === name) temp = composit;
+            })
+        })
+        
+        return temp;
+    }
 
 
 }

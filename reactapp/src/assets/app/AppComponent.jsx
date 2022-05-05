@@ -8,11 +8,20 @@ import { HealthText } from "../components/stats/HealthText";
 import { MoneyText } from "../components/stats/MoneyText";
 import { WaveText } from "../components/stats/WaveText";
 import { TowerPlacere } from "../components/TowerPlacer";
+import { Composit } from "../../base/baseStructor/Composit";
+import { SquareRenderer } from "../components/SquareRenderer";
+import { FollowPath } from "../components/enemy/FollowPath";
+import { Path } from "../components/Path";
+import { Vector2d } from "../../base/baseStructor/Vector2d";
+import { instantiate } from "./functions/instantiate";
+import { RectangleCollider } from "../../base/baseStructor/collider/RectangleCollider";
+import { MoneyText } from "../components/stats/MoneyText";
 import { WaveButton } from "../components/waveButton/WaveButton";
-import { useForceRerenderer } from "../hooks/useForceRenderer";
-import { App } from "./App";
-import { MakeMapState } from "./states/initializestates/MakeMapState";
-
+import { HealthText } from "../components/stats/HealthText";
+import { WaveText } from "../components/stats/WaveText";
+import { PlayerBase } from "../components/PlayerBase";
+import { Enemy } from "../components/enemy/Enemy";
+// export const Game = new CanvasGame(window.innerWidth/2 -500, window.innerHeight/2-250, 1000, 500);
 
 export const AppComponent = () => {
     const init = new StateHandler(new MakeMapState());
@@ -25,36 +34,8 @@ export const AppComponent = () => {
         App.run();
         TowerPlacere.getInstance();
         TowerPlacere.getInstance().setActive(false);
-
-        // console.log("useEffect in AppComponent");
-
-        // let enemyPath = new Path([
-        //     new Vector2d(100, 100),
-        //     new Vector2d(200, 100),
-        //     new Vector2d(200, 150),
-        //     new Vector2d(100, 150),
-        //     new Vector2d(100, 200),
-        //     new Vector2d(200, 200),
-        //     new Vector2d(200, 250),
-        //     new Vector2d(100, 250),
-        //     new Vector2d(100, 300),
-        //     new Vector2d(250, 300),
-        //     new Vector2d(250, 100),
-        //     new Vector2d(300, 100),
-        //     new Vector2d(300, 300),
-        // ]);
-
-        // let enemyComposit = new Composit("testEnemy");
-        // enemyComposit.addComponent(new SquareRenderer(10, 10, "red"));
-        // enemyComposit.addComponent(new FollowPath(enemyPath));
-        // enemyComposit.transform.position = new Vector2d(enemyPath.waypoints[0].x, enemyPath.waypoints[0].y);
-        // instantiate(enemyComposit);
-
-        // let testRectangle = new RectangleCollider(10, 10);
-        // testRectangle.transform.position = new Vector2d(95, 95);
-
-      
-
+        
+        placeObjectsOnCanvas();
 
     }, [])
 
@@ -85,4 +66,36 @@ export const AppComponent = () => {
     </div>
 
     
+}
+
+function placeObjectsOnCanvas() {
+    let enemyPath = new Path([
+        new Vector2d(50, 0),
+        new Vector2d(50, 165),
+        new Vector2d(215, 160),
+        new Vector2d(215, 275),
+        new Vector2d(50, 275),
+        new Vector2d(50, 410),
+        new Vector2d(325, 410),
+        new Vector2d(325, 80),
+        new Vector2d(575, 80),
+        new Vector2d(575, 215),
+        new Vector2d(455, 215),
+        new Vector2d(455, 345),
+        new Vector2d(570, 345),
+        new Vector2d(570, 429),
+    ], "#ff00ff91", 50);
+
+    let playerBase = new Composit("playerBase");
+    playerBase.addComponent(new SquareRenderer(50, 20, "blue"));
+    playerBase.addComponent(new PlayerBase(100));
+    playerBase.transform.setPosition(new Vector2d(570, 480));
+    instantiate(playerBase);
+
+    let enemyComposit = new Composit("testEnemy");
+    enemyComposit.addComponent(new SquareRenderer(enemyPath.pathWidth, enemyPath.pathWidth, "red"));
+    enemyComposit.addComponent(new FollowPath(enemyPath));
+    enemyComposit.addComponent(new Enemy(100, 20, 60));
+    enemyComposit.transform.position = new Vector2d(enemyPath.waypoints[0].x, enemyPath.waypoints[0].y);
+    instantiate(enemyComposit);
 }
