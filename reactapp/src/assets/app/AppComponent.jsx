@@ -6,7 +6,6 @@ import { GameTitle } from "../components/gameTitle/GameTitle";
 import { ShopMenu } from "../components/shop/ShopMenu";
 import { HealthText } from "../components/stats/HealthText";
 import { MoneyText } from "../components/stats/MoneyText";
-import { WaveText } from "../components/stats/WaveText";
 import { TowerPlacere } from "../components/TowerPlacer";
 import { Composit } from "../../base/baseStructor/Composit";
 import { SquareRenderer } from "../components/SquareRenderer";
@@ -15,18 +14,18 @@ import { Path } from "../components/Path";
 import { Vector2d } from "../../base/baseStructor/Vector2d";
 import { instantiate } from "./functions/instantiate";
 import { RectangleCollider } from "../../base/baseStructor/collider/RectangleCollider";
-import { MoneyText } from "../components/stats/MoneyText";
 import { WaveButton } from "../components/waveButton/WaveButton";
-import { HealthText } from "../components/stats/HealthText";
 import { WaveText } from "../components/stats/WaveText";
 import { PlayerBase } from "../components/PlayerBase";
 import { Enemy } from "../components/enemy/Enemy";
+import { MakeMapState} from "./states/initializestates/MakeMapState";
+import { useForceRerenderer } from "../hooks/useForceRenderer";
+import { App } from "./App";
 // export const Game = new CanvasGame(window.innerWidth/2 -500, window.innerHeight/2-250, 1000, 500);
 
 export const AppComponent = () => {
     const init = new StateHandler(new MakeMapState());
     const rerenderer = useForceRerenderer();
-    
 
     useEffect(() =>{
         init.execute();
