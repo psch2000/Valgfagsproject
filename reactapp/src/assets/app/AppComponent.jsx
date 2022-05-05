@@ -3,8 +3,6 @@ import { App } from "./App";
 import { CanvasComponent } from "../components/canvas/CanvasComponent";
 import { OnEndResize } from "../../events/OnEndResize";
 import { StateHandler } from "../../base/baseBehaviour/StateHandler";
-import { OnEndResize } from "../../events/OnEndResize";
-import { CanvasComponent } from "../components/canvas/CanvasComponent";
 import { GameTitle } from "../components/gameTitle/GameTitle";
 import { ShopMenu } from "../components/shop/ShopMenu";
 import { HealthText } from "../components/stats/HealthText";
@@ -18,15 +16,10 @@ import { Path } from "../components/Path";
 import { Vector2d } from "../../base/baseStructor/Vector2d";
 import { instantiate } from "./functions/instantiate";
 import { RectangleCollider } from "../../base/baseStructor/collider/RectangleCollider";
-import { MoneyText } from "../components/stats/MoneyText";
 import { WaveButton } from "../components/waveButton/WaveButton";
-import { HealthText } from "../components/stats/HealthText";
-import { WaveText } from "../components/stats/WaveText";
 import { PlayerBase } from "../components/PlayerBase";
 import { Enemy } from "../components/enemy/Enemy";
-// export const Game = new CanvasGame(window.innerWidth/2 -500, window.innerHeight/2-250, 1000, 500);
 import { useForceRerenderer } from "../hooks/useForceRenderer";
-import { App } from "./App";
 import { MakeMapState } from "./states/initializestates/MakeMapState";
 
 
