@@ -29,6 +29,7 @@ export const AppComponent = () => {
         TowerPlacere.getInstance();
         TowerPlacere.getInstance().setActive(false);
 
+
         console.log("useEffect in AppComponent");
 
         let enemyPath = new Path([
@@ -56,6 +57,8 @@ export const AppComponent = () => {
         let testRectangle = new RectangleCollider(10, 10);
         testRectangle.transform.position = new Vector2d(95, 95);
 
+      
+
 
     }, [])
 
@@ -80,4 +83,5 @@ export const AppComponent = () => {
         <GameTitle></GameTitle>
     </div>
 
+    
 }

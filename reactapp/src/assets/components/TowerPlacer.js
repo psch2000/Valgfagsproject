@@ -7,7 +7,8 @@ import { instantiate } from "../app/functions/instantiate";
 import { TowerPool } from "../pools/TowerPool";
 import { CircleRenderer } from "./CircleRenderer";
 import { FollowCanvasMouse } from "./FollowCanvasMouse";
-
+import { Path } from "./Path";
+import { PathRectangle } from "./PathRectangle";
 
 export class TowerPlacere extends Component{
 
@@ -17,7 +18,7 @@ export class TowerPlacere extends Component{
     #rangeRenderer;
     #spriteRenderer;
     #followMouse;
-
+    #pathrechtangle
     
     #canPlaceTower;
     #towerType;
@@ -38,13 +39,23 @@ export class TowerPlacere extends Component{
 
     onOverlap(other){
 
-        if(other.name == "Map"){
+        
+        //if(other.getComponent(PatchRectangle)) {
+          //  console.log("Path");
+        //}
 
-            this.#canPlaceTower = true;
-            // console.log("stay");
-
+        if(other.name === "Map"){
+            //console.log(other);
+            if (other.getComponent(PathRectangle) === null) {
+                this.#canPlaceTower = true;
+            }
+            else {
+                this.#canPlaceTower = false;
+            }
         }
-
+        else {
+            this.#canPlaceTower = false;
+        }
     }
 
     onExit(other){
@@ -57,9 +68,10 @@ export class TowerPlacere extends Component{
         this.#rangeRenderer = this.parent.addComponent(new CircleRenderer(20, '#030f11', true));
         this.#spriteRenderer = this.parent.addComponent(new CircleRenderer(10, 'white', false));
         this.#followMouse = this.parent.addComponent(new FollowCanvasMouse());
-
+        
         this.parent.addComponent(new RectangleCollider(1, 1));
 
+        this.#pathrechtangle = this.parent.addComponent(new PathRectangle());
     }
 
     onUpdate(){
