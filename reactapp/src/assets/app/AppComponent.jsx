@@ -90,6 +90,6 @@ function placeObjectsOnCanvas() {
     enemyComposit.addComponent(new SquareRenderer(enemyPath.pathWidth, enemyPath.pathWidth, "red"));
     enemyComposit.addComponent(new FollowPath(enemyPath));
     enemyComposit.addComponent(new Enemy(100, 20, 60));
-    enemyComposit.transform.position = new Vector2d(enemyPath.waypoints[0].x, enemyPath.waypoints[0].y);
+    enemyComposit.transform.position = enemyPath.waypoints[0].copy()
     instantiate(enemyComposit);
 }

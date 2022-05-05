@@ -25,8 +25,7 @@ export class Tower extends Component {
 
             // ProjectilePool.getInstance().color = this.towerType.color;
             var instance = ProjectilePool.getInstance().acquireReuseable(this.towerType.color);
-            instance.transform.position.x = this.transform.position.x;
-            instance.transform.position.y = this.transform.position.y;
+            instance.transform.position = this.transform.position.copy();
 
             instance.getComponent("MoveDirection").direction = direction;
         }
