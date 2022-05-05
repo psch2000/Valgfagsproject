@@ -1,5 +1,5 @@
 import React from "react";
-import { TowerPlacere } from "../TowerPlacer";
+import { TowerPlacere } from "../../tower/TowerPlacer";
 import "./shop.css"
 
 

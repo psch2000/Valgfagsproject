@@ -1,6 +1,5 @@
 import { Component } from "../../base/baseStructor/Component";
 import { Input } from "../../GameEngine/input/Input";
-import { CircleRenderer } from "./CircleRenderer";
 
 
 export class TowerRange extends Component{
@@ -47,21 +46,23 @@ export class TowerRange extends Component{
 
 
     setRange(value){
-        this.#circleRenderer.range = value;
+        // this.#circleRenderer.range = value;
         this.#range = value;
     }
 
 
     setIsShowingRange(value){
-        this.#circleRenderer.setActive(value);
+        // this.#circleRenderer.setActive(value);
     }
 
 
 
     onUpdate(){
         if (Input.getKeyDown('0')){
-            this.#circleRenderer.setActive(this.#hitCursor);
+            // this.#circleRenderer.setActive(this.#hitCursor);
         }
+
+
 
     }
 

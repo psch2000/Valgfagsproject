@@ -20,4 +20,9 @@ export class Component {
     onStart(){}
     onUpdate(){}
     onDraw(context){}
+
+    getComponent(type){
+        if (this.parent == null) return;
+        return this.parent.getComponent(type);
+    }   
 }

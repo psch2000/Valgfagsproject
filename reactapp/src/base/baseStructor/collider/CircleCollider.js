@@ -1,10 +1,10 @@
 import { Collider } from "./Collider";
 
 export class CircleCollider extends Collider {
-    constructor(radius, showBounds) {
+    constructor(radius, showBounds = false) {
         super();
         this.radius = radius;
-        this.showBounds = false;
+        this.showBounds = showBounds;
     }
     
     onDraw(ctx){

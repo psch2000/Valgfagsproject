@@ -6,7 +6,6 @@ import { instantiate } from "../app/functions/instantiate";
 import { CircleRenderer } from "../components/CircleRenderer";
 import { MoveDirection } from "../components/MoveDirection";
 import { SquareRenderer } from "../components/SquareRenderer";
-import { TowerPlacere } from "../components/TowerPlacer";
 
 
 

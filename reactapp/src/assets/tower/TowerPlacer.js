@@ -4,9 +4,9 @@ import { Composit } from "../../base/baseStructor/Composit";
 import { Input } from "../../GameEngine/input/Input";
 import { App } from "../app/App";
 import { instantiate } from "../app/functions/instantiate";
-import { TowerPool } from "../pools/TowerPool";
-import { CircleRenderer } from "./CircleRenderer";
-import { FollowCanvasMouse } from "./FollowCanvasMouse";
+import { CircleRenderer } from "../components/CircleRenderer";
+import { FollowCanvasMouse } from "../components/FollowCanvasMouse";
+import { TowerPool } from "../tower/TowerPool";
 import { TowerRange } from "./TowerRange";
 
 
@@ -32,21 +32,16 @@ export class TowerPlacere extends Component{
 
     onEnter(other){
         if (other.name == "Map"){
-        }
-    }
-
-    onOverlap(other){
-
-        if(other.name == "Map"){
-
+            console.log("here")
             this.#canPlaceTower = true;
-
         }
-
     }
 
     onExit(other){
         if(other.name == "Map"){
+            console.log("exit")
+
+            this.#canPlaceTower = false;
         }
     }
 
@@ -66,15 +61,18 @@ export class TowerPlacere extends Component{
             if(this.parent.isActive == true){
                 
                 if(this.#canPlaceTower == false) return;
+                console.log("a")
+
                 var c = TowerPool.getInstance().acquireReuseable();
+
+                console.log(c)
+
                 c.transform.setPosition(this.transform.position);
-                c.getComponent(TowerRange).setIsShowingRange(false);
                 this.parent.setActive(false);
                 this.#canPlaceTower = false;
 
             }
         }
-        this.#canPlaceTower = false;
 
         
     }

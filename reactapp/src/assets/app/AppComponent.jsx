@@ -8,9 +8,9 @@ import { HealthText } from "../components/stats/HealthText";
 import { MoneyText } from "../components/stats/MoneyText";
 import { Test } from "../components/stats/Test";
 import { WaveText } from "../components/stats/WaveText";
-import { TowerPlacere } from "../components/TowerPlacer";
 import { WaveButton } from "../components/waveButton/WaveButton";
 import { useForceRerenderer } from "../hooks/useForceRenderer";
+import { TowerPlacere } from "../tower/TowerPlacer";
 import { App } from "./App";
 import { MakeMapState } from "./states/initializestates/MakeMapState";
 

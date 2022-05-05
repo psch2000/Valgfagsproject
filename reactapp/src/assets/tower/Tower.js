@@ -1,19 +1,13 @@
 import { Component } from "../../base/baseStructor/Component";
-import { Composit } from "../../base/baseStructor/Composit";
 import { Vector2d } from "../../base/baseStructor/Vector2d";
-import { Input } from "../../GameEngine/input/Input";
-import { Game } from "../app/App";
+import { Time } from "../../base/Time";
 import { getCanvasMousePosition } from "../app/functions/getCanvasMousePosition";
 import { ProjectilePool } from "../pools/ProjectilePool";
-import { Enemy } from "./enemy/Enemy";
-import { MoveDirection } from "./MoveDirection";
-import { SquareRenderer } from "./SquareRenderer";
+import { MoveDirection } from "../components/MoveDirection";
 
 
 
 export class Tower extends Component{
-
-
 
     constructor(towerType){
         super();
@@ -22,15 +16,11 @@ export class Tower extends Component{
         this.canFire = false;
     }
 
-
-   
-
-
-
     onUpdate(){
-        this.time += 1;
 
-        if (this.time == 100){
+        this.time += Time.deltaTime;
+
+        if (this.time > 1){
             var from = this.transform.position;
             var to = getCanvasMousePosition();
 
@@ -43,8 +33,6 @@ export class Tower extends Component{
             instance.getComponent(MoveDirection).direction = direction;
             this.time = 0;
         }
-
-    
     }
     
 
