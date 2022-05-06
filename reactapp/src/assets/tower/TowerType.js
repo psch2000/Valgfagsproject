@@ -11,7 +11,7 @@ export class TowerType{
 
     constructor(name, range, color, price, imagePath, size){
         this.name = name;
-        this.radius = radius;
+        this.radius = size;
         this.range = range;
         this.color = color;
         this.price = price;
