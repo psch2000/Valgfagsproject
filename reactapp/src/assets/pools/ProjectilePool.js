@@ -51,8 +51,8 @@ export class ProjectilePool extends ReuseablePool{
     #getReuseableWithColor(color) {
         for (let index = 0; index < this._reuseables.length; index++) {
             const reuseable = this._reuseables[index];
-            
-            if (reuseable.getComponent("CircleRenderer").color === color) {
+
+            if (reuseable.getComponent(CircleRenderer).color === color) {
                 this._reuseables.splice(index, 1);
                 return reuseable;
             }
