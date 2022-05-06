@@ -1,3 +1,4 @@
+import { CircleCollider } from "../../base/baseStructor/collider/CircleCollider";
 import { RectangleCollider } from "../../base/baseStructor/collider/RectangleCollider";
 import { Component } from "../../base/baseStructor/Component";
 import { Composit } from "../../base/baseStructor/Composit";
@@ -19,9 +20,12 @@ export class TowerPlacere extends Component{
     #spriteRenderer;
     #followMouse;
     #pathrechtangle
-    
+    #collision
+    #onMap
+    #onPath
     #canPlaceTower;
     #towerType;
+
     constructor(){
         if (TowerPlacere.#instance == null){
             super();
@@ -31,49 +35,47 @@ export class TowerPlacere extends Component{
     }
 
     onEnter(other){
-        if (other.name == "Map"){
+        if (other.name === "Map"){
+            this.#onMap = true;
+            //console.log("Inside of Map")
         }
     }
 
     onOverlap(other){
-
-        if(other.name == "Map"){
-
-            this.#canPlaceTower = true;
-
-        if(other.name === "Map"){
-            //console.log(other);
-            if (other.getComponent(PathRectangle) === null) {
-                this.#canPlaceTower = true;
-            }
-            else {
-                this.#canPlaceTower = false;
-            }
-        }
-    }
-        else {
-            this.#canPlaceTower = false;
+        if (other.getComponent(PathRectangle) !== null) {
+            this.#onPath = true;
         }
     }
 
     onExit(other){
-        if(other.name == "Map"){
-
+        if(other.name === "Map"){
+            this.#onMap = false;
+            //console.log("Out of map");
         }
+
+        if (other.getComponent(PathRectangle) !== null) {
+
+            this.#onPath = false;
+        }
+       
     }
 
     onStart(){
         this.#rangeRenderer = this.parent.addComponent(new CircleRenderer(20, '#030f1191', true));
         this.#spriteRenderer = this.parent.addComponent(new CircleRenderer(10, 'white', false));
         this.#followMouse = this.parent.addComponent(new FollowCanvasMouse());
-        
-        this.parent.addComponent(new RectangleCollider(1, 1));
+        this.#collision = this.parent.addComponent(new CircleCollider(1));
+        //this.parent.addComponent(new RectangleCollider(10, 10));
 
         this.#pathrechtangle = this.parent.addComponent(new PathRectangle());
     }
 
     onUpdate(){
         // left mouse input
+        this.#canPlaceTower = this.#onMap && !this.#onPath
+        if(!this.#canPlaceTower) {this.#spriteRenderer.color = this.#towerType.dsbColor}
+        else { this.#spriteRenderer.color = this.#towerType.normalColor}
+
         if(Input.getKeyDown('0')){
             
             if(this.parent.isActive == true){
@@ -83,15 +85,9 @@ export class TowerPlacere extends Component{
                 c.transform.setPosition(this.transform.position);
                 this.setActive(false);
                 this.#canPlaceTower = false;
-
             }
         }
-        this.#canPlaceTower = false;
-
-        
     }
-
-
 
     getTowerType(){
         return this.#towerType;
@@ -101,6 +97,7 @@ export class TowerPlacere extends Component{
         this.#rangeRenderer.radius = towerType.range;
         this.#spriteRenderer.color = towerType.color;
         this.#towerType = towerType;
+        this.#collision.radius = towerType.size;        
     }
 
     static getInstance(){

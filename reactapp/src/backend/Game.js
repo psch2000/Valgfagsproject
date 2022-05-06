@@ -29,8 +29,7 @@ export class Game {
 
         
 
-        //callAndSetInterval(() => {
-        setInterval(() => {
+        callAndSetInterval(() => {
             this.#removeComposits();
             this.#instantiate();
             this.#start();

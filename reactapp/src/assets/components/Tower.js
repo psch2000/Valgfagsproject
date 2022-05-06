@@ -2,6 +2,7 @@ import { Component } from "../../base/baseStructor/Component";
 import { Vector2d } from "../../base/baseStructor/Vector2d";
 import { getCanvasMousePosition } from "../app/functions/getCanvasMousePosition";
 import { ProjectilePool } from "../pools/ProjectilePool";
+import { MoveDirection } from "./MoveDirection";
 
 export class Tower extends Component {
     constructor(towerType) {
@@ -10,6 +11,8 @@ export class Tower extends Component {
 
         this.cooldownShoot = 2;
         this.oldTime = new Date();
+
+        
     }
 
     onUpdate() {
