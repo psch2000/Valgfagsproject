@@ -71,7 +71,7 @@ function placeObjectsOnCanvas() {
     let enemyPath = new Path([
         new Vector2d(50, 0),
         new Vector2d(50, 165),
-        new Vector2d(215, 160),
+        new Vector2d(215, 165),
         new Vector2d(215, 275),
         new Vector2d(50, 275),
         new Vector2d(50, 410),
