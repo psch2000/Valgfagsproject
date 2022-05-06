@@ -1,6 +1,7 @@
 import { Component } from "../../../base/baseStructor/Component";
 import { App } from "../../app/App";
 import { Vector2d } from "../../../base/baseStructor/Vector2d";
+import { PlayerBase } from "../PlayerBase";
 
 export class Enemy extends Component {
     constructor(health, damage, attackRange) {
@@ -57,7 +58,7 @@ export class Enemy extends Component {
     #getBaseToAttack() {
         if (this.baseToAttack !== null) return;
 
-        this.baseToAttack = App.game.getComposit("playerBase")?.getComponent("PlayerBase");
+        this.baseToAttack = App.game.getComposit("playerBase")?.getComponent(PlayerBase);
     }
 
     takeDamage(incomingDamage) {
