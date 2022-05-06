@@ -42,7 +42,7 @@ export const ShopMenu = ({rect, offset}) =>{
 
         {towerTypes.map((item, index) => {
 
-            return (<ShopButton towerType={item}  key={index} ></ShopButton>)
+            return (<ShopButton towerType={item}  key={index} towerName={item.name}></ShopButton>)
             //{console.log(item.imagePath)}
             //return (<ShopButton key={index} price={item.price} imagePath={item.imagePath}></ShopButton>)           
 

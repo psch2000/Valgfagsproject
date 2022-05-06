@@ -12,7 +12,9 @@ import { WaveButton } from "../components/waveButton/WaveButton";
 import { useForceRerenderer } from "../hooks/useForceRenderer";
 import { App } from "./App";
 import { MakeMapState } from "./states/initializestates/MakeMapState";
-
+import { UpdateUIState } from "./states/initializestates/UpdateUIState"
+import { TowerText } from "../components/stats/TowerText"
+// export const Game = new CanvasGame(window.innerWidth/2 -500, window.innerHeight/2-250, 1000, 500);
 
 export const AppComponent = () => {
     const init = new StateHandler(new MakeMapState());
@@ -72,14 +74,14 @@ export const AppComponent = () => {
     setWindowRect();
 
     return <div>
-        <CanvasComponent canvas={App.canvas}></CanvasComponent>
-        <ShopMenu offset={{x:730, y:75}} rect={App.windowRect}></ShopMenu>
         <GameTitle></GameTitle>
-
-        <WaveButton offset={{x:730, y:420}} rect={App.windowRect}></WaveButton>
+        <CanvasComponent canvas={App.canvas}></CanvasComponent>
+        <ShopMenu offset={{x:750, y:60}} rect={App.windowRect}></ShopMenu>
+        <WaveButton offset={{x:750, y:420}} rect={App.windowRect}></WaveButton>
         <MoneyText offset={{x:170, y: 0}} rect={App.windowRect}></MoneyText>
         <HealthText offset={{x:50, y:0}} rect={App.windowRect}></HealthText>
         <WaveText offset={{x: 550, y:0}} rect={App.windowRect}></WaveText>
+        <TowerText offset={{x: 750, y:7}} rect={App.windowRect}></TowerText>
     </div>
 
 }
