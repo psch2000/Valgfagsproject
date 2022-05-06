@@ -6,10 +6,10 @@ import { TowerRange } from "./TowerRange";
 
 export class TowerFacade extends Component{
 
-    #rangeCollider;
-    #rangeCircleRenderer;
     #range;
     #rangeComposit;
+    #rangeCollider;
+    #rangeCircleRenderer;
 
     #towerCollider;
     #towerCircleRenderer;
@@ -42,7 +42,6 @@ export class TowerFacade extends Component{
     showRange(value){    
         this.#rangeCircleRenderer.setActive(value);
     }
-
 
 
 

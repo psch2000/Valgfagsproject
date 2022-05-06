@@ -30,7 +30,6 @@ export class TowerPool extends ReuseablePool{
     makeReuseable(){
         var towerType = TowerPlacere.getInstance().getTowerType();
 
-        console.log(towerType)
         var {radius, color, range} = towerType;
 
 

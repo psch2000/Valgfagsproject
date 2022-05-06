@@ -27,7 +27,6 @@ export class Tower extends Component{
 
     onEnter(other){
         if (other.name == "Cursor"){
-            console.log("hit")
             this.#hitCursor = true;
         }
     }

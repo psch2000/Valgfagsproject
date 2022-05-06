@@ -33,15 +33,12 @@ export class TowerPlacere extends Component{
 
     onEnter(other){
         if (other.name == "Map"){
-            console.log("here")
             this.#canPlaceTower = true;
         }
     }
 
     onExit(other){
         if(other.name == "Map"){
-            console.log("exit")
-
             this.#canPlaceTower = false;
         }
     }
@@ -62,14 +59,8 @@ export class TowerPlacere extends Component{
             if(this.parent.isActive == true){
                 
                 if(this.#canPlaceTower == false) return;
-                console.log("a")
-
                 var c = TowerPool.getInstance().acquireReuseable();
-
-                console.log(c)
-
                var a = c.getComponent(TowerFacade);
-               console.log(a);
                 c.transform.setPosition(this.transform.position);
                 this.parent.setActive(false);
                 this.#canPlaceTower = false;
