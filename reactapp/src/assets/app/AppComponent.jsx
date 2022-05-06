@@ -9,7 +9,7 @@ import { HealthText } from "../components/stats/HealthText";
 import { MoneyText } from "../components/stats/MoneyText";
 import { Test } from "../components/stats/Test";
 import { WaveText } from "../components/stats/WaveText";
-import { TowerPlacere } from "../components/TowerPlacer";
+import { TowerPlacere } from "../tower/TowerPlacer";
 import { Composit } from "../../base/baseStructor/Composit";
 import { SquareRenderer } from "../components/SquareRenderer";
 import { FollowPath } from "../components/enemy/FollowPath";
