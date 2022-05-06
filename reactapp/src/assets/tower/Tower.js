@@ -32,7 +32,6 @@ export class Tower extends Component{
         this.firePattern.color = this.towerType.color;
         this.firePattern.parent = this;
         this.firePattern.target = App.game.find("Cursor");
-        console.log(this.firePattern.target)
     }
 
     onEnter(other){
