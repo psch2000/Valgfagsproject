@@ -53,6 +53,12 @@ export class TowerPlacere extends Component{
         if(other.name === "Map"){
             this.#onMap = false;
         }
+
+        if (other.getComponent(PathRectangle) !== null) {
+
+            this.#onPath = false;
+        }
+       
     }
 
     onStart(){
