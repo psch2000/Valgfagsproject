@@ -10,8 +10,7 @@ import { FollowCanvasMouse } from "../components/FollowCanvasMouse";
 import { TowerPool } from "./TowerPool";
 import { TowerFacade } from "./TowerFacade";
 import { TowerRange } from "./TowerRange";
-import { Path } from "./Path";
-import { PathRectangle } from "./PathRectangle";
+import { PathRectangle } from "../components/PathRectangle";
 
 export class TowerPlacere extends Component{
 
@@ -32,16 +31,12 @@ export class TowerPlacere extends Component{
         if (TowerPlacere.#instance !== undefined) return
         super();
         this.#map = App.game.find("Map").getComponent(Map);
-        this.#canPlaceTower = false;
+        this.#onPath = false;
     }
 
     onEnter(other){
-        if (other.name == "Map"){
-            this.#canPlaceTower = true;
-        }
         if (other.name === "Map"){
             this.#onMap = true;
-            //console.log("Inside of Map")
         }
     }
 
@@ -49,22 +44,15 @@ export class TowerPlacere extends Component{
         if (other.getComponent(PathRectangle) !== null) {
             this.#onPath = true;
         }
+        else {
+            this.#onPath = false;
+        }
     }
 
     onExit(other){
-        if(other.name == "Map"){
-            this.#canPlaceTower = false;
-        }
         if(other.name === "Map"){
             this.#onMap = false;
-            //console.log("Out of map");
         }
-
-        if (other.getComponent(PathRectangle) !== null) {
-
-            this.#onPath = false;
-        }
-       
     }
 
     onStart(){
@@ -79,7 +67,8 @@ export class TowerPlacere extends Component{
 
     onUpdate(){
         // left mouse input
-        this.#canPlaceTower = this.#onMap && !this.#onPath
+        this.#canPlaceTower = this.#onMap && !this.#onPath;
+
         if(!this.#canPlaceTower) {this.#spriteRenderer.color = this.#towerType.dsbColor}
         else { this.#spriteRenderer.color = this.#towerType.normalColor}
 
