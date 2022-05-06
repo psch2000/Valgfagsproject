@@ -44,9 +44,9 @@ export const AppComponent = () => {
     setWindowRect();
 
     return <div>
+        <GameTitle></GameTitle>
         <CanvasComponent canvas={App.canvas}></CanvasComponent>
         <ShopMenu offset={{x:750, y:65}} rect={App.windowRect}></ShopMenu>
-        <GameTitle></GameTitle>
         <WaveButton offset={{x:750, y:420}} rect={App.windowRect}></WaveButton>
         <MoneyText offset={{x:170, y:0}} rect={App.windowRect}></MoneyText>
         <HealthText offset={{x:50, y:0}} rect={App.windowRect}></HealthText>

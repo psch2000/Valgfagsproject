@@ -46,8 +46,6 @@ export class UpdateUIState extends State{
         c.addComponent(new FollowCanvasMouse());
         instantiate(c);
 
-            
-
     }
 
 }
