@@ -85,7 +85,6 @@ export class TowerPlacere extends Component{
 
         if(Input.getKeyDown('0')){
             if(this.parent.isActive == true){
-                
                 if(this.#canPlaceTower == false) return;
                 var c = TowerPool.getInstance().acquireReuseable();
                var a = c.getComponent(TowerFacade);
@@ -108,15 +107,6 @@ export class TowerPlacere extends Component{
         this.#collision.radius = towerType.size;        
     }
 
-    onOverlap(other){
-
-        if(other.name == "Map"){
-
-            this.#canPlaceTower = true;
-
-        }
-
-    }
 
     static getInstance(){
 
