@@ -52,10 +52,8 @@ export class FirePattern{
     }
 
     #makeProjectile(){
-        ProjectilePool.getInstance().color = this.color;
-        var c = ProjectilePool.getInstance().acquireReuseable();
-        c.transform.position.x = this.parent.transform.position.x;
-        c.transform.position.y = this.parent.transform.position.y;
+        var c = ProjectilePool.getInstance().acquireReuseable(this.color);
+        c.transform.position = this.parent.transform.position.copy();
         return c;
     }
 
