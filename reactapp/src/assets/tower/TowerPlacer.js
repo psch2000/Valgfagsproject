@@ -7,10 +7,11 @@ import { App } from "../app/App";
 import { instantiate } from "../app/functions/instantiate";
 import { CircleRenderer } from "../components/CircleRenderer";
 import { FollowCanvasMouse } from "../components/FollowCanvasMouse";
-import { TowerPool } from "./TowerPool";
+import { Player } from "../Player";
+import { TowerPool } from "../tower/TowerPool";
 import { TowerFacade } from "./TowerFacade";
 import { TowerRange } from "./TowerRange";
-import { PathRectangle } from "../components/PathRectangle";
+
 
 export class TowerPlacere extends Component{
 
@@ -84,6 +85,7 @@ export class TowerPlacere extends Component{
                 var c = TowerPool.getInstance().acquireReuseable();
                var a = c.getComponent(TowerFacade);
                 c.transform.setPosition(this.transform.position);
+                Player.bank.remove(this.#towerType.price);
                 this.parent.setActive(false);
                 this.#canPlaceTower = false;
             }

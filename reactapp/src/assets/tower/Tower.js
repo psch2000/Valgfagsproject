@@ -6,23 +6,32 @@ import { ProjectilePool } from "../pools/ProjectilePool";
 import { MoveDirection } from "../components/MoveDirection";
 import { TowerFacade } from "./TowerFacade";
 import { Input } from "../../GameEngine/input/Input";
+import { FirePattern } from "./firePattern/FirePattern";
+import { App } from "../app/App";
 
-export class Tower extends Component {
-    #enemiesInRange = [];
+
+
+export class Tower extends Component{
+
     #towerFacade;
     #hitCursor = false;
 
-    constructor(towerType) {
+    constructor(towerType){
         super();
         this.towerType = towerType;
-
-        this.canFire = false;
-        this.cooldownShoot = 2;
         this.time = 0;
+        this.canFire = false;
+
+        this.firePattern = new FirePattern();
+
     }
     
     onStart(){
         this.#towerFacade = this.getComponent(TowerFacade);
+
+        this.firePattern.color = this.towerType.color;
+        this.firePattern.parent = this;
+        this.firePattern.target = App.game.find("Cursor");
     }
 
     onEnter(other){
@@ -44,25 +53,10 @@ export class Tower extends Component {
         }
 
  
-        this.time += Time.deltaTime;
-
-        if (this.time > this.cooldownShoot){
-            this.#resetCooldown();
-
-            var from = this.transform.position;
-            var to = getCanvasMousePosition();
-
-            var direction = Vector2d.subtract(to, from).normalize();
-
-            // ProjectilePool.getInstance().color = this.towerType.color;
-            var instance = ProjectilePool.getInstance().acquireReuseable(this.towerType.color);
-            instance.transform.position = this.transform.position.copy();
-
-            instance.getComponent(MoveDirection).direction = direction;
-        }
+        this.firePattern.fireRoutine();
     }
 
-    #resetCooldown() {
-        this.time = 0;
-    }
+    
+    
+
 }
