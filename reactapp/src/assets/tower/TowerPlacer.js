@@ -7,6 +7,7 @@ import { instantiate } from "../app/functions/instantiate";
 import { CircleRenderer } from "../components/CircleRenderer";
 import { FollowCanvasMouse } from "../components/FollowCanvasMouse";
 import { TowerPool } from "../tower/TowerPool";
+import { TowerFacade } from "./TowerFacade";
 import { TowerRange } from "./TowerRange";
 
 
@@ -67,6 +68,8 @@ export class TowerPlacere extends Component{
 
                 console.log(c)
 
+               var a = c.getComponent(TowerFacade);
+               console.log(a);
                 c.transform.setPosition(this.transform.position);
                 this.parent.setActive(false);
                 this.#canPlaceTower = false;
@@ -86,6 +89,7 @@ export class TowerPlacere extends Component{
     setTowerType(towerType){
         this.#rangeRenderer.radius = towerType.range;
         this.#spriteRenderer.color = towerType.color;
+        this.#spriteRenderer.radius = towerType.radius;
         this.#towerType = towerType;
     }
 

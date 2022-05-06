@@ -20,12 +20,12 @@ export const ShopMenuObject = {
     
     
     towerTypes: [
-        new TowerType("Blue Tower", 30, 30, 'blue', 100, "./images/test_tower.png"),
-        new TowerType("Red Tower", 30,  35, 'red', 200, "./images/test_tower.png"),
-        new TowerType("Gree Tower", 30,  40, 'green', 300, "./images/test_tower.png"),
-        new TowerType("White Tower", 30, 50, 'white', 500, "./images/test_tower.png"),
-        new TowerType("Black Tower", 30, 100, 'black', 1000, "./images/test_tower.png"),
-        new TowerType("Orange Tower", 30, 200, 'orange', 2000, "./images/test_tower.png"),
+        new TowerType("Blue Tower", 15, 30, 'blue', 100, "./images/test_tower.png"),
+        new TowerType("Red Tower", 15,  35, 'red', 200, "./images/test_tower.png"),
+        new TowerType("Gree Tower", 15,  40, 'green', 300, "./images/test_tower.png"),
+        new TowerType("White Tower", 15, 50, 'white', 500, "./images/test_tower.png"),
+        new TowerType("Black Tower", 15, 100, 'black', 1000, "./images/test_tower.png"),
+        new TowerType("Orange Tower", 15, 200, 'orange', 2000, "./images/test_tower.png"),
     ]
 }
 
