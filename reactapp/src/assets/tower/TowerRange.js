@@ -1,71 +1,33 @@
 import { Component } from "../../base/baseStructor/Component";
 import { Input } from "../../GameEngine/input/Input";
+import { Enemy } from "../components/enemy/Enemy";
 
 
 export class TowerRange extends Component{
 
-    #range;
-    #circleRenderer;
-    #hitCursor = false;
 
     
-    constructor(range, circleRenderer){
+    constructor(){
         super();
-        this.#range = range;
-        this.#circleRenderer = circleRenderer;
-        this.towersInRange = [];
+        this.enemiesInRange = [];
     }
+
 
     onEnter(other){
 
-        if (other.name == "Cursor"){
-            this.#hitCursor = true;
-        }
+        var enemy = other.getComponent(Enemy);
 
-        if (other.name != "Enemy") return;
-
-        this.towersInRange.push(other);
-
+        if (enemy == null) return;
+        this.enemiesInRange.push(enemy);
     }
 
     onExit(other){
+        var enemy = other.getComponent(Enemy);
 
-        if (other.name == "Cursor"){
-            this.#hitCursor = false;
-        }
-        if (other.name != "Enemy") return;
-
-        if (this.towersInRange.includes(other) == false) return;
-
-        var index = this.towersInRange.indexOf(other);
-        this.towersInRange.splice(index, 0);
-
+        if (enemy == null) return;
+        var index = this.enemiesInRange.indexOf(enemy);
+        this.enemiesInRange.splice(index, 1);
     }
-
-
-
-
-    setRange(value){
-        // this.#circleRenderer.range = value;
-        this.#range = value;
-    }
-
-
-    setIsShowingRange(value){
-        // this.#circleRenderer.setActive(value);
-    }
-
-
-
-    onUpdate(){
-        if (Input.getKeyDown('0')){
-            // this.#circleRenderer.setActive(this.#hitCursor);
-        }
-
-
-
-    }
-
 
 
 

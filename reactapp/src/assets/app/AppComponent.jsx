@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { StateHandler } from "../../base/baseBehaviour/StateHandler";
 import { OnEndResize } from "../../events/OnEndResize";
+import { A, B } from "../A";
 import { CanvasComponent } from "../components/canvas/CanvasComponent";
 import { GameTitle } from "../components/gameTitle/GameTitle";
 import { ShopMenu } from "../components/shop/ShopMenu";
@@ -26,6 +27,7 @@ export const AppComponent = () => {
         App.run();
         TowerPlacere.getInstance();
         TowerPlacere.getInstance().parent.setActive(false);
+
 
         // console.log("useEffect in AppComponent");
 
