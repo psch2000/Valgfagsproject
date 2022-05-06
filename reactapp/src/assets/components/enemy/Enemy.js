@@ -2,6 +2,7 @@ import { Component } from "../../../base/baseStructor/Component";
 import { App } from "../../app/App";
 import { Vector2d } from "../../../base/baseStructor/Vector2d";
 import { PlayerBase } from "../PlayerBase";
+import { Time } from "../../../base/Time";
 
 export class Enemy extends Component {
     constructor(health, damage, attackRange) {
@@ -14,6 +15,8 @@ export class Enemy extends Component {
 
         // cooldown in seconds
         this.cooldownAttack = 2;
+
+        this.time = 0;
 
         this.#resetAttackCooldown();
     }
@@ -36,10 +39,10 @@ export class Enemy extends Component {
         }
 
         // time since last attack
-        let timeDiffCooldown = (new Date().getTime() - this.oldAttackTime.getTime()) / 1000;
+        this.time += Time.deltaTime;
 
         // if still in cooldown
-        if (timeDiffCooldown < this.cooldownAttack) return;
+        if (this.time < this.cooldownAttack) return;
 
         // if not in range of baseToAttack
         if (!this.#inAttackRange()) return;
@@ -52,7 +55,7 @@ export class Enemy extends Component {
     }
 
     #resetAttackCooldown() {
-        this.oldAttackTime = new Date();
+        this.time = 0;
     }
 
     #getBaseToAttack() {
