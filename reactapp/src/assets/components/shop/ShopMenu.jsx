@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { OnEndResize } from "../../../events/OnEndResize";
 import { useForceRerenderer } from "../../hooks/useForceRenderer";
-import { TowerType } from "../TowerType";
+import { TowerType } from "../../tower/TowerType";
 import "./shop.css"
 import { ShopButton, ShopItem } from "./ShopItem"
 import { ShopItemObj } from "./ShopItemObject";
@@ -20,12 +20,12 @@ export const ShopMenuObject = {
     
     
     towerTypes: [
-        new TowerType("Blue Tower", 30, 'blue', 100, "./images/test_tower.png"),
-        new TowerType("Red Tower", 35, 'red', 200, "./images/test_tower.png"),
-        new TowerType("Gree Tower", 40, 'green', 300, "./images/test_tower.png"),
-        new TowerType("White Tower", 50, 'white', 500, "./images/test_tower.png"),
-        new TowerType("Black Tower", 100, 'black', 1000, "./images/test_tower.png"),
-        new TowerType("Orange Tower", 200, 'orange', 2000, "./images/test_tower.png"),
+        new TowerType("Blue Tower", 15, 30, 'blue', 100, "./images/test_tower.png"),
+        new TowerType("Red Tower", 15,  35, 'red', 200, "./images/test_tower.png"),
+        new TowerType("Gree Tower", 15,  40, 'green', 300, "./images/test_tower.png"),
+        new TowerType("White Tower", 15, 50, 'white', 500, "./images/test_tower.png"),
+        new TowerType("Black Tower", 15, 100, 'black', 1000, "./images/test_tower.png"),
+        new TowerType("Orange Tower", 15, 200, 'orange', 2000, "./images/test_tower.png"),
     ]
 }
 

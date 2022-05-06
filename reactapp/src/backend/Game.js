@@ -3,6 +3,8 @@ import { Collider } from "../base/baseStructor/collider/Collider";
 import { Composit } from "../base/baseStructor/Composit";
 import { Intersect } from "../base/baseStructor/Intersect";
 import { callAndSetInterval } from "../base/callAndSetInterval";
+import { Time } from "../base/Time";
+import { Input } from "../GameEngine/input/Input";
 import { KeyValuePair } from "./data-structors/KeyValuePair";
 
 export class Game {
@@ -30,6 +32,8 @@ export class Game {
         
 
         callAndSetInterval(() => {
+            Time.update();
+            Input.update();
             this.#removeComposits();
             this.#instantiate();
             this.#start();
@@ -40,10 +44,7 @@ export class Game {
         }, 10)
 
    
-        this.#isRunning = true;
-
-        
-   
+        this.#isRunning = true;        
     }
 
     #removeComposits() {

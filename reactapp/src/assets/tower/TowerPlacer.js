@@ -4,9 +4,11 @@ import { Composit } from "../../base/baseStructor/Composit";
 import { Input } from "../../GameEngine/input/Input";
 import { App } from "../app/App";
 import { instantiate } from "../app/functions/instantiate";
-import { TowerPool } from "../pools/TowerPool";
-import { CircleRenderer } from "./CircleRenderer";
-import { FollowCanvasMouse } from "./FollowCanvasMouse";
+import { CircleRenderer } from "../components/CircleRenderer";
+import { FollowCanvasMouse } from "../components/FollowCanvasMouse";
+import { TowerPool } from "./TowerPool";
+import { TowerFacade } from "./TowerFacade";
+import { TowerRange } from "./TowerRange";
 
 
 export class TowerPlacere extends Component{
@@ -28,6 +30,18 @@ export class TowerPlacere extends Component{
         this.#canPlaceTower = false;
     }
 
+    onEnter(other){
+        if (other.name == "Map"){
+            this.#canPlaceTower = true;
+        }
+    }
+
+    onExit(other){
+        if(other.name == "Map"){
+            this.#canPlaceTower = false;
+        }
+    }
+
     onStart(){
         this.#rangeRenderer = this.parent.addComponent(new CircleRenderer(20, '#030f1191', true));
         this.#spriteRenderer = this.parent.addComponent(new CircleRenderer(10, 'white', false));
@@ -44,13 +58,13 @@ export class TowerPlacere extends Component{
                 
                 if(this.#canPlaceTower == false) return;
                 var c = TowerPool.getInstance().acquireReuseable();
+               var a = c.getComponent(TowerFacade);
                 c.transform.setPosition(this.transform.position);
-                this.setActive(false);
+                this.parent.setActive(false);
                 this.#canPlaceTower = false;
 
             }
         }
-        this.#canPlaceTower = false;
 
         
     }
@@ -64,12 +78,8 @@ export class TowerPlacere extends Component{
     setTowerType(towerType){
         this.#rangeRenderer.radius = towerType.range;
         this.#spriteRenderer.color = towerType.color;
+        this.#spriteRenderer.radius = towerType.radius;
         this.#towerType = towerType;
-    }
-
-    onEnter(other){
-        if (other.name == "Map"){
-        }
     }
 
     onOverlap(other){
@@ -80,11 +90,6 @@ export class TowerPlacere extends Component{
 
         }
 
-    }
-
-    onExit(other){
-        if(other.name == "Map"){
-        }
     }
 
     static getInstance(){

@@ -20,7 +20,6 @@ export class MakeMapState extends State{
         var map = new Composit("Map");
         map.addComponent(new Map(new Rect(0,0,698, 500), 'transparent'));
         map.addComponent(new RectangleCollider(698, 500));
-        console.log(map.getComponent(Collider));
         instantiate(map);
 
         this.context.transitionTo(new UpdateUIState());

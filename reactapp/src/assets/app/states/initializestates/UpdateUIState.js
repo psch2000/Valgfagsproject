@@ -48,9 +48,10 @@ export class UpdateUIState extends State{
         instantiate(ShopUI, new Vector2d(700, 0));
 
 
-        var cursor = new Composit();
+        var cursor = new Composit("Cursor");
         cursor.addComponent(new CircleRenderer(3, 'white', true));
         cursor.addComponent(new FollowCanvasMouse());
+        cursor.addComponent(new CircleCollider(1, false));
         instantiate(cursor);
 
       

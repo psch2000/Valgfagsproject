@@ -9,12 +9,18 @@ export class Input {
     static #isKeyReleased = {};
     static #previousPressedKey = {};
 
+    static #isDown = {}
+    static #isUp = {}
+
     static addEvents = () => {
         window.addEventListener('keydown', (event) => this.#onKeyDown(event), true);
         window.addEventListener('keyup', (event) => this.#onKeyUp(event), true);
         window.addEventListener('mousedown', (event) => this.#onMouseDown(event));
         window.addEventListener('mouseup', (event) => this.#onMouseUp(event));
     }
+
+
+    
 
     static #onMouseDown(event){
         var button = event.button;
@@ -24,6 +30,7 @@ export class Input {
     static #onDown(key){
         this.#currentKeyStates[key] = true;
         this.#isKeyReleased[key] = false;
+
 
         this.#previousPressedKey = key;
     }
@@ -55,6 +62,12 @@ export class Input {
         this.#onUp(key);
     }
 
+
+    static update(){
+        this.#isUp = {};
+        this.#isDown = {};
+    }
+
     getPreviousPressedKey = () => this.#previousPressedKey;
 
     static getKey = (key) => {
@@ -62,6 +75,25 @@ export class Input {
     }
 
     static getKeyDown = (key) => {
+        
+        if (this.#isDown[key] == null){
+            this.#isDown[key] = this.#getKeyDown(key);
+        }
+
+        return this.#isDown[key];
+    }
+    
+    static getKeyUp = (key) => {
+    
+        if (this.#isUp[key] == null){
+            this.#isUp[key] = this.#getKeyUp();
+        }
+
+        return this.#isUp[key];
+    }
+
+    static #getKeyDown = (key) => {
+        
         if(this.#currentKeyStates[key] === false) return false;
         if(this.#currentKeyStates[key] === undefined) return false;
         
@@ -78,7 +110,7 @@ export class Input {
         return false;
     }
 
-    static getKeyUp(key){
+    static #getKeyUp(key){
         if (this.#currentKeyStates[key] === true) return false;
         if (this.#currentKeyStates[key] === undefined) return false;
 

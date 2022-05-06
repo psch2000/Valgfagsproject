@@ -1,13 +1,16 @@
 import { Component } from "../../base/baseStructor/Component";
 import { Vector2d } from "../../base/baseStructor/Vector2d";
+import { Time } from "../../base/Time";
 import { getCanvasMousePosition } from "../app/functions/getCanvasMousePosition";
 import { ProjectilePool } from "../pools/ProjectilePool";
-import { Enemy } from "./enemy/Enemy";
-import { MoveDirection } from "./MoveDirection";
-import { SquareRenderer } from "./SquareRenderer";
+import { MoveDirection } from "../components/MoveDirection";
+import { TowerFacade } from "./TowerFacade";
+import { Input } from "../../GameEngine/input/Input";
 
 export class Tower extends Component {
     #enemiesInRange = [];
+    #towerFacade;
+    #hitCursor = false;
 
     constructor(towerType) {
         super();
@@ -15,13 +18,35 @@ export class Tower extends Component {
 
         this.canFire = false;
         this.cooldownShoot = 2;
-        this.oldTime = new Date();
+        this.time = 0;
+    }
+    
+    onStart(){
+        this.#towerFacade = this.getComponent(TowerFacade);
     }
 
-    onUpdate() {
-        let timeDiff = (new Date().getTime() - this.oldTime.getTime()) / 1000;
+    onEnter(other){
+        if (other.name == "Cursor"){
+            this.#hitCursor = true;
+        }
+    }
 
-        if (timeDiff >= this.cooldownShoot) {
+    onExit(other){
+        if (other.name == "Cursor"){
+            this.#hitCursor = false;
+        }
+    }
+
+    onUpdate(){
+
+        if (Input.getKeyDown('0') == true){
+            this.#towerFacade.showRange(this.#hitCursor);
+        }
+
+ 
+        this.time += Time.deltaTime;
+
+        if (this.time > this.cooldownShoot){
             this.#resetCooldown();
 
             var from = this.transform.position;
@@ -35,22 +60,9 @@ export class Tower extends Component {
 
             instance.getComponent(MoveDirection).direction = direction;
         }
-
-        
     }
 
     #resetCooldown() {
-        this.oldTime = new Date();
-    }
-
-    onOverlap(other){
-
-        if (other.getComponent(Enemy) != null){
-            this.#enemiesInRange.push(other);
-        }
-    }
-
-    onStart(){
-
+        this.time = 0;
     }
 }

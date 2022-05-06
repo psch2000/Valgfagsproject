@@ -7,7 +7,6 @@ import { CircleRenderer } from "../components/CircleRenderer";
 import { CircleCollider } from "../../base/baseStructor/collider/CircleCollider";
 import { MoveDirection } from "../components/MoveDirection";
 import { SquareRenderer } from "../components/SquareRenderer";
-import { TowerPlacere } from "../components/TowerPlacer";
 
 
 
