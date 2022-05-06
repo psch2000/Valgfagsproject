@@ -11,7 +11,7 @@ import { Player } from "../Player";
 import { TowerPool } from "../tower/TowerPool";
 import { TowerFacade } from "./TowerFacade";
 import { TowerRange } from "./TowerRange";
-
+import { PathRectangle } from "../components/PathRectangle";
 
 export class TowerPlacere extends Component{
 
@@ -42,6 +42,7 @@ export class TowerPlacere extends Component{
     }
 
     onOverlap(other){
+        if (other.name === "projectile") return;
         if (other.getComponent(PathRectangle) !== null) {
             this.#onPath = true;
         }
