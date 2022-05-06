@@ -50,8 +50,6 @@ export class UpdateUIState extends State{
         cursor.addComponent(new CircleRenderer(3, 'white', true));
         cursor.addComponent(new FollowCanvasMouse());
         instantiate(cursor);
-
-      
     }
 
 }
