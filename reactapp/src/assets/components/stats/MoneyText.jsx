@@ -1,5 +1,8 @@
 import "./stats.css"
-import React from "react";
+import React, { useEffect } from "react";
+import { Player } from "../../Player";
+import { useForceRerenderer } from "../../hooks/useForceRenderer";
+import { render } from "@testing-library/react";
 
 export const MONEY = 20650;
 
@@ -9,6 +12,12 @@ const Styles = [
 
 
 export const MoneyText = ({textStyle, rect, offset}) => {
+
+    const rerender = useForceRerenderer();
+
+    useEffect(() => {
+        Player.bank.onSetBalance.addListener(rerender);
+    }, [])
 
     const style = {
         left: `${rect.x + offset.x}px`,
@@ -20,6 +29,6 @@ export const MoneyText = ({textStyle, rect, offset}) => {
     : Styles[0];
 
     return <p style={style} className={`MoneyInfo ${CheckTextStyle}`}>
-    {"$" + MONEY}
+    {"$" + Player.bank.getBalance()}
     </p>
 }

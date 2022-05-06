@@ -42,7 +42,7 @@ export class Game {
         }, 10)
 
    
-        this.#isRunning = true;        
+        this.#isRunning = true;
     }
 
     #checkCollision(){

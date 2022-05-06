@@ -6,6 +6,8 @@ import { ProjectilePool } from "../pools/ProjectilePool";
 import { MoveDirection } from "../components/MoveDirection";
 import { TowerFacade } from "./TowerFacade";
 import { Input } from "../../GameEngine/input/Input";
+import { FirePattern } from "./firePattern/FirePattern";
+import { App } from "../app/App";
 
 
 
@@ -19,10 +21,18 @@ export class Tower extends Component{
         this.towerType = towerType;
         this.time = 0;
         this.canFire = false;
+
+        this.firePattern = new FirePattern();
+
     }
     
     onStart(){
         this.#towerFacade = this.getComponent(TowerFacade);
+
+        this.firePattern.color = this.towerType.color;
+        this.firePattern.parent = this;
+        this.firePattern.target = App.game.find("Cursor");
+        console.log(this.firePattern.target)
     }
 
     onEnter(other){
@@ -44,22 +54,10 @@ export class Tower extends Component{
         }
 
  
-        this.time += Time.deltaTime;
-
-        if (this.time > 1){
-            var from = this.transform.position;
-            var to = getCanvasMousePosition();
-
-            var direction = Vector2d.subtract(to, from).normalize();
-            ProjectilePool.getInstance().color = this.towerType.color;
-            var instance = ProjectilePool.getInstance().acquireReuseable();
-            instance.transform.position.x = this.transform.position.x;
-            instance.transform.position.y = this.transform.position.y;
-
-            instance.getComponent(MoveDirection).direction = direction;
-            this.time = 0;
-        }
+        this.firePattern.fireRoutine();
     }
+
+    
     
 
 }
