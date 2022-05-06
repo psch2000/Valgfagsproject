@@ -105,9 +105,6 @@ export class Game {
         }
     }
 
-    
-
-
     #instantiate(){
         this.#compositsToInstantiate.forEach(root => {
 

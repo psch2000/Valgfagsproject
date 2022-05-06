@@ -7,7 +7,6 @@ import { GameTitle } from "../components/gameTitle/GameTitle";
 import { ShopMenu } from "../components/shop/ShopMenu";
 import { HealthText } from "../components/stats/HealthText";
 import { MoneyText } from "../components/stats/MoneyText";
-import { Test } from "../components/stats/Test";
 import { WaveText } from "../components/stats/WaveText";
 import { TowerPlacere } from "../tower/TowerPlacer";
 import { Composit } from "../../base/baseStructor/Composit";
@@ -27,7 +26,6 @@ import { MakeMapState } from "./states/initializestates/MakeMapState";
 export const AppComponent = () => {
     const init = new StateHandler(new MakeMapState());
     const rerenderer = useForceRerenderer();
-    
 
     useEffect(() =>{
         init.execute();
@@ -66,6 +64,7 @@ export const AppComponent = () => {
         <WaveText offset={{x: 550, y:0}} rect={App.windowRect}></WaveText>
     </div>
 
+    
 }
 
 function placeObjectsOnCanvas() {

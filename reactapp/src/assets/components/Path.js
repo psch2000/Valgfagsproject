@@ -5,6 +5,7 @@ import { Composit } from "../../base/baseStructor/Composit";
 import { SquareRenderer } from "./SquareRenderer";
 import { instantiate } from "../app/functions/instantiate";
 import { Intersect } from "../../base/baseStructor/Intersect";
+import { PathRectangle } from "./PathRectangle";
 
 export class Path extends Component {
     constructor(waypointsArray, pathColor = "#00000000", pathWidth = 10) {
@@ -52,6 +53,7 @@ export class Path extends Component {
             canvasRectangle.addComponent(new SquareRenderer(rectangle.width, rectangle.height, this.pathColor));
             canvasRectangle.transform.position = rectangle.transform.position;
             canvasRectangle.addComponent(rectangle);
+            canvasRectangle.addComponent(new PathRectangle())
             instantiate(canvasRectangle);
         }
     }
