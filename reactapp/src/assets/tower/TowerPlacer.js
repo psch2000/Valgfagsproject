@@ -5,11 +5,13 @@ import { Composit } from "../../base/baseStructor/Composit";
 import { Input } from "../../GameEngine/input/Input";
 import { App } from "../app/App";
 import { instantiate } from "../app/functions/instantiate";
-import { TowerPool } from "../pools/TowerPool";
-import { CircleRenderer } from "./CircleRenderer";
-import { FollowCanvasMouse } from "./FollowCanvasMouse";
-import { Path } from "./Path";
 import { PathRectangle } from "./PathRectangle";
+import { CircleRenderer } from "../components/CircleRenderer";
+import { FollowCanvasMouse } from "../components/FollowCanvasMouse";
+import { Player } from "../Player";
+import { TowerPool } from "../tower/TowerPool";
+import { TowerFacade } from "./TowerFacade";
+import { TowerRange } from "./TowerRange";
 
 export class TowerPlacere extends Component{
 
@@ -44,6 +46,8 @@ export class TowerPlacere extends Component{
     onOverlap(other){
         if (other.getComponent(PathRectangle) !== null) {
             this.#onPath = true;
+        if (other.name == "Map"){
+            this.#canPlaceTower = true;
         }
     }
 
@@ -51,6 +55,8 @@ export class TowerPlacere extends Component{
         if(other.name === "Map"){
             this.#onMap = false;
             //console.log("Out of map");
+        if(other.name == "Map"){
+            this.#canPlaceTower = false;
         }
 
         if (other.getComponent(PathRectangle) !== null) {
@@ -83,7 +89,8 @@ export class TowerPlacere extends Component{
                 if(this.#canPlaceTower == false) return;
                 var c = TowerPool.getInstance().acquireReuseable();
                 c.transform.setPosition(this.transform.position);
-                this.setActive(false);
+                Player.bank.remove(this.#towerType.price);
+                this.parent.setActive(false);
                 this.#canPlaceTower = false;
             }
         }
@@ -96,6 +103,7 @@ export class TowerPlacere extends Component{
     setTowerType(towerType){
         this.#rangeRenderer.radius = towerType.range;
         this.#spriteRenderer.color = towerType.color;
+        this.#spriteRenderer.radius = towerType.radius;
         this.#towerType = towerType;
         this.#collision.radius = towerType.size;        
     }

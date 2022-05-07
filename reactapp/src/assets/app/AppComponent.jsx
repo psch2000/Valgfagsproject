@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { StateHandler } from "../../base/baseBehaviour/StateHandler";
 import { OnEndResize } from "../../events/OnEndResize";
+import { A, B } from "../A";
 import { CanvasComponent } from "../components/canvas/CanvasComponent";
 import { GameTitle } from "../components/gameTitle/GameTitle";
 import { ShopMenu } from "../components/shop/ShopMenu";
@@ -20,6 +21,7 @@ import { PlayerBase } from "../components/PlayerBase";
 import { Enemy } from "../components/enemy/Enemy";
 import { MakeMapState} from "./states/initializestates/MakeMapState";
 import { useForceRerenderer } from "../hooks/useForceRenderer";
+import { TowerPlacere } from "../tower/TowerPlacer";
 import { App } from "./App";
 // export const Game = new CanvasGame(window.innerWidth/2 -500, window.innerHeight/2-250, 1000, 500);
 
@@ -32,9 +34,9 @@ export const AppComponent = () => {
         OnEndResize.addListener(onEndResize, 0);
         App.run();
         TowerPlacere.getInstance();
-        TowerPlacere.getInstance().setActive(false);
         
         placeObjectsOnCanvas();
+        TowerPlacere.getInstance().parent.setActive(false);
 
     }, [])
 

@@ -9,8 +9,9 @@ export class TowerType{
         static yellowTower = new TowerType("Yellow Tower", 100, '#ffff00', 1000, "./images/test_tower.png", 10);
         static orangeTower = new TowerType("Orange Tower", 200, '#ffa500', 2000, "./images/test_tower.png", 10);
 
-    constructor(name, range, color, price, imagePath, size){
+    constructor(name, radius, range, color, price, imagePath){
         this.name = name;
+        this.radius = radius;
         this.range = range;
         this.color = color;
         this.price = price;
@@ -19,8 +20,8 @@ export class TowerType{
         this.dsbColor = RgbColor.fromHex(color).darken(0.5).getHex();
         // this.dsbColor = "#000000";
         this.normalColor = color;
-        console.log(this.dsbColor);
-        console.log(this.normalColor);
+        // console.log(this.dsbColor);
+        // console.log(this.normalColor);
     }
 
     
