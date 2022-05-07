@@ -6,7 +6,6 @@ import { SquareRenderer } from "./SquareRenderer";
 import { instantiate } from "../app/functions/instantiate";
 import { Intersect } from "../../base/baseStructor/Intersect";
 import { PathRectangle } from "./PathRectangle";
-import { Collider } from "../../base/baseStructor/collider/Collider";
 
 export class Path extends Component {
     constructor(waypointsArray, pathColor = "#00000000", pathWidth = 10) {

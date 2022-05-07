@@ -15,14 +15,14 @@ export class ProjectilePool extends ReuseablePool{
 
     static #instance;
     constructor(){
-        if (ProjectilePool.#instance != null) return;
+        if (ProjectilePool.#instance !== undefined) return;
         super();
         this.radius = 5;
     }
 
     static getInstance() {
 
-        if (this.#instance == null){
+        if (this.#instance === undefined){
             this.#instance = new ProjectilePool();
         }
 
@@ -50,8 +50,8 @@ export class ProjectilePool extends ReuseablePool{
     #getReuseableWithColor(color) {
         for (let index = 0; index < this._reuseables.length; index++) {
             const reuseable = this._reuseables[index];
-            
-            if (reuseable.getComponent("CircleRenderer").color === color) {
+
+            if (reuseable.getComponent(CircleRenderer).color === color) {
                 this._reuseables.splice(index, 1);
                 return reuseable;
             }

@@ -1,7 +1,7 @@
-import { Collider } from "../../base/baseStructor/collider/Collider";
+import { CircleCollider } from "../../base/baseStructor/collider/CircleCollider";
+import { RectangleCollider } from "../../base/baseStructor/collider/RectangleCollider";
 import { Component } from "../../base/baseStructor/Component";
 import { App } from "../app/App";
-import { ProjectilePool } from "../pools/ProjectilePool";
 
 export class OutOfBounceDelete extends Component {
     constructor(releaseCallback) {
@@ -10,8 +10,8 @@ export class OutOfBounceDelete extends Component {
     }
 
     onUpdate() {
-        let circleCollider = this.parent.getComponent("CircleCollider");
-        let rectangleCollider = this.parent.getComponent("RectangleCollider");
+        let circleCollider = this.parent.getComponent(CircleCollider);
+        let rectangleCollider = this.parent.getComponent(RectangleCollider);
 
         if (circleCollider === null && rectangleCollider === null) return;
 

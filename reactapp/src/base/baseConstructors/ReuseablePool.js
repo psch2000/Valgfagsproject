@@ -24,7 +24,7 @@ export class ReuseablePool {
     }
 
     releaseReuseable = (reuseable) => {
-        if (reuseable === null) return;
+        if (reuseable === null || reuseable === undefined) return;
         reuseable.isActive = false;
         this._reuseables.push(reuseable);
     }

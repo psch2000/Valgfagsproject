@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
-import { StateHandler } from "../../base/baseBehaviour/StateHandler";
-import { OnEndResize } from "../../events/OnEndResize";
 import { CanvasComponent } from "../components/canvas/CanvasComponent";
+import { OnEndResize } from "../../events/OnEndResize";
+import { StateHandler } from "../../base/baseBehaviour/StateHandler";
 import { GameTitle } from "../components/gameTitle/GameTitle";
 import { ShopMenu } from "../components/shop/ShopMenu";
 import { HealthText } from "../components/stats/HealthText";
@@ -15,14 +15,14 @@ import { instantiate } from "./functions/instantiate";
 import { RectangleCollider } from "../../base/baseStructor/collider/RectangleCollider";
 import { WaveButton } from "../components/waveButton/WaveButton";
 import { WaveText } from "../components/stats/WaveText";
-import { PlayerBase } from "../components/PlayerBase";
-import { Enemy } from "../components/enemy/Enemy";
-import { MakeMapState} from "./states/initializestates/MakeMapState";
-import { useForceRerenderer } from "../hooks/useForceRenderer";
 import { App } from "./App";
 import { TowerPlacere } from "../tower/TowerPlacer";
 
-// export const Game = new CanvasGame(window.innerWidth/2 -500, window.innerHeight/2-250, 1000, 500);
+import { PlayerBase } from "../components/PlayerBase";
+import { Enemy } from "../components/enemy/Enemy";
+import { useForceRerenderer } from "../hooks/useForceRenderer";
+import { MakeMapState } from "./states/initializestates/MakeMapState";
+
 
 export const AppComponent = () => {
     const init = new StateHandler(new MakeMapState());
@@ -71,7 +71,7 @@ function placeObjectsOnCanvas() {
     let enemyPath = new Path([
         new Vector2d(50, 0),
         new Vector2d(50, 165),
-        new Vector2d(215, 160),
+        new Vector2d(215, 165),
         new Vector2d(215, 275),
         new Vector2d(50, 275),
         new Vector2d(50, 410),
@@ -95,6 +95,6 @@ function placeObjectsOnCanvas() {
     enemyComposit.addComponent(new SquareRenderer(enemyPath.pathWidth, enemyPath.pathWidth, "red"));
     enemyComposit.addComponent(new FollowPath(enemyPath));
     enemyComposit.addComponent(new Enemy(100, 20, 60));
-    enemyComposit.transform.position = new Vector2d(enemyPath.waypoints[0].x, enemyPath.waypoints[0].y);
+    enemyComposit.transform.position = enemyPath.waypoints[0].copy()
     instantiate(enemyComposit);
 }

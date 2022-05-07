@@ -38,12 +38,14 @@ export class UpdateUIState extends State{
         MapImage.addComponent(new DrawIcon("./images/Sprite_map.png"))
 
         // Instantiate:
+
+        //Map
+        instantiate(MapImage, new Vector2d(0, 0))
         
         //Icons and images
-        instantiate(MapImage, {x: 0, y: 0});
-        instantiate(HealthIcon, {x: 10, y: 7});
-        instantiate(MoneyIcon, {x: 130, y: 7});
-        instantiate(ShopUI, {x: 700, y: 0});
+        instantiate(HealthIcon, new Vector2d(10, 7));
+        instantiate(MoneyIcon, new Vector2d(130, 7));
+        instantiate(ShopUI, new Vector2d(700, 0));
 
 
         var cursor = new Composit("Cursor");

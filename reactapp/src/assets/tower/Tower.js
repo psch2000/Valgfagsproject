@@ -19,7 +19,6 @@ export class Tower extends Component{
     constructor(towerType){
         super();
         this.towerType = towerType;
-        this.time = 0;
         this.canFire = false;
 
         this.firePattern = new FirePattern();

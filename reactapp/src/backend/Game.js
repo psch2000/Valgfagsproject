@@ -44,7 +44,19 @@ export class Game {
         }, 10)
 
    
-        this.#isRunning = true;
+        this.#isRunning = true;        
+    }
+
+    #removeComposits() {
+        if (this.#compositsToRemove.length === 0) return;
+
+        this.#compositLayers.forEach(layer => {
+            layer.forEach((component, componentIndex) => {
+                this.#compositsToRemove.forEach(compositToRemove => {
+                    if (component === compositToRemove) {console.log("Removed composit: " + compositToRemove.name); layer.splice(componentIndex, 1)};
+                })
+            })
+        })
     }
 
     #checkCollision(){
@@ -91,21 +103,6 @@ export class Game {
                 pair.setValue(other, false);
             }
         }
-    }
-
-    
-
-
-    #removeComposits() {
-        if (this.#compositsToRemove.length === 0) return;
-
-        this.#compositLayers.forEach(layer => {
-            layer.forEach((component, componentIndex) => {
-                this.#compositsToRemove.forEach(compositToRemove => {
-                    if (component === compositToRemove) {console.log("Removed composit: " + compositToRemove.name); layer.splice(componentIndex, 1)};
-                })
-            })
-        })
     }
 
     #instantiate(){
@@ -160,7 +157,7 @@ export class Game {
     }
 
     #addCompositToLayers(composit){
-        if (this.#compositLayers[composit.layer] == null){
+        if (this.#compositLayers[composit.layer] === undefined){
             this.#compositLayers[composit.layer] = [];
         }
 

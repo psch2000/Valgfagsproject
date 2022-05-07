@@ -7,11 +7,11 @@ import { App } from "../app/App";
 import { instantiate } from "../app/functions/instantiate";
 import { CircleRenderer } from "../components/CircleRenderer";
 import { FollowCanvasMouse } from "../components/FollowCanvasMouse";
-import { PathRectangle } from "../components/PathRectangle";
 import { Player } from "../Player";
 import { TowerPool } from "../tower/TowerPool";
 import { TowerFacade } from "./TowerFacade";
 import { TowerRange } from "./TowerRange";
+import { PathRectangle } from "../components/PathRectangle";
 
 export class TowerPlacere extends Component{
 
@@ -21,42 +21,41 @@ export class TowerPlacere extends Component{
     #rangeRenderer;
     #spriteRenderer;
     #followMouse;
-    #pathrechtangle;
-    #collision;
-    #onMap;
-    #onPath;
+    #pathrechtangle
+    #collision
+    #onMap
+    #onPath
     #canPlaceTower;
     #towerType;
 
     constructor(){
-        if (TowerPlacere.#instance == null){
-            super();
-            this.#map = App.game.find("Map").getComponent(Map);
-            this.#canPlaceTower = false;
-        }
+        if (TowerPlacere.#instance !== undefined) return
+        super();
+        this.#map = App.game.find("Map").getComponent(Map);
+        this.#onPath = false;
     }
 
     onEnter(other){
         if (other.name === "Map"){
             this.#onMap = true;
-            //console.log("Inside of Map")
         }
     }
 
     onOverlap(other){
+        if (other.name === "projectile") return;
         if (other.getComponent(PathRectangle) !== null) {
             this.#onPath = true;
-            // console.log("here")
-            // console.log(other);
         }
-
+        else {
+            this.#onPath = false;
+        }
     }
 
     onExit(other){
         if(other.name === "Map"){
             this.#onMap = false;
         }
-        
+
         if (other.getComponent(PathRectangle) !== null) {
 
             this.#onPath = false;
@@ -71,8 +70,7 @@ export class TowerPlacere extends Component{
         this.#collision = this.parent.addComponent(new CircleCollider(1));
         //this.parent.addComponent(new RectangleCollider(10, 10));
 
-
-        // console.log(this.#map.parent)
+        this.#pathrechtangle = this.parent.addComponent(new PathRectangle());
     }
 
     onUpdate(){
@@ -83,11 +81,10 @@ export class TowerPlacere extends Component{
         else { this.#spriteRenderer.color = this.#towerType.normalColor}
 
         if(Input.getKeyDown('0')){
-            
             if(this.parent.isActive == true){
-                
                 if(this.#canPlaceTower == false) return;
                 var c = TowerPool.getInstance().acquireReuseable();
+               var a = c.getComponent(TowerFacade);
                 c.transform.setPosition(this.transform.position);
                 Player.bank.remove(this.#towerType.price);
                 this.parent.setActive(false);
@@ -108,9 +105,10 @@ export class TowerPlacere extends Component{
         this.#collision.radius = towerType.size;        
     }
 
+
     static getInstance(){
 
-        if (this.#instance == null){
+        if (this.#instance === undefined) {
             var c = new Composit();
             c.layer = 1;
             this.#instance = c.addComponent(new TowerPlacere());

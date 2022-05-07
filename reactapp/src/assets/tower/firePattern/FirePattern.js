@@ -8,10 +8,10 @@ export class FirePattern{
 
     #time = 0;
     constructor(){
-        this.fireAngels = [0, 40, 60];
+        this.fireAngels = [0];
         this.fireInterval = 1;
         this.fireForce = 1;
-        this.target = null; 
+        this.target = null;
         this.parent = null;
         this.color = 'green';
     }
@@ -56,6 +56,8 @@ export class FirePattern{
         var c = ProjectilePool.getInstance().acquireReuseable();
         c.transform.position.x = this.parent.transform.position.x;
         c.transform.position.y = this.parent.transform.position.y;
+        var c = ProjectilePool.getInstance().acquireReuseable(this.color);
+        c.transform.position = this.parent.transform.position.copy();
         return c;
     }
 

@@ -57,13 +57,13 @@ export class Intersect {
     static rectangles(firstRect, secondRect) {
         // code inspired from https://silentmatt.com/rectangle-intersection/
 
-        let firstTopLeft = new Vector2d(firstRect.transform.position.x, firstRect.transform.position.y);
+        let firstTopLeft = firstRect.transform.position.copy();
         let firstBottomRight = new Vector2d(
             firstRect.transform.position.x + firstRect.width,
             firstRect.transform.position.y + firstRect.height
         );
 
-        let secondTopLeft = new Vector2d(secondRect.transform.position.x, secondRect.transform.position.y);
+        let secondTopLeft = secondRect.transform.position.copy();
         let secondBottomRight = new Vector2d(
             secondRect.transform.position.x + secondRect.width,
             secondRect.transform.position.y + secondRect.height
