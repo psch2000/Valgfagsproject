@@ -71,8 +71,6 @@ export class TowerPlacere extends Component{
         this.#collision = this.parent.addComponent(new CircleCollider(1));
         //this.parent.addComponent(new RectangleCollider(10, 10));
 
-        // why?!?!??!?!?!
-        // this.#pathrechtangle = this.parent.addComponent(new PathRectangle());
 
         // console.log(this.#map.parent)
     }
