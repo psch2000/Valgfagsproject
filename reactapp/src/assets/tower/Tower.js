@@ -51,11 +51,23 @@ export class Tower extends Component{
             this.#towerFacade.showRange(this.#hitCursor);
         }
 
- 
+
+        this.#setTarget();
         this.firePattern.fireRoutine();
     }
 
-    
-    
+
+    #setTarget(){
+        var enemies = this.#towerFacade.getEnemiesInRange();
+        
+        this.firePattern.target = null;
+
+
+        if (enemies.length == 0) return;
+
+        this.firePattern.target = enemies[0];
+
+
+    }
 
 }
