@@ -2,14 +2,14 @@ import { RgbColor } from "../../base/baseStructor/RgbColor";
 
 export class TowerType{
     
-        static blueTower = new TowerType("Blue Tower", 30, '#0000ff', 100, "./images/test_tower.png", 10);
-        static redTower = new TowerType("Red Tower", 35, '#ff0000', 200, "./images/test_tower.png", 10);
-        static greenTower = new TowerType("Green Tower", 40, '#00ff00', 300, "./images/test_tower.png", 10);
-        static whiteTower = new TowerType("White Tower", 50, '#ffffff', 500, "./images/test_tower.png", 10);
-        static yellowTower = new TowerType("Yellow Tower", 100, '#ffff00', 1000, "./images/test_tower.png", 10);
-        static orangeTower = new TowerType("Orange Tower", 200, '#ffa500', 2000, "./images/test_tower.png", 10);
+        static blueTower = new TowerType("Blue Tower", 15, 30, '#0000ff', 100, "./images/test_tower.png", 10);
+        static redTower = new TowerType("Red Tower",15,  35, '#ff0000', 200, "./images/test_tower.png", 10);
+        static greenTower = new TowerType("Green Tower", 15, 40, '#00ff00', 300, "./images/test_tower.png", 10);
+        static whiteTower = new TowerType("White Tower", 15,  50, '#ffffff', 500, "./images/test_tower.png", 10);
+        static yellowTower = new TowerType("Yellow Tower", 15, 100, '#ffff00', 1000, "./images/test_tower.png", 10);
+        static orangeTower = new TowerType("Orange Tower", 15, 200, '#ffa500', 2000, "./images/test_tower.png", 10);
 
-    constructor(name, radius, range, color, price, imagePath){
+    constructor(name, size, radius, range, color, price, imagePath){
         this.name = name;
         this.radius = radius;
         this.range = range;

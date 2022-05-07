@@ -8,25 +8,26 @@ export class RgbColor {
 
     static fromHex(hexString) {
         // only supports hex strings that are RGB or RGBA
+        return null;
+        
+        // let hex = hexString.replace("#", ""); // remove hashtag
+        // let alpha = null;
 
-        let hex = hexString.replace("#", ""); // remove hashtag
-        let alpha = null;
+        // if (hex.length > 6) {
+        //     alpha = hex.slice(6, 8); // get alpha from the end of the hexString
+        //     alpha = parseInt(alpha, 16); // convert alpha to base 10 number
 
-        if (hex.length > 6) {
-            alpha = hex.slice(6, 8); // get alpha from the end of the hexString
-            alpha = parseInt(alpha, 16); // convert alpha to base 10 number
+        //     hex = hex.slice(0, 6); // get the first 6 letters from hexString
+        // }
 
-            hex = hex.slice(0, 6); // get the first 6 letters from hexString
-        }
+        // let rgbArray = [];
 
-        let rgbArray = [];
+        // for (let i = 0; i < hex.length; i += 2) {
+        //     let value = parseInt(hex[i] + hex[i + 1], 16); // convert hex to base 10 numbers
+        //     rgbArray.push(value);
+        // }
 
-        for (let i = 0; i < hex.length; i += 2) {
-            let value = parseInt(hex[i] + hex[i + 1], 16); // convert hex to base 10 numbers
-            rgbArray.push(value);
-        }
-
-        return new RgbColor(rgbArray[0], rgbArray[1], rgbArray[2], alpha);
+        // return new RgbColor(rgbArray[0], rgbArray[1], rgbArray[2], alpha);
     }
 
     getHex(withAlpha = false) {

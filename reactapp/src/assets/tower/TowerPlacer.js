@@ -5,9 +5,9 @@ import { Composit } from "../../base/baseStructor/Composit";
 import { Input } from "../../GameEngine/input/Input";
 import { App } from "../app/App";
 import { instantiate } from "../app/functions/instantiate";
-import { PathRectangle } from "./PathRectangle";
 import { CircleRenderer } from "../components/CircleRenderer";
 import { FollowCanvasMouse } from "../components/FollowCanvasMouse";
+import { PathRectangle } from "../components/PathRectangle";
 import { Player } from "../Player";
 import { TowerPool } from "../tower/TowerPool";
 import { TowerFacade } from "./TowerFacade";
@@ -21,10 +21,10 @@ export class TowerPlacere extends Component{
     #rangeRenderer;
     #spriteRenderer;
     #followMouse;
-    #pathrechtangle
-    #collision
-    #onMap
-    #onPath
+    #pathrechtangle;
+    #collision;
+    #onMap;
+    #onPath;
     #canPlaceTower;
     #towerType;
 
@@ -46,6 +46,8 @@ export class TowerPlacere extends Component{
     onOverlap(other){
         if (other.getComponent(PathRectangle) !== null) {
             this.#onPath = true;
+        }
+
         if (other.name == "Map"){
             this.#canPlaceTower = true;
         }
@@ -54,6 +56,7 @@ export class TowerPlacere extends Component{
     onExit(other){
         if(other.name === "Map"){
             this.#onMap = false;
+        }
             //console.log("Out of map");
         if(other.name == "Map"){
             this.#canPlaceTower = false;
