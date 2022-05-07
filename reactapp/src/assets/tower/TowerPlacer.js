@@ -46,22 +46,16 @@ export class TowerPlacere extends Component{
     onOverlap(other){
         if (other.getComponent(PathRectangle) !== null) {
             this.#onPath = true;
+            // console.log("here")
         }
 
-        if (other.name == "Map"){
-            this.#canPlaceTower = true;
-        }
     }
 
     onExit(other){
         if(other.name === "Map"){
             this.#onMap = false;
         }
-            //console.log("Out of map");
-        if(other.name == "Map"){
-            this.#canPlaceTower = false;
-        }
-
+        
         if (other.getComponent(PathRectangle) !== null) {
 
             this.#onPath = false;
@@ -76,12 +70,16 @@ export class TowerPlacere extends Component{
         this.#collision = this.parent.addComponent(new CircleCollider(1));
         //this.parent.addComponent(new RectangleCollider(10, 10));
 
-        this.#pathrechtangle = this.parent.addComponent(new PathRectangle());
+        // why?!?!??!?!?!
+        // this.#pathrechtangle = this.parent.addComponent(new PathRectangle());
+
+        // console.log(this.#map.parent)
     }
 
     onUpdate(){
         // left mouse input
-        this.#canPlaceTower = this.#onMap && !this.#onPath
+        this.#canPlaceTower = this.#onMap && !this.#onPath;
+
         if(!this.#canPlaceTower) {this.#spriteRenderer.color = this.#towerType.dsbColor}
         else { this.#spriteRenderer.color = this.#towerType.normalColor}
 

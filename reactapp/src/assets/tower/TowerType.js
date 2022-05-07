@@ -9,14 +9,13 @@ export class TowerType{
         static yellowTower = new TowerType("Yellow Tower", 15, 100, '#ffff00', 1000, "./images/test_tower.png", 10);
         static orangeTower = new TowerType("Orange Tower", 15, 200, '#ffa500', 2000, "./images/test_tower.png", 10);
 
-    constructor(name, size, radius, range, color, price, imagePath){
+    constructor(name, radius, range, color, price, imagePath){
         this.name = name;
         this.radius = radius;
         this.range = range;
         this.color = color;
         this.price = price;
         this.imagePath = imagePath;
-        this.size = size;
         this.dsbColor = RgbColor.fromHex(color).darken(0.5).getHex();
         // this.dsbColor = "#000000";
         this.normalColor = color;
