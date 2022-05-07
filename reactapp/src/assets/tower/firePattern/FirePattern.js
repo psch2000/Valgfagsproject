@@ -8,10 +8,10 @@ export class FirePattern{
 
     #time = 0;
     constructor(){
-        this.fireAngels = [0];
+        this.fireAngels = [0, 40, 60];
         this.fireInterval = 1;
         this.fireForce = 1;
-        this.target = null;
+        this.target = null; 
         this.parent = null;
         this.color = 'green';
     }
