@@ -32,10 +32,9 @@ export const AppComponent = () => {
         init.execute();
         OnEndResize.addListener(onEndResize, 0);
         App.run();
-        TowerPlacere.getInstance();
+        TowerPlacere.getInstance().parent.setActive(false);
         
         placeObjectsOnCanvas();
-        TowerPlacere.getInstance().parent.setActive(false);
 
     }, [])
 

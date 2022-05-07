@@ -6,6 +6,7 @@ import { SquareRenderer } from "./SquareRenderer";
 import { instantiate } from "../app/functions/instantiate";
 import { Intersect } from "../../base/baseStructor/Intersect";
 import { PathRectangle } from "./PathRectangle";
+import { Collider } from "../../base/baseStructor/collider/Collider";
 
 export class Path extends Component {
     constructor(waypointsArray, pathColor = "#00000000", pathWidth = 10) {
@@ -43,7 +44,7 @@ export class Path extends Component {
             let topLeft = direction.equals(Vector2d.down) || direction.equals(Vector2d.right) ? waypoint1 : waypoint2;
 
             // create rectangle
-            let rectangle = new RectangleCollider(width, height);
+            let rectangle = new RectangleCollider(width, height, true);
             rectangle.transform.position = topLeft;
 
             this.rectangles.push(rectangle);
