@@ -46,9 +46,7 @@ export class TowerPlacere extends Component{
         if (other.getComponent(PathRectangle) !== null) {
             this.#onPath = true;
         }
-        else {
-            this.#onPath = false;
-        }
+
     }
 
     onExit(other){
