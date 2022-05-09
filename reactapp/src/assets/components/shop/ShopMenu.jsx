@@ -11,12 +11,12 @@ import { ShopItemObj } from "./ShopItemObject";
 export const ShopMenuObject = {  
     
     towerTypes: [
-        new TowerType("Blue Tower", 30, 'blue', 100, "./images/sprite_monkey1.png"),
-        new TowerType("Red Tower", 35, 'red', 200, "./images/sprite_monkey2.png"),
-        new TowerType("Gree Tower", 40, 'green', 300, "./images/sprite_monkey3.png"),
-        new TowerType("White Tower", 50, 'white', 500, "./images/sprite_monkey1.png"),
-        new TowerType("Black Tower", 100, 'black', 1000, "./images/sprite_monkey1.png"),
-        new TowerType("Orange Tower", 200, 'orange', 2000, "./images/sprite_monkey6.png"),
+        new TowerType("Monkey", 30, 'blue', 100, "./images/sprite_monkey1.png"),
+        new TowerType("Boomerang", 35, 'red', 200, "./images/sprite_monkey2.png"),
+        new TowerType("Ice Monkey", 40, 'green', 300, "./images/sprite_monkey3.png"),
+        new TowerType("Tack Shooter", 50, 'white', 500, "./images/sprite_monkey4.png"),
+        new TowerType("Bomb Shooter", 100, 'black', 1000, "./images/sprite_monkey5.png"),
+        new TowerType("Super Monkey", 200, 'orange', 2000, "./images/sprite_monkey6.png"),
     ]
 }
 
