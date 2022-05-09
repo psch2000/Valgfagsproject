@@ -39,7 +39,7 @@ export const ShopButton = ({
     }
 
     function hover(){
-      TowerTextObj.towerText = "towerName";
+      TowerTextObj.towerText = towerName;
       TowerTextObj.onSetText.invoke();
     }
   
