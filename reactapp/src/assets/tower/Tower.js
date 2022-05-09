@@ -22,16 +22,15 @@ export class Tower extends Component{
         this.canFire = false;
 
         this.firePattern = towerType.firePattern;
-        this.firePattern.color = towerType.color;
-        this.firePattern.parent = this.parent;
+      
     }
     
     onStart(){
         this.#towerFacade = this.getComponent(TowerFacade);
+        this.firePattern.target = App.game.find("Cursor");
 
         this.firePattern.color = this.towerType.color;
-        this.firePattern.parent = this;
-        this.firePattern.target = App.game.find("Cursor");
+        this.firePattern.parent = this.parent;
     }
 
     onEnter(other){
