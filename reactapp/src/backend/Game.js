@@ -1,3 +1,4 @@
+import { StopWatch } from "../assets/StopWatch";
 import { EventHandler } from "../base/baseBehaviour/EventHandler";
 import { Collider } from "../base/baseStructor/collider/Collider";
 import { Composit } from "../base/baseStructor/Composit";
@@ -10,6 +11,8 @@ import { KeyValuePair } from "./data-structors/KeyValuePair";
 export class Game {
     #composits = [];
     #compositLayers = [];
+
+    #colliders = [];
     
     #compositsToInstantiate = [];
     #compositsToRemove = [];
@@ -17,10 +20,21 @@ export class Game {
 
     #context;
     #isRunning;
+    #stopWatch = new StopWatch();
 
     constructor(canvas){
         this.canvas = canvas;
         this.backGroundColor = '#051e28';
+    }
+
+
+    addCollider(collider){
+        this.#colliders.push(collider);
+    }
+
+    removeCollider(collider){
+        var i = this.#colliders.indexOf(collider);
+        this.#colliders.splice(i, 1);
     }
 
     run(){
@@ -32,6 +46,7 @@ export class Game {
         
 
         callAndSetInterval(() => {
+            // this.#stopWatch.start();
             Time.update();
             Input.update();
             this.#removeComposits();
@@ -40,6 +55,12 @@ export class Game {
             this.#update();
             this.#draw();
             this.#updateCompositsLayerPlacement();
+
+            // this.#stopWatch.stop();
+
+            // console.log("Flow time: ");
+            // console.log(this.#stopWatch.getTime());
+
             this.#checkCollision();
         }, 10)
 
@@ -61,48 +82,55 @@ export class Game {
 
     #checkCollision(){
 
-        var composits = this.#composits;
-        var length = this.#composits.length;
-
-        var collider = null;
-        var otherCollider = null;
+        var length = this.#colliders.length;
+        var colliders = this.#colliders;
 
         for (let i = 0; i < length; i++){
-            var c = composits[i];
-            collider = c.getComponent(Collider);
-            if (collider == null) continue;
+            var collider = colliders[i];
 
             for (let n = 0; n < length; n++){
                 if (n == i) continue;
-                var other = composits[n];
-                otherCollider = other.getComponent(Collider);
-                if (otherCollider == null) continue;
-
+                var otherCollider = colliders[n];
 
                 var pair = collider.overlaps;
 
-                if (Intersect.intersects(collider, otherCollider) == true){
-                    if (pair.hasKey(other) == false){
-                        pair.addKeyValue(other, false);
+                // this.#stopWatch.start();
+                var intersects = Intersect.intersects(collider, otherCollider);
+                // this.#stopWatch.stop();
+
+                // console.log(this.#stopWatch.getTime());
+
+
+                if (intersects == true){
+                    if (pair.hasKey(otherCollider) == false){
+                        pair.addKeyValue(otherCollider, false);
                     }
 
-                    if (pair.getValue(other) == false){
-                        c.onEnter(other);
-                        pair.setValue(other, true);
+                    if (pair.getValue(otherCollider) == false){
+                        collider.parent.onEnter(otherCollider);
+                        pair.setValue(otherCollider, true);
                         continue;
                     }
 
-                    c.onOverlap(other);
+                    collider.parent.onOverlap(otherCollider);
                     continue;
                 }
 
-                if (pair.hasKey(other) == false) continue;
-                if (pair.getValue(other) == false) continue;
+                if (pair.hasKey(otherCollider) == false) {
+                    continue;
+                }
+                if (pair.getValue(otherCollider) == false) {
+                    continue;
+                }
 
-                c.onExit(other);
-                pair.setValue(other, false);
+                collider.parent.onExit(otherCollider);
+                pair.setValue(otherCollider, false);
+
             }
         }
+
+
+
     }
 
     #instantiate(){
