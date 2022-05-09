@@ -67,18 +67,25 @@ export class Enemy extends Component {
 
     takeDamage(incomingDamage) {
         this.health -= incomingDamage;
+
+        if (this.isDead()) this.#destroy();
     }
 
     attack(other) {
         other.takeDamage(this.damage);
         this.#resetAttackCooldown();
 
-        App.game.removeComposit(this.parent);
+        this.#destroy();
     }
 
     getCenterPosition() {
         let rectangleCollider = this.parent.getComponent(RectangleCollider);
 
         return Vector2d.add(this.transform.position, new Vector2d(rectangleCollider.width / 2, rectangleCollider.height / 2));
+    }
+
+    #destroy() {
+        this.health = 0;
+        App.game.removeComposit(this.parent);
     }
 }
