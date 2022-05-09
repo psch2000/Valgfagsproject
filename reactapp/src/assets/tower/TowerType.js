@@ -20,8 +20,6 @@ export class TowerType{
         this.dsbColor = RgbColor.darkenHex(color, 0.5);
         // this.dsbColor = "#000000";
         this.normalColor = color;
-        console.log(this.dsbColor);
-        console.log(this.normalColor);
     }
 
     
