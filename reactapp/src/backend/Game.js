@@ -164,40 +164,35 @@ export class Game {
             var length = colliders.length;
             // console.log(obj)
 
-            var intervalID = setInterval((colliders) => {
-                for (let j = 0; j < length; j++){
-                    var collider = colliders[j];
-    
-                    for (let k = 0; k < length; k++){
-                        if (j == k) continue;
-                        var other = colliders[k];
-                        var pair = collider.overlaps;
-    
-                        if (collider.doesOverlap(other)){
-                            if (pair.hasKey(other) == false){
-                                pair.addKeyValue(other, false);
-                            }
-    
-                            if (pair.getValue(other) == false){
-                                collider.parent.onEnter(other.parent);
-                                pair.setValue(other, true);
-                                continue;
-                            }
-    
-                            collider.parent.onOverlap(other.parent);
+            for (let j = 0; j < length; j++){
+                var collider = colliders[j];
+
+                for (let k = 0; k < length; k++){
+                    if (j == k) continue;
+                    var other = colliders[k];
+                    var pair = collider.overlaps;
+
+                    if (collider.doesOverlap(other)){
+                        if (pair.hasKey(other) == false){
+                            pair.addKeyValue(other, false);
+                        }
+
+                        if (pair.getValue(other) == false){
+                            collider.parent.onEnter(other.parent);
+                            pair.setValue(other, true);
                             continue;
                         }
-    
-                        if (pair.hasKey(other) == false) continue;
-                        if (pair.getValue(other) == false) continue;
-                        collider.parent.onExit(other.parent);
-                        pair.setValue(other, false);
+
+                        collider.parent.onOverlap(other.parent);
+                        continue;
                     }
+
+                    if (pair.hasKey(other) == false) continue;
+                    if (pair.getValue(other) == false) continue;
+                    collider.parent.onExit(other.parent);
+                    pair.setValue(other, false);
                 }
-            }, 0);
-
-
-            clearInterval(intervalID);
+            }
             
         }
 
