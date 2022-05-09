@@ -1,5 +1,6 @@
 import React from "react";
 import { TowerPlacere } from "../../tower/TowerPlacer";
+import { TowerTextObj } from "../stats/TowerTextObj";
 import "./shop.css"
 
 
@@ -29,8 +30,14 @@ export const ShopItem = ({imagePath, price}) => {
 export const ShopButton = ({ 
     buttonStyle, 
     buttonSize,
-    towerType
+    towerType,
+    towerName
   }) => {
+
+    function hover(){
+      TowerTextObj.towerText = towerName;
+      TowerTextObj.onSetText.invoke();
+    }
 
     const onClick = () => {
       TowerPlacere.getInstance().setTowerType(towerType);
