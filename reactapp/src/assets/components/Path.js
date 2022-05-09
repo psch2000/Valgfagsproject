@@ -49,7 +49,7 @@ export class Path extends Component {
             this.rectangles.push(rectangle);
 
             // visualize rectangle on game canvas - debug
-            let canvasRectangle = new Composit("test rectangle");
+            let canvasRectangle = new Composit("pathRectangle");
             canvasRectangle.addComponent(new SquareRenderer(rectangle.width, rectangle.height, this.pathColor));
             canvasRectangle.transform.position = rectangle.transform.position;
             canvasRectangle.addComponent(rectangle);
