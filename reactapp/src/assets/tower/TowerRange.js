@@ -16,7 +16,6 @@ export class TowerRange extends Component{
         this.#range = range;
         this.#circleRenderer = circleRenderer;
         this.enemiesInRange = [];
-        this.target = null;
     }
 
     onEnter(other){
@@ -60,17 +59,9 @@ export class TowerRange extends Component{
 
 
     onUpdate(){
-        if (Input.getKeyDown('0')){
-            // this.#circleRenderer.setActive(this.#hitCursor);
-        }
-
-        if (this.enemiesInRange.length === 0) {
-            this.target = null;
-            return;
-        }
-        this.target = this.enemiesInRange[0];
-
-
+        // if (Input.getKeyDown('0')){
+        //     // this.#circleRenderer.setActive(this.#hitCursor);
+        // }
     }
 
 
