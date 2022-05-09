@@ -29,7 +29,7 @@ export class TowerFacade extends Component{
         this.#rangeComposit.transform.position = this.transform.position;
     }
 
-
+    
     #getComponents(){
         this.#rangeCollider = this.#rangeComposit.getComponent(CircleCollider);
         this.#rangeCircleRenderer = this.#rangeComposit.getComponent(CircleRenderer);

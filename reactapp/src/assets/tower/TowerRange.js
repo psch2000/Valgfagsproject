@@ -55,14 +55,18 @@ export class TowerRange extends Component{
 
 
     setIsShowingRange(value){
+
         // this.#circleRenderer.setActive(value);
+
     }
 
 
 
     onUpdate(){
         if (Input.getKeyDown('0')){
+            
             // this.#circleRenderer.setActive(this.#hitCursor);
+
         }
 
         if (this.enemiesInRange.length == 0) return;
