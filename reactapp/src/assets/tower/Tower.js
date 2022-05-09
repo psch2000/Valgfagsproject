@@ -8,6 +8,8 @@ import { TowerFacade } from "./TowerFacade";
 import { Input } from "../../GameEngine/input/Input";
 import { FirePattern } from "./firePattern/FirePattern";
 import { App } from "../app/App";
+import { TowerType } from "./TowerType";
+import { TackShooterFirePatternBuilder } from "./firePattern/patterns/TackShooterFirePatternBuilder";
 
 
 
@@ -21,7 +23,9 @@ export class Tower extends Component{
         this.towerType = towerType;
         this.canFire = false;
 
-        this.firePattern = towerType.firePattern;
+
+        this.firePattern = new TackShooterFirePatternBuilder().getProduct();
+
       
     }
     

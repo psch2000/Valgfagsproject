@@ -22,8 +22,6 @@ import { PlayerBase } from "../components/PlayerBase";
 import { Enemy } from "../components/enemy/Enemy";
 import { useForceRerenderer } from "../hooks/useForceRenderer";
 import { MakeMapState } from "./states/initializestates/MakeMapState";
-import { SingleFirePattern } from "../tower/firePattern/patterns/SingleFirePattern";
-import { TackShooterFirePattern } from "../tower/firePattern/patterns/TackShooterFirePattern";
 
 
 export const AppComponent = () => {
@@ -32,8 +30,6 @@ export const AppComponent = () => {
 
     useEffect(() =>{
 
-        SingleFirePattern('pink', null);
-        TackShooterFirePattern('yellow', null);
 
         init.execute();
         OnEndResize.addListener(onEndResize, 0);
