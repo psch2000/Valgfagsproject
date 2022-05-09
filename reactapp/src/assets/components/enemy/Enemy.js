@@ -3,6 +3,7 @@ import { App } from "../../app/App";
 import { Vector2d } from "../../../base/baseStructor/Vector2d";
 import { PlayerBase } from "../PlayerBase";
 import { Time } from "../../../base/Time";
+import { RectangleCollider } from "../../../base/baseStructor/collider/RectangleCollider";
 
 export class Enemy extends Component {
     constructor(health, damage, attackRange) {
@@ -73,5 +74,11 @@ export class Enemy extends Component {
         this.#resetAttackCooldown();
 
         App.game.removeComposit(this.parent);
+    }
+
+    getCenterPosition() {
+        let rectangleCollider = this.parent.getComponent(RectangleCollider);
+
+        return Vector2d.add(this.transform.position, new Vector2d(rectangleCollider.width / 2, rectangleCollider.height / 2));
     }
 }
