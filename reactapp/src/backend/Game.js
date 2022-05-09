@@ -3,6 +3,8 @@ import { Collider } from "../base/baseStructor/collider/Collider";
 import { Composit } from "../base/baseStructor/Composit";
 import { Intersect } from "../base/baseStructor/Intersect";
 import { callAndSetInterval } from "../base/callAndSetInterval";
+import { Time } from "../base/Time";
+import { Input } from "../GameEngine/input/Input";
 import { KeyValuePair } from "./data-structors/KeyValuePair";
 
 export class Game {
@@ -10,6 +12,7 @@ export class Game {
     #compositLayers = [];
     
     #compositsToInstantiate = [];
+    #compositsToRemove = [];
     #onStart = new EventHandler();
 
     #context;
@@ -29,6 +32,9 @@ export class Game {
         
 
         callAndSetInterval(() => {
+            Time.update();
+            Input.update();
+            this.#removeComposits();
             this.#instantiate();
             this.#start();
             this.#update();
@@ -38,10 +44,19 @@ export class Game {
         }, 10)
 
    
-        this.#isRunning = true;
+        this.#isRunning = true;        
+    }
 
-        
-   
+    #removeComposits() {
+        if (this.#compositsToRemove.length === 0) return;
+
+        this.#compositLayers.forEach(layer => {
+            layer.forEach((component, componentIndex) => {
+                this.#compositsToRemove.forEach(compositToRemove => {
+                    if (component === compositToRemove) {console.log("Removed composit: " + compositToRemove.name); layer.splice(componentIndex, 1)};
+                })
+            })
+        })
     }
 
     #checkCollision(){
@@ -89,9 +104,6 @@ export class Game {
             }
         }
     }
-
-    
-
 
     #instantiate(){
         this.#compositsToInstantiate.forEach(root => {
@@ -145,13 +157,12 @@ export class Game {
     }
 
     #addCompositToLayers(composit){
-        if (this.#compositLayers[composit.layer] == null){
+        if (this.#compositLayers[composit.layer] === undefined){
             this.#compositLayers[composit.layer] = [];
         }
 
         
         this.#compositLayers[composit.layer].push(composit);
-
     }
 
     find(name){
@@ -174,8 +185,21 @@ export class Game {
         this.#composits.push(composit); 
     }
 
+    removeComposit = (composit) => {
+        this.#compositsToRemove.push(composit);
+    }
  
+    getComposit(name) {
+        let temp = null;
 
+        this.#compositLayers.forEach(layer => {
+            layer.forEach(composit => {
+                if (composit.name === name) temp = composit;
+            })
+        })
+        
+        return temp;
+    }
 
 
 }

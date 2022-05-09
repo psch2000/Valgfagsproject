@@ -1,6 +1,5 @@
 import React from "react";
-import { TowerTextObj } from "../stats/TowerTextObj";
-import { TowerPlacere } from "../TowerPlacer";
+import { TowerPlacere } from "../../tower/TowerPlacer";
 import "./shop.css"
 
 
@@ -30,18 +29,12 @@ export const ShopItem = ({imagePath, price}) => {
 export const ShopButton = ({ 
     buttonStyle, 
     buttonSize,
-    towerType,
-    towerName
+    towerType
   }) => {
-
-    function hover(){
-      TowerTextObj.towerText = towerName;
-      TowerTextObj.onSetText.invoke();
-    }
 
     const onClick = () => {
       TowerPlacere.getInstance().setTowerType(towerType);
-      TowerPlacere.getInstance().setActive(true);
+      TowerPlacere.getInstance().parent.setActive(true);
     }
   
     const CheckButtonStyle = Styles.includes(buttonStyle) 
@@ -51,10 +44,9 @@ export const ShopButton = ({
     const CheckButtonSize = Sizes.includes(buttonSize)
     ? buttonSize
     : Sizes[0];
-    
+  
     return(
       <button 
-        onMouseEnter={hover}
         className={`btn ${CheckButtonStyle} ${CheckButtonSize}`}
         onClick={onClick} 
       >

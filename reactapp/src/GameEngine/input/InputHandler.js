@@ -4,6 +4,7 @@ import { Input } from "./Input";
 export class InputHandler {
 
     static #keyCommandPair = [];
+    
 
     static addCommand = (key, command) => {
         this.#keyCommandPair.push({key, command});

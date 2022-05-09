@@ -12,7 +12,8 @@ export class Vector2d {
 
     normalize() {
         let length = this.length();
-        return new Vector2d(this.x / length, this.y / length);
+        var vec = new Vector2d(this.x / length, this.y / length);
+        return vec;
     }
 
     equals(other) {
@@ -22,6 +23,10 @@ export class Vector2d {
     // distanceTo(other) {
     //     return Vector2d.distance(this, other);
     // }
+
+    copy() {
+        return new Vector2d(this.x, this.y);
+    }
 
     static distance(first, second) {
         // sqrt((s.x - f.x)^2 + (s.y - f.y)^2)
@@ -44,6 +49,24 @@ export class Vector2d {
 
     static divide(first, second) {
         return new Vector2d(first.x / second.x, first.y / second.y);
+    }
+
+    rotate(ang){
+
+        var rad = ang * (Math.PI/180);
+        var cos = Math.cos(rad);
+        var sin = Math.sin(rad);
+
+
+
+        var x = this.x;
+        var y = this.y;
+
+        this.x = x * cos - y * sin;
+        this.y = x * sin + y * cos  ;
+
+
+        return new Vector2d(this.x, this.y);
     }
 
     static right = new Vector2d(1, 0);

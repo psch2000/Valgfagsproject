@@ -5,13 +5,15 @@ import { Composit } from "../../base/baseStructor/Composit";
 import { SquareRenderer } from "./SquareRenderer";
 import { instantiate } from "../app/functions/instantiate";
 import { Intersect } from "../../base/baseStructor/Intersect";
+import { PathRectangle } from "./PathRectangle";
 
 export class Path extends Component {
-    constructor(waypointsArray) {
+    constructor(waypointsArray, pathColor = "#00000000", pathWidth = 10) {
         super();
         this.waypoints = waypointsArray;
         this.rectangles = [];
-        this.pathWidth = 10;
+        this.pathWidth = pathWidth;
+        this.pathColor = pathColor;
 
         this.#createRectanglesOnPath();
     }
@@ -41,15 +43,17 @@ export class Path extends Component {
             let topLeft = direction.equals(Vector2d.down) || direction.equals(Vector2d.right) ? waypoint1 : waypoint2;
 
             // create rectangle
-            let rectangle = new RectangleCollider(width, height);
+            let rectangle = new RectangleCollider(width, height, true);
             rectangle.transform.position = topLeft;
 
             this.rectangles.push(rectangle);
 
             // visualize rectangle on game canvas - debug
             let canvasRectangle = new Composit("test rectangle");
-            canvasRectangle.addComponent(new SquareRenderer(rectangle.width, rectangle.height, "green"));
+            canvasRectangle.addComponent(new SquareRenderer(rectangle.width, rectangle.height, this.pathColor));
             canvasRectangle.transform.position = rectangle.transform.position;
+            canvasRectangle.addComponent(rectangle);
+            canvasRectangle.addComponent(new PathRectangle())
             instantiate(canvasRectangle);
         }
     }

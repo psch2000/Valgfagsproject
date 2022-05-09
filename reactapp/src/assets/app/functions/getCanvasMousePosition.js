@@ -11,5 +11,5 @@ export const getCanvasMousePosition = () =>{
         y: windowMousePos.y- App.windowRect.y,
     }
 
-    return canvasMousePos;
+    return new Vector2d(canvasMousePos.x, canvasMousePos.y);
 }
