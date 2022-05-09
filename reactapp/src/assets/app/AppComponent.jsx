@@ -93,6 +93,7 @@ function placeObjectsOnCanvas() {
 
     let enemyComposit = new Composit("testEnemy");
     enemyComposit.addComponent(new SquareRenderer(enemyPath.pathWidth, enemyPath.pathWidth, "red"));
+    enemyComposit.addComponent(new RectangleCollider(enemyPath.pathWidth, enemyPath.pathWidth, false));
     enemyComposit.addComponent(new FollowPath(enemyPath));
     enemyComposit.addComponent(new Enemy(100, 20, 60));
     enemyComposit.transform.position = enemyPath.waypoints[0].copy()
