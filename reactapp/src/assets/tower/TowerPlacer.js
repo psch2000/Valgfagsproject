@@ -76,7 +76,7 @@ export class TowerPlacere extends Component{
         // left mouse input
         this.#canPlaceTower = this.#onMap && !this.#onPath;
 
-        this.#spriteRenderer = this.#canPlaceTower ? this.#towerType.normalColor : this.#towerType.dsbColor;
+        this.#spriteRenderer.color = this.#canPlaceTower ? this.#towerType.normalColor : this.#towerType.dsbColor;
 
         if(Input.getKeyDown('0')){
             
