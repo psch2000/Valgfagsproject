@@ -7,8 +7,8 @@ import { CircleRenderer } from "../components/CircleRenderer";
 import { CircleCollider } from "../../base/baseStructor/collider/CircleCollider";
 import { MoveDirection } from "../components/MoveDirection";
 import { SquareRenderer } from "../components/SquareRenderer";
-
-
+import { DamageWhenCollide } from "../components/DamageWhenCollide";
+import { Enemy } from "../components/enemy/Enemy";
 
 
 export class ProjectilePool extends ReuseablePool{
@@ -29,21 +29,24 @@ export class ProjectilePool extends ReuseablePool{
         return this.#instance;
     }
 
-    acquireReuseable(color){
+    acquireReuseable(color, damage){
         let reuseable = this.#getReuseableWithColor(color);
         
-        if (reuseable === null) return this.makeReuseable(color);
+        if (reuseable === null) return this.makeReuseable(color, damage);
+
+        reuseable.getComponent(DamageWhenCollide).damage = damage;
 
         reuseable.isActive = true;
         return reuseable;
     }
 
-    makeReuseable(color) {
+    makeReuseable(color, damage) {
         var c = new Composit("projectile");
         c.addComponent(new CircleRenderer(this.radius, color, false));
         c.addComponent(new MoveDirection(new Vector2d(0,0), 1));
         c.addComponent(new CircleCollider(this.radius))
         c.addComponent(new OutOfBounceDelete(this.releaseReuseable));
+        c.addComponent(new DamageWhenCollide(Enemy, damage));
         return instantiate(c);
     }
 

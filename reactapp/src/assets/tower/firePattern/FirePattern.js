@@ -2,7 +2,10 @@ import { Vector2d } from "../../../base/baseStructor/Vector2d";
 import { Time } from "../../../base/Time";
 import { MoveDirection } from "../../components/MoveDirection";
 import { ProjectilePool } from "../../pools/ProjectilePool";
-
+import { Enemy } from "../../components/enemy/Enemy";
+import { Composit } from "../../../base/baseStructor/Composit";
+import { CircleRenderer } from "../../components/CircleRenderer";
+import { instantiate } from "../../app/functions/instantiate";
 
 export class FirePattern{
 
@@ -14,6 +17,7 @@ export class FirePattern{
         this.target = null;
         this.parent = null;
         this.color = 'green';
+        this.damage = null;
     }
 
     fireRoutine(){
@@ -51,7 +55,7 @@ export class FirePattern{
     }
 
     #makeProjectile(){
-        var c = ProjectilePool.getInstance().acquireReuseable(this.color);
+        var c = ProjectilePool.getInstance().acquireReuseable(this.color, this.damage);
         c.transform.position = this.parent.transform.position.copy();
         return c;
     }
@@ -59,11 +63,16 @@ export class FirePattern{
     #getDirection(){
         var to = this.target.getComponent(Enemy).getCenterPosition();
         var from = this.parent.transform.position;
-
+        this.markShootPosition(to);
         return Vector2d.subtract(to, from);
     }
 
-    
+    markShootPosition(position) {
+        let t = new Composit("test position shoot");
+        t.addComponent(new CircleRenderer(5, this.color, false));
+        t.transform.position = position.copy();
+        instantiate(t);
+    }
 
 
 
