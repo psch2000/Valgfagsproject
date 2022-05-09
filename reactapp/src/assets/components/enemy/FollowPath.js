@@ -17,7 +17,7 @@ export class FollowPath extends Component {
 
         if (Vector2d.distance(this.transform.position, this.path.waypoints[0]) < 1) {
             this.path.waypoints.shift();
-            console.log("next waypoint in path"); // debug
+            // console.log("next waypoint in path"); // debug
             return;
         }
 

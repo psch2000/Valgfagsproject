@@ -25,7 +25,7 @@ export class TowerFacade extends Component{
 
     onStart(){
         this.#getComponents();
-        this.showRange(false);
+        this.showRange(false);  
         this.#rangeComposit.transform.position = this.transform.position;
     }
 
@@ -38,6 +38,12 @@ export class TowerFacade extends Component{
         this.#towerCircleRenderer = this.getComponent(CircleRenderer);
         this.#towerCollider = this.getComponent(CircleCollider);
     }
+    
+
+    getEnemiesInRange(){
+        return this.#range.enemiesInRange;
+    }
+
     
     showRange(value){    
         this.#rangeCircleRenderer.setActive(value);

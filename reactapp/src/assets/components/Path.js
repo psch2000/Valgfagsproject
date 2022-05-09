@@ -43,7 +43,7 @@ export class Path extends Component {
             let topLeft = direction.equals(Vector2d.down) || direction.equals(Vector2d.right) ? waypoint1 : waypoint2;
 
             // create rectangle
-            let rectangle = new RectangleCollider(width, height);
+            let rectangle = new RectangleCollider(width, height, true);
             rectangle.transform.position = topLeft;
 
             this.rectangles.push(rectangle);

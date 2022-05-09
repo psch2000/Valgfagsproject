@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { App } from "./App";
 import { CanvasComponent } from "../components/canvas/CanvasComponent";
 import { OnEndResize } from "../../events/OnEndResize";
 import { StateHandler } from "../../base/baseBehaviour/StateHandler";
@@ -7,8 +6,6 @@ import { GameTitle } from "../components/gameTitle/GameTitle";
 import { ShopMenu } from "../components/shop/ShopMenu";
 import { HealthText } from "../components/stats/HealthText";
 import { MoneyText } from "../components/stats/MoneyText";
-import { WaveText } from "../components/stats/WaveText";
-import { TowerPlacere } from "../tower/TowerPlacer";
 import { Composit } from "../../base/baseStructor/Composit";
 import { SquareRenderer } from "../components/SquareRenderer";
 import { FollowPath } from "../components/enemy/FollowPath";
@@ -17,6 +14,10 @@ import { Vector2d } from "../../base/baseStructor/Vector2d";
 import { instantiate } from "./functions/instantiate";
 import { RectangleCollider } from "../../base/baseStructor/collider/RectangleCollider";
 import { WaveButton } from "../components/waveButton/WaveButton";
+import { WaveText } from "../components/stats/WaveText";
+import { App } from "./App";
+import { TowerPlacere } from "../tower/TowerPlacer";
+
 import { PlayerBase } from "../components/PlayerBase";
 import { Enemy } from "../components/enemy/Enemy";
 import { useForceRerenderer } from "../hooks/useForceRenderer";
@@ -31,7 +32,6 @@ export const AppComponent = () => {
         init.execute();
         OnEndResize.addListener(onEndResize, 0);
         App.run();
-        TowerPlacere.getInstance();
         TowerPlacere.getInstance().parent.setActive(false);
         
         placeObjectsOnCanvas();
