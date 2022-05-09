@@ -10,12 +10,15 @@ import { instantiate } from "../../app/functions/instantiate";
 export class FirePattern{
 
     #time = 0;
+    #index = 0;
     constructor(){
         this.fireAngels = [0];
         this.fireInterval = 1;
         this.fireForce = 1;
+        this.followTarget = true;
         this.target = null;
         this.parent = null;
+        this.burst = false;
         this.color = 'green';
         this.damage = null;
     }
@@ -41,16 +44,47 @@ export class FirePattern{
         if (this.target == null) return;
         if (this.target.getComponent(Enemy).isDead()) this.target = null;
 
+        if (this.burst == true){
+            this.#burstFire();
+            return;
+        }
+
+        this.#sekventialFire();
+
+    }
+
+    #sekventialFire(){
+
+        var i = this.#index;
+        var from = this.parent.transform.position;
+        var rot = this.#getDirection().rotate(this.fireAngels[i], from);
+
+        this.#fireBullet(rot);
+
+        if (i < this.fireAngels.length){
+            i++;
+            return;
+        }
+
+        i = 0;
+    }
+
+    #fireBullet(rot){
+        var p = this.#makeProjectile();
+        var moveComponent = p.getComponent(MoveDirection);
+        moveComponent.direction = rot.normalize();
+        moveComponent.speed = this.fireForce;
+    }
+
+    #burstFire(){
         this.fireAngels.forEach((angle, index) => {
             var from = this.parent.transform.position;
 
+            
             var rot = this.#getDirection().rotate(angle, from);
 
 
-            var p = this.#makeProjectile();
-            var moveComponent = p.getComponent(MoveDirection);
-            moveComponent.direction = rot.normalize();
-            moveComponent.speed = this.fireForce;
+            this.#fireBullet(rot);
         });
     }
 
@@ -61,6 +95,10 @@ export class FirePattern{
     }
 
     #getDirection(){
+        if (this.followTarget == false){
+            return Vector2d.up;
+        }
+
         var to = this.target.getComponent(Enemy).getCenterPosition();
         var from = this.parent.transform.position;
         this.markShootPosition(to);

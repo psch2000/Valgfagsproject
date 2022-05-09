@@ -29,6 +29,8 @@ export const AppComponent = () => {
     const rerenderer = useForceRerenderer();
 
     useEffect(() =>{
+
+
         init.execute();
         OnEndResize.addListener(onEndResize, 0);
         App.run();

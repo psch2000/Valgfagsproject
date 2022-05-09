@@ -8,6 +8,8 @@ import { TowerFacade } from "./TowerFacade";
 import { Input } from "../../GameEngine/input/Input";
 import { FirePattern } from "./firePattern/FirePattern";
 import { App } from "../app/App";
+import { TowerType } from "./TowerType";
+import { TackShooterFirePatternBuilder } from "./firePattern/patterns/TackShooterFirePatternBuilder";
 
 
 
@@ -21,17 +23,20 @@ export class Tower extends Component{
         this.towerType = towerType;
         this.canFire = false;
 
-        this.firePattern = new FirePattern();
 
+        this.firePattern = new TackShooterFirePatternBuilder().getProduct();
+
+      
     }
     
     onStart(){
         this.#towerFacade = this.getComponent(TowerFacade);
+        this.firePattern.target = App.game.find("Cursor");
 
         this.firePattern.color = this.towerType.color;
-        this.firePattern.parent = this;
         this.firePattern.target = App.game.find("Cursor");
         this.firePattern.damage = this.towerType.damage;
+        this.firePattern.parent = this.parent;
     }
 
     onEnter(other){

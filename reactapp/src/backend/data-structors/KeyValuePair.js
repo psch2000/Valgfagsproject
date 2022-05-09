@@ -15,6 +15,10 @@ export class KeyValuePair{
         return [this.#keys, this.#values];
     }
 
+    getKeyLength(){
+        return this.#keys.length;
+    }
+
     getValue(key){
         var value = null;
         this.#keys.forEach((k, index) => {
@@ -24,6 +28,10 @@ export class KeyValuePair{
         });
 
         return value;
+    }
+
+    getValueByIndex(index){
+        return this.#values[index];
     }
 
     setValue(key, value){

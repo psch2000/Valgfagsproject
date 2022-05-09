@@ -1,3 +1,4 @@
+import { App } from "../../../assets/app/App";
 import { KeyValuePair } from "../../../backend/data-structors/KeyValuePair";
 import { Component } from "../Component";
 import { Intersect } from "../Intersect";
@@ -8,6 +9,11 @@ export class Collider extends Component {
         super();
         this.transform = new Transform();
         this.overlaps = new KeyValuePair();
+    }
+
+    onStart(){
+        App.game.addCollider(this);
+
     }
 
     doesOverlap(other) {
