@@ -17,7 +17,7 @@ export class TowerType{
         this.price = price;
         this.imagePath = imagePath;
         this.size = size;
-        this.dsbColor = RgbColor.fromHex(color).darken(0.5).getHex();
+        this.dsbColor = RgbColor.darkenHex(color, 0.5);
         // this.dsbColor = "#000000";
         this.normalColor = color;
         console.log(this.dsbColor);
