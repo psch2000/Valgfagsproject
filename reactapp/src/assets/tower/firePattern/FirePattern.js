@@ -17,11 +17,9 @@ export class FirePattern{
     }
 
     fireRoutine(){
-
         this.#time += Time.deltaTime;
-
+        
         if (this.#time >= this.fireInterval){
-
             this.#handleRequirments();
             this.#fire();
             this.#time = 0;
@@ -37,6 +35,7 @@ export class FirePattern{
     #fire(){
 
         if (this.target == null) return;
+        if (this.target.getComponent(Enemy).isDead()) this.target = null;
 
         this.fireAngels.forEach((angle, index) => {
             var from = this.parent.transform.position;
@@ -52,17 +51,13 @@ export class FirePattern{
     }
 
     #makeProjectile(){
-        ProjectilePool.getInstance().color = this.color;
-        var c = ProjectilePool.getInstance().acquireReuseable();
-        c.transform.position.x = this.parent.transform.position.x;
-        c.transform.position.y = this.parent.transform.position.y;
         var c = ProjectilePool.getInstance().acquireReuseable(this.color);
         c.transform.position = this.parent.transform.position.copy();
         return c;
     }
 
     #getDirection(){
-        var to = this.target.transform.position;
+        var to = this.target.getComponent(Enemy).getCenterPosition();
         var from = this.parent.transform.position;
 
         return Vector2d.subtract(to, from);
