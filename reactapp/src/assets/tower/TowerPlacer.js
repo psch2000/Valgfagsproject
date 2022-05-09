@@ -39,15 +39,14 @@ export class TowerPlacere extends Component{
     onEnter(other){
         if (other.name === "Map"){
             this.#onMap = true;
-            //console.log("Inside of Map")
         }
     }
 
     onOverlap(other){
+        if (other.name === "projectile") return;
+
         if (other.getComponent(PathRectangle) !== null) {
             this.#onPath = true;
-            // console.log("here")
-            // console.log(other);
         }
 
     }
