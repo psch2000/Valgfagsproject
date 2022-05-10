@@ -8,7 +8,16 @@ import { ShopItemObj } from "./ShopItemObject";
 
 
 
-export const ShopMenuObject = {  
+export const ShopMenuObject = {
+    items: [
+        new ShopItemObj("./images/test_tower.png", 200),
+        new ShopItemObj("./images/test_tower.png", 300),
+        new ShopItemObj("./images/test_tower.png", 350),
+        new ShopItemObj("./images/test_tower.png", 400),
+        new ShopItemObj("./images/test_tower.png", 500),
+        new ShopItemObj("./images/test_tower.png", 650),
+    ],
+    
     
     towerTypes: [
         TowerType.blueTower,
@@ -33,11 +42,13 @@ export const ShopMenu = ({rect, offset}) =>{
 
         {towerTypes.map((item, index) => {
 
-            return (<ShopButton towerType={item}  key={index} towerName={item.name}></ShopButton>)
+            return (<ShopButton towerType={item}  key={index} ></ShopButton>)
             //{console.log(item.imagePath)}
             //return (<ShopButton key={index} price={item.price} imagePath={item.imagePath}></ShopButton>)           
 
         })}
+
+
     </div>
 
 }
