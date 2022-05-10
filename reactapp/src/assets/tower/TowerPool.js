@@ -33,7 +33,7 @@ export class TowerPool extends ReuseablePool{
         var {radius, color, range} = towerType;
 
 
-        var rangeComposit = new Composit();
+        var rangeComposit = new Composit("TowerRange");
         rangeComposit.addComponent(new CircleRenderer(range, "#000000CC", true));
         rangeComposit.addComponent(new CircleCollider(range));
         rangeComposit.addComponent(new TowerRange(range));
