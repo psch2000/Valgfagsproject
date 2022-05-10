@@ -42,7 +42,10 @@ export class FirePattern{
     #fire(){
 
         if (this.target == null) return;
-        if (this.target.getComponent(Enemy).isDead()) this.target = null;
+        if (this.target.getComponent(Enemy).isDead()) {
+            this.target = null;
+            return;
+        }
 
         if (this.burst == true){
             this.#burstFire();
