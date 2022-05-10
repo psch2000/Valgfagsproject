@@ -6,9 +6,8 @@ export class TrippleFirePatternBuilder {
 
     getProduct(){
         var builder = new FirePatternBuilder()
-        .addFireAngle(45)
-        .addFireAngle(-45);
-
+        .addFireAngles([45, -45])
+        .setIsBursting(true);
 
         return builder.getProduct();
     }
