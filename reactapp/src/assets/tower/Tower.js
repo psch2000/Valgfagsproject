@@ -31,10 +31,8 @@ export class Tower extends Component{
     
     onStart(){
         this.#towerFacade = this.getComponent(TowerFacade);
-        this.firePattern.target = App.game.find("Cursor");
 
         this.firePattern.color = this.towerType.color;
-        this.firePattern.target = App.game.find("Cursor");
         this.firePattern.damage = this.towerType.damage;
         this.firePattern.parent = this.parent;
     }
