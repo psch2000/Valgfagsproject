@@ -9,11 +9,7 @@ export class Collider extends Component {
         super();
         this.transform = new Transform();
         this.overlaps = new KeyValuePair();
-    }
-
-    onStart(){
         App.game.addCollider(this);
-
     }
 
     doesOverlap(other) {
