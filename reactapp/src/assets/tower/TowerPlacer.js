@@ -12,6 +12,7 @@ import { TowerPool } from "../tower/TowerPool";
 import { TowerFacade } from "./TowerFacade";
 import { TowerRange } from "./TowerRange";
 import { PathRectangle } from "../components/PathRectangle";
+import { DrawIcon } from "../../base/baseStructor/DrawIcon";
 
 export class TowerPlacere extends Component{
 

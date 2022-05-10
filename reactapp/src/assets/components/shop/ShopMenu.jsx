@@ -38,8 +38,6 @@ export const ShopMenu = ({rect, offset}) =>{
             //return (<ShopButton key={index} price={item.price} imagePath={item.imagePath}></ShopButton>)           
 
         })}
-
-
     </div>
 
 }
