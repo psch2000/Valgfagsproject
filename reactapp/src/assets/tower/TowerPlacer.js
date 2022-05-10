@@ -54,7 +54,7 @@ export class TowerPlacere extends Component{
         if(other.name === "Map"){
             this.#onMap = false;
         }
-        
+
         if (other.getComponent(PathRectangle) !== null) {
             this.#onPath = false;
         }
@@ -65,19 +65,14 @@ export class TowerPlacere extends Component{
         this.#spriteRenderer = this.parent.addComponent(new CircleRenderer(10, 'white', false));
         this.#followMouse = this.parent.addComponent(new FollowCanvasMouse());
         this.#collision = this.parent.addComponent(new CircleCollider(1, true));
-        //this.parent.addComponent(new RectangleCollider(10, 10));
-
-        // this.#pathrechtangle = this.parent.addComponent(new PathRectangle());
-
-        // console.log(this.#map.parent)
     }
 
     onUpdate(){
-        // left mouse input
         this.#canPlaceTower = this.#onMap && !this.#onPath;
-
+        
         this.#spriteRenderer.color = this.#canPlaceTower ? this.#towerType.normalColor : this.#towerType.dsbColor;
-
+        
+        // left mouse input
         if(Input.getKeyDown('0')){
             
             if(this.parent.isActive == true){
@@ -107,7 +102,7 @@ export class TowerPlacere extends Component{
     static getInstance(){
 
         if (this.#instance == null){
-            var c = new Composit();
+            let c = new Composit("towerPlacer");
             c.layer = 1;
             this.#instance = c.addComponent(new TowerPlacere());
             instantiate(c);
@@ -115,5 +110,4 @@ export class TowerPlacere extends Component{
 
         return this.#instance;
     }
-
 }
