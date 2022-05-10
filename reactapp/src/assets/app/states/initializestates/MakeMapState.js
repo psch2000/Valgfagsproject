@@ -18,8 +18,8 @@ export class MakeMapState extends State{
 
     execute(){
         var map = new Composit("Map");
-        map.addComponent(new Map(new Rect(0,0,698, 500), 'transparent'));
-        map.addComponent(new RectangleCollider(698, 500));
+        map.addComponent(new Map(new Rect(350,250,698, 500), 'transparent'));
+        map.addComponent(new RectangleCollider(628, 450, true));
         instantiate(map);
 
         this.context.transitionTo(new UpdateUIState());

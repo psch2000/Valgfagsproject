@@ -12,6 +12,9 @@ import { TowerPool } from "../tower/TowerPool";
 import { TowerFacade } from "./TowerFacade";
 import { TowerRange } from "./TowerRange";
 import { PathRectangle } from "../components/PathRectangle";
+import { TowerType } from "./TowerType";
+import { Tower } from "./Tower";
+import { Unplaceable } from "./firePattern/Unplaceable";
 
 export class TowerPlacere extends Component{
 
@@ -24,27 +27,39 @@ export class TowerPlacere extends Component{
     #pathrechtangle
     #collision
     #onMap
-    #onPath
+    #onTower
     #canPlaceTower;
     #towerType;
+    #unplaceable;
 
     constructor(){
         if (TowerPlacere.#instance !== undefined) return
         super();
         this.#map = App.game.find("Map").getComponent(Map);
-        this.#onPath = false;
+        this.#unplaceable = true;
     }
 
     onEnter(other){
         if (other.name === "Map"){
             this.#onMap = true;
+            //console.log("On map")
         }
     }
 
     onOverlap(other){
         if (other.name === "projectile") return;
-        if (other.getComponent(PathRectangle) !== null) {
-            this.#onPath = true;
+        
+        //if (!this.#onPath && other.getComponent(PathRectangle) !== null) {
+          //  this.#onPath = true;
+        //}
+        //if(!this.#onTower && other.getComponent(Tower) !== null) {
+          //  this.#onTower = true;
+        //}
+        if (!this.#unplaceable && other.getComponent(Unplaceable) !== null) {
+            this.#unplaceable = true;
+        }
+        else if (other.getComponent(Unplaceable) === null){
+            this.#unplaceable = false;
         }
 
     }
@@ -52,13 +67,10 @@ export class TowerPlacere extends Component{
     onExit(other){
         if(other.name === "Map"){
             this.#onMap = false;
-        }
-
-        if (other.getComponent(PathRectangle) !== null) {
-
-            this.#onPath = false;
+            
         }
        
+
     }
 
     onStart(){
@@ -73,7 +85,7 @@ export class TowerPlacere extends Component{
 
     onUpdate(){
         // left mouse input
-        this.#canPlaceTower = this.#onMap && !this.#onPath;
+        this.#canPlaceTower = this.#onMap && !this.#unplaceable //&& !this.#onTower;
 
         if(!this.#canPlaceTower) {this.#spriteRenderer.color = this.#towerType.dsbColor}
         else { this.#spriteRenderer.color = this.#towerType.normalColor}
@@ -82,7 +94,7 @@ export class TowerPlacere extends Component{
             if(this.parent.isActive == true){
                 if(this.#canPlaceTower == false) return;
                 var c = TowerPool.getInstance().acquireReuseable();
-               var a = c.getComponent(TowerFacade);
+                var a = c.getComponent(TowerFacade);
                 c.transform.setPosition(this.transform.position);
                 Player.bank.remove(this.#towerType.price);
                 this.parent.setActive(false);
@@ -107,7 +119,7 @@ export class TowerPlacere extends Component{
     static getInstance(){
 
         if (this.#instance === undefined) {
-            var c = new Composit();
+            var c = new Composit("TowerPlacer");
             c.layer = 1;
             this.#instance = c.addComponent(new TowerPlacere());
             instantiate(c);

@@ -8,12 +8,13 @@ import { TowerFacade } from "./TowerFacade";
 import { Input } from "../../GameEngine/input/Input";
 import { FirePattern } from "./firePattern/FirePattern";
 import { App } from "../app/App";
-
+import { Unplaceable } from "./firePattern/Unplaceable";
 
 
 export class Tower extends Component{
 
     #towerFacade;
+    #unplaceable;
     #hitCursor = false;
 
     constructor(towerType){
@@ -27,6 +28,8 @@ export class Tower extends Component{
     
     onStart(){
         this.#towerFacade = this.getComponent(TowerFacade);
+        this.addComponent(Unplaceable);
+
 
         this.firePattern.color = this.towerType.color;
         this.firePattern.parent = this;

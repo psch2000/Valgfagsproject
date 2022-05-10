@@ -11,6 +11,8 @@ export class Map extends Component {
         super();
         this.#rectangle = rectangle;
         this.#squareRenderer = new SquareRenderer(rectangle.width, rectangle.height, color);
+        this.x = rectangle.x;
+        this.y = rectangle.y;
     }
 
     setRect(rectangle){
@@ -23,6 +25,7 @@ export class Map extends Component {
 
     onStart(){
         this.parent.addComponent(this.#squareRenderer);
+        //this.transform.setPosition(this.x, this.y);
     }
 
     

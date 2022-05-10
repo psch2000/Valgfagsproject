@@ -22,7 +22,8 @@ import { PlayerBase } from "../components/PlayerBase";
 import { Enemy } from "../components/enemy/Enemy";
 import { useForceRerenderer } from "../hooks/useForceRenderer";
 import { MakeMapState } from "./states/initializestates/MakeMapState";
-
+import { Unplaceable } from "../tower/firePattern/Unplaceable";
+import { CircleCollider } from "../../base/baseStructor/collider/CircleCollider";
 
 export const AppComponent = () => {
     const init = new StateHandler(new MakeMapState());
@@ -82,13 +83,15 @@ function placeObjectsOnCanvas() {
         new Vector2d(455, 215),
         new Vector2d(455, 345),
         new Vector2d(570, 345),
-        new Vector2d(570, 429),
+        new Vector2d(570, 430),
     ], "#ff00ff91", 50);
 
     let playerBase = new Composit("playerBase");
     playerBase.addComponent(new SquareRenderer(50, 20, "blue"));
     playerBase.addComponent(new PlayerBase(100));
     playerBase.transform.setPosition(new Vector2d(570, 480));
+    playerBase.addComponent(new Unplaceable());
+    playerBase.addComponent(new RectangleCollider(50,10))
     instantiate(playerBase);
 
     let enemyComposit = new Composit("testEnemy");

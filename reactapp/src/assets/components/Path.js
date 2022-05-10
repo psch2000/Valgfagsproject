@@ -6,8 +6,11 @@ import { SquareRenderer } from "./SquareRenderer";
 import { instantiate } from "../app/functions/instantiate";
 import { Intersect } from "../../base/baseStructor/Intersect";
 import { PathRectangle } from "./PathRectangle";
+import { Unplaceable } from "../tower/firePattern/Unplaceable";
 
 export class Path extends Component {
+
+    #unplaceable;
     constructor(waypointsArray, pathColor = "#00000000", pathWidth = 10) {
         super();
         this.waypoints = waypointsArray;
@@ -18,6 +21,11 @@ export class Path extends Component {
         this.#createRectanglesOnPath();
     }
 
+    onStart(){
+        this.#unplaceable = this.getComponent(Unplaceable);
+
+    }
+    
     #createRectanglesOnPath() {
         for (let i = 0; i < this.waypoints.length; i++) {
             if (i === 0) continue;
@@ -51,6 +59,7 @@ export class Path extends Component {
             // visualize rectangle on game canvas - debug
             let canvasRectangle = new Composit("test rectangle");
             canvasRectangle.addComponent(new SquareRenderer(rectangle.width, rectangle.height, this.pathColor));
+            canvasRectangle.addComponent(new Unplaceable())
             canvasRectangle.transform.position = rectangle.transform.position;
             canvasRectangle.addComponent(rectangle);
             canvasRectangle.addComponent(new PathRectangle())
