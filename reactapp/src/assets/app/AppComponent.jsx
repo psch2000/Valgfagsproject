@@ -24,6 +24,8 @@ import { useForceRerenderer } from "../hooks/useForceRenderer";
 import { MakeMapState } from "./states/initializestates/MakeMapState";
 import { Unplaceable } from "../tower/firePattern/Unplaceable";
 import { CircleCollider } from "../../base/baseStructor/collider/CircleCollider";
+import { TowerText } from "../components/stats/TowerText";
+
 
 export const AppComponent = () => {
     const init = new StateHandler(new MakeMapState());
@@ -56,13 +58,13 @@ export const AppComponent = () => {
 
     return <div>
         <CanvasComponent canvas={App.canvas}></CanvasComponent>
-        <ShopMenu offset={{x:730, y:75}} rect={App.windowRect}></ShopMenu>
+        <ShopMenu offset={{x:750, y:65}} rect={App.windowRect}></ShopMenu>
         <GameTitle></GameTitle>
-
-        <WaveButton offset={{x:730, y:420}} rect={App.windowRect}></WaveButton>
+        <WaveButton offset={{x:750, y:420}} rect={App.windowRect}></WaveButton>
         <MoneyText offset={{x:170, y: 0}} rect={App.windowRect}></MoneyText>
         <HealthText offset={{x:50, y:0}} rect={App.windowRect}></HealthText>
         <WaveText offset={{x: 550, y:0}} rect={App.windowRect}></WaveText>
+        <TowerText offset={{x: 750, y:7}} rect={App.windowRect}></TowerText>
     </div>
 
     

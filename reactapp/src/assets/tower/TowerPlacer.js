@@ -15,6 +15,7 @@ import { PathRectangle } from "../components/PathRectangle";
 import { TowerType } from "./TowerType";
 import { Tower } from "./Tower";
 import { Unplaceable } from "./firePattern/Unplaceable";
+import { DrawIcon } from "../../base/baseStructor/DrawIcon";
 
 export class TowerPlacere extends Component{
 
@@ -75,7 +76,7 @@ export class TowerPlacere extends Component{
 
     onStart(){
         this.#rangeRenderer = this.parent.addComponent(new CircleRenderer(20, '#030f1191', true));
-        this.#spriteRenderer = this.parent.addComponent(new CircleRenderer(10, 'white', false));
+        this.#spriteRenderer = this.parent.addComponent(new DrawIcon("", true))
         this.#followMouse = this.parent.addComponent(new FollowCanvasMouse());
         this.#collision = this.parent.addComponent(new CircleCollider(1));
         //this.parent.addComponent(new RectangleCollider(10, 10));
@@ -109,8 +110,7 @@ export class TowerPlacere extends Component{
 
     setTowerType(towerType){
         this.#rangeRenderer.radius = towerType.range;
-        this.#spriteRenderer.color = towerType.color;
-        this.#spriteRenderer.radius = towerType.radius;
+        this.#spriteRenderer.img.src = towerType.imagePath;
         this.#towerType = towerType;
         this.#collision.radius = towerType.size;        
     }
