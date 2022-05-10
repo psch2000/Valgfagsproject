@@ -48,7 +48,7 @@ export class TowerPlacere extends Component{
 
     onOverlap(other){
         if (other.name === "projectile") return;
-        
+        if (other.name === "TowerRange") return;
         //if (!this.#onPath && other.getComponent(PathRectangle) !== null) {
           //  this.#onPath = true;
         //}
