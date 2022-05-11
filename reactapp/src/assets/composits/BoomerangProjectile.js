@@ -14,6 +14,6 @@ export class BoomerangProjectile extends Composit {
         this.addComponent(new MovePath(new Vector2d(0, 0), 1, releaseFunction));
         this.addComponent(new CircleCollider(radius))
         this.addComponent(new OutOfBounceDelete(releaseFunction));
-        this.addComponent(new DamageWhenCollide(Enemy, damage));
+        this.addComponent(new DamageWhenCollide(Enemy, damage, releaseFunction));
     }
 }
