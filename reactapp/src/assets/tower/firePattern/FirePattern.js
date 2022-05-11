@@ -7,11 +7,10 @@ import { Composit } from "../../../base/baseStructor/Composit";
 import { CircleRenderer } from "../../components/CircleRenderer";
 import { instantiate } from "../../app/functions/instantiate";
 
-export class FirePattern{
-
+export class FirePattern {
     #time = 0;
     #index = 0;
-    constructor(){
+    constructor() {
         this.fireAngels = [0];
         this.fireInterval = 1;
         this.fireForce = 1;
@@ -19,52 +18,49 @@ export class FirePattern{
         this.target = null;
         this.parent = null;
         this.burst = false;
-        this.color = 'green';
+        this.color = "green";
         this.damage = null;
     }
 
-    fireRoutine(){
+    fireRoutine() {
         this.#time += Time.deltaTime;
         
-        if (this.#time >= this.fireInterval){
+        if (this.#time >= this.fireInterval) {
             this.#handleRequirments();
             this.#fire();
-            this.#time = 0;
         }
-
     }
 
-    #handleRequirments(){
+    #handleRequirments() {
         if (this.parent == null) throw new Error("parent is needed.");
         if (this.fireAngels.length == 0) throw new Error("a fire angle is needed.");
     }
 
-    #fire(){
-
+    #fire() {
         if (this.target == null) return;
         if (this.target.getComponent(Enemy).isDead()) {
             this.target = null;
             return;
         }
 
-        if (this.burst == true){
+        this.#time = 0;
+
+        if (this.burst == true) {
             this.#burstFire();
             return;
         }
 
         this.#sekventialFire();
-
     }
 
-    #sekventialFire(){
-
+    #sekventialFire() {
         var i = this.#index;
         var from = this.parent.transform.position;
         var rot = this.#getDirection().rotate(this.fireAngels[i], from);
 
         this.#fireBullet(rot);
 
-        if (i < this.fireAngels.length){
+        if (i < this.fireAngels.length) {
             i++;
             return;
         }
@@ -72,33 +68,31 @@ export class FirePattern{
         i = 0;
     }
 
-    #fireBullet(rot){
+    #fireBullet(rot) {
         var p = this.#makeProjectile();
         var moveComponent = p.getComponent(MoveDirection);
         moveComponent.direction = rot.normalize();
         moveComponent.speed = this.fireForce;
     }
 
-    #burstFire(){
+    #burstFire() {
         this.fireAngels.forEach((angle, index) => {
             var from = this.parent.transform.position;
 
-            
             var rot = this.#getDirection().rotate(angle, from);
-
 
             this.#fireBullet(rot);
         });
     }
 
-    #makeProjectile(){
         var c = ProjectilePool.getInstance().acquireReuseable(this.color, this.damage);
+    #makeProjectile() {
         c.transform.position = this.parent.transform.position.copy();
         return c;
     }
 
-    #getDirection(){
-        if (this.followTarget == false){
+    #getDirection() {
+        if (this.followTarget == false) {
             return Vector2d.up;
         }
 
@@ -114,7 +108,4 @@ export class FirePattern{
         t.transform.position = position.copy();
         instantiate(t);
     }
-
-
-
 }
