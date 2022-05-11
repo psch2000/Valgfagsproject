@@ -24,8 +24,7 @@ export class Tower extends Component{
         this.canFire = false;
 
 
-        this.firePattern = towerType.firePattern;
-
+        this.firePattern = towerType.firePatternBuilder.getProduct();
       
     }
     
