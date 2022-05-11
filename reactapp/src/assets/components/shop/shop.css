@@ -6,9 +6,9 @@
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.3s ease;
-    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);  
     color: var(--white);
-
+    
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
 }
@@ -22,14 +22,17 @@
 
 .btn--primary--solid{
     background-color: var(--primay);
-    color: var(--white);
     border: 2px solid var(--secondary);
 }
 
 .btn--warning--solid{
-    background-color: var(--warning);
-    color: var(--dark);
-    border: 2px solid var(--warning);
+    background-color: var(--primay);
+    filter: grayscale(0.8);
+    border: 2px solid var(--secondary);
+    color: red;
+}
+.btn--warning--solid:hover{
+    transform: translateY(0px);
 }
 
 .btn--danger--solid{
