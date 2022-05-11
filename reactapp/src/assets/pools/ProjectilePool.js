@@ -30,7 +30,7 @@ export class ProjectilePool extends ReuseablePool{
         return this.#instance;
     }
 
-    acquireReuseable(color, damage, projectileType = NormalProjectile){
+    acquireReuseable(color, damage, projectileType){
         let reuseable = this.#getReuseableWithColor(color, projectileType);
         
         if (reuseable === null) return this.makeReuseable(color, damage, projectileType);

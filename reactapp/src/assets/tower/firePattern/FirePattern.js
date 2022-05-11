@@ -10,6 +10,7 @@ import { Move } from "../../components/Move";
 import { getPointsOnCircleCircumference, getAnglesEquallySpaces } from "../../../base/baseStructor/CircleFunctions";
 import { Tower } from "../Tower";
 import { BoomerangProjectile } from "../../composits/BoomerangProjectile";
+import { NormalProjectile } from "../../composits/NormalProjectile";
 
 export class FirePattern {
     #time = 0;
@@ -24,7 +25,7 @@ export class FirePattern {
         this.burst = false;
         this.color = "green";
         this.damage = null;
-        this.projectileType = null;
+        this.projectileType = NormalProjectile;
     }
 
     fireRoutine() {
