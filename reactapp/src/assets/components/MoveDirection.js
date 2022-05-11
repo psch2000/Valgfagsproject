@@ -1,13 +1,11 @@
-import { Component } from "../../base/baseStructor/Component";
+import { Move } from "./Move";
 
 
-export class MoveDirection extends Component{
+export class MoveDirection extends Move{
 
 
     constructor(direction, speed){
-        super();
-        this.direction = direction;
-        this.speed = speed;
+        super(direction, speed);
     }
 
 
