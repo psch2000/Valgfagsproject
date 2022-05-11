@@ -21,6 +21,7 @@ export class TowerType{
         this.normalColor = color;
         console.log(this.dsbColor);
         console.log(this.normalColor);
+        
     }
 
     
