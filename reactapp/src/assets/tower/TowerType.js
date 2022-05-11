@@ -22,6 +22,7 @@ export class TowerType{
         this.isTower = true;
         console.log(this.dsbColor);
         console.log(this.normalColor);
+        
     }
 
     
