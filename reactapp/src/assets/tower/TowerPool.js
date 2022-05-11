@@ -8,6 +8,8 @@ import { TowerFacade } from "./TowerFacade";
 import { TowerPlacere } from "./TowerPlacer";
 import { TowerRange } from "./TowerRange";
 import { Unplaceable } from "./firePattern/Unplaceable";
+import { DrawIcon } from "../../base/baseStructor/DrawIcon";
+
 
 export class TowerPool extends ReuseablePool{
 
@@ -39,7 +41,7 @@ export class TowerPool extends ReuseablePool{
         rangeComposit.addComponent(new TowerRange(range));
 
         var towerComposit = new Composit("TowerComposit");
-        towerComposit.addComponent(new CircleRenderer(radius, color));
+        towerComposit.addComponent(new DrawIcon(towerType.imagePath, true))
         towerComposit.addComponent(new CircleCollider(radius));
         towerComposit.addComponent(new Tower(towerType));
         towerComposit.addComponent(new TowerFacade(towerComposit, rangeComposit));
