@@ -15,6 +15,8 @@ import { PathRectangle } from "../components/PathRectangle";
 import { TowerType } from "./TowerType";
 import { Tower } from "./Tower";
 import { Unplaceable } from "./firePattern/Unplaceable";
+import { DrawIcon } from "../../base/baseStructor/DrawIcon";
+
 
 export class TowerPlacere extends Component{
 

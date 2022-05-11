@@ -17,7 +17,6 @@ import { WaveButton } from "../components/waveButton/WaveButton";
 import { WaveText } from "../components/stats/WaveText";
 import { App } from "./App";
 import { TowerPlacere } from "../tower/TowerPlacer";
-
 import { PlayerBase } from "../components/PlayerBase";
 import { Enemy } from "../components/enemy/Enemy";
 import { useForceRerenderer } from "../hooks/useForceRenderer";
