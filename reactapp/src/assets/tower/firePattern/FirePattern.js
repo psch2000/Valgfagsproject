@@ -6,6 +6,9 @@ import { Enemy } from "../../components/enemy/Enemy";
 import { Composit } from "../../../base/baseStructor/Composit";
 import { CircleRenderer } from "../../components/CircleRenderer";
 import { instantiate } from "../../app/functions/instantiate";
+import { Move } from "../../components/Move";
+import { getPointsOnCircleCircumference, getAnglesEquallySpaces } from "../../../base/baseStructor/CircleFunctions";
+import { Tower } from "../Tower";
 
 export class FirePattern {
     #time = 0;
@@ -20,6 +23,7 @@ export class FirePattern {
         this.burst = false;
         this.color = "green";
         this.damage = null;
+        this.projectileType = null;
     }
 
     fireRoutine() {
@@ -70,9 +74,42 @@ export class FirePattern {
 
     #fireBullet(rot) {
         var p = this.#makeProjectile();
-        var moveComponent = p.getComponent(MoveDirection);
+        var moveComponent = p.getComponent(Move);
         moveComponent.direction = rot.normalize();
         moveComponent.speed = this.fireForce;
+
+        if (moveComponent.path !== undefined) {
+            let range = this.parent.getComponent(Tower).towerType.range;
+            let lookDirection = rot.normalize();
+
+            let circleOffset = Vector2d.multiply(rot.normalize(), new Vector2d(range, range));
+            let circleCenter = Vector2d.add(this.parent.transform.position, circleOffset);
+
+            let numAngles = 20;
+            let angles = getAnglesEquallySpaces(numAngles, false);
+            let points = getPointsOnCircleCircumference(
+                circleCenter,
+                range,
+                angles,
+                this.parent.transform.position,
+                lookDirection,
+            );
+
+            // add towrs position to be the last point the boomerang projectile moves to
+            points.push(this.parent.transform.position);
+
+            // let colors = ["#ff0000", "#00ff00", "#0000ff", "yellow", "black"];
+
+            // // visualizing points
+            // points.forEach((point) => {
+            //     let composit = new Composit("testCirclePoint");
+            //     composit.addComponent(new CircleRenderer(3, colors[this.testIndex], false));
+            //     composit.transform.position = point;
+            //     instantiate(composit);
+            // });
+
+            moveComponent.path = points;
+        }
     }
 
     #burstFire() {
@@ -85,8 +122,8 @@ export class FirePattern {
         });
     }
 
-        var c = ProjectilePool.getInstance().acquireReuseable(this.color, this.damage);
     #makeProjectile() {
+        var c = ProjectilePool.getInstance().acquireReuseable(this.color, this.damage, this.projectileType);
         c.transform.position = this.parent.transform.position.copy();
         return c;
     }
@@ -98,7 +135,7 @@ export class FirePattern {
 
         var to = this.target.getComponent(Enemy).getCenterPosition();
         var from = this.parent.transform.position;
-        this.markShootPosition(to);
+        // this.markShootPosition(to);
         return Vector2d.subtract(to, from);
     }
 
