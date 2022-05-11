@@ -3,10 +3,11 @@ import { Component } from "./Component";
 
 export class DrawIcon extends Component{
 
-    constructor(path){
+    constructor(path, useOrigen = false){
         super();
         this.img= new Image();
         this.img.src = path;
+        this.useOrigen = useOrigen;
 
 
 
@@ -26,7 +27,12 @@ export class DrawIcon extends Component{
         // downscaledImage.style.color = 'transparent';
 
 
-        context.drawImage(this.img, position.x, position.y);
+        if(this.useOrigen){
+            context.drawImage(this.img, position.x-this.img.width/2, position.y-this.img.height/2);
+        }
+        else{
+            context.drawImage(this.img, position.x, position.y);
+        }
 
     }
     

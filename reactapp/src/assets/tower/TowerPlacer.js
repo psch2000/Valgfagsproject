@@ -90,8 +90,8 @@ export class TowerPlacere extends Component{
         // left mouse input
         this.#canPlaceTower = this.#onMap && !this.#unplaceable //&& !this.#onTower;
 
-        if(!this.#canPlaceTower) {this.#spriteRenderer.color = this.#towerType.dsbColor}
-        else { this.#spriteRenderer.color = this.#towerType.normalColor}
+        if(!this.#canPlaceTower) {this.#spriteRenderer.currentImage = this.#towerType.dsbImage}
+        else { this.#spriteRenderer.currentImage = this.#towerType.image}
 
         if(Input.getKeyDown('0')){
             if(this.parent.isActive == true){
@@ -112,7 +112,7 @@ export class TowerPlacere extends Component{
 
     setTowerType(towerType){
         this.#rangeRenderer.radius = towerType.range;
-        this.#spriteRenderer.img.src = towerType.imagePath;
+        this.#spriteRenderer.img.src = towerType.currentImage;
         //this.#spriteRenderer.color = towerType.color;
         //this.#spriteRenderer.radius = towerType.radius;
         this.#towerType = towerType;
