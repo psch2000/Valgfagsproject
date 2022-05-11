@@ -10,6 +10,7 @@ import { Vector2d } from "../base/baseStructor/Vector2d";
 import { callAndSetInterval } from "../base/callAndSetInterval";
 import { Time } from "../base/Time";
 import { Input } from "../GameEngine/input/Input";
+import { BroadPhase } from "../kd-tree/BroadPhase";
 import { KeyValuePair } from "./data-structors/KeyValuePair";
 
 export class Game {
@@ -17,6 +18,8 @@ export class Game {
     #compositLayers = [];
 
     #colliders = [];
+
+    #rootNode = new Node();
 
     #gridRectangles = [];
     
@@ -37,12 +40,15 @@ export class Game {
 
 
     addCollider(collider){
-        this.#colliders.push(collider);
+        // this.#colliders.push(collider);
+        this.#rootNode.addCollider(collider);
     }
 
     removeCollider(collider){
-        var i = this.#colliders.indexOf(collider);
-        this.#colliders.splice(i, 1);
+        // var i = this.#colliders.indexOf(collider);
+        // this.#colliders.splice(i, 1);
+
+
     }
 
     run(){
@@ -68,7 +74,7 @@ export class Game {
             this.#frame++;
 
             if (this.#frame == 2){
-                this.#checkGridRectangleCollision();
+                new BroadPhase().handleNode(this.#rootNode);
                 this.#checkCollision();
                 this.#frame = 0;
             }
@@ -90,6 +96,8 @@ export class Game {
             })
         })
     }
+
+ 
 
     
     setGridColliders(size){
@@ -113,6 +121,9 @@ export class Game {
     }
 
     #checkGridRectangleCollision(){
+
+
+        
 
         this.#stopWatch.start();
         for (let i = 0; i < this.#gridRectangles.length; i++){

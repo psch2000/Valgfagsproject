@@ -6,7 +6,24 @@ export class CircleCollider extends Collider {
         this.radius = radius;
         this.showBounds = showBounds;
     }
-    
+
+    getLeft(){
+
+        return this.transform.position.x - this.radius;
+    }
+
+    getRight(){
+        return this.transform.position.x + this.radius;
+    }
+
+    getTop(){
+        return this.transform.position.y - this.radius;
+    }
+
+    getBot(){
+        return this.transform.position.y + this.radius;
+    }
+
     onDraw(ctx){
         if (this.showBounds == false) return;
         ctx.strokeStyle = 'lightgreen';

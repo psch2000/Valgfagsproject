@@ -8,6 +8,22 @@ export class RectangleCollider extends Collider {
         this.showBounds = showBounds;
     }
 
+    getLeft(){
+        return this.transform.position.x;
+    }
+
+    getRight(){
+        return this.transform.position.x + this.width;
+    }
+
+    getTop(){
+        return this.transform.position.y;
+    }
+
+    getBot(){
+        return this.transform.position.y + this.height;
+    }
+
 
     onDraw(ctx){
         if (this.showBounds == false) return;

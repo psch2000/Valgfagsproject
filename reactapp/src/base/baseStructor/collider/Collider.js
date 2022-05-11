@@ -16,6 +16,22 @@ export class Collider extends Component {
 
     }
 
+    getLeft(){
+        throw new Error("left not implemented.");
+    }
+    getRight(){
+        throw new Error("right not implemented.");
+    }
+
+    getTop(){
+        throw new Error("top not implemented.");
+    }
+
+    getBot(){
+        throw new Error("bottom not implemented.");
+    }
+
+
     doesOverlap(other) {
         return Intersect.intersects(this, other);
     }
