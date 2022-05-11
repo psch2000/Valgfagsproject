@@ -9,6 +9,7 @@ import { instantiate } from "../../app/functions/instantiate";
 import { Move } from "../../components/Move";
 import { getPointsOnCircleCircumference, getAnglesEquallySpaces } from "../../../base/baseStructor/CircleFunctions";
 import { Tower } from "../Tower";
+import { BoomerangProjectile } from "../../composits/BoomerangProjectile";
 
 export class FirePattern {
     #time = 0;
@@ -78,7 +79,7 @@ export class FirePattern {
         moveComponent.direction = rot.normalize();
         moveComponent.speed = this.fireForce;
 
-        if (moveComponent.path !== undefined) {
+        if (p.constructor === BoomerangProjectile) {
             let range = this.parent.getComponent(Tower).towerType.range;
             let lookDirection = rot.normalize();
 
