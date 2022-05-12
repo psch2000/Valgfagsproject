@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Player } from "../../Player";
+import { Player } from "../bank/Player";
 import { TowerPlacere } from "../../tower/TowerPlacer";
 import { TowerTextObj } from "../stats/TowerTextObj";
 import "./shop.css"
@@ -8,27 +8,12 @@ import "./shop.css"
 
 
 const Styles = [
-    "btn--primary--solid",
-    "btn--warning--solid",
-    "btn--danger--solid",
+    "btn--shop--solid",
+    "btn--shop--grey--solid",
     "btn--succes--solid",
   ];
 
   const Sizes = ["btn--shop", "btn--wave"];
-
-export const ShopItem = ({imagePath, price}) => {
-
-
-    return <button className=" shopButton
-    bg-blue-500 hover:bg-blue-700
-    text-white font-bold py-2 px-4 rounded">
-        <div className="m-auto w-1/2">
-            <img className="mt-9" src={imagePath}></img>
-            <p className="mt-1">{price}$</p>
-        </div>
-        
-    </button>
-}
 
 export const ShopButton = ({ 
     buttonStyle, 
@@ -71,8 +56,6 @@ export const ShopButton = ({
     const CheckButtonSize = Sizes.includes(buttonSize)
     ? buttonSize
     : Sizes[0];
-
-    
   
     return(
       <button 
