@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Player } from "../../Player";
 import { TowerPlacere } from "../../tower/TowerPlacer";
+import { TowerTextObj } from "../stats/TowerTextObj";
 import "./shop.css"
+
 
 
 const Styles = [
