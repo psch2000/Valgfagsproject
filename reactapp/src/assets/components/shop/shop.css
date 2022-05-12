@@ -10,7 +10,7 @@
     color: var(--white);
     
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-color: var(--black);
 }
 .btn:hover{
     transform: translateY(-3px);
@@ -20,24 +20,24 @@
 /* Button Colors */
 
 .btn--shop--solid{
-    background-color: var(--primay);
-    border: 2px solid var(--secondary);
+    background-color: var(--lightblue);
+    border: 2px solid var(--blue);
 }
 
 .btn--shop--grey--solid{
-    background-color: var(--primay);
+    background-color: var(--lightblue);
     filter: grayscale(0.8);
-    border: 2px solid var(--secondary);
-    color: red;
+    border: 2px solid var(--blue);
+    color: var(--red);
 }
 .btn--shop--grey--solid:hover{
     transform: translateY(0px);
 }
 
 .btn--succes--solid{
-    background-color: var(--succes);
+    background-color: var(--lightgreen);
     color: var(--white);
-    border: 2px solid var(--green2);
+    border: 2px solid var(--green);
 }
 
 /* WaveButton style setup*/
