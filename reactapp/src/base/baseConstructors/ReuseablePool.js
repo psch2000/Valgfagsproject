@@ -1,3 +1,4 @@
+import { Vector2d } from "../baseStructor/Vector2d";
 
 
 export class ReuseablePool {
@@ -26,6 +27,7 @@ export class ReuseablePool {
     releaseReuseable = (reuseable) => {
         if (reuseable === null || reuseable === undefined) return;
         reuseable.isActive = false;
+        reuseable.transform.position = new Vector2d(-100, -100);
         this._reuseables.push(reuseable);
     }
 
