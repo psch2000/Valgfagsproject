@@ -1,5 +1,4 @@
-import { EventHandler } from "../base/baseBehaviour/EventHandler";
-
+import { EventHandler } from "../../../base/baseBehaviour/EventHandler";
 
 export class Bank{
 

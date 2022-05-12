@@ -12,33 +12,26 @@
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
 }
-
 .btn:hover{
     transform: translateY(-3px);
 }
 
 
-/* Button Colors and Styles */
+/* Button Colors */
 
-.btn--primary--solid{
+.btn--shop--solid{
     background-color: var(--primay);
     border: 2px solid var(--secondary);
 }
 
-.btn--warning--solid{
+.btn--shop--grey--solid{
     background-color: var(--primay);
     filter: grayscale(0.8);
     border: 2px solid var(--secondary);
     color: red;
 }
-.btn--warning--solid:hover{
+.btn--shop--grey--solid:hover{
     transform: translateY(0px);
-}
-
-.btn--danger--solid{
-    background-color: var(--danger);
-    color: var(--white);
-    border: 2px solid var(--warning);
 }
 
 .btn--succes--solid{
@@ -47,7 +40,8 @@
     border: 2px solid var(--green2);
 }
 
-/* WaveButton setup*/
+/* WaveButton style setup*/
+
 .btn--wave{
     width: 200px;
     height: 64px;
@@ -72,7 +66,7 @@
     justify-content: center;
 }
 
-/* Shopbutton setup*/
+/* Shopbutton style setup*/
 
 .btn--shop{
     width: 90px;

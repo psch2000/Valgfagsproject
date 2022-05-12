@@ -1,6 +1,6 @@
 import "./stats.css"
 import React, { useEffect } from "react";
-import { Player } from "../../Player";
+import { Player } from "../bank/Player";
 import { useForceRerenderer } from "../../hooks/useForceRenderer";
 import { render } from "@testing-library/react";
 
