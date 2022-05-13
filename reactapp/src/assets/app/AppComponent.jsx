@@ -23,6 +23,7 @@ import { Enemy } from "../components/enemy/Enemy";
 import { useForceRerenderer } from "../hooks/useForceRenderer";
 import { MakeMapState } from "./states/initializestates/MakeMapState";
 
+let path = null;
 
 export const AppComponent = () => {
     const init = new StateHandler(new MakeMapState());
@@ -69,8 +70,19 @@ export const AppComponent = () => {
     
 }
 
+function createEnemy() {
+    console.log("create enemy");
+    let enemyComposit = new Composit("enemy");
+    enemyComposit.addComponent(new SquareRenderer(path.pathWidth, path.pathWidth, "red"));
+    enemyComposit.addComponent(new RectangleCollider(path.pathWidth, path.pathWidth, false));
+    enemyComposit.addComponent(new FollowPath(path));
+    enemyComposit.addComponent(new Enemy(100, 20, 60));
+    enemyComposit.transform.position = path.waypoints[0].copy()
+    instantiate(enemyComposit);
+}
+
 function placeObjectsOnCanvas() {
-    let enemyPath = new Path([
+    path = new Path([
         new Vector2d(50, 0),
         new Vector2d(50, 165),
         new Vector2d(215, 165),
@@ -92,12 +104,4 @@ function placeObjectsOnCanvas() {
     playerBase.addComponent(new PlayerBase(100));
     playerBase.transform.setPosition(new Vector2d(570, 480));
     instantiate(playerBase);
-
-    let enemyComposit = new Composit("testEnemy");
-    enemyComposit.addComponent(new SquareRenderer(enemyPath.pathWidth, enemyPath.pathWidth, "red"));
-    enemyComposit.addComponent(new RectangleCollider(enemyPath.pathWidth, enemyPath.pathWidth, false));
-    enemyComposit.addComponent(new FollowPath(enemyPath));
-    enemyComposit.addComponent(new Enemy(100, 20, 60));
-    enemyComposit.transform.position = enemyPath.waypoints[0].copy()
-    instantiate(enemyComposit);
 }
