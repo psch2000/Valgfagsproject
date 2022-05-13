@@ -62,6 +62,14 @@ export class Vector2d {
         return new Vector2d(first.x / second.x, first.y / second.y);
     }
 
+    static multiplyNum(vector, number) {
+        return new Vector2d(vector.x * number, vector.y * number);
+    }
+
+    static divideNum(vector, number) {
+        return new Vector2d(vector.x / number, vector.y / number);
+    }
+
     rotate(ang) {
         var rad = ang * (Math.PI / 180);
         var cos = Math.cos(rad);
