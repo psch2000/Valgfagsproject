@@ -29,15 +29,7 @@ export class Path extends Component {
             // get what direction waypoint2 is compared to waypoint1
             let direction = getDirection(waypoint1, waypoint2);
 
-            // calculate height and width of rectangle for waypoint1 and waypoint2 - dependent of the direction
-            let height =
-                direction.equals(Vector2d.left) || direction.equals(Vector2d.right)
-                    ? this.pathWidth
-                    : Math.abs(waypoint2.y - waypoint1.y) + this.pathWidth; // + this.pathWidth to avoid corner gaps
-            let width =
-                direction.equals(Vector2d.up) || direction.equals(Vector2d.down)
-                    ? this.pathWidth
-                    : Math.abs(waypoint2.x - waypoint1.x) + this.pathWidth; // + this.pathWidth to avoid corner gaps
+            let [width, height] = this.#getRectangleWidthHeight(direction, waypoint1, waypoint2);
 
             // figure out which waypoint if the top left corner of the rectangle
             let topLeft = direction.equals(Vector2d.down) || direction.equals(Vector2d.right) ? waypoint1 : waypoint2;
@@ -48,14 +40,32 @@ export class Path extends Component {
 
             this.rectangles.push(rectangle);
 
-            // visualize rectangle on game canvas - debug
-            let canvasRectangle = new Composit("pathRectangle");
-            canvasRectangle.addComponent(new SquareRenderer(rectangle.width, rectangle.height, this.pathColor));
-            canvasRectangle.transform.position = rectangle.transform.position;
-            canvasRectangle.addComponent(rectangle);
-            canvasRectangle.addComponent(new PathRectangle())
-            instantiate(canvasRectangle);
+            // create and instantiate path rectangles
+            this.#createCanvasRectangle(rectangle);
         }
+    }
+
+    #getRectangleWidthHeight(direction, waypoint1, waypoint2) {
+        // calculate width and height of rectangle for waypoint1 and waypoint2 - dependent of the direction
+        let width =
+            direction.equals(Vector2d.up) || direction.equals(Vector2d.down)
+                ? this.pathWidth
+                : Math.abs(waypoint2.x - waypoint1.x) + this.pathWidth; // + this.pathWidth to avoid corner gaps
+        let height =
+            direction.equals(Vector2d.left) || direction.equals(Vector2d.right)
+                ? this.pathWidth
+                : Math.abs(waypoint2.y - waypoint1.y) + this.pathWidth; // + this.pathWidth to avoid corner gaps
+
+        return [width, height];
+    }
+
+    #createCanvasRectangle(rectangle) {
+        let canvasRectangle = new Composit("pathRectangle");
+        canvasRectangle.transform.position = rectangle.transform.position;
+        canvasRectangle.addComponent(new SquareRenderer(rectangle.width, rectangle.height, this.pathColor));
+        canvasRectangle.addComponent(rectangle);
+        canvasRectangle.addComponent(new PathRectangle())
+        instantiate(canvasRectangle);
     }
 
     doesOverlapPath(other) {
