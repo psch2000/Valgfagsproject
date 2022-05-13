@@ -61,7 +61,7 @@ export const AppComponent = () => {
         <ShopMenu offset={{x:730, y:75}} rect={App.windowRect}></ShopMenu>
         <GameTitle></GameTitle>
 
-        <WaveButton offset={{x:730, y:420}} rect={App.windowRect}></WaveButton>
+        <WaveButton offset={{x:730, y:420}} rect={App.windowRect} onClick={createEnemy}></WaveButton>
         <MoneyText offset={{x:170, y: 0}} rect={App.windowRect}></MoneyText>
         <HealthText offset={{x:50, y:0}} rect={App.windowRect}></HealthText>
         <WaveText offset={{x: 550, y:0}} rect={App.windowRect}></WaveText>
