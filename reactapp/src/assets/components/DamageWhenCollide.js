@@ -18,6 +18,8 @@ export class DamageWhenCollide extends Component {
         // console.log("projectile damages " + this.classToCollide.name + ": " + this.damage);
         compositToAttack.takeDamage(this.damage);
 
+        if (this.releaseFunction === undefined || this.releaseFunction === null) return;
+
         this.releaseFunction(this.parent);
     }
 }
