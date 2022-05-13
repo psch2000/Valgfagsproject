@@ -288,6 +288,8 @@ export class Game {
     }
 
     removeComposit = (composit) => {
+        composit.transform.position = new Vector2d(-100, -100);
+        composit.isActive = false;
         this.#compositsToRemove.push(composit);
     }
  
