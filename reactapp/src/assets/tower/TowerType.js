@@ -6,7 +6,7 @@ import { TrippleFirePatternBuilder } from "./firePattern/patterns/TrippleFirePat
 
 export class TowerType{
     
-        static blueTower = new TowerType("Blue Tower", 100, '#0000ff', 100, "./images/test_tower.png", 10, 1, new BoomerangFirePatternBuilder());
+        static blueTower = new TowerType("Blue Tower", 30, '#0000ff', 100, "./images/test_tower.png", 10, 1, new BoomerangFirePatternBuilder());
         static redTower = new TowerType("Red Tower", 35, '#ff0000', 200, "./images/test_tower.png", 10, 2, new TrippleFirePatternBuilder());
         static greenTower = new TowerType("Green Tower", 40, '#00ff00', 300, "./images/test_tower.png", 10, 3, new TackShooterFirePatternBuilder());
         static whiteTower = new TowerType("White Tower", 50, '#ffffff', 500, "./images/test_tower.png", 10, 4, new SingleFirePatternBuilder());
