@@ -6,6 +6,8 @@ import { Time } from "../../../base/Time";
 import { RectangleCollider } from "../../../base/baseStructor/collider/RectangleCollider";
 
 export class Enemy extends Component {
+    static count = 0;
+
     constructor(health, damage, attackRange) {
         super();
         this.health = health;
@@ -20,6 +22,9 @@ export class Enemy extends Component {
         this.time = 0;
 
         this.#resetAttackCooldown();
+
+        this.id = Enemy.count;
+        Enemy.count += 1;
     }
 
     isDead() {
