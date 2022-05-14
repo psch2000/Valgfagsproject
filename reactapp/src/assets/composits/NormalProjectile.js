@@ -16,4 +16,10 @@ export class NormalProjectile extends Composit {
         this.addComponent(new OutOfBounceDelete(releaseFunction));
         this.addComponent(new DamageWhenCollide(Enemy, damage, releaseFunction));
     }
+
+    calculateBehavior(speed, direction, tower) {
+        let moveComponent = this.getComponent(MoveDirection);
+        moveComponent.speed = speed;
+        moveComponent.direction = direction;
+    }
 }
