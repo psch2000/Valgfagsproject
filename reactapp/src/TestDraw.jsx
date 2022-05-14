@@ -92,7 +92,7 @@ function circles(noteString, towerPosition, towerRange, enemyPosition, numPoints
 
     let lookDirection = Vector2d.subtract(enemyPosition, towerPosition).normalize();
 
-    let circleOffset = Vector2d.multiply(lookDirection, new Vector2d(towerRange, towerRange));
+    let circleOffset = Vector2d.multiplyNum(lookDirection, towerRange);
     let circleCenter = Vector2d.add(towerPosition, circleOffset);
 
     let points = getPointsOnCircleCircumference(
