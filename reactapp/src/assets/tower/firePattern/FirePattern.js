@@ -80,42 +80,6 @@ export class FirePattern {
         let tower = this.parent.getComponent(Tower);
 
         p.calculateBehavior(this.fireForce, rot.normalize(), tower);
-        // var moveComponent = p.getComponent(Move);
-        // moveComponent.direction = rot.normalize();
-        // moveComponent.speed = this.fireForce;
-
-        // if (p.constructor === BoomerangProjectile) {
-        //     let range = this.parent.getComponent(Tower).towerType.range;
-        //     let lookDirection = rot.normalize();
-
-        //     let circleOffset = Vector2d.multiply(rot.normalize(), new Vector2d(range / 2, range / 2));
-        //     let circleCenter = Vector2d.add(this.parent.transform.position, circleOffset);
-
-        //     let numAngles = 20;
-        //     let angles = getAnglesEquallySpaces(numAngles, false);
-        //     let points = getPointsOnCircleCircumference(
-        //         circleCenter,
-        //         range / 2,
-        //         angles,
-        //         this.parent.transform.position,
-        //         lookDirection,
-        //     );
-
-        //     // add towrs position to be the last point the boomerang projectile moves to
-        //     points.push(this.parent.transform.position);
-
-        //     // let colors = ["#ff0000", "#00ff00", "#0000ff", "yellow", "black"];
-
-        //     // // visualizing points
-        //     // points.forEach((point) => {
-        //     //     let composit = new Composit("testCirclePoint");
-        //     //     composit.addComponent(new CircleRenderer(3, colors[this.testIndex], false));
-        //     //     composit.transform.position = point;
-        //     //     instantiate(composit);
-        //     // });
-
-        //     moveComponent.path = points;
-        // }
     }
 
     #burstFire() {
