@@ -21,10 +21,9 @@ export class TowerType{
         this.price = price;
         this.imagePath = imagePath;
         this.size = size;
-        this.dsbColor = RgbColor.darkenHex(color, 0.5);
-        // this.dsbColor = "#000000";
-        this.firePatternBuilder = firePatternBuilder;
         this.normalColor = color;
+        this.dsbColor = RgbColor.darkenHex(color, 0.5);
+        this.firePatternBuilder = firePatternBuilder;
         this.damage = damage;
     }
 
