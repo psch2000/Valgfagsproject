@@ -19,6 +19,7 @@ export class CircleRenderer extends Component{
         ctx.fill();
 
         if (this.isDrawingOutline == false) return;
+        ctx.strokeStyle = "#ffffff";
         ctx.stroke();
     }
 }
