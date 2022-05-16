@@ -3,8 +3,7 @@ import "../shop/shop.css"
 
 const Styles = [
     "btn--primary--solid",
-    "btn--warning--solid",
-    "btn--danger--solid",
+    "btn--shop--grey--solid",
     "btn--succes--solid",
   ];
 
@@ -20,7 +19,7 @@ const Styles = [
   
     const CheckButtonStyle = Styles.includes(buttonStyle) 
     ? buttonStyle 
-    : Styles[3];
+    : Styles[2];
   
     const CheckButtonSize = Sizes.includes(buttonSize)
     ? buttonSize
