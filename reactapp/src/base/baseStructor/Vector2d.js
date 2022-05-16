@@ -88,4 +88,6 @@ export class Vector2d {
     static left = new Vector2d(-1, 0);
     static down = new Vector2d(0, 1);
     static up = new Vector2d(0, -1);
+    static zero = new Vector2d(0, 0);
+    static one = new Vector2d(1, 1);
 }

@@ -22,6 +22,8 @@ import { Enemy } from "../components/enemy/Enemy";
 import { useForceRerenderer } from "../hooks/useForceRenderer";
 import { MakeMapState } from "./states/initializestates/MakeMapState";
 import { TowerText } from "../components/stats/TowerText";
+import { Player } from "../components/bank/Player";
+import { RestartMenu } from "../components/restart/RestartMenu";
 
 let path = null;
 
@@ -66,6 +68,7 @@ export const AppComponent = () => {
         <HealthText offset={{x:50, y:0}} rect={App.windowRect}></HealthText>
         <WaveText offset={{x: 550, y:0}} rect={App.windowRect}></WaveText>
         <TowerText offset={{x: 750, y:7}} rect={App.windowRect}></TowerText>
+        <RestartMenu offset={{x: 250, y: 230}} rect={App.windowRect}></RestartMenu>
     </div>
 
     
@@ -102,7 +105,7 @@ function placeObjectsOnCanvas() {
 
     let playerBase = new Composit("playerBase");
     playerBase.addComponent(new SquareRenderer(50, 20, "blue"));
-    playerBase.addComponent(new PlayerBase(100));
+    playerBase.addComponent(Player.base);
     playerBase.transform.setPosition(new Vector2d(570, 480));
     instantiate(playerBase);
 }
