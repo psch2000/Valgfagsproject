@@ -20,8 +20,12 @@ export class CircleCollider extends Collider {
         return this.transform.position.y - this.radius;
     }
 
-    getBot(){
+    getBottom(){
         return this.transform.position.y + this.radius;
+    }
+
+    getOrigo(){
+        return this.transform.position;
     }
 
     onDraw(ctx){

@@ -14,7 +14,7 @@ export class Intersect {
         ) {
             throw new Error("use of not supprted classes in Intersect.intersects");
         }
-
+        
         // both Rectangle instances
         if (first.constructor.name === "RectangleCollider" && second.constructor.name === "RectangleCollider") {
             return Intersect.rectangles(first, second);

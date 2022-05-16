@@ -3,13 +3,22 @@ import { Node } from "./Node";
 
 export class BroadPhase{
 
-    constructor(){
+    constructor(ctx){
+        this.endNodes = [];
+        this.ctx = ctx;
+    }
+
+    reset(){
         this.endNodes = [];
     }
 
-    handleNode(node){
+    handleNode(node, i = 0){
+
         var sum = this.#getSum(node);
         var average = this.#getAverage(sum, node);
+
+        // this.drawLine(average,node);
+
 
         var leftNode = this.#getLeftNode(average, node);
         leftNode.xAxis = !node.xAxis;
@@ -20,42 +29,50 @@ export class BroadPhase{
         rightNode.xAxis = !node.xAxis;
         rightNode.prevAverage = average;
 
-        node.addNode(leftNode);
-        node.addNode(rightNode);
+        // node.addNode(leftNode);
+        // node.addNode(rightNode);
 
+        if (i == 3){
+            this.endNodes.push(node);
+            return;
+        }
     
         if (leftNode.colliders.length > 1){
-            if (this.#canLeftContinue(leftNode, rightNode)){
-                this.handleNode(leftNode);
-            }
-            else{
-                this.endNodes.push(leftNode);
-            }
+            this.handleNode(leftNode, i + 1);
         }
         else{
             this.endNodes.push(leftNode);
         }
 
         if (rightNode.colliders.length > 1){
-            if (this.#canRightContinue(leftNode, rightNode)){
-                this.handleNode(rightNode);
-            }
-            else{
-                if (this.#canNotAddeRightNode(leftNode, rightNode) == false) return;
-                this.endNodes.push(rightNode);
-            }
+            this.handleNode(rightNode, i + 1);
         }
         else{
             this.endNodes.push(rightNode);
         }
-       
-        
-
 
     }
 
-    #canNotAddeRightNode(leftNode, rightNode){
-        return this.#canLeftContinue(leftNode, rightNode) == true && this.#canRightContinue(leftNode, rightNode) == false;
+
+    drawLine(average, node){
+
+        this.ctx.strokeStyle = 'red';
+
+        if (node.xAxis == true){
+
+            this.ctx.moveTo(average, node.prevAverage)
+            var height = window.innerHeight;
+            var height = node.isLeftNode ? -height : height;
+            this.ctx.lineTo(average, height);
+            this.ctx.stroke();
+            return;
+        }
+
+        var width = window.innerWidth;
+        var width = node.isLeftNode ? -width : width;
+        this.ctx.moveTo(node.prevAverage, average);
+        this.ctx.lineTo(width, average);
+        this.ctx.stroke();
     }
 
     #canLeftContinue(leftNode, rightNode){
@@ -135,11 +152,11 @@ export class BroadPhase{
 
         for (let i = 0; i < node.colliders.length; i++){
             if (node.xAxis == true) {
-                sum += node.colliders[i].transform.position.x;
+                sum += node.colliders[i].getOrigo().x;
                 continue;
             }
 
-            sum += node.colliders[i].transform.position.y;
+            sum += node.colliders[i].getOrigo().y;
         }
 
         return sum;

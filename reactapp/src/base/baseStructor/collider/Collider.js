@@ -4,16 +4,19 @@ import { Component } from "../Component";
 import { Intersect } from "../Intersect";
 import { Transform } from "../Transform";
 
+export const COLLIDERS = [];
+
 export class Collider extends Component {
     constructor() {
         super();
         this.transform = new Transform();
         this.overlaps = new KeyValuePair();
+        COLLIDERS.push(this);
     }
 
-    onStart(){
-        App.game.addCollider(this);
 
+    getOrigo(){
+        throw new Error('getOrigo() is not defined');
     }
 
     getLeft(){
@@ -27,7 +30,7 @@ export class Collider extends Component {
         throw new Error("top not implemented.");
     }
 
-    getBot(){
+    getBottom(){
         throw new Error("bottom not implemented.");
     }
 

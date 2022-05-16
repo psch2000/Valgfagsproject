@@ -1,3 +1,4 @@
+import { Vector2d } from "../Vector2d";
 import { Collider } from "./Collider";
 
 export class RectangleCollider extends Collider {
@@ -20,8 +21,15 @@ export class RectangleCollider extends Collider {
         return this.transform.position.y;
     }
 
-    getBot(){
+    getBottom(){
         return this.transform.position.y + this.height;
+    }
+
+    getOrigo(){
+
+        var pos = this.transform.position;
+        return new Vector2d(pos.x + this.width/2,pos.y + this.height/2);
+
     }
 
 
