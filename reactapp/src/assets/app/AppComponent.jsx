@@ -22,6 +22,7 @@ import { Enemy } from "../components/enemy/Enemy";
 import { useForceRerenderer } from "../hooks/useForceRenderer";
 import { MakeMapState } from "./states/initializestates/MakeMapState";
 import { TowerText } from "../components/stats/TowerText";
+import { Player } from "../components/bank/Player";
 
 let path = null;
 
@@ -102,7 +103,7 @@ function placeObjectsOnCanvas() {
 
     let playerBase = new Composit("playerBase");
     playerBase.addComponent(new SquareRenderer(50, 20, "blue"));
-    playerBase.addComponent(new PlayerBase(100));
+    playerBase.addComponent(Player.base);
     playerBase.transform.setPosition(new Vector2d(570, 480));
     instantiate(playerBase);
 }
