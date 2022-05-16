@@ -17,12 +17,13 @@ import { WaveButton } from "../components/waveButton/WaveButton";
 import { WaveText } from "../components/stats/WaveText";
 import { App } from "./App";
 import { TowerPlacere } from "../tower/TowerPlacer";
-
 import { PlayerBase } from "../components/PlayerBase";
 import { Enemy } from "../components/enemy/Enemy";
 import { useForceRerenderer } from "../hooks/useForceRenderer";
 import { MakeMapState } from "./states/initializestates/MakeMapState";
+import { TowerText } from "../components/stats/TowerText";
 
+let path = null;
 
 export const AppComponent = () => {
     const init = new StateHandler(new MakeMapState());
@@ -57,20 +58,32 @@ export const AppComponent = () => {
 
     return <div>
         <CanvasComponent canvas={App.canvas}></CanvasComponent>
-        <ShopMenu offset={{x:730, y:75}} rect={App.windowRect}></ShopMenu>
+        <ShopMenu offset={{x:750, y:65}} rect={App.windowRect}></ShopMenu>
         <GameTitle></GameTitle>
 
-        <WaveButton offset={{x:730, y:420}} rect={App.windowRect}></WaveButton>
+        <WaveButton offset={{x:750, y:420}} rect={App.windowRect} onClick={createEnemy}></WaveButton>
         <MoneyText offset={{x:170, y: 0}} rect={App.windowRect}></MoneyText>
         <HealthText offset={{x:50, y:0}} rect={App.windowRect}></HealthText>
         <WaveText offset={{x: 550, y:0}} rect={App.windowRect}></WaveText>
+        <TowerText offset={{x: 750, y:7}} rect={App.windowRect}></TowerText>
     </div>
 
     
 }
 
+function createEnemy() {
+    console.log("create enemy");
+    let enemyComposit = new Composit("enemy");
+    enemyComposit.addComponent(new SquareRenderer(path.pathWidth, path.pathWidth, "red"));
+    enemyComposit.addComponent(new RectangleCollider(path.pathWidth, path.pathWidth, false));
+    enemyComposit.addComponent(new FollowPath(path));
+    enemyComposit.addComponent(new Enemy(100, 20, 60));
+    enemyComposit.transform.position = path.waypoints[0].copy()
+    instantiate(enemyComposit);
+}
+
 function placeObjectsOnCanvas() {
-    let enemyPath = new Path([
+    path = new Path([
         new Vector2d(50, 0),
         new Vector2d(50, 165),
         new Vector2d(215, 165),
@@ -92,12 +105,4 @@ function placeObjectsOnCanvas() {
     playerBase.addComponent(new PlayerBase(100));
     playerBase.transform.setPosition(new Vector2d(570, 480));
     instantiate(playerBase);
-
-    let enemyComposit = new Composit("testEnemy");
-    enemyComposit.addComponent(new SquareRenderer(enemyPath.pathWidth, enemyPath.pathWidth, "red"));
-    enemyComposit.addComponent(new RectangleCollider(enemyPath.pathWidth, enemyPath.pathWidth, false));
-    enemyComposit.addComponent(new FollowPath(enemyPath));
-    enemyComposit.addComponent(new Enemy(100, 20, 60));
-    enemyComposit.transform.position = enemyPath.waypoints[0].copy()
-    instantiate(enemyComposit);
 }

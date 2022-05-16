@@ -6,6 +6,8 @@ import { Time } from "../../../base/Time";
 import { RectangleCollider } from "../../../base/baseStructor/collider/RectangleCollider";
 
 export class Enemy extends Component {
+    static count = 0;
+
     constructor(health, damage, attackRange) {
         super();
         this.health = health;
@@ -20,6 +22,9 @@ export class Enemy extends Component {
         this.time = 0;
 
         this.#resetAttackCooldown();
+
+        this.id = Enemy.count;
+        Enemy.count += 1;
     }
 
     isDead() {
@@ -67,18 +72,25 @@ export class Enemy extends Component {
 
     takeDamage(incomingDamage) {
         this.health -= incomingDamage;
+
+        if (this.isDead()) this.#destroy();
     }
 
     attack(other) {
         other.takeDamage(this.damage);
         this.#resetAttackCooldown();
 
-        App.game.removeComposit(this.parent);
+        this.#destroy();
     }
 
     getCenterPosition() {
         let rectangleCollider = this.parent.getComponent(RectangleCollider);
 
         return Vector2d.add(this.transform.position, new Vector2d(rectangleCollider.width / 2, rectangleCollider.height / 2));
+    }
+
+    #destroy() {
+        this.health = 0;
+        App.game.removeComposit(this.parent);
     }
 }

@@ -24,16 +24,15 @@ export class Tower extends Component{
         this.canFire = false;
 
 
-        this.firePattern = new TackShooterFirePatternBuilder().getProduct();
-
+        this.firePattern = towerType.firePatternBuilder.getProduct();
       
     }
     
     onStart(){
         this.#towerFacade = this.getComponent(TowerFacade);
-        this.firePattern.target = App.game.find("Cursor");
 
         this.firePattern.color = this.towerType.color;
+        this.firePattern.damage = this.towerType.damage;
         this.firePattern.parent = this.parent;
     }
 

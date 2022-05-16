@@ -7,11 +7,12 @@ import { App } from "../app/App";
 import { instantiate } from "../app/functions/instantiate";
 import { CircleRenderer } from "../components/CircleRenderer";
 import { FollowCanvasMouse } from "../components/FollowCanvasMouse";
-import { PathRectangle } from "../components/PathRectangle";
-import { Player } from "../Player";
+import { Player } from "../components/bank/Player";
 import { TowerPool } from "../tower/TowerPool";
 import { TowerFacade } from "./TowerFacade";
 import { TowerRange } from "./TowerRange";
+import { PathRectangle } from "../components/PathRectangle";
+import { DrawIcon } from "../../base/baseStructor/DrawIcon";
 
 export class TowerPlacere extends Component{
 
@@ -54,7 +55,7 @@ export class TowerPlacere extends Component{
         if(other.name === "Map"){
             this.#onMap = false;
         }
-        
+
         if (other.getComponent(PathRectangle) !== null) {
             this.#onPath = false;
         }
@@ -62,23 +63,17 @@ export class TowerPlacere extends Component{
 
     onStart(){
         this.#rangeRenderer = this.parent.addComponent(new CircleRenderer(20, '#030f1191', true));
-        this.#spriteRenderer = this.parent.addComponent(new CircleRenderer(10, 'white', false));
+        this.#spriteRenderer = this.parent.addComponent(new DrawIcon("", true))
         this.#followMouse = this.parent.addComponent(new FollowCanvasMouse());
         this.#collision = this.parent.addComponent(new CircleCollider(1, true));
-        //this.parent.addComponent(new RectangleCollider(10, 10));
-
-        // this.#pathrechtangle = this.parent.addComponent(new PathRectangle());
-
-        // console.log(this.#map.parent)
     }
 
     onUpdate(){
-        // left mouse input
         this.#canPlaceTower = this.#onMap && !this.#onPath;
-
-        if(!this.#canPlaceTower) {this.#spriteRenderer.color = this.#towerType.dsbColor}
-        else { this.#spriteRenderer.color = this.#towerType.normalColor}
-
+        
+        this.#spriteRenderer.color = this.#canPlaceTower ? this.#towerType.normalColor : this.#towerType.dsbColor;
+        
+        // left mouse input
         if(Input.getKeyDown('0')){
             
             if(this.parent.isActive == true){
@@ -99,8 +94,7 @@ export class TowerPlacere extends Component{
 
     setTowerType(towerType){
         this.#rangeRenderer.radius = towerType.range;
-        this.#spriteRenderer.color = towerType.color;
-        this.#spriteRenderer.radius = towerType.radius;
+        this.#spriteRenderer.img.src = towerType.imagePath;
         this.#towerType = towerType;
         this.#collision.radius = towerType.size;        
     }
@@ -108,7 +102,7 @@ export class TowerPlacere extends Component{
     static getInstance(){
 
         if (this.#instance == null){
-            var c = new Composit();
+            let c = new Composit("towerPlacer");
             c.layer = 1;
             this.#instance = c.addComponent(new TowerPlacere());
             instantiate(c);
@@ -116,5 +110,4 @@ export class TowerPlacere extends Component{
 
         return this.#instance;
     }
-
 }

@@ -25,16 +25,16 @@ export class UpdateUIState extends State{
 
 
         //draw icons
-        var HealthIcon = new Composit();
+        var HealthIcon = new Composit("healthIcon");
         HealthIcon.addComponent(new DrawIcon("./images/sprite_heart.png"));
         
-        var MoneyIcon = new Composit();
+        var MoneyIcon = new Composit("moneyIcon");
         MoneyIcon.addComponent(new DrawIcon("./images/sprite_coin.png"));
 
-        var ShopUI = new Composit();
+        var ShopUI = new Composit("shopUI");
         ShopUI.addComponent(new DrawIcon("./images/sprite_shop.png"));
 
-        var MapImage = new Composit();
+        var MapImage = new Composit("mapImage");
         MapImage.addComponent(new DrawIcon("./images/Sprite_map.png"))
 
         // Instantiate:

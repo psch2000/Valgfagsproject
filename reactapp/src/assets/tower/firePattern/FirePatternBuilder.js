@@ -52,7 +52,12 @@ export class FirePatternBuilder {
     }
 
     setIsFollowingTarget(value){
-        this.#firePattern.followTarget = false;
+        this.#firePattern.followTarget = value;
+        return this;
+    }
+
+    setProjectileType(value) {
+        this.#firePattern.projectileType = value;
         return this;
     }
 

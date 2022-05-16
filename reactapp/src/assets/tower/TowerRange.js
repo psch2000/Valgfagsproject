@@ -25,13 +25,14 @@ export class TowerRange extends Component{
             this.#hitCursor = true;
         }
 
+        
         if (other.getComponent(Enemy) == null) return;
+        // console.log(this.enemiesInRange)
 
         this.enemiesInRange.push(other);
     }
 
     onExit(other){
-
         if (other.name == "Cursor"){
             this.#hitCursor = false;
         }
@@ -43,6 +44,27 @@ export class TowerRange extends Component{
         this.enemiesInRange.splice(index, 1);
 
     }
+
+
+    onUpdate() {
+        this.enemiesInRange.forEach((enemy, index) => {
+            if (enemy.getComponent(Enemy).isDead()) {
+                this.enemiesInRange.splice(index, 1);
+                console.log("removed enemy from inRange in TowerRange")
+            }
+        })
+    }
+
+    setRange(value){
+        // this.#circleRenderer.range = value;
+        this.#range = value;
+    }
+
+
+    setIsShowingRange(value){
+        // this.#circleRenderer.setActive(value);
+    }
+
 
 
 
@@ -64,11 +86,9 @@ export class TowerRange extends Component{
             // this.#circleRenderer.setActive(this.#hitCursor);
         }
 
-        if (this.enemiesInRange.length === 0) {
-            this.target = null;
-            return;
-        }
+        if (this.enemiesInRange.length == 0) return;
         this.target = this.enemiesInRange[0];
+        console.log(this.target)
 
 
     }
