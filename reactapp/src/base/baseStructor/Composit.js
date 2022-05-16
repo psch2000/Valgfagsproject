@@ -72,29 +72,29 @@ export class Composit extends Component {
 
     onEnter(other){
         this.#components.forEach(c => {            
-            try {  c.onEnter(other);} 
-            catch{}   
+            try { c.onEnter(other); } 
+            catch (ex) { console.log("An error happened in onEnter: " + ex); }
         });
     }
 
     onOverlap(other){
         this.#components.forEach(c => {            
-            try {  c.onOverlap(other);} 
-            catch{}   
+            try { c.onOverlap(other); } 
+            catch (ex) { console.log("An error happened on onOverlap: " + ex); }
         });
     }
 
     onExit(other){
         this.#components.forEach(c => {            
-            try {  c.onExit(other);} 
-            catch{}   
+            try { c.onExit(other); } 
+            catch (ex) { console.log("An error happened in onExit: " + ex); }
         });
     }
 
     onStart() {  
         this.#components.forEach(c => {            
-            try {  c.onStart();} 
-            catch{}   
+            try { c.onStart(); } 
+            catch (ex) { console.log("An error happened in onStart: " + ex); }
         });
     }
 
@@ -102,8 +102,8 @@ export class Composit extends Component {
         if (this.isActive === false) return;
         this.#components.forEach(c => {
             if (c.isActive == true){
-                try {  c.onUpdate();} 
-                catch{} 
+                try { c.onUpdate(); } 
+                catch (ex) { console.log("An error happened in onUpdate: " + ex); }
             }
         });
     }
@@ -113,7 +113,7 @@ export class Composit extends Component {
         this.#components.forEach(c => {
             if (c.isActive == true){
                 try {c.onDraw(context);} 
-                catch{}
+                catch (ex) { console.log("An error happened in onDraw: " + ex); }
             }       
         });
     }
