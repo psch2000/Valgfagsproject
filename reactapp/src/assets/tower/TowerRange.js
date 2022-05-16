@@ -88,7 +88,7 @@ export class TowerRange extends Component{
 
         if (this.enemiesInRange.length == 0) return;
         this.target = this.enemiesInRange[0];
-        console.log(this.target)
+        // console.log(this.target)
 
 
     }
