@@ -20,9 +20,12 @@ export class PlayerBase extends Component {
 
 
         if (this.isDead()) {
+            console.log(this.health)
             console.log("PLAYER BASE DEAD");
-            App.game.removeComposit(this.parent);
+            this.onSetHealth.invoke();
             this.health = 0;
+
+            App.game.removeComposit(this.parent);
         }
 
         this.onSetHealth.invoke();
