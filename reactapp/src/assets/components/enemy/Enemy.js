@@ -37,7 +37,7 @@ export class Enemy extends Component {
     }
 
     #tryAttack() {
-        if (this.baseToAttack === null) return;
+        if (this.baseToAttack == null) return;
 
         if (this.baseToAttack.isDead()) {
             this.baseToAttack = null;
