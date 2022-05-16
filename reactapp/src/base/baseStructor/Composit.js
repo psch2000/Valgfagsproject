@@ -31,11 +31,13 @@ export class Composit extends Component {
         component.parent = this;
    
         try{
-            component.components.forEach(c => {
+            component.components?.forEach(c => {
                 c.transform = this.transform;
             });
         }
-        catch{}
+        catch (ex){
+            console.log("An error happened in addComponent: " + ex)
+        }
         
 
         if (index == undefined){
