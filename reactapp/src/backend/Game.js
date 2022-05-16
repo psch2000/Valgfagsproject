@@ -253,10 +253,6 @@ export class Game {
         var rootNode = new QuadTreeNode(Vector2d.zero, window.innerWidth, window.innerHeight);
         rootNode.aabbs = COLLIDERS;
         rootNode.handleNode(0);
-        
-
-    
-
                     
         rootNode.leafNodes.forEach(leaf => {
 
