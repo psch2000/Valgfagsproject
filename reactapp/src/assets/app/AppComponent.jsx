@@ -75,7 +75,7 @@ function createEnemy() {
     console.log("create enemy");
     let enemyComposit = new Composit("enemy");
     enemyComposit.addComponent(new SquareRenderer(path.pathWidth, path.pathWidth, "red"));
-    enemyComposit.addComponent(new RectangleCollider(path.pathWidth, path.pathWidth, false));
+    enemyComposit.addComponent(new RectangleCollider(path.pathWidth, path.pathWidth, true));
     enemyComposit.addComponent(new FollowPath(path));
     enemyComposit.addComponent(new Enemy(100, 20, 60));
     enemyComposit.transform.position = path.waypoints[0].copy()
