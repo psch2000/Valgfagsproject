@@ -21,7 +21,7 @@ class WaveSystem {
     }
 
     initialize() {
-        path.createRectanglesOnPath();
+        this.path.createRectanglesOnPath();
     }
 
     async nextRound() {
@@ -53,7 +53,7 @@ class WaveSystem {
     spawnEnemy(enemyHealth, enemyDamage) {
         let enemyComposit = new Composit("enemy" + this.enemiesSpawnedTotal);
         enemyComposit.addComponent(new DrawIcon("", true))
-        enemyComposit.addComponent(new CircleCollider(path.pathWidth/2, true));
+        enemyComposit.addComponent(new CircleCollider(this.path.pathWidth / 2, true));
         enemyComposit.addComponent(new FollowPath(this.path, 1, true));
         enemyComposit.addComponent(new Enemy(enemyHealth, enemyDamage, 60, this.enemyDead));
         enemyComposit.transform.position = this.path.waypoints[0].copy()
