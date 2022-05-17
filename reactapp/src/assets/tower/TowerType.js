@@ -6,23 +6,23 @@ import { TrippleFirePatternBuilder } from "./firePattern/patterns/TrippleFirePat
 
 export class TowerType{
     
-        static blueTower = new TowerType("Monkey", 100, '#0000ff', 170, "./images/sprite_monkey1.png", 15, 1, new BoomerangFirePatternBuilder());
-        static redTower = new TowerType("Boomerang", 120, '#ff0000', 275, "./images/sprite_monkey2.png", 15, 2, new TrippleFirePatternBuilder());
-        static greenTower = new TowerType("Ice Monkey", 80, '#00ff00', 450, "./images/sprite_monkey3.png", 15, 3, new TackShooterFirePatternBuilder());
-        static whiteTower = new TowerType("Tack Shooter", 100, '#ffffff', 240, "./images/sprite_monkey4.png", 15, 4, new SingleFirePatternBuilder());
-        static yellowTower = new TowerType("Bomb Shooter", 100, '#ffff00', 445, "./images/sprite_monkey5.png", 15, 5, new TrippleFirePatternBuilder());
-        static orangeTower = new TowerType("Super Monkey", 180, '#ffa500', 2125, "./images/sprite_monkey6.png", 15, 6, new TackShooterFirePatternBuilder());
+        static blueTower = new TowerType("Monkey", 100, "./images/sprite_ball_tennis.png", 170, "./images/sprite_monkey1.png", 15, 1, new BoomerangFirePatternBuilder());
+        static redTower = new TowerType("Boomerang", 120, "./images/sprite_ball_tennis.png", 275, "./images/sprite_monkey2.png", 15, 1, new TrippleFirePatternBuilder());
+        static greenTower = new TowerType("Ice Monkey", 80, "./images/sprite_ball_tennis.png", 450, "./images/sprite_monkey3.png", 15, 1, new TackShooterFirePatternBuilder());
+        static whiteTower = new TowerType("Tack Shooter", 100, "./images/sprite_nail.png", 240, "./images/sprite_monkey4.png", 15, 1, new SingleFirePatternBuilder());
+        static yellowTower = new TowerType("Bomb Shooter", 100, "./images/sprite_ball_tennis.png", 445, "./images/sprite_monkey5.png", 15, 1, new TrippleFirePatternBuilder());
+        static orangeTower = new TowerType("Super Monkey", 180, "./images/sprite_ball_baseball.png", 2125, "./images/sprite_monkey6.png", 15, 1, new TackShooterFirePatternBuilder());
 
-    constructor(name, range, color, price, imagePath, size, damage, firePatternBuilder){
+    constructor(name, range, projectileImagePath, price, imagePath, size, damage, firePatternBuilder){
         this.name = name;
         this.radius = size;
         this.range = range;
-        this.color = color;
+        this.projectileImagePath = projectileImagePath;
         this.price = price;
         this.imagePath = imagePath;
         this.size = size;
-        this.normalColor = color;
-        this.dsbColor = RgbColor.darkenHex(color, 0.5);
+        //this.normalColor = color;
+        //this.dsbColor = RgbColor.darkenHex(color, 0.5);
         this.firePatternBuilder = firePatternBuilder;
         this.damage = damage;
     }

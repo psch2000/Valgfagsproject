@@ -29,6 +29,7 @@ export class Composit extends Component {
     addComponent(component, index){
         component.transform = this.transform;
         component.parent = this;
+        
    
         try{
             component.components?.forEach(c => {
@@ -84,6 +85,13 @@ export class Composit extends Component {
             try { c.onOverlap(other); } 
             catch (ex) { console.log("An error happened in onOverlap - " + c.constructor.name + ": " + ex); }
         });
+    }
+
+    onDestroy(){
+        this.#components.forEach(c => {
+            try {c.onDestroy();}
+            catch {}
+        })
     }
 
     onExit(other){
