@@ -33,6 +33,7 @@ export class UpdateUIState extends State{
 
         var ShopUI = new Composit("shopUI");
         ShopUI.addComponent(new DrawIcon("./images/sprite_shop.png"));
+        ShopUI.layer = 1;
 
         var MapImage = new Composit("mapImage");
         MapImage.addComponent(new DrawIcon("./images/Sprite_map.png"))

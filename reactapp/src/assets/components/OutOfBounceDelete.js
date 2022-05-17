@@ -33,7 +33,7 @@ export class OutOfBounceDelete extends Component {
             collider.type === "CircleCollider" ? this.transform.position.y - collider.radius : this.transform.position.y;
 
         // if out of bounce
-        if (rightSide < 0 || leftSide > App.windowRect.width || bottomSide < 0 || topSide > App.windowRect.height) {
+        if (rightSide < 0 || leftSide > App.windowRect.width - 290 || bottomSide < 0 || topSide > App.windowRect.height) {
             this.releaseCallback(this.parent);
         }
     }
