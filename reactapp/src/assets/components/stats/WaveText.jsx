@@ -19,7 +19,7 @@ export const WaveText = ({textStyle, rect, offset}) => {
     ? textStyle
     : Styles[0];
 
-    return <p style={style} className={`WaveInfo ${CheckTextStyle}`}>
+    return <p style={style} className={`WaveInfo ${CheckTextStyle} noselect`}>
     {"ROUND " + WAVE}
     </p>
 }

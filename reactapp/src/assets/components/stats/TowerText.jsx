@@ -25,7 +25,7 @@ export const TowerText = ({ textStyle, rect, offset }) => {
     const CheckTextStyle = Styles.includes(textStyle) ? textStyle : Styles[0];
 
     return (
-        <p style={style} className={`TowerText ${CheckTextStyle}`}>
+        <p style={style} className={`TowerText ${CheckTextStyle} noselect`}>
             {TowerTextObj.towerText}
             {/* {console.log("hover")} */}
         </p>

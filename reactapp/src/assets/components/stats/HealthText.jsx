@@ -30,7 +30,7 @@ export const HealthText = ({textStyle, rect, offset}) => {
     ? textStyle
     : Styles[0];
 
-    return <p style={style} className={`HealthInfo ${CheckTextStyle}`}>
+    return <p style={style} className={`HealthInfo ${CheckTextStyle} noselect`}>
     {Player.base.health}
     </p>
 }
