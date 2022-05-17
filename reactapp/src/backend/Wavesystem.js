@@ -34,7 +34,7 @@ class WaveSystem {
         this.onWaveChange.invoke();
 
         for (let index = 0; index < this.round; index++) {
-            this.spawnEnemy(8, 1);
+            this.spawnEnemy(8);
             await sleep(1000);
         }
     }
@@ -50,12 +50,12 @@ class WaveSystem {
         this.onWaveChange.invoke();
     }
 
-    spawnEnemy(enemyHealth, enemyDamage) {
+    spawnEnemy(enemyHealth) {
         let enemyComposit = new Composit("enemy" + this.enemiesSpawnedTotal);
         enemyComposit.addComponent(new DrawIcon("", true))
         enemyComposit.addComponent(new CircleCollider(this.path.pathWidth / 2, true));
         enemyComposit.addComponent(new FollowPath(this.path, 1, true));
-        enemyComposit.addComponent(new Enemy(enemyHealth, enemyDamage, 60, this.enemyDead));
+        enemyComposit.addComponent(new Enemy(enemyHealth, this.enemyDead));
         enemyComposit.transform.position = this.path.waypoints[0].copy()
         instantiate(enemyComposit);
 
