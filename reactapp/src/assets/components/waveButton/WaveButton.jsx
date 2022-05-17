@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { waveSystem } from "../../../backend/Wavesystem";
+import { useForceRerenderer } from "../../hooks/useForceRenderer";
 import "../shop/shop.css"
 
 const Styles = [
@@ -17,9 +19,21 @@ const Styles = [
     offset
   }) => {
   
-    const CheckButtonStyle = Styles.includes(buttonStyle) 
-    ? buttonStyle 
-    : Styles[2];
+    const rerender = useForceRerenderer();
+
+    useEffect(() => {
+      waveSystem.onWaveChange.addListener(onWaveChange)
+    }, [])
+
+    function onWaveChange() {
+      rerender();
+    }
+
+    // const CheckButtonStyle = Styles.includes(buttonStyle) 
+    // ? buttonStyle 
+    // : Styles[2];
+
+    const CheckButtonStyle = waveSystem.isWaveActive ? Styles[1] : Styles[2];
   
     const CheckButtonSize = Sizes.includes(buttonSize)
     ? buttonSize
