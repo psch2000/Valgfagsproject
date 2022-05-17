@@ -5,5 +5,4 @@ export class PathRectangle extends Component {
     constructor(){
         super()
     }
-    
 }
