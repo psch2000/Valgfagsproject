@@ -48,7 +48,7 @@ const Styles = [
       <button style={style}
         className={`btn ${CheckButtonStyle} ${CheckButtonSize}`} onClick={onClick}>
           <div className="waveContainer">
-            <img className="waveIcon" src="./images/sprite_play.png"></img>
+            <img draggable={false} className="waveIcon noselect" src="./images/sprite_play.png"></img>
           </div>
       </button>
     )
