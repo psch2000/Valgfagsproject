@@ -1,6 +1,6 @@
 import { Composit } from "../base/baseStructor/Composit";
-import { SquareRenderer } from "../assets/components/SquareRenderer";
-import { RectangleCollider } from "../base/baseStructor/collider/RectangleCollider";
+import { DrawIcon } from "../base/baseStructor/DrawIcon";
+import { CircleCollider } from "../base/baseStructor/collider/CircleCollider";
 import { FollowPath } from "../assets/components/enemy/FollowPath";
 import { Enemy } from "../assets/components/enemy/Enemy";
 import { instantiate } from "../assets/app/functions/instantiate";
@@ -34,7 +34,7 @@ class WaveSystem {
         this.onWaveChange.invoke();
 
         for (let index = 0; index < this.round; index++) {
-            this.spawnEnemy(10, 1);
+            this.spawnEnemy(8, 1);
             await sleep(1000);
         }
     }
@@ -52,9 +52,9 @@ class WaveSystem {
 
     spawnEnemy(enemyHealth, enemyDamage) {
         let enemyComposit = new Composit("enemy" + this.enemiesSpawnedTotal);
-        enemyComposit.addComponent(new SquareRenderer(this.path.pathWidth, this.path.pathWidth, "red"));
-        enemyComposit.addComponent(new RectangleCollider(this.path.pathWidth, this.path.pathWidth, true));
-        enemyComposit.addComponent(new FollowPath(this.path));
+        enemyComposit.addComponent(new DrawIcon("", true))
+        enemyComposit.addComponent(new CircleCollider(path.pathWidth/2, true));
+        enemyComposit.addComponent(new FollowPath(this.path, 1, true));
         enemyComposit.addComponent(new Enemy(enemyHealth, enemyDamage, 60, this.enemyDead));
         enemyComposit.transform.position = this.path.waypoints[0].copy()
         instantiate(enemyComposit);
