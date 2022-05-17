@@ -8,16 +8,13 @@ import { DamageWhenCollide } from "../components/DamageWhenCollide";
 import { Enemy } from "../components/enemy/Enemy";
 import { getAnglesEquallySpaces, getPointsOnCircleCircumference } from "../../base/baseStructor/CircleFunctions";
 import { DrawIcon } from "../../base/baseStructor/DrawIcon";
+import { Projectile } from "./Projectile";
 
-export class BoomerangProjectile extends Composit {
+export class BoomerangProjectile extends Projectile {
     constructor(radius, imagepath, damage, releaseFunction) {
-        super("projectile");
-        // this.addComponent(new CircleRenderer(radius, color, false));
-        this.addComponent(new DrawIcon(imagepath, true))
+        super(radius, imagepath, damage, releaseFunction);
+
         this.addComponent(new MovePath(new Vector2d(0, 0), 1, releaseFunction));
-        this.addComponent(new CircleCollider(radius));
-        this.addComponent(new OutOfBounceDelete(releaseFunction));
-        this.addComponent(new DamageWhenCollide(Enemy, damage, releaseFunction));
     }
 
     calculateBehavior(speed, direction, tower) {
