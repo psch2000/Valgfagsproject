@@ -4,6 +4,7 @@ import { Vector2d } from "../../../base/baseStructor/Vector2d";
 import { PlayerBase } from "../PlayerBase";
 import { Time } from "../../../base/Time";
 import { RectangleCollider } from "../../../base/baseStructor/collider/RectangleCollider";
+import { AudioManager } from "../../../sound/AudioManager";
 
 export class Enemy extends Component {
     static count = 0;
@@ -90,6 +91,7 @@ export class Enemy extends Component {
     }
 
     #destroy() {
+        AudioManager.play('pop');
         this.health = 0;
         App.game.removeComposit(this.parent);
     }

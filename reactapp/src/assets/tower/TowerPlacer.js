@@ -13,6 +13,7 @@ import { TowerFacade } from "./TowerFacade";
 import { TowerRange } from "./TowerRange";
 import { PathRectangle } from "../components/PathRectangle";
 import { DrawIcon } from "../../base/baseStructor/DrawIcon";
+import { AudioManager } from "../../sound/AudioManager";
 
 export class TowerPlacere extends Component{
 
@@ -75,7 +76,7 @@ export class TowerPlacere extends Component{
         
         // left mouse input
         if(Input.getKeyDown('0')){
-            
+
             if(this.parent.isActive == true){
                 
                 if(this.#canPlaceTower == false) return;

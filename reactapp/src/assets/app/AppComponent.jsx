@@ -24,6 +24,7 @@ import { MakeMapState } from "./states/initializestates/MakeMapState";
 import { TowerText } from "../components/stats/TowerText";
 import { Player } from "../components/bank/Player";
 import { RestartMenu } from "../components/restart/RestartMenu";
+import { AudioManager } from "../../sound/AudioManager";
 
 let path = null;
 
@@ -33,7 +34,7 @@ export const AppComponent = () => {
 
     useEffect(() =>{
 
-       
+        AudioManager.addSound("pop", "pop.wav");
         init.execute();
         OnEndResize.addListener(onEndResize, 0);
         App.run();
@@ -80,7 +81,7 @@ function createEnemy() {
     enemyComposit.addComponent(new SquareRenderer(path.pathWidth, path.pathWidth, "red"));
     enemyComposit.addComponent(new RectangleCollider(path.pathWidth, path.pathWidth, true));
     enemyComposit.addComponent(new FollowPath(path));
-    enemyComposit.addComponent(new Enemy(100, 20, 60));
+    enemyComposit.addComponent(new Enemy(1, 20, 60));
     enemyComposit.transform.position = path.waypoints[0].copy()
     instantiate(enemyComposit);
 }
