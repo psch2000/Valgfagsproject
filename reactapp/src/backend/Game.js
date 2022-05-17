@@ -65,12 +65,8 @@ export class Game {
 
             this.#frame++;
 
-            if (this.#frame == 2){
-                
-                // this.#checkCollision();
-                this.#quadTreeCollision();
-                this.#frame = 0;
-            }
+            this.#quadTreeCollision();
+
       
         }, 10)
 
@@ -82,9 +78,13 @@ export class Game {
         if (this.#compositsToRemove.length === 0) return;
 
         this.#compositLayers.forEach(layer => {
-            layer.forEach((component, componentIndex) => {
+            layer.forEach((composit, compositIndex) => {
                 this.#compositsToRemove.forEach(compositToRemove => {
-                    if (component === compositToRemove) {console.log("Removed composit: " + compositToRemove.name); layer.splice(componentIndex, 1)};
+                    if (composit === compositToRemove) {
+                        composit.onDestroy();
+                        console.log("Removed composit: " + compositToRemove.name); 
+                        layer.splice(compositIndex, 1)
+                    };
                 })
             })
         })
@@ -256,37 +256,20 @@ export class Game {
                     
         rootNode.leafNodes.forEach(leaf => {
 
-            for (let i = 0; i < leaf.aabbs.length; i++){
-
+            var length = leaf.aabbs.length;
+            for (let i = 0; i < length; i++){
                 var c = leaf.aabbs[i];
+                if (c.parent.isActive === false) continue;
 
-                for (let j = 0; j < leaf.aabbs.length; j++){
+                for (let j = 0; j < length; j++){
+                    if (i === j) continue;
 
-                    if (i == j) continue;
                     var other = leaf.aabbs[j];
+                    if (other.parent.isActive === false) continue;
+                    if (c.doesOverlap(other) === false) continue;
 
-                    var pair = c.overlaps;
-
-                    if (c.doesOverlap(other)){
-                        if (pair.hasKey(other) == false){
-                            pair.addKeyValue(other, false);
-                        }
-
-                        if (pair.getValue(other) == false){
-                            c.parent.onEnter(other.parent);
-                            pair.setValue(other, true);
-                            continue;
-                        }
-
-                        c.parent.onOverlap(other.parent);
-                        continue;
-                    }
-
-                    if (pair.hasKey(other) == false) continue;
-                    if (pair.getValue(other) == false) continue;
-                    c.parent.onExit(other.parent);
-                    pair.setValue(other, false);
-
+                    c.onIntersect(other);
+                    c.parent.onOverlap(other.parent);
                 }
             }
 
@@ -371,7 +354,6 @@ export class Game {
 
     addComposit(composit){
         this.#compositsToInstantiate.push(composit);
-        this.#composits.push(composit); 
     }
 
     removeComposit = (composit) => {

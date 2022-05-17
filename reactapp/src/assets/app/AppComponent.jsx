@@ -33,7 +33,7 @@ export const AppComponent = () => {
 
     useEffect(() =>{
 
-
+       
         init.execute();
         OnEndResize.addListener(onEndResize, 0);
         App.run();
