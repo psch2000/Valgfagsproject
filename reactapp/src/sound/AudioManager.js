@@ -21,7 +21,6 @@ export class AudioManager{
 
         var audioSources = this.#audioSourceArrays[name];
 
-        console.log(audioSources)
         for (let i = 0; i < audioSources.length; i++){
 
             var a = audioSources[i];
