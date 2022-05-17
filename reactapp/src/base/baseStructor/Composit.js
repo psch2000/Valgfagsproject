@@ -31,11 +31,13 @@ export class Composit extends Component {
         component.parent = this;
    
         try{
-            component.components.forEach(c => {
+            component.components?.forEach(c => {
                 c.transform = this.transform;
             });
         }
-        catch{}
+        catch (ex){
+            console.log("An error happened in addComponent: " + ex)
+        }
         
 
         if (index == undefined){
@@ -72,29 +74,29 @@ export class Composit extends Component {
 
     onEnter(other){
         this.#components.forEach(c => {            
-            try {  c.onEnter(other);} 
-            catch{}   
+            try { c.onEnter(other); } 
+            catch (ex) { console.log("An error happened in onEnter - " + c.constructor.name + ": " + ex); }
         });
     }
 
     onOverlap(other){
         this.#components.forEach(c => {            
-            try {  c.onOverlap(other);} 
-            catch{}   
+            try { c.onOverlap(other); } 
+            catch (ex) { console.log("An error happened in onOverlap - " + c.constructor.name + ": " + ex); }
         });
     }
 
     onExit(other){
         this.#components.forEach(c => {            
-            try {  c.onExit(other);} 
-            catch{}   
+            try { c.onExit(other); } 
+            catch (ex) { console.log("An error happened in onExit - " + c.constructor.name + ": " + ex); }
         });
     }
 
     onStart() {  
         this.#components.forEach(c => {            
-            try {  c.onStart();} 
-            catch{}   
+            try { c.onStart(); } 
+            catch (ex) { console.log("An error happened in onStart - " + c.constructor.name + ": " + ex); }
         });
     }
 
@@ -102,8 +104,8 @@ export class Composit extends Component {
         if (this.isActive === false) return;
         this.#components.forEach(c => {
             if (c.isActive == true){
-                try {  c.onUpdate();} 
-                catch{} 
+                try { c.onUpdate(); } 
+                catch (ex) { console.log("An error happened in onUpdate - " + c.constructor.name + ": " + ex); }
             }
         });
     }
@@ -113,7 +115,7 @@ export class Composit extends Component {
         this.#components.forEach(c => {
             if (c.isActive == true){
                 try {c.onDraw(context);} 
-                catch{}
+                catch (ex) { console.log("An error happened in onDraw - " + c.constructor.name + ": " + ex); }
             }       
         });
     }

@@ -1,6 +1,6 @@
 import { Component } from "../../base/baseStructor/Component";
 import { SquareRenderer } from "./SquareRenderer";
-
+import { Vector2d } from "../../base/baseStructor/Vector2d";
 
 export class Map extends Component {
 
@@ -23,6 +23,7 @@ export class Map extends Component {
 
     onStart(){
         this.parent.addComponent(this.#squareRenderer);
+        this.parent.transform.position = new Vector2d(this.#rectangle.x, this.#rectangle.y);
     }
 
     

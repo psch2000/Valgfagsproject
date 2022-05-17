@@ -66,11 +66,9 @@ export class Tower extends Component{
         this.firePattern.target = null;
 
 
-        if (enemies.length == 0) return;
+        if (enemies.length === 0) return;
 
         this.firePattern.target = enemies[0];
-
-
     }
 
 }

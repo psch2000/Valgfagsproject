@@ -62,6 +62,14 @@ export class Vector2d {
         return new Vector2d(first.x / second.x, first.y / second.y);
     }
 
+    static addNum(vector, number) {
+        return new Vector2d(vector.x + number, vector.y + number);
+    }
+
+    static subtractNum(vector, number) {
+        return new Vector2d(vector.x - number, vector.y - number);
+    }
+
     static multiplyNum(vector, number) {
         return new Vector2d(vector.x * number, vector.y * number);
     }
