@@ -7,7 +7,7 @@ import { RectangleCollider } from "../../../base/baseStructor/collider/Rectangle
 import { Player } from "../bank/Player";
 import { DrawIcon } from "../../../base/baseStructor/DrawIcon";
 import { TackShooterFirePatternBuilder } from "../../tower/firePattern/patterns/TackShooterFirePatternBuilder";
-import { CircleCollider } from "../../../base/baseStructor/collider/CircleCollider";
+import { Collider } from "../../../base/baseStructor/collider/Collider";
 
 export class Enemy extends Component {
     static count = 0;
@@ -52,10 +52,18 @@ export class Enemy extends Component {
         return this.currentHealth <= 0;
     }
 
-    onUpdate() {
-        this.#getBaseToAttack();
-        this.#tryAttack();
+    onEnter(other) {
+        if (other.name !== "playerBase") return;
+
+        let playerBase = other.getComponent(PlayerBase);
+
+        this.attack(playerBase);
     }
+
+    // onUpdate() {
+    //     this.#getBaseToAttack();
+    //     this.#tryAttack();
+    // }
 
     #tryAttack() {
         if (this.baseToAttack == null) return;
@@ -105,6 +113,7 @@ export class Enemy extends Component {
     }
 
     attack(other) {
+        console.log(other)
         this.damage = this.currentHealth;
         other.takeDamage(this.damage);
         this.#resetAttackCooldown();
@@ -113,14 +122,12 @@ export class Enemy extends Component {
     }
 
     getCenterPosition() {
+        let collider = this.parent.getComponent(Collider);
 
+        let offsetX = collider instanceof RectangleCollider ? collider.width / 2 : 0;
+        let offsetY = collider instanceof RectangleCollider ? collider.height / 2 : 0;
 
-        let collider = this.parent.getComponent(RectangleCollider) ? this.parent.getComponent(RectangleCollider) : this.parent.getComponent(CircleCollider);
-
-        let width = collider.constructor.name === "RectangleCollider" ? collider.width : collider.radius;
-        let height = collider.constructor.name === "RectangleCollider" ? collider.height : collider.radius;
-        
-        return Vector2d.add(this.transform.position, new Vector2d(width / 2, height / 2));
+        return Vector2d.add(this.transform.position, new Vector2d(offsetX, offsetY));
     }
 
     #destroy() {
