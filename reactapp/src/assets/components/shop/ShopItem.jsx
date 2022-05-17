@@ -70,7 +70,7 @@ export const ShopButton = ({
         disabled={disable}
       >
         <div className="shopInfo">
-            <img className="shopImage" src={towerType.imagePath}></img>
+            <img draggable={false} className="shopImage" src={towerType.imagePath}></img>
             <p className="shopPrice">{towerType.price}$</p>
         </div>
       </button>
