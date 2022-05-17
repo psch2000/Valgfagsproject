@@ -37,6 +37,7 @@ export class TowerPlacere extends Component{
             this.#canPlaceTower = false;
         }
         this.#unplaceable = true;
+        this.#onMap = false;
     }
 
     onEnter(other){
@@ -72,7 +73,7 @@ export class TowerPlacere extends Component{
 
     onUpdate(){
         this.#canPlaceTower = this.#onMap && !this.#unplaceable;
-        console.log("Unplaceable: " + this.#unplaceable)
+        //console.log("Unplaceable: " + this.#unplaceable)
 
         this.#spriteRenderer.color = this.#canPlaceTower ? this.#towerType.normalColor : this.#towerType.dsbColor;
         
@@ -85,8 +86,9 @@ export class TowerPlacere extends Component{
                 var c = TowerPool.getInstance().acquireReuseable();
                 c.transform.setPosition(this.transform.position);
                 Player.bank.remove(this.#towerType.price);
+                this.#onMap = false;
                 this.parent.setActive(false);
-                this.#canPlaceTower = false;
+                
             }
         }
     }
