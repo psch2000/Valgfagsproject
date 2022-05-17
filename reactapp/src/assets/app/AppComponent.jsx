@@ -79,11 +79,10 @@ export const AppComponent = () => {
 function createEnemy() {
     console.log("create enemy");
     let enemyComposit = new Composit("enemy");
-    //enemyComposit.addComponent(new SquareRenderer(path.pathWidth, path.pathWidth, "red"));
-    enemyComposit.addComponent(new DrawIcon("./images/sprite_ball_red.png", true))
+    enemyComposit.addComponent(new DrawIcon("", true))
     enemyComposit.addComponent(new CircleCollider(path.pathWidth/2, true));
     enemyComposit.addComponent(new FollowPath(path, 1,true));
-    enemyComposit.addComponent(new Enemy(7, 20, 60));
+    enemyComposit.addComponent(new Enemy(8, 20, 60));
     enemyComposit.transform.position = path.waypoints[0].copy()
     instantiate(enemyComposit);
 }

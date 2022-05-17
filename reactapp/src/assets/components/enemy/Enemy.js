@@ -6,6 +6,8 @@ import { Time } from "../../../base/Time";
 import { RectangleCollider } from "../../../base/baseStructor/collider/RectangleCollider";
 import { Player } from "../bank/Player";
 import { DrawIcon } from "../../../base/baseStructor/DrawIcon";
+import { TackShooterFirePatternBuilder } from "../../tower/firePattern/patterns/TackShooterFirePatternBuilder";
+import { CircleCollider } from "../../../base/baseStructor/collider/CircleCollider";
 
 export class Enemy extends Component {
     static count = 0;
@@ -20,12 +22,13 @@ export class Enemy extends Component {
             "./images/sprite_ball_red.png",
             "./images/sprite_ball_blue.png",
             "./images/sprite_ball_green.png",
+            "./images/sprite_ball_yellow.png",
+            "./images/sprite_ball_pink.png",
             "./images/sprite_ball_black.png",
-            "./images/sprite_ball_red.png",
-            "./images/sprite_ball_red.png",
-            "./images/sprite_ball_red.png"
+            "./images/sprite_ball_purple.png",
+            "./images/sprite_ball_white.png"
         ];
-
+        
         this.baseToAttack = null;
 
         // cooldown in seconds
@@ -37,6 +40,10 @@ export class Enemy extends Component {
 
         this.id = Enemy.count;
         Enemy.count += 1;
+    }
+
+    onStart(){
+        this.parent.getComponent(DrawIcon).img.src = this.imagePaths[this.currentHealth-1];
     }
 
     isDead() {
@@ -83,10 +90,12 @@ export class Enemy extends Component {
     }
 
     takeDamage(incomingDamage) {
+        
         this.currentHealth -= incomingDamage;
         
         let drawIconComponent = this.parent.getComponent(DrawIcon);
-        drawIconComponent.Component.img.src = this.imagePaths[this.currentHealth];
+        
+        drawIconComponent.img.src = this.imagePaths[this.currentHealth-1];
 
         Player.bank.add(1);
         
@@ -102,9 +111,14 @@ export class Enemy extends Component {
     }
 
     getCenterPosition() {
-        let rectangleCollider = this.parent.getComponent(RectangleCollider);
 
-        return Vector2d.add(this.transform.position, new Vector2d(rectangleCollider.width / 2, rectangleCollider.height / 2));
+
+        let collider = this.parent.getComponent(RectangleCollider) ? this.parent.getComponent(RectangleCollider) : this.parent.getComponent(CircleCollider);
+
+        let width = collider.constructor.name === "RectangleCollider" ? collider.width : collider.radius;
+        let height = collider.constructor.name === "RectangleCollider" ? collider.height : collider.radius;
+        
+        return Vector2d.add(this.transform.position, new Vector2d(width / 2, height / 2));
     }
 
     #destroy() {
