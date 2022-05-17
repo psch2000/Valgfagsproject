@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { AppComponent } from './assets/app/AppComponent';
+import { TestDraw } from './TestDraw';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
-root.render(<AppComponent></AppComponent>);
+root.render(<AppComponent />);

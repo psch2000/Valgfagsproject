@@ -22,18 +22,19 @@ export class TowerPlacere extends Component{
     #rangeRenderer;
     #spriteRenderer;
     #followMouse;
-    #pathrechtangle
-    #collision
-    #onMap
-    #onPath
+    #pathrechtangle;
+    #collision;
+    #onMap;
+    #onPath;
     #canPlaceTower;
     #towerType;
 
     constructor(){
-        if (TowerPlacere.#instance !== undefined) return
-        super();
-        this.#map = App.game.find("Map").getComponent(Map);
-        this.#onPath = false;
+        if (TowerPlacere.#instance == null){
+            super();
+            this.#map = App.game.find("Map").getComponent(Map);
+            this.#canPlaceTower = false;
+        }
     }
 
     onEnter(other){
@@ -44,11 +45,9 @@ export class TowerPlacere extends Component{
 
     onOverlap(other){
         if (other.name === "projectile") return;
+
         if (other.getComponent(PathRectangle) !== null) {
             this.#onPath = true;
-        }
-        else {
-            this.#onPath = false;
         }
     }
 
@@ -58,34 +57,29 @@ export class TowerPlacere extends Component{
         }
 
         if (other.getComponent(PathRectangle) !== null) {
-
             this.#onPath = false;
         }
-       
     }
 
     onStart(){
         this.#rangeRenderer = this.parent.addComponent(new CircleRenderer(20, '#030f1191', true));
         this.#spriteRenderer = this.parent.addComponent(new DrawIcon("", true))
         this.#followMouse = this.parent.addComponent(new FollowCanvasMouse());
-        this.#collision = this.parent.addComponent(new CircleCollider(1));
-        //this.parent.addComponent(new RectangleCollider(10, 10));
-
-        this.#pathrechtangle = this.parent.addComponent(new PathRectangle());
+        this.#collision = this.parent.addComponent(new CircleCollider(1, true));
     }
 
     onUpdate(){
-        // left mouse input
         this.#canPlaceTower = this.#onMap && !this.#onPath;
-
-        if(!this.#canPlaceTower) {this.#spriteRenderer.color = this.#towerType.dsbColor}
-        else { this.#spriteRenderer.color = this.#towerType.normalColor}
-
+        
+        this.#spriteRenderer.color = this.#canPlaceTower ? this.#towerType.normalColor : this.#towerType.dsbColor;
+        
+        // left mouse input
         if(Input.getKeyDown('0')){
+            
             if(this.parent.isActive == true){
+                
                 if(this.#canPlaceTower == false) return;
                 var c = TowerPool.getInstance().acquireReuseable();
-               var a = c.getComponent(TowerFacade);
                 c.transform.setPosition(this.transform.position);
                 Player.bank.remove(this.#towerType.price);
                 this.parent.setActive(false);
@@ -105,11 +99,10 @@ export class TowerPlacere extends Component{
         this.#collision.radius = towerType.size;        
     }
 
-
     static getInstance(){
 
-        if (this.#instance === undefined) {
-            var c = new Composit();
+        if (this.#instance == null){
+            let c = new Composit("towerPlacer");
             c.layer = 1;
             this.#instance = c.addComponent(new TowerPlacere());
             instantiate(c);
@@ -117,5 +110,4 @@ export class TowerPlacere extends Component{
 
         return this.#instance;
     }
-
 }
