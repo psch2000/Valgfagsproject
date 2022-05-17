@@ -113,7 +113,6 @@ export class Enemy extends Component {
     }
 
     attack(other) {
-        console.log(other)
         this.damage = this.currentHealth;
         other.takeDamage(this.damage);
         this.#resetAttackCooldown();
