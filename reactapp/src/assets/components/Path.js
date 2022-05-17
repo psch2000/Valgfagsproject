@@ -24,14 +24,19 @@ export class Path extends Component {
         for (let i = 0; i < this.waypoints.length; i++) {
             if (i === 0) continue;
 
-            // renaming only
-            let waypoint1 = this.waypoints[i - 1];
-            let waypoint2 = this.waypoints[i];
+            // copy waypoints to not affect the calculations for other rectangles
+            let waypoint1 = this.waypoints[i - 1].copy();
+            let waypoint2 = this.waypoints[i].copy();
 
             // get what direction waypoint2 is compared to waypoint1
             let direction = getDirection(waypoint1, waypoint2);
 
             let [width, height] = this.#getRectangleWidthHeight(direction, waypoint1, waypoint2);
+
+            // don't change anything for the first rectangle only the rectangles after
+            if (i !== 1) {
+                [width, height] = this.#avoidOverlapping(direction, waypoint1, waypoint2, width, height);
+            }
 
             // figure out which waypoint if the top left corner of the rectangle
             let topLeft = direction.equals(Vector2d.down) || direction.equals(Vector2d.right) ? waypoint1 : waypoint2;
@@ -57,6 +62,26 @@ export class Path extends Component {
             direction.equals(Vector2d.left) || direction.equals(Vector2d.right)
                 ? this.pathWidth
                 : Math.abs(waypoint2.y - waypoint1.y) + this.pathWidth; // + this.pathWidth to avoid corner gaps
+
+        return [width, height];
+    }
+
+    #avoidOverlapping(direction, waypoint1, waypoint2, width, height) {
+        // avoid overlapping of rectangles
+        if (direction.equals(Vector2d.up)) {
+            height -= this.pathWidth;
+        }
+        else if (direction.equals(Vector2d.down)) {
+            height -= this.pathWidth;
+            waypoint1.y += this.pathWidth;
+        }
+        else if (direction.equals(Vector2d.left)) {
+            width -= this.pathWidth;
+        }
+        else if (direction.equals(Vector2d.right)) {
+            width -= this.pathWidth;
+            waypoint1.x += this.pathWidth;
+        }
 
         return [width, height];
     }
