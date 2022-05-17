@@ -8,11 +8,12 @@ import { RectangleCollider } from "../../../base/baseStructor/collider/Rectangle
 export class Enemy extends Component {
     static count = 0;
 
-    constructor(health, damage, attackRange) {
+    constructor(health, damage, attackRange, callbackFunctionWhenDead) {
         super();
         this.health = health;
         this.damage = damage;
         this.attackRange = attackRange;
+        this.callbackFunctionWhenDead = callbackFunctionWhenDead;
 
         this.baseToAttack = null;
 
@@ -91,6 +92,7 @@ export class Enemy extends Component {
 
     #destroy() {
         this.health = 0;
+        this.callbackFunctionWhenDead();
         App.game.removeComposit(this.parent);
     }
 }
