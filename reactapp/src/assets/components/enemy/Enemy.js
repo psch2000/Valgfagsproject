@@ -4,6 +4,7 @@ import { Vector2d } from "../../../base/baseStructor/Vector2d";
 import { PlayerBase } from "../PlayerBase";
 import { Time } from "../../../base/Time";
 import { RectangleCollider } from "../../../base/baseStructor/collider/RectangleCollider";
+import { Player } from "../bank/Player";
 
 export class Enemy extends Component {
     static count = 0;
@@ -72,7 +73,9 @@ export class Enemy extends Component {
 
     takeDamage(incomingDamage) {
         this.health -= incomingDamage;
-
+        
+        Player.bank.add(1);
+        
         if (this.isDead()) this.#destroy();
     }
 
