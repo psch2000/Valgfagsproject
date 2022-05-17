@@ -5,15 +5,26 @@ import { PlayerBase } from "../PlayerBase";
 import { Time } from "../../../base/Time";
 import { RectangleCollider } from "../../../base/baseStructor/collider/RectangleCollider";
 import { Player } from "../bank/Player";
+import { DrawIcon } from "../../../base/baseStructor/DrawIcon";
 
 export class Enemy extends Component {
     static count = 0;
 
     constructor(health, damage, attackRange) {
         super();
-        this.health = health;
+        this.startHealth = health;
+        this.currentHealth = health;
         this.damage = damage;
         this.attackRange = attackRange;
+        this.imagePaths = [
+            "./images/sprite_ball_red.png",
+            "./images/sprite_ball_blue.png",
+            "./images/sprite_ball_green.png",
+            "./images/sprite_ball_black.png",
+            "./images/sprite_ball_red.png",
+            "./images/sprite_ball_red.png",
+            "./images/sprite_ball_red.png"
+        ];
 
         this.baseToAttack = null;
 
@@ -29,7 +40,7 @@ export class Enemy extends Component {
     }
 
     isDead() {
-        return this.health <= 0;
+        return this.currentHealth <= 0;
     }
 
     onUpdate() {
@@ -72,14 +83,18 @@ export class Enemy extends Component {
     }
 
     takeDamage(incomingDamage) {
-        this.health -= incomingDamage;
+        this.currentHealth -= incomingDamage;
         
+        let drawIconComponent = this.parent.getComponent(DrawIcon);
+        drawIconComponent.Component.img.src = this.imagePaths[this.currentHealth];
+
         Player.bank.add(1);
         
         if (this.isDead()) this.#destroy();
     }
 
     attack(other) {
+        this.damage = this.currentHealth;
         other.takeDamage(this.damage);
         this.#resetAttackCooldown();
 
@@ -93,7 +108,7 @@ export class Enemy extends Component {
     }
 
     #destroy() {
-        this.health = 0;
+        this.currentHealth = 0;
         App.game.removeComposit(this.parent);
     }
 }

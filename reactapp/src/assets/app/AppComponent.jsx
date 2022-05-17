@@ -24,6 +24,8 @@ import { MakeMapState } from "./states/initializestates/MakeMapState";
 import { TowerText } from "../components/stats/TowerText";
 import { Player } from "../components/bank/Player";
 import { RestartMenu } from "../components/restart/RestartMenu";
+import { DrawIcon } from "../../base/baseStructor/DrawIcon";
+import { CircleCollider } from "../../base/baseStructor/collider/CircleCollider";
 
 let path = null;
 
@@ -77,10 +79,11 @@ export const AppComponent = () => {
 function createEnemy() {
     console.log("create enemy");
     let enemyComposit = new Composit("enemy");
-    enemyComposit.addComponent(new SquareRenderer(path.pathWidth, path.pathWidth, "red"));
-    enemyComposit.addComponent(new RectangleCollider(path.pathWidth, path.pathWidth, true));
-    enemyComposit.addComponent(new FollowPath(path));
-    enemyComposit.addComponent(new Enemy(100, 20, 60));
+    //enemyComposit.addComponent(new SquareRenderer(path.pathWidth, path.pathWidth, "red"));
+    enemyComposit.addComponent(new DrawIcon("./images/sprite_ball_red.png", true))
+    enemyComposit.addComponent(new CircleCollider(path.pathWidth/2, true));
+    enemyComposit.addComponent(new FollowPath(path, 1,true));
+    enemyComposit.addComponent(new Enemy(7, 20, 60));
     enemyComposit.transform.position = path.waypoints[0].copy()
     instantiate(enemyComposit);
 }
