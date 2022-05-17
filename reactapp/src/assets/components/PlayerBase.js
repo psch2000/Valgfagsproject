@@ -1,6 +1,7 @@
 import { EventHandler } from "../../base/baseBehaviour/EventHandler";
 import { Component } from "../../base/baseStructor/Component";
 import { App } from "../app/App";
+import { Unplaceable } from "../tower/Unplaceable";
 
 export class PlayerBase extends Component {
     // the base that the player should protect
@@ -9,6 +10,7 @@ export class PlayerBase extends Component {
         this.health = health;
         this.onSetHealth = new EventHandler();
     }
+
 
     isDead() {
         return this.health <= 0;

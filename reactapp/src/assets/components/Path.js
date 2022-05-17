@@ -18,10 +18,7 @@ export class Path extends Component {
 
         this.#createRectanglesOnPath();
     }
-    onStart(){
-        this.addComponent(Unplaceable);
-    }
-
+    
     #createRectanglesOnPath() {
         for (let i = 0; i < this.waypoints.length; i++) {
             if (i === 0) continue;
@@ -69,6 +66,8 @@ export class Path extends Component {
         canvasRectangle.addComponent(new SquareRenderer(rectangle.width, rectangle.height, this.pathColor));
         canvasRectangle.addComponent(rectangle);
         canvasRectangle.addComponent(new PathRectangle())
+        canvasRectangle.addComponent(new Unplaceable());
+
         instantiate(canvasRectangle);
     }
 
