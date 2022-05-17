@@ -259,13 +259,13 @@ export class Game {
             var length = leaf.aabbs.length;
             for (let i = 0; i < length; i++){
                 var c = leaf.aabbs[i];
-                if (c.parent.isActive === false) continue;
+                if (c.isActive === false) continue;
 
                 for (let j = 0; j < length; j++){
                     if (i === j) continue;
 
                     var other = leaf.aabbs[j];
-                    if (other.parent.isActive === false) continue;
+                    if (other.isActive === false) continue;
                     if (c.doesOverlap(other) === false) continue;
 
                     c.onIntersect(other);
