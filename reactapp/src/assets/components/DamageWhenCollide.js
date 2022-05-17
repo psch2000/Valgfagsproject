@@ -13,8 +13,6 @@ export class DamageWhenCollide extends Component {
 
         let compositToAttack = other.getComponent(this.classToCollide);
 
-        console.log(compositToAttack);
-        
         if (compositToAttack === null) return;
 
         // console.log("projectile damages " + this.classToCollide.name + ": " + this.damage);
