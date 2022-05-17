@@ -77,6 +77,7 @@ function nextRound() {
 function placeObjectsOnCanvas() {
     let playerBase = new Composit("playerBase");
     playerBase.addComponent(new SquareRenderer(50, 20, "blue"));
+    playerBase.addComponent(new RectangleCollider(50, 20, true));
     playerBase.addComponent(Player.base);
     playerBase.transform.setPosition(new Vector2d(570, 480));
     instantiate(playerBase);
