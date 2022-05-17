@@ -13,6 +13,7 @@ import { TowerFacade } from "./TowerFacade";
 import { TowerRange } from "./TowerRange";
 import { PathRectangle } from "../components/PathRectangle";
 import { DrawIcon } from "../../base/baseStructor/DrawIcon";
+import { Unplaceable } from "./Unplaceable";
 
 export class TowerPlacere extends Component{
 
@@ -26,7 +27,6 @@ export class TowerPlacere extends Component{
     #collision;
     #onMap;
     #unplaceable
-    #onPath;
     #canPlaceTower;
     #towerType;
 
@@ -36,6 +36,7 @@ export class TowerPlacere extends Component{
             this.#map = App.game.find("Map").getComponent(Map);
             this.#canPlaceTower = false;
         }
+        this.#unplaceable = true;
     }
 
     onEnter(other){
@@ -54,15 +55,12 @@ export class TowerPlacere extends Component{
         else if (other.getComponent(Unplaceable) === null){
             this.#unplaceable = false;
         }
-
     }
 
     onExit(other){
         if(other.name === "Map"){
             this.#onMap = false;
         }
-
-        
     }
 
     onStart(){
@@ -73,8 +71,9 @@ export class TowerPlacere extends Component{
     }
 
     onUpdate(){
-        this.#canPlaceTower = this.#onMap && !this.#onPath;
-        
+        this.#canPlaceTower = this.#onMap && !this.#unplaceable;
+        console.log("Unplaceable: " + this.#unplaceable)
+
         this.#spriteRenderer.color = this.#canPlaceTower ? this.#towerType.normalColor : this.#towerType.dsbColor;
         
         // left mouse input
@@ -111,7 +110,6 @@ export class TowerPlacere extends Component{
             this.#instance = c.addComponent(new TowerPlacere());
             instantiate(c);
         }
-
         return this.#instance;
     }
 }
