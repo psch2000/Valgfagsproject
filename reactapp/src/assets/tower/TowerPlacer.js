@@ -25,6 +25,7 @@ export class TowerPlacere extends Component{
     #pathrechtangle;
     #collision;
     #onMap;
+    #unplaceable
     #onPath;
     #canPlaceTower;
     #towerType;
@@ -45,10 +46,15 @@ export class TowerPlacere extends Component{
 
     onOverlap(other){
         if (other.name === "projectile") return;
+        if (other.name === "TowerRange") return;
 
-        if (other.getComponent(PathRectangle) !== null) {
-            this.#onPath = true;
+        if (!this.#unplaceable && other.getComponent(Unplaceable) !== null) {
+            this.#unplaceable = true;
         }
+        else if (other.getComponent(Unplaceable) === null){
+            this.#unplaceable = false;
+        }
+
     }
 
     onExit(other){
@@ -56,9 +62,7 @@ export class TowerPlacere extends Component{
             this.#onMap = false;
         }
 
-        if (other.getComponent(PathRectangle) !== null) {
-            this.#onPath = false;
-        }
+        
     }
 
     onStart(){
