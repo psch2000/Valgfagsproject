@@ -78,7 +78,7 @@ export let path = new Path([
     new Vector2d(455, 215),
     new Vector2d(455, 345),
     new Vector2d(570, 345),
-    new Vector2d(570, 429),
+    new Vector2d(570, 435),
 ], "#ff00ff91", 50);
 
 export let waveSystem = new WaveSystem(path);
