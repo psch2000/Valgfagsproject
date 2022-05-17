@@ -14,7 +14,9 @@ export class Path extends Component {
         this.rectangles = [];
         this.pathWidth = pathWidth;
         this.pathColor = pathColor;
+    }
 
+    createRectanglesOnPath() {
         this.#createRectanglesOnPath();
     }
 
@@ -64,7 +66,7 @@ export class Path extends Component {
         canvasRectangle.transform.position = rectangle.transform.position;
         canvasRectangle.addComponent(new SquareRenderer(rectangle.width, rectangle.height, this.pathColor));
         canvasRectangle.addComponent(rectangle);
-        canvasRectangle.addComponent(new PathRectangle())
+        canvasRectangle.addComponent(new PathRectangle());
         instantiate(canvasRectangle);
     }
 
