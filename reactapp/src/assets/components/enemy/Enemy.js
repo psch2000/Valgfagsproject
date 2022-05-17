@@ -27,15 +27,15 @@ export class Enemy extends Component {
             "./images/sprite_ball_pink.png",
             "./images/sprite_ball_black.png",
             "./images/sprite_ball_purple.png",
-            "./images/sprite_ball_white.png"
+            "./images/sprite_ball_white.png",
         ];
 
         this.id = Enemy.count;
         Enemy.count += 1;
     }
 
-    onStart(){
-        this.parent.getComponent(DrawIcon).img.src = this.imagePaths[this.currentHealth-1];
+    onStart() {
+        this.parent.getComponent(DrawIcon).img.src = this.imagePaths[this.currentHealth - 1];
     }
 
     isDead() {
@@ -58,7 +58,7 @@ export class Enemy extends Component {
 
         let drawIconComponent = this.parent.getComponent(DrawIcon);
 
-        drawIconComponent.img.src = this.imagePaths[this.currentHealth-1];
+        drawIconComponent.img.src = this.imagePaths[this.currentHealth - 1];
 
         Player.bank.add(1);
 
