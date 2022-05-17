@@ -24,6 +24,8 @@ import { MakeMapState } from "./states/initializestates/MakeMapState";
 import { TowerText } from "../components/stats/TowerText";
 import { Player } from "../components/bank/Player";
 import { RestartMenu } from "../components/restart/RestartMenu";
+import { Unplaceable } from "../tower/Unplaceable";
+
 
 let path = null;
 
@@ -106,6 +108,8 @@ function placeObjectsOnCanvas() {
     let playerBase = new Composit("playerBase");
     playerBase.addComponent(new SquareRenderer(50, 20, "blue"));
     playerBase.addComponent(Player.base);
+    playerBase.addComponent(new RectangleCollider(50, 20));
+    playerBase.addComponent(new Unplaceable());
     playerBase.transform.setPosition(new Vector2d(570, 480));
     instantiate(playerBase);
 }

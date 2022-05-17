@@ -10,6 +10,7 @@ import { FirePattern } from "./firePattern/FirePattern";
 import { App } from "../app/App";
 import { TowerType } from "./TowerType";
 import { TackShooterFirePatternBuilder } from "./firePattern/patterns/TackShooterFirePatternBuilder";
+import { Unplaceable } from "./Unplaceable";
 
 
 
@@ -30,6 +31,7 @@ export class Tower extends Component{
     
     onStart(){
         this.#towerFacade = this.getComponent(TowerFacade);
+        this.addComponent(new Unplaceable());
 
         this.firePattern.color = this.towerType.color;
         this.firePattern.damage = this.towerType.damage;
