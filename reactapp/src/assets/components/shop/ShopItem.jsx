@@ -42,7 +42,7 @@ export const ShopButton = ({
       }
     }
 
-    function hover(){
+    function onHoverEnter(){
       TowerTextObj.towerText = towerName;
       TowerTextObj.onSetText.invoke();
     }
@@ -64,7 +64,7 @@ export const ShopButton = ({
   
     return(
       <button 
-        onMouseEnter={hover}
+        onMouseEnter={onHoverEnter}
         className={`btn ${CheckButtonStyle()} ${CheckButtonSize}`}
         onClick={onClick}
         disabled={disable}
