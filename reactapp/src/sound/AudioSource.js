@@ -4,9 +4,11 @@ export class AudioSource{
 
     #filePath;
     #audio;
-    constructor(filePath){
+    constructor(filePath, loop = false){
         this.#filePath = filePath;
         this.#audio = new Audio(filePath);
+        this.#audio.loop = loop;
+        this.#audio.autoplay = loop;
     }
 
     getFilePath = () => this.#filePath;
@@ -21,6 +23,7 @@ export class AudioSource{
     }
 
     play(){
+
         this.#audio.play();
     }
 

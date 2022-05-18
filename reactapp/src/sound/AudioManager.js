@@ -6,9 +6,12 @@ export class AudioManager{
     static #audioFilePath = [];
     static #audioSourceArrays = [];
 
-    static addSound(name, filePath){
+    static addSound(name, filePath, loop = false){
         this.#audioFilePath[name] = filePath;
-        this.#audioSourceArrays[name] = [new AudioSource(filePath)];
+        var source = new AudioSource(filePath, loop);
+        source.loop = loop;
+        this.#audioSourceArrays[name] = [source];
+
     }
 
     static removeSound(name){
@@ -25,8 +28,13 @@ export class AudioManager{
 
             var a = audioSources[i];
 
+
             if (a.isPlaying() == false){
                 a.play();
+                return;
+            }
+
+            if (a.loop == true){
                 return;
             }
         }

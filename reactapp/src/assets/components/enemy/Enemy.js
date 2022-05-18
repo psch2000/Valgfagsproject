@@ -5,6 +5,8 @@ import { PlayerBase } from "../PlayerBase";
 import { Time } from "../../../base/Time";
 import { RectangleCollider } from "../../../base/baseStructor/collider/RectangleCollider";
 import { AudioManager } from "../../../sound/AudioManager";
+import { random } from "../../app/functions/random";
+import { randomInt } from "../../app/functions/randomInt";
 
 export class Enemy extends Component {
     static count = 0;
@@ -91,7 +93,9 @@ export class Enemy extends Component {
     }
 
     #destroy() {
-        AudioManager.play('pop');
+        var rand = randomInt(1, 4);
+        // console.log('pop' + rand);
+        AudioManager.play('pop' + rand);
         this.health = 0;
         App.game.removeComposit(this.parent);
     }
