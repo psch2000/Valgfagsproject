@@ -24,9 +24,7 @@ import { MakeMapState } from "./states/initializestates/MakeMapState";
 import { TowerText } from "../components/stats/TowerText";
 import { Player } from "../components/bank/Player";
 import { RestartMenu } from "../components/restart/RestartMenu";
-import { Unplaceable } from "../tower/Unplaceable";
-import { DrawIcon } from "../../base/baseStructor/DrawIcon";
-import { CircleCollider } from "../../base/baseStructor/collider/CircleCollider";
+import { AudioManager } from "../../sound/AudioManager";
 
 let path = null;
 
@@ -36,7 +34,7 @@ export const AppComponent = () => {
 
     useEffect(() =>{
 
-       
+        AudioManager.addSound("pop", "pop.wav");
         init.execute();
         OnEndResize.addListener(onEndResize, 0);
         App.run();
@@ -80,10 +78,10 @@ export const AppComponent = () => {
 function createEnemy() {
     console.log("create enemy");
     let enemyComposit = new Composit("enemy");
-    enemyComposit.addComponent(new DrawIcon("", true))
-    enemyComposit.addComponent(new CircleCollider(path.pathWidth/2, true));
-    enemyComposit.addComponent(new FollowPath(path, 1,true));
-    enemyComposit.addComponent(new Enemy(8, 20, 60));
+    enemyComposit.addComponent(new SquareRenderer(path.pathWidth, path.pathWidth, "red"));
+    enemyComposit.addComponent(new RectangleCollider(path.pathWidth, path.pathWidth, true));
+    enemyComposit.addComponent(new FollowPath(path));
+    enemyComposit.addComponent(new Enemy(1, 20, 60));
     enemyComposit.transform.position = path.waypoints[0].copy()
     instantiate(enemyComposit);
 }
@@ -109,8 +107,6 @@ function placeObjectsOnCanvas() {
     let playerBase = new Composit("playerBase");
     playerBase.addComponent(new SquareRenderer(50, 20, "blue"));
     playerBase.addComponent(Player.base);
-    playerBase.addComponent(new RectangleCollider(50, 20));
-    playerBase.addComponent(new Unplaceable());
     playerBase.transform.setPosition(new Vector2d(570, 480));
     instantiate(playerBase);
 }

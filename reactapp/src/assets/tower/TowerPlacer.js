@@ -13,7 +13,7 @@ import { TowerFacade } from "./TowerFacade";
 import { TowerRange } from "./TowerRange";
 import { PathRectangle } from "../components/PathRectangle";
 import { DrawIcon } from "../../base/baseStructor/DrawIcon";
-import { Unplaceable } from "./Unplaceable";
+import { AudioManager } from "../../sound/AudioManager";
 
 export class TowerPlacere extends Component{
 
@@ -26,7 +26,7 @@ export class TowerPlacere extends Component{
     #pathrechtangle;
     #collision;
     #onMap;
-    #unplaceable
+    #onPath;
     #canPlaceTower;
     #towerType;
 
@@ -36,8 +36,6 @@ export class TowerPlacere extends Component{
             this.#map = App.game.find("Map").getComponent(Map);
             this.#canPlaceTower = false;
         }
-        this.#unplaceable = true;
-        this.#onMap = false;
     }
 
     onEnter(other){
@@ -48,19 +46,19 @@ export class TowerPlacere extends Component{
 
     onOverlap(other){
         if (other.name === "projectile") return;
-        if (other.name === "TowerRange") return;
 
-        if (!this.#unplaceable && other.getComponent(Unplaceable) !== null) {
-            this.#unplaceable = true;
-        }
-        else if (other.getComponent(Unplaceable) === null){
-            this.#unplaceable = false;
+        if (other.getComponent(PathRectangle) !== null) {
+            this.#onPath = true;
         }
     }
 
     onExit(other){
         if(other.name === "Map"){
             this.#onMap = false;
+        }
+
+        if (other.getComponent(PathRectangle) !== null) {
+            this.#onPath = false;
         }
     }
 
@@ -72,23 +70,21 @@ export class TowerPlacere extends Component{
     }
 
     onUpdate(){
-        this.#canPlaceTower = this.#onMap && !this.#unplaceable;
-        //console.log("Image Path: " + this.towerType.imagePath)
-
-        this.#spriteRenderer.img.src = this.#canPlaceTower ? this.#towerType.imagePath : this.#towerType.dsbImage;
+        this.#canPlaceTower = this.#onMap && !this.#onPath;
+        
+        this.#spriteRenderer.color = this.#canPlaceTower ? this.#towerType.normalColor : this.#towerType.dsbColor;
         
         // left mouse input
         if(Input.getKeyDown('0')){
-            
+
             if(this.parent.isActive == true){
                 
                 if(this.#canPlaceTower == false) return;
                 var c = TowerPool.getInstance().acquireReuseable();
                 c.transform.setPosition(this.transform.position);
                 Player.bank.remove(this.#towerType.price);
-                this.#onMap = false;
                 this.parent.setActive(false);
-                
+                this.#canPlaceTower = false;
             }
         }
     }
@@ -99,7 +95,7 @@ export class TowerPlacere extends Component{
 
     setTowerType(towerType){
         this.#rangeRenderer.radius = towerType.range;
-        this.#spriteRenderer.img.src = towerType.dsbImage;
+        this.#spriteRenderer.img.src = towerType.imagePath;
         this.#towerType = towerType;
         this.#collision.radius = towerType.size;        
     }
@@ -112,6 +108,7 @@ export class TowerPlacere extends Component{
             this.#instance = c.addComponent(new TowerPlacere());
             instantiate(c);
         }
+
         return this.#instance;
     }
 }

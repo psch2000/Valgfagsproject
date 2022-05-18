@@ -22,8 +22,7 @@ export class Collider extends Component {
 
         COLLIDERS.push(this);
     }
-
-
+    
     onIntersect(other){
         var index = other.i;
 
@@ -34,13 +33,9 @@ export class Collider extends Component {
         }
     }
 
-
     onUpdate(){
-
-        
-
         this.colliders.forEach(other => {
-            if (this.doesOverlap(other) === false || other.parent.isActive === false){
+            if (this.doesOverlap(other) === false || COLLIDERS.includes(other) === false){
                 this.hits[other.i] = false;
                 this.parent.onExit(other.parent);
                 var index = this.colliders.indexOf(other);
@@ -70,6 +65,7 @@ export class Collider extends Component {
 
 
     onDestroy(){
+        this.isActive = false;
         let index = COLLIDERS.indexOf(this);
         COLLIDERS.splice(index, 1);
     }
