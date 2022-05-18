@@ -28,8 +28,8 @@ export class MovePath extends Move {
             return;
         }
 
-        let moveDirection = Vector2d.subtract(this.path[0], this.transform.position).normalize();
-        let moveAmount = Vector2d.multiplyNum(moveDirection, this.speed);
+        this.direction = Vector2d.subtract(this.path[0], this.transform.position).normalize();
+        let moveAmount = Vector2d.multiplyNum(this.direction, this.speed);
 
         this.transform.translate(moveAmount);
     }
