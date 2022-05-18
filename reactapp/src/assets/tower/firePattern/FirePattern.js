@@ -28,6 +28,7 @@ export class FirePattern {
         this.damage = null;
         this.projectileType = NormalProjectile;
         this.lookDirection = null;
+        this.rotateProjectile = false;
     }
 
     fireRoutine() {
@@ -97,7 +98,7 @@ export class FirePattern {
     }
 
     #makeProjectile() {
-        var c = ProjectilePool.getInstance().acquireReuseable(this.imagepath, this.damage, this.projectileType);
+        var c = ProjectilePool.getInstance().acquireReuseable(this.imagepath, this.damage, this.projectileType, this.rotateProjectile);
         c.transform.position = this.parent.transform.position.copy();
         return c;
     }

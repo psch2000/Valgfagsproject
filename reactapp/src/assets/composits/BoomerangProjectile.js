@@ -11,8 +11,8 @@ import { DrawIcon } from "../../base/baseStructor/DrawIcon";
 import { Projectile } from "./Projectile";
 
 export class BoomerangProjectile extends Projectile {
-    constructor(radius, imagepath, damage, releaseFunction) {
-        super(radius, imagepath, damage, releaseFunction);
+    constructor(radius, imagepath, damage, releaseFunction, useRotate = false) {
+        super(radius, imagepath, damage, releaseFunction, useRotate);
 
         this.addComponent(new MovePath(new Vector2d(0, 0), 1, releaseFunction));
     }

@@ -10,8 +10,8 @@ import { DrawIcon } from "../../base/baseStructor/DrawIcon";
 import { Projectile } from "./Projectile";
 
 export class NormalProjectile extends Projectile {
-    constructor(radius, imagepath, damage, releaseFunction) {
-        super(radius, imagepath, damage, releaseFunction);
+    constructor(radius, imagepath, damage, releaseFunction, useRotate = false) {
+        super(radius, imagepath, damage, releaseFunction, useRotate);
 
         this.addComponent(new MoveDirection(new Vector2d(0, 0), 1));
     }

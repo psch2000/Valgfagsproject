@@ -12,29 +12,26 @@ import { Enemy } from "../components/enemy/Enemy";
 import { NormalProjectile } from "../composits/NormalProjectile";
 import { DrawIcon } from "../../base/baseStructor/DrawIcon";
 
-
-export class ProjectilePool extends ReuseablePool{
-
+export class ProjectilePool extends ReuseablePool {
     static #instance;
-    constructor(){
+    constructor() {
         if (ProjectilePool.#instance !== undefined) return;
         super();
         this.radius = 5;
     }
 
     static getInstance() {
-
-        if (this.#instance === undefined){
+        if (this.#instance === undefined) {
             this.#instance = new ProjectilePool();
         }
 
         return this.#instance;
     }
 
-    acquireReuseable(imagepath, damage, projectileType){
+    acquireReuseable(imagepath, damage, projectileType, rotateProjectile) {
         let reuseable = this.#getReuseableWithImage(imagepath, projectileType);
-        
-        if (reuseable === null) return this.makeReuseable(imagepath, damage, projectileType);
+
+        if (reuseable === null) return this.makeReuseable(imagepath, damage, projectileType, rotateProjectile);
 
         reuseable.getComponent(DamageWhenCollide).damage = damage;
 
@@ -42,9 +39,9 @@ export class ProjectilePool extends ReuseablePool{
         return reuseable;
     }
 
-    makeReuseable(imagepath, damage, projectileType) {
+    makeReuseable(imagepath, damage, projectileType, rotateProjectile) {
         // console.log("constructing a projectile of type: " + projectileType.name)
-        let c = new projectileType(this.radius, imagepath, damage, this.releaseReuseable);
+        let c = new projectileType(this.radius, imagepath, damage, this.releaseReuseable, rotateProjectile);
 
         return instantiate(c);
     }
@@ -66,5 +63,4 @@ export class ProjectilePool extends ReuseablePool{
 
         return null;
     }
-
 }

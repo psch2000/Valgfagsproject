@@ -66,6 +66,11 @@ export class FirePatternBuilder {
         return this;
     }
 
+    setRotateProjectile(value) {
+        this.#firePattern.rotateProjectile = value;
+        return this;
+    }
+
     getProduct(){
         var product = this.#firePattern;
         this.#reset();

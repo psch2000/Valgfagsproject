@@ -6,7 +6,7 @@ import { DamageWhenCollide } from "../components/DamageWhenCollide";
 import { Enemy } from "../components/enemy/Enemy";
 
 export class Projectile extends Composit {
-    constructor(radius, imagepath, damage, releaseFunction) {
+    constructor(radius, imagepath, damage, releaseFunction, useRotate = false) {
         super("projectile");
 
         if (this.constructor === Projectile) throw new Error("Can't construct an abstract class");
@@ -14,7 +14,7 @@ export class Projectile extends Composit {
         this.addComponent(new OutOfBounceDelete(releaseFunction));
         this.addComponent(new DamageWhenCollide(Enemy, damage, releaseFunction));
         //this.addComponent(new CircleRenderer(radius, color, false));
-        this.addComponent(new DrawIcon(imagepath, true));
+        this.addComponent(new DrawIcon(imagepath, true, useRotate));
         this.addComponent(new CircleCollider(radius));
     }
 

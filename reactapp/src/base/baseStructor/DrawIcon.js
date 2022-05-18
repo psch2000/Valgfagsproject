@@ -1,3 +1,4 @@
+import { Move } from "../../assets/components/Move";
 import { Tower } from "../../assets/tower/Tower";
 import { Component } from "./Component";
 import { Vector2d } from "./Vector2d";
@@ -26,7 +27,13 @@ export class DrawIcon extends Component{
         let rotationAngle = null;
 
         if (this.useRotation) {
-            let direction = this.parent.getComponent(Tower).firePattern.lookDirection;
+            let direction = null;
+
+            if (this.parent.name === "projectile") {
+                direction = this.parent.getComponent(Move).direction;
+            } else {
+                direction = this.parent.getComponent(Tower).firePattern.lookDirection;
+            }
 
             if (direction !== null) {
                 context.save();
