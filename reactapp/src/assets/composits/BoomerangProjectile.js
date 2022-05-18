@@ -13,6 +13,7 @@ import { Projectile } from "./Projectile";
 export class BoomerangProjectile extends Projectile {
     constructor(radius, imagepath, damage, releaseFunction, useRotate = false) {
         super(radius, imagepath, damage, releaseFunction, useRotate);
+        this.tower = null;
 
         this.addComponent(new MovePath(new Vector2d(0, 0), 1, releaseFunction));
     }
@@ -21,6 +22,7 @@ export class BoomerangProjectile extends Projectile {
         let moveComponent = this.getComponent(MovePath);
         moveComponent.speed = speed;
         moveComponent.direction = direction;
+        this.tower = tower;
 
         let circleOffset = Vector2d.multiplyNum(direction, tower.towerType.range / 2);
         let circleCenter = Vector2d.add(tower.transform.position, circleOffset);
