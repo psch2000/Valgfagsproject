@@ -31,7 +31,7 @@ export class Tower extends Component{
     
     onStart(){
         this.#towerFacade = this.getComponent(TowerFacade);
-        this.addComponent(new Unplaceable());
+        this.parent.addComponent(new Unplaceable());
 
         this.firePattern.color = this.towerType.color;
         this.firePattern.damage = this.towerType.damage;
@@ -55,7 +55,6 @@ export class Tower extends Component{
         if (Input.getKeyDown('0') == true){
             this.#towerFacade.showRange(this.#hitCursor);
         }
-
 
         this.#setTarget();
         this.firePattern.fireRoutine();

@@ -73,9 +73,9 @@ export class TowerPlacere extends Component{
 
     onUpdate(){
         this.#canPlaceTower = this.#onMap && !this.#unplaceable;
-        //console.log("Unplaceable: " + this.#unplaceable)
+        //console.log("Image Path: " + this.towerType.imagePath)
 
-        this.#spriteRenderer.color = this.#canPlaceTower ? this.#towerType.normalColor : this.#towerType.dsbColor;
+        this.#spriteRenderer.img.src = this.#canPlaceTower ? this.#towerType.imagePath : this.#towerType.dsbImage;
         
         // left mouse input
         if(Input.getKeyDown('0')){
@@ -99,7 +99,7 @@ export class TowerPlacere extends Component{
 
     setTowerType(towerType){
         this.#rangeRenderer.radius = towerType.range;
-        this.#spriteRenderer.img.src = towerType.imagePath;
+        this.#spriteRenderer.img.src = towerType.dsbImage;
         this.#towerType = towerType;
         this.#collision.radius = towerType.size;        
     }
