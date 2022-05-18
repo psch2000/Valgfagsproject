@@ -25,6 +25,7 @@ import { TowerText } from "../components/stats/TowerText";
 import { Player } from "../components/bank/Player";
 import { RestartMenu } from "../components/restart/RestartMenu";
 import { AudioManager } from "../../sound/AudioManager";
+import { Unplaceable } from "../tower/Unplaceable";
 
 let path = null;
 
@@ -34,7 +35,7 @@ export const AppComponent = () => {
 
     useEffect(() =>{
 
-        AudioManager.addSound("pop", "pop.wav");
+        // AudioManager.addSound("pop", "pop.wav");
         init.execute();
         OnEndResize.addListener(onEndResize, 0);
         App.run();
@@ -106,6 +107,7 @@ function placeObjectsOnCanvas() {
 
     let playerBase = new Composit("playerBase");
     playerBase.addComponent(new SquareRenderer(50, 20, "blue"));
+    playerBase.addComponent(new Unplaceable());
     playerBase.addComponent(Player.base);
     playerBase.transform.setPosition(new Vector2d(570, 480));
     instantiate(playerBase);

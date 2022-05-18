@@ -23,7 +23,6 @@ document.body.addEventListener('click', function(){
     bool = true;
 })
 
-document.body.click();
 
 
 
