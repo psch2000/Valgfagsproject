@@ -18,6 +18,8 @@ export class NormalProjectile extends Composit {
         this.addComponent(new CircleCollider(radius));
         this.addComponent(new OutOfBounceDelete(releaseFunction));
         this.addComponent(new DamageWhenCollide(Enemy, damage, releaseFunction));
+
+        console.log(NormalProjectile)
     }
 
     calculateBehavior(speed, direction, tower) {
