@@ -58,7 +58,6 @@ export class Tower extends Component{
             this.#towerFacade.showRange(this.#hitCursor);
         }
 
-
         this.#setTarget();
         this.firePattern.fireRoutine();
     }
