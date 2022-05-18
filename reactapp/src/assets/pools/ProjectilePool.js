@@ -32,7 +32,7 @@ export class ProjectilePool extends ReuseablePool{
     }
 
     acquireReuseable(imagepath, damage, projectileType){
-        let reuseable = this.#getReuseableWithColor(imagepath, projectileType);
+        let reuseable = this.#getReuseableWithImage(imagepath, projectileType);
         
         if (reuseable === null) return this.makeReuseable(imagepath, damage, projectileType);
 
@@ -49,7 +49,7 @@ export class ProjectilePool extends ReuseablePool{
         return instantiate(c);
     }
 
-    #getReuseableWithColor(imagepath, projectileType) {
+    #getReuseableWithImage(imagepath, projectileType) {
         for (let index = 0; index < this._reuseables.length; index++) {
             const reuseable = this._reuseables[index];
 
