@@ -23,7 +23,7 @@ export class FirePattern {
         this.target = null;
         this.parent = null;
         this.burst = false;
-        this.color = "green";
+        this.imagepath = "";
         this.damage = null;
         this.projectileType = NormalProjectile;
     }
@@ -93,7 +93,7 @@ export class FirePattern {
     }
 
     #makeProjectile() {
-        var c = ProjectilePool.getInstance().acquireReuseable(this.color, this.damage, this.projectileType);
+        var c = ProjectilePool.getInstance().acquireReuseable(this.imagepath, this.damage, this.projectileType);
         c.transform.position = this.parent.transform.position.copy();
         return c;
     }

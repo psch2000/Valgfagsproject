@@ -33,7 +33,7 @@ export class Tower extends Component{
         this.#towerFacade = this.getComponent(TowerFacade);
         this.addComponent(new Unplaceable());
 
-        this.firePattern.color = this.towerType.color;
+        this.firePattern.imagepath = this.towerType.projectileImagePath;
         this.firePattern.damage = this.towerType.damage;
         this.firePattern.parent = this.parent;
     }
@@ -71,6 +71,10 @@ export class Tower extends Component{
         if (enemies.length === 0) return;
 
         this.firePattern.target = enemies[0];
+    }
+
+    getTowerFacade(){
+        return this.#towerFacade;
     }
 
 }
