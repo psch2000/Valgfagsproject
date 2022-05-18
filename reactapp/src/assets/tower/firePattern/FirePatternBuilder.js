@@ -56,6 +56,11 @@ export class FirePatternBuilder {
         return this;
     }
 
+    setLookAtTarget(value) {
+        this.#firePattern.lookAtTarget = value;
+        return this;
+    }
+
     setProjectileType(value) {
         this.#firePattern.projectileType = value;
         return this;

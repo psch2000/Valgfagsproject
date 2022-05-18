@@ -7,7 +7,8 @@ export class TackShooterFirePatternBuilder {
         var builder = new FirePatternBuilder()
         .addFireAngles([45, 90, 135, 180, 225, 270, 315])
         .setIsFollowingTarget(false)
-        .setIsBursting(true);
+        .setIsBursting(true)
+        .setLookAtTarget(false);
     
         return builder.getProduct();
     }

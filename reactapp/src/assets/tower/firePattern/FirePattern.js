@@ -20,12 +20,14 @@ export class FirePattern {
         this.fireInterval = 1;
         this.fireForce = 1;
         this.followTarget = true;
+        this.lookAtTarget = true;
         this.target = null;
         this.parent = null;
         this.burst = false;
         this.imagepath = "";
         this.damage = null;
         this.projectileType = NormalProjectile;
+        this.lookDirection = null;
     }
 
     fireRoutine() {
@@ -51,6 +53,8 @@ export class FirePattern {
 
         this.#time = 0;
 
+        if (this.lookAtTarget) this.lookDirection = this.#getDirection();
+        
         if (this.burst == true) {
             this.#burstFire();
             return;
@@ -105,6 +109,7 @@ export class FirePattern {
 
         var to = this.target.getComponent(Enemy).getCenterPosition();
         var from = this.parent.transform.position;
+
         // this.markShootPosition(to);
         return Vector2d.subtract(to, from);
     }
