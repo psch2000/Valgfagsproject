@@ -45,7 +45,6 @@ export class OutOfBounceDelete extends Component {
         
         if (other.getComponent(TowerRange) == towerRange){
             this.releaseCallback(this.parent);
-        }
-        
+        }        
     }
 }

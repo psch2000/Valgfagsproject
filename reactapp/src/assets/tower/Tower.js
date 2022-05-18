@@ -31,11 +31,13 @@ export class Tower extends Component{
     
     onStart(){
         this.#towerFacade = this.getComponent(TowerFacade);
-        this.addComponent(new Unplaceable());
+        this.parent.addComponent(new Unplaceable());
 
         this.firePattern.imagepath = this.towerType.projectileImagePath;
         this.firePattern.damage = this.towerType.damage;
         this.firePattern.parent = this.parent;
+
+        console.log(this.parent);
     }
 
     onEnter(other){
