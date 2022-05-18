@@ -49,6 +49,10 @@ export class TowerFacade extends Component{
         this.#rangeCircleRenderer.setActive(value);
     }
 
+    getTowerRange(){
+        return this.#range;
+    }
+
 
 
 }

@@ -11,6 +11,7 @@ import { DrawIcon } from "../../base/baseStructor/DrawIcon";
 export class NormalProjectile extends Composit {
     constructor(radius, imagepath, damage, releaseFunction) {
         super("projectile");
+        this.tower = null;
         //this.addComponent(new CircleRenderer(radius, color, false));
         this.addComponent(new DrawIcon(imagepath, true))
         this.addComponent(new MoveDirection(new Vector2d(0, 0), 1));
@@ -23,5 +24,6 @@ export class NormalProjectile extends Composit {
         let moveComponent = this.getComponent(MoveDirection);
         moveComponent.speed = speed;
         moveComponent.direction = direction;
+        this.tower = tower;
     }
 }

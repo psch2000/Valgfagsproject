@@ -71,4 +71,8 @@ export class Tower extends Component{
         this.firePattern.target = enemies[0];
     }
 
+    getTowerFacade(){
+        return this.#towerFacade;
+    }
+
 }
