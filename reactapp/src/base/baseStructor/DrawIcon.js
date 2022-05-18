@@ -27,6 +27,7 @@ export class DrawIcon extends Component{
         let rotationAngle = null;
 
         if (this.useRotation) {
+            // code for rotating an image is inspired from https://stackoverflow.com/a/17412387/12276054
             let direction = null;
 
             if (this.parent.name === "projectile") {
