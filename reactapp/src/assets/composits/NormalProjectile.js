@@ -17,6 +17,11 @@ export class NormalProjectile extends Composit {
         this.addComponent(new DamageWhenCollide(Enemy, damage, releaseFunction));
     }
 
+    setRadius(value){
+        this.getComponent(CircleRenderer).radius = value;
+        this.getComponent(CircleCollider).radius = value;
+    }
+
     calculateBehavior(speed, direction, tower) {
         let moveComponent = this.getComponent(MoveDirection);
         moveComponent.speed = speed;

@@ -67,5 +67,9 @@ export class FirePatternBuilder {
         return product;
     }
 
+    setIsArea(value){
+        this.#firePattern.isArea = value;
+        return this;
+    }
 
 }

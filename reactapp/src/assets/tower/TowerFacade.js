@@ -20,6 +20,7 @@ export class TowerFacade extends Component{
         super();
         this.#towerType = towerType;
         this.#rangeComposit = rangeComposit;
+        this.range = towerType.range;
     }
    
 
