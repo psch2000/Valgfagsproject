@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
-import { CanvasComponent } from "./assets/components/canvas/CanvasComponent";
-import { OnEndResize } from "./events/OnEndResize";
-import { App } from "./assets/app/App";
-import { useForceRerenderer } from "./assets/hooks/useForceRenderer";
-import { Vector2d } from "./base/baseStructor/Vector2d";
-import { Composit } from "./base/baseStructor/Composit";
-import { instantiate } from "./assets/app/functions/instantiate";
-import { CircleRenderer } from "./assets/components/CircleRenderer";
-import { GameTitle } from "./assets/components/gameTitle/GameTitle";
-import { getAnglesEquallySpaces, getPointsOnCircleCircumference } from "./base/baseStructor/CircleFunctions";
+import { CanvasComponent } from "../assets/components/canvas/CanvasComponent";
+import { OnEndResize } from "../events/OnEndResize";
+import { App } from "../assets/app/App";
+import { useForceRerenderer } from "../assets/hooks/useForceRenderer";
+import { Vector2d } from "../base/baseStructor/Vector2d";
+import { Composit } from "../base/baseStructor/Composit";
+import { instantiate } from "../assets/app/functions/instantiate";
+import { CircleRenderer } from "../assets/components/CircleRenderer";
+import { GameTitle } from "../assets/components/gameTitle/GameTitle";
+import { getAnglesEquallySpaces, getPointsOnCircleCircumference } from "../base/baseStructor/CircleFunctions";
+import { DrawIcon } from "../base/baseStructor/DrawIcon";
+import { DrawIconTest } from "./DrawIconTest";
+import { CircleCollider } from "../base/baseStructor/collider/CircleCollider";
 
 export const TestDraw = () => {
     const rerenderer = useForceRerenderer();
@@ -17,7 +20,8 @@ export const TestDraw = () => {
         OnEndResize.addListener(onEndResize, 0);
         App.run();
 
-        placeStuffOnCanvas();
+        testRotateImageInPlace();
+        // testWithCirclePathTowerBoomerang();
     }, []);
 
     const setWindowRect = () => {
@@ -43,7 +47,19 @@ export const TestDraw = () => {
     );
 };
 
-function placeStuffOnCanvas() {
+function testRotateImageInPlace() {
+    let position = new Vector2d(100, 100);
+
+    let testComposit = new Composit("testCompositImage");
+    testComposit.addComponent(new DrawIconTest("./images/sprite_monkey1.png", true, true, 10));
+    testComposit.addComponent(new CircleCollider(25, true));
+    // testComposit.addComponent(new CircleRenderer(10, "red"));
+    testComposit.transform.position = position;
+    instantiate(testComposit);
+}
+
+
+function testWithCirclePathTowerBoomerang() {
     // towards left
     let tower1Position = new Vector2d(425, 250);
     let enemy1Position = new Vector2d(150, 250);
