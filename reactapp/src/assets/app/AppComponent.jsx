@@ -25,12 +25,16 @@ import { TowerText } from "../components/stats/TowerText";
 import { Player } from "../components/bank/Player";
 import { RestartMenu } from "../components/restart/RestartMenu";
 import { waveSystem } from "../../backend/Wavesystem";
+import { AudioManager } from "../../sound/AudioManager";
+import { Unplaceable } from "../tower/Unplaceable";
 
 export const AppComponent = () => {
     const init = new StateHandler(new MakeMapState());
     const rerenderer = useForceRerenderer();
 
     useEffect(() =>{
+
+        // AudioManager.addSound("pop", "pop.wav");
         init.execute();
         OnEndResize.addListener(onEndResize, 0);
         App.run();
@@ -78,6 +82,7 @@ function placeObjectsOnCanvas() {
     let playerBase = new Composit("playerBase");
     playerBase.addComponent(new SquareRenderer(50, 20, "blue"));
     playerBase.addComponent(new RectangleCollider(50, 20, true));
+    playerBase.addComponent(new Unplaceable());
     playerBase.addComponent(Player.base);
     playerBase.transform.setPosition(new Vector2d(570, 480));
     instantiate(playerBase);

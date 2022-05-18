@@ -12,6 +12,7 @@ import { RectangleCollider } from "../../../../base/baseStructor/collider/Rectan
 import { Collider } from "../../../../base/baseStructor/collider/Collider";
 import { CircleCollider } from "../../../../base/baseStructor/collider/CircleCollider";
 import { Vector2d } from "../../../../base/baseStructor/Vector2d";
+import { AddSoundState } from "./AddSoundState";
 
 
 export class UpdateUIState extends State{
@@ -55,6 +56,8 @@ export class UpdateUIState extends State{
         cursor.addComponent(new CircleCollider(1, false));
         instantiate(cursor);
 
+        this.context.transitionTo(new AddSoundState());
+        this.context.execute();
       
     }
 

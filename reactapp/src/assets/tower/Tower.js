@@ -10,6 +10,7 @@ import { FirePattern } from "./firePattern/FirePattern";
 import { App } from "../app/App";
 import { TowerType } from "./TowerType";
 import { TackShooterFirePatternBuilder } from "./firePattern/patterns/TackShooterFirePatternBuilder";
+import { Unplaceable } from "./Unplaceable";
 
 
 
@@ -30,10 +31,13 @@ export class Tower extends Component{
     
     onStart(){
         this.#towerFacade = this.getComponent(TowerFacade);
+        this.parent.addComponent(new Unplaceable());
 
         this.firePattern.imagepath = this.towerType.projectileImagePath;
         this.firePattern.damage = this.towerType.damage;
         this.firePattern.parent = this.parent;
+
+        console.log(this.parent);
     }
 
     onEnter(other){
@@ -54,7 +58,6 @@ export class Tower extends Component{
             this.#towerFacade.showRange(this.#hitCursor);
         }
 
-
         this.#setTarget();
         this.firePattern.fireRoutine();
     }
@@ -69,6 +72,10 @@ export class Tower extends Component{
         if (enemies.length === 0) return;
 
         this.firePattern.target = enemies[0];
+    }
+
+    getTowerFacade(){
+        return this.#towerFacade;
     }
 
 }

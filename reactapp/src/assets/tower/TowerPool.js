@@ -8,6 +8,7 @@ import { Tower } from "./Tower";
 import { TowerFacade } from "./TowerFacade";
 import { TowerPlacere } from "./TowerPlacer";
 import { TowerRange } from "./TowerRange";
+import { Unplaceable } from "./Unplaceable";
 
 
 export class TowerPool extends ReuseablePool{
@@ -45,6 +46,7 @@ export class TowerPool extends ReuseablePool{
         towerComposit.addComponent(new CircleCollider(radius));
         towerComposit.addComponent(new Tower(towerType));
         towerComposit.addComponent(new TowerFacade(towerComposit, rangeComposit));
+        towerComposit.addComponent(new Unplaceable());
         towerComposit.layer = 1;
 
         instantiate(towerComposit);

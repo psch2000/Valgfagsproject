@@ -5,7 +5,7 @@ import { Composit } from "../../base/baseStructor/Composit";
 import { SquareRenderer } from "./SquareRenderer";
 import { instantiate } from "../app/functions/instantiate";
 import { Intersect } from "../../base/baseStructor/Intersect";
-import { PathRectangle } from "./PathRectangle";
+import { Unplaceable } from "../tower/Unplaceable";
 
 export class Path extends Component {
     constructor(waypointsArray, pathColor = "#00000000", pathWidth = 10) {
@@ -19,7 +19,7 @@ export class Path extends Component {
     createRectanglesOnPath() {
         this.#createRectanglesOnPath();
     }
-
+    
     #createRectanglesOnPath() {
         for (let i = 0; i < this.waypoints.length; i++) {
             if (i === 0) continue;
@@ -91,7 +91,8 @@ export class Path extends Component {
         canvasRectangle.transform.position = rectangle.transform.position;
         canvasRectangle.addComponent(new SquareRenderer(rectangle.width, rectangle.height, this.pathColor));
         canvasRectangle.addComponent(rectangle);
-        canvasRectangle.addComponent(new PathRectangle());
+        canvasRectangle.addComponent(new Unplaceable());
+
         instantiate(canvasRectangle);
     }
 

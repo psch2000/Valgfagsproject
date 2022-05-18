@@ -1,24 +1,40 @@
 import { useEffect, useState } from "react";
 import { Player } from "../bank/Player";
+import "../shop/shop.css";
+
+const Styles = [
+    "btn--primary--solid",
+    "btn--shop--grey--solid",
+    "btn--succes--solid",
+    "btn--lost--solid"
+  ];
+
+  const Sizes = ["btn--shop", "btn--wave", "btn--lost"];
 
 
-
-
-
-export const RestartMenu = ({offset, rect}) => {
+export const RestartMenu = ({
+    onClick,
+    buttonStyle, 
+    buttonSize,
+    rect, 
+    offset
+    }) => {
 
     const [display, setDisplay] = useState(false);
+
+    const CheckButtonStyle = Styles.includes(buttonStyle) 
+    ? buttonStyle 
+    : Styles[3];
+  
+    const CheckButtonSize = Sizes.includes(buttonSize)
+    ? buttonSize
+    : Sizes[2];
 
     const style = {
         display: display ? 'inline' : 'none',
         left: `${rect.x + offset.x}px`,
         top: `${rect.y + offset.y}px`,
-    }
-
-    const textStyle ={
-        WebkitTextStrokeWidth: '1px',
-        WebkitTextStrokeColor: 'var(--blue)',
-    }
+    }    
 
     useEffect(() => {
         Player.base.onSetHealth.addListener(onSetHealth);
@@ -32,7 +48,12 @@ export const RestartMenu = ({offset, rect}) => {
         window.location.reload();
     }
 
-    return <button onClick={onClick} style={style} className="absolute bg-blue-500 hover:bg-blue-700 text-white text-3xl font-bold py-2 px-4 rounded">
-        <h1 style={textStyle} >RESTART GAME</h1>
-  </button>
-}
+    return(
+        <button style={style}
+          className={`btn ${CheckButtonStyle} ${CheckButtonSize}`} onClick={onClick}>
+            <div className="lostContainer">
+                <p> RESTART GAME</p>                
+            </div>
+        </button>
+    )
+};

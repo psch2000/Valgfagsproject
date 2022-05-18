@@ -11,8 +11,9 @@ import { Player } from "../components/bank/Player";
 import { TowerPool } from "../tower/TowerPool";
 import { TowerFacade } from "./TowerFacade";
 import { TowerRange } from "./TowerRange";
-import { PathRectangle } from "../components/PathRectangle";
 import { DrawIcon } from "../../base/baseStructor/DrawIcon";
+import { AudioManager } from "../../sound/AudioManager";
+import { Unplaceable } from "./Unplaceable";
 
 export class TowerPlacere extends Component{
 
@@ -25,7 +26,7 @@ export class TowerPlacere extends Component{
     #pathrechtangle;
     #collision;
     #onMap;
-    #onPath;
+    #onUnplacable;
     #canPlaceTower;
     #towerType;
 
@@ -41,13 +42,15 @@ export class TowerPlacere extends Component{
         if (other.name === "Map"){
             this.#onMap = true;
         }
+
+
     }
 
     onOverlap(other){
         if (other.name === "projectile") return;
 
-        if (other.getComponent(PathRectangle) !== null) {
-            this.#onPath = true;
+        if (other.getComponent(Unplaceable) !== null) {
+            this.#onUnplacable = true;
         }
     }
 
@@ -56,8 +59,8 @@ export class TowerPlacere extends Component{
             this.#onMap = false;
         }
 
-        if (other.getComponent(PathRectangle) !== null) {
-            this.#onPath = false;
+        if (other.getComponent(Unplaceable) !== null) {
+            this.#onUnplacable = false;
         }
     }
 
@@ -69,13 +72,13 @@ export class TowerPlacere extends Component{
     }
 
     onUpdate(){
-        this.#canPlaceTower = this.#onMap && !this.#onPath;
+        this.#canPlaceTower = this.#onMap && !this.#onUnplacable;
         
-        this.#spriteRenderer.color = this.#canPlaceTower ? this.#towerType.normalColor : this.#towerType.dsbColor;
+        this.#spriteRenderer.img.src = this.#canPlaceTower ? this.#towerType.imagePath : this.#towerType.dsbImage;
         
         // left mouse input
         if(Input.getKeyDown('0')){
-            
+
             if(this.parent.isActive == true){
                 
                 if(this.#canPlaceTower == false) return;

@@ -8,6 +8,9 @@ import { Player } from "../bank/Player";
 import { DrawIcon } from "../../../base/baseStructor/DrawIcon";
 import { TackShooterFirePatternBuilder } from "../../tower/firePattern/patterns/TackShooterFirePatternBuilder";
 import { Collider } from "../../../base/baseStructor/collider/Collider";
+import { AudioManager } from "../../../sound/AudioManager";
+import { random } from "../../app/functions/random";
+import { randomInt } from "../../app/functions/randomInt";
 
 export class Enemy extends Component {
     static count = 0;
@@ -83,6 +86,9 @@ export class Enemy extends Component {
     #destroy() {
         this.currentHealth = 0;
         this.callbackFunctionWhenDead();
+        var rand = randomInt(1, 4);
+        // console.log('pop' + rand);
+        AudioManager.play('pop' + rand);
         App.game.removeComposit(this.parent);
     }
 }

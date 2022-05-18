@@ -12,6 +12,7 @@ import { Projectile } from "./Projectile";
 export class NormalProjectile extends Projectile {
     constructor(radius, imagepath, damage, releaseFunction, useRotate = false) {
         super(radius, imagepath, damage, releaseFunction, useRotate);
+        this.tower = null;
 
         this.addComponent(new MoveDirection(new Vector2d(0, 0), 1));
     }
@@ -20,5 +21,6 @@ export class NormalProjectile extends Projectile {
         let moveComponent = this.getComponent(MoveDirection);
         moveComponent.speed = speed;
         moveComponent.direction = direction;
+        this.tower = tower;
     }
 }
