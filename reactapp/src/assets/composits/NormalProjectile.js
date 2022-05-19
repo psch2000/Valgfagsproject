@@ -8,6 +8,7 @@ import { DamageWhenCollide } from "../components/DamageWhenCollide";
 import { Enemy } from "../components/enemy/Enemy";
 
 export class NormalProjectile extends Composit {
+    #radius;
     constructor(radius, color, damage, releaseFunction) {
         super("projectile");
         this.addComponent(new CircleRenderer(radius, color, false));
@@ -15,11 +16,17 @@ export class NormalProjectile extends Composit {
         this.addComponent(new CircleCollider(radius));
         this.addComponent(new OutOfBounceDelete(releaseFunction));
         this.addComponent(new DamageWhenCollide(Enemy, damage, releaseFunction));
+        this.#radius = radius;
+    }
+
+    getRadius(){
+        return this.#radius;
     }
 
     setRadius(value){
         this.getComponent(CircleRenderer).radius = value;
         this.getComponent(CircleCollider).radius = value;
+        this.#radius = value;
     }
 
     calculateBehavior(speed, direction, tower) {

@@ -5,7 +5,8 @@ export class AreaFirePatthernBuilder{
     
     getProduct() {
         var builder = new FirePatternBuilder()
-        .setIsArea(true);
+        .setIsArea(true)
+        .setFireInterval(2);
 
 
         return builder.getProduct();
