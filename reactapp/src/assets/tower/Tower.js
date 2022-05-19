@@ -24,6 +24,7 @@ export class Tower extends Component{
         this.towerType = towerType;
         this.canFire = false;
 
+        this.isUsingArea = false;
 
         this.firePattern = towerType.firePatternBuilder.getProduct();
       
@@ -57,8 +58,18 @@ export class Tower extends Component{
         }
 
         this.#setTarget();
+
+        if (this.isUsingArea == true) {
+
+            return;
+        }
         this.firePattern.fireRoutine();
     }
+
+    // #enemyInRange(){
+
+    //     return this.#towerFacade.getEnemiesInRange().length = 0;
+    // }
 
 
     #setTarget(){

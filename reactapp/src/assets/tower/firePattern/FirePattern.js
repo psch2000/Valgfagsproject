@@ -87,14 +87,9 @@ export class FirePattern {
         var p = this.#makeProjectile();
 
         let tower = this.parent.getComponent(Tower);
+        p.calculateBehavior(this.fireForce, rot.normalize(), tower);
 
-        if (this.isArea == false) {
-            p.calculateBehavior(this.fireForce, rot.normalize(), tower);
-            return;
-        }
-        console.log(this.parent)
 
-        p.setRadius(this.parent.getComponent(TowerFacade).range);
     }
 
     #burstFire() {

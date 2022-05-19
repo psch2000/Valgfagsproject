@@ -15,11 +15,17 @@ export class NormalProjectile extends Projectile {
         this.tower = null;
 
         this.addComponent(new MoveDirection(new Vector2d(0, 0), 1));
+        this.#radius = radius;
+    }
+
+    getRadius(){
+        return this.#radius;
     }
 
     setRadius(value){
         this.getComponent(CircleRenderer).radius = value;
         this.getComponent(CircleCollider).radius = value;
+        this.#radius = value;
     }
 
     calculateBehavior(speed, direction, tower) {
