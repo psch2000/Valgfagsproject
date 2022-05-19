@@ -115,7 +115,7 @@ export class Composit extends Component {
                 try { c.onUpdate(); } 
                 catch (ex) { console.log("An error happened in onUpdate - " + c.constructor.name + ": " + ex); }
             }
-        });
+        }); 
     }
 
     onDraw(context){
