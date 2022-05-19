@@ -79,6 +79,9 @@ function nextRound() {
 }
 
 function placeObjectsOnCanvas() {
+
+    placeBorders();
+    
     let playerBase = new Composit("playerBase");
     playerBase.addComponent(new SquareRenderer(50, 20, "blue"));
     playerBase.addComponent(new RectangleCollider(50, 20, true));
@@ -86,4 +89,39 @@ function placeObjectsOnCanvas() {
     playerBase.addComponent(Player.base);
     playerBase.transform.setPosition(new Vector2d(570, 480));
     instantiate(playerBase);
+
+    
+    
+    
+}
+
+function placeBorders(){
+    let rightBorder = new Composit("rightBorder");
+    //rightBorder.addComponent(new SquareRenderer(50, 500, "red"));
+    rightBorder.addComponent(new RectangleCollider(50, 500, true));
+    rightBorder.addComponent(new Unplaceable());
+    rightBorder.transform.setPosition(new Vector2d(700, 0));
+    instantiate(rightBorder);
+
+    let leftBorder = new Composit("leftBorder");
+    //leftBorder.addComponent(new SquareRenderer(50, 500, "red"));
+    leftBorder.addComponent(new RectangleCollider(50, 500, true));
+    leftBorder.addComponent(new Unplaceable());
+    leftBorder.transform.setPosition(new Vector2d(-50, 0));
+    instantiate(leftBorder);
+
+    let topBorder = new Composit("topBorder");
+    //topBorder.addComponent(new SquareRenderer(700, 50, "red"));
+    topBorder.addComponent(new RectangleCollider(700, 50, true));
+    topBorder.addComponent(new Unplaceable());
+    topBorder.transform.setPosition(new Vector2d(0, -55));
+    instantiate(topBorder);
+
+    let bottomBorder = new Composit("bottomBorder");
+    //bottomBorder.addComponent(new SquareRenderer(700, 50, "red"));
+    bottomBorder.addComponent(new RectangleCollider(700, 50, true));
+    bottomBorder.addComponent(new Unplaceable());
+    bottomBorder.transform.setPosition(new Vector2d(0, 500));
+    instantiate(bottomBorder);
+
 }
