@@ -19,7 +19,6 @@ export class Border extends Component{
     getRect = () => this.#rectangle;
 
     onStart(){
-        this.parent.addComponent(this.#squareRenderer);
         this.parent.transform.position = new Vector2d(this.#rectangle.x, this.#rectangle.y);
     }
 
