@@ -108,6 +108,7 @@ export class TowerPlacere extends Component{
             let c = new Composit("towerPlacer");
             c.layer = 1;
             this.#instance = c.addComponent(new TowerPlacere());
+            c.setActive(false); // by default not active before being activated else where
             instantiate(c);
         }
 
