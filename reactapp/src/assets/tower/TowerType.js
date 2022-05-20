@@ -8,27 +8,41 @@ import { TrippleFirePatternBuilder } from "./firePattern/patterns/TrippleFirePat
 
 export class TowerType{
     
-        static blueTower = new TowerType("Monkey", 100, '#0000ff', 170, "./images/sprite_monkey1.png", 15, 1, new BoomerangFirePatternBuilder());
-        static redTower = new TowerType("Boomerang", 120, '#ff0000', 275, "./images/sprite_monkey2.png", 15, 2, new TrippleFirePatternBuilder());
-        static greenTower = new TowerType("Ice Monkey", 80, '#FFFFFF', 450, "./images/sprite_monkey3.png", 15, 3, null, true);
-        static whiteTower = new TowerType("Tack Shooter", 100, '#ffffff', 240, "./images/sprite_monkey4.png", 15, 4, new TackShooterFirePatternBuilder());
-        static yellowTower = new TowerType("Bomb Shooter", 100, '#ffff00', 445, "./images/sprite_monkey5.png", 15, 5, new TrippleFirePatternBuilder());
-        static orangeTower = new TowerType("Super Monkey", 180, '#ffa500', 2125, "./images/sprite_monkey6.png", 15, 6, new SuperMonkeyFirePattern());
 
-    constructor(name, range, color, price, imagePath, size, damage, firePatternBuilder, useArea = false){
+    static redTower = new TowerType("Boomerang", 120, "./images/sprite_frisbee.png", 275, "./images/sprite_monkey2.png", "./images/sprite_greymonkey2.png", 25, 1, new TrippleFirePatternBuilder());
+    static greenTower = new TowerType("Ice Monkey", 80, "./images/sprite_ball_tennis.png", 450, "./images/sprite_monkey3.png", "./images/sprite_greymonkey3.png", 25, 1, new AreaFirePatthernBuilder());
+    static whiteTower = new TowerType("Tack Shooter", 100, "./images/sprite_nail.png", 240, "./images/sprite_monkey4.png", "./images/sprite_greymonkey4.png", 25, 1, new TackShooterFirePatternBuilder());
+    static yellowTower = new TowerType("Bomb Shooter", 100, "./images/sprite_canonball.png", 445, "./images/sprite_monkey5.png", "./images/sprite_greymonkey5.png", 25, 1, new TrippleFirePatternBuilder());
+    static orangeTower = new TowerType("Super Monkey", 180, "./images/sprite_laser.png", 2125, "./images/sprite_monkey6.png", "./images/sprite_greymonkey6.png", 25, 1, new TackShooterFirePatternBuilder());
+
+
+        static blueTower = new TowerType("Monkey", 100, "./images/sprite_dart.png",'#0000ff', 170, "./images/sprite_monkey1.png", "./images/sprite_greymonkey1.png", 25, 1, new BoomerangFirePatternBuilder());
+        static redTower = new TowerType("Boomerang", 120, "./images/sprite_frisbee.png", '#ff0000', 275, "./images/sprite_monkey2.png", "./images/sprite_greymonkey2.png", 25, 1, new TrippleFirePatternBuilder());
+        static greenTower = new TowerType("Ice Monkey", 80, "./images/sprite_ball_tennis.png", '#FFFFFF', 450, "./images/sprite_monkey3.png", "./images/sprite_greymonkey3.png", 25, 1, null, true);
+        static whiteTower = new TowerType("Tack Shooter", 100, "./images/sprite_nail.png",'#ffffff', 240, "./images/sprite_monkey4.png",  "./images/sprite_greymonkey4.png", 25, 1, new TackShooterFirePatternBuilder());
+        static yellowTower = new TowerType("Bomb Shooter", 100, "./images/sprite_canonball.png",'#ffff00', 445, "./images/sprite_monkey5.png", "./images/sprite_greymonkey5.png", 25, 1, new TrippleFirePatternBuilder());
+        static orangeTower = new TowerType("Super Monkey", 180, "./images/sprite_laser.png", '#ffa500', 2125, "./images/sprite_monkey6.png", "./images/sprite_greymonkey6.png",25, 1, new SuperMonkeyFirePattern());
+
+    constructor(name, range, projectileImagePath, color, price, imagePath, dsbImage, size, damage, firePatternBuilder, useArea = false){
         this.name = name;
         this.radius = size;
         this.range = range;
         this.color = color;
         this.price = price;
+        this.projectileImagePath = projectileImagePath;
+        this.price = price;
+        this.dsbImage = dsbImage;
+
         this.imagePath = imagePath;
         this.size = size;
         this.normalColor = color;
-        this.dsbColor = RgbColor.darkenHex(color, 0.5);
+        // this.dsbColor = RgbColor.darkenHex(color, 0.5);
         this.firePatternBuilder = firePatternBuilder;
         this.damage = damage;
         this.useArea = useArea;
     }
+
+  
 
     
 }
