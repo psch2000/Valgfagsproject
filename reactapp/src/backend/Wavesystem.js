@@ -64,7 +64,9 @@ class WaveSystem {
         enemyComposit.addComponent(new DrawIcon("", true))
         enemyComposit.addComponent(new CircleCollider(15, true));
         enemyComposit.addComponent(new FollowPath(this.path, 1, true));
-        enemyComposit.transform.position = this.path.waypoints[0].copy()
+        enemyComposit.transform.position = this.path.waypoints[0]
+            .addNumbers(this.path.pathWidth / 2, 0)
+            .subtractNumbers(0, this.path.pathWidth);
         instantiate(enemyComposit);
 
         this.enemiesSpawnedTotal += 1;
