@@ -44,7 +44,6 @@ export class Tower extends Component{
             this.#area.onReachedMaxRadius.addListener(() => this.onPop(this));
         }
         
-        console.log(this.parent)
         if (this.isUsingArea == true) return;
         this.firePattern.imagepath = this.towerType.projectileImagePath;
         this.firePattern.damage = this.towerType.damage;
