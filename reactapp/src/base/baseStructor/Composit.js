@@ -113,7 +113,11 @@ export class Composit extends Component {
         this.#components.forEach(c => {
             if (c.isActive == true){
                 try { c.onUpdate(); } 
-                catch (ex) { console.log("An error happened in onUpdate - " + c.constructor.name + ": " + ex); }
+                catch (ex) { 
+                    // console.log("An error happened in onUpdate - " + c.constructor.name + ": " + ex); 
+                    console.log(ex)
+                    debugger;
+                }
             }
         });
     }
