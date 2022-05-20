@@ -36,8 +36,6 @@ class WaveSystem {
 
         this.onWaveChange.invoke();
 
-        console.log(this.spawAmount)
-
         for (let index = 0; index < this.spawAmount; index++) {
             var enemy = this.spawnEnemy();
             enemy.addComponent(getEnemy("red", this.enemyDead));
