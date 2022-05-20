@@ -67,7 +67,7 @@ export const AppComponent = () => {
         <MoneyText offset={{x:170, y: 0}} rect={App.windowRect}></MoneyText>
         <HealthText offset={{x:50, y:0}} rect={App.windowRect}></HealthText>
         <WaveText offset={{x: 550, y:0}} rect={App.windowRect}></WaveText>
-        <TowerText offset={{x: 750, y:7}} rect={App.windowRect}></TowerText>
+        <TowerText offset={{x: 740, y:7}} rect={App.windowRect}></TowerText>
         <RestartMenu offset={{x: 250, y: 230}} rect={App.windowRect}></RestartMenu>
     </div>
 
