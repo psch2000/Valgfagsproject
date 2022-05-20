@@ -9,7 +9,7 @@ import { Vector2d } from "../base/baseStructor/Vector2d";
 import { sleep } from "../base/Sleep";
 import { EventHandler } from "../base/baseBehaviour/EventHandler";
 import { Player } from "../assets/components/bank/Player";
-import { getRedEnemy } from "../assets/components/enemy/EnemyTypes";
+import { getEnemy } from "../assets/components/enemy/EnemyTypes";
 
 class WaveSystem {
     constructor(path) {
@@ -40,7 +40,7 @@ class WaveSystem {
 
         for (let index = 0; index < this.spawAmount; index++) {
             var enemy = this.spawnEnemy();
-            enemy.addComponent(getRedEnemy(this.enemyDead))
+            enemy.addComponent(getEnemy("red", this.enemyDead));
             await sleep(250);
         }
 
