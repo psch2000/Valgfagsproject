@@ -4,11 +4,11 @@ import { Composit } from "../../base/baseStructor/Composit";
 import { DrawIcon } from "../../base/baseStructor/DrawIcon";
 import { instantiate } from "../app/functions/instantiate";
 import { CircleRenderer } from "../components/CircleRenderer";
-import { Tower } from "./Tower";
-import { TowerFacade } from "./TowerFacade";
-import { TowerPlacere } from "./TowerPlacer";
-import { TowerRange } from "./TowerRange";
-import { Unplaceable } from "./Unplaceable";
+import { Tower } from "../tower/Tower";
+import { TowerFacade } from "../tower/TowerFacade";
+import { TowerPlacere } from "../tower/TowerPlacer";
+import { TowerRange } from "../tower/TowerRange";
+import { Unplaceable } from "../tower/Unplaceable";
 
 
 export class TowerPool extends ReuseablePool{

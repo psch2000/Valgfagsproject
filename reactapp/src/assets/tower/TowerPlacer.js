@@ -8,7 +8,7 @@ import { instantiate } from "../app/functions/instantiate";
 import { CircleRenderer } from "../components/CircleRenderer";
 import { FollowCanvasMouse } from "../components/FollowCanvasMouse";
 import { Player } from "../components/bank/Player";
-import { TowerPool } from "../tower/TowerPool";
+import { TowerPool } from "../pools/TowerPool";
 import { TowerFacade } from "./TowerFacade";
 import { TowerRange } from "./TowerRange";
 import { DrawIcon } from "../../base/baseStructor/DrawIcon";
