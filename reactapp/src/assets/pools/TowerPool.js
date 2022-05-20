@@ -42,7 +42,6 @@ export class TowerPool extends ReuseablePool{
 
         var towerComposit = new Composit("TowerComposit");
         //towerComposit.addComponent(new CircleRenderer(radius, color));
-        towerComposit.addComponent(new DrawIcon(imagePath, true, useRotation));
         towerComposit.addComponent(new CircleCollider(radius));
         towerComposit.addComponent(new Tower(towerType));
         towerComposit.addComponent(new TowerFacade(towerComposit, rangeComposit));
@@ -51,6 +50,7 @@ export class TowerPool extends ReuseablePool{
             towerComposit.addComponent(new Area(1, towerType.range));
             towerComposit.addComponent(new CircleRenderer(0, towerType.color));
         }
+        towerComposit.addComponent(new DrawIcon(imagePath, true, useRotation));
         towerComposit.layer = 1;
 
         instantiate(towerComposit);
