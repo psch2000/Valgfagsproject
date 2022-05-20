@@ -2,6 +2,7 @@ import { RgbColor } from "../../base/baseStructor/RgbColor";
 import { AreaFirePatthernBuilder } from "./firePattern/patterns/AreaFirePatthernBuilder";
 import { BoomerangFirePatternBuilder } from "./firePattern/patterns/BoomerangFirePatternBuilder";
 import { SingleFirePatternBuilder } from "./firePattern/patterns/SingleFirePatternBuilder";
+import { SuperMonkeyFirePattern } from "./firePattern/patterns/SuperMonkeyFirePattern";
 import { TackShooterFirePatternBuilder } from "./firePattern/patterns/TackShooterFirePatternBuilder";
 import { TrippleFirePatternBuilder } from "./firePattern/patterns/TrippleFirePatternBuilder";
 
@@ -12,7 +13,7 @@ export class TowerType{
         static greenTower = new TowerType("Ice Monkey", 80, '#FFFFFF', 450, "./images/sprite_monkey3.png", 15, 3, null, true);
         static whiteTower = new TowerType("Tack Shooter", 100, '#ffffff', 240, "./images/sprite_monkey4.png", 15, 4, new TackShooterFirePatternBuilder());
         static yellowTower = new TowerType("Bomb Shooter", 100, '#ffff00', 445, "./images/sprite_monkey5.png", 15, 5, new TrippleFirePatternBuilder());
-        static orangeTower = new TowerType("Super Monkey", 180, '#ffa500', 2125, "./images/sprite_monkey6.png", 15, 6, new TackShooterFirePatternBuilder());
+        static orangeTower = new TowerType("Super Monkey", 180, '#ffa500', 2125, "./images/sprite_monkey6.png", 15, 6, new SuperMonkeyFirePattern());
 
     constructor(name, range, color, price, imagePath, size, damage, firePatternBuilder, useArea = false){
         this.name = name;

@@ -29,6 +29,8 @@ export class FirePattern {
         this.damage = null;
         this.isArea = false;
 
+        this.offsets = [];
+        this.offsetFire = false;
         
     
         this.projectileType = NormalProjectile;
@@ -48,6 +50,17 @@ export class FirePattern {
         if (this.fireAngels.length == 0) throw new Error("a fire angle is needed.");
     }
 
+    #offsetFire(){
+        var direction = this.#getDirection();
+        this.offsets.forEach(offset => {
+
+            var from = this.parent.transform.position;
+            var firePoint = Vector2d.add(from, offset);
+
+            this.#fireBullet(direction, firePoint);
+        })
+    }
+
     #fire() {
         if (this.target == null) return;
         if (this.target.getComponent(Enemy).isDead()) {
@@ -56,6 +69,11 @@ export class FirePattern {
         }
 
         this.#time = 0;
+
+        if (this.offsetFire == true){
+            this.#offsetFire();
+            return;
+        }
 
         if (this.burst == true) {
             this.#burstFire();
@@ -80,8 +98,10 @@ export class FirePattern {
         i = 0;
     }
 
-    #fireBullet(rot) {
-        var p = this.#makeProjectile();
+    #fireBullet(rot, from = null) {
+        var p = this.#makeProjectile(from);
+
+
 
         let tower = this.parent.getComponent(Tower);
         p.calculateBehavior(this.fireForce, rot.normalize(), tower);
@@ -99,8 +119,13 @@ export class FirePattern {
         });
     }
 
-    #makeProjectile() {
+    #makeProjectile(from = null) {
         var c = ProjectilePool.getInstance().acquireReuseable(this.color, this.damage, this.projectileType);
+        
+        if (from != null){
+            c.transform.position = from.copy();
+            return c;
+        }
         c.transform.position = this.parent.transform.position.copy();
         return c;
     }
