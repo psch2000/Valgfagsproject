@@ -26,6 +26,7 @@ export class Tower extends Component{
         this.towerType = towerType;
         this.canFire = false;
 
+        // debugger;
         this.isUsingArea = towerType.useArea;
 
         if (this.isUsingArea == true) return;
@@ -37,8 +38,12 @@ export class Tower extends Component{
         this.#towerFacade = this.getComponent(TowerFacade);
         this.#area = this.getComponent(Area);
 
-        this.#area.onReachedMaxRadius.addListener(() => this.onPop(this));
+        if (this.#area != null){
+            this.#area.onReachedMaxRadius.addListener(() => this.onPop(this));
 
+        }
+
+        console.log(this.parent)
         if (this.isUsingArea == true) return;
         this.firePattern.color = this.towerType.color;
         this.firePattern.damage = this.towerType.damage;

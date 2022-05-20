@@ -28,6 +28,8 @@ export class FirePattern {
         this.color = "green";
         this.damage = null;
         this.isArea = false;
+
+        
     
         this.projectileType = NormalProjectile;
     }
