@@ -8,7 +8,8 @@ export class SuperMonkeyFirePattern {
         var builder = new FirePatternBuilder()
         .addOffset(new Vector2d(20, 0))
         .addOffset(new Vector2d(-20, 0))
-        .setOffsetFire(true);
+        .setOffsetFire(true)
+        .setRotateProjectile(true);
 
         return builder.getProduct();
     }
