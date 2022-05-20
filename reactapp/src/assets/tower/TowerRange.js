@@ -50,7 +50,6 @@ export class TowerRange extends Component{
         this.enemiesInRange.forEach((enemy, index) => {
             if (enemy.getComponent(Enemy).isDead()) {
                 this.enemiesInRange.splice(index, 1);
-                console.log("removed enemy from inRange in TowerRange")
             }
         })
     }
