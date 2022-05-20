@@ -4,7 +4,7 @@ import { DrawIcon } from "../../base/baseStructor/DrawIcon";
 import { CircleCollider } from "../../base/baseStructor/collider/CircleCollider";
 import { FollowPath } from "../components/enemy/FollowPath";
 import { instantiate } from "../app/functions/instantiate";
-import { getEnemy, enemyTypesHealth } from "../components/enemy/EnemyTypes";
+import { enemyTypesHealth } from "../components/enemy/EnemyTypes";
 import { Enemy } from "../components/enemy/Enemy";
 
 export class EnemyPool extends ReuseablePool {
@@ -59,4 +59,9 @@ export class EnemyPool extends ReuseablePool {
     #setEnemyPositionToStartOfPath(enemyComposit, path) {
         enemyComposit.transform.position = path.waypoints[0].addNumbers(path.pathWidth / 2, 0).subtractNumbers(0, path.pathWidth);
     }
+}
+
+function getEnemy(type, releaseFunction, callbackFunctionWhenDead) {
+    let enemyHealth = enemyTypesHealth[type];
+    return new Enemy(enemyHealth, releaseFunction, callbackFunctionWhenDead);
 }
