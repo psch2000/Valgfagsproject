@@ -29,6 +29,8 @@ export class FirePattern {
         this.imagepath = "";
         this.damage = null;
         this.isArea = false;
+
+        
     
         this.projectileType = NormalProjectile;
         this.lookDirection = null;

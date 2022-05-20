@@ -3,6 +3,7 @@ import { CircleCollider } from "../../base/baseStructor/collider/CircleCollider"
 import { Composit } from "../../base/baseStructor/Composit";
 import { DrawIcon } from "../../base/baseStructor/DrawIcon";
 import { instantiate } from "../app/functions/instantiate";
+import { Area } from "../components/Area";
 import { CircleRenderer } from "../components/CircleRenderer";
 import { Tower } from "../tower/Tower";
 import { TowerFacade } from "../tower/TowerFacade";
@@ -44,9 +45,13 @@ export class TowerPool extends ReuseablePool{
         //towerComposit.addComponent(new CircleRenderer(radius, color));
         towerComposit.addComponent(new DrawIcon(towerType.imagePath, true, true))
         towerComposit.addComponent(new CircleCollider(radius));
+        towerComposit.addComponent(new CircleRenderer(0, towerType.color));
         towerComposit.addComponent(new Tower(towerType));
         towerComposit.addComponent(new TowerFacade(towerComposit, rangeComposit));
         towerComposit.addComponent(new Unplaceable());
+        if (towerType.useArea) {
+            towerComposit.addComponent(new Area(1, towerType.range));
+        }
         towerComposit.layer = 1;
 
         instantiate(towerComposit);
