@@ -22,7 +22,6 @@ export class BoomerangProjectile extends Projectile {
         let moveComponent = this.getComponent(MovePath);
         moveComponent.speed = speed;
         moveComponent.direction = direction;
-        this.tower = tower;
 
         let circleOffset = Vector2d.multiplyNum(direction, tower.towerType.range / 2);
         let circleCenter = Vector2d.add(tower.transform.position, circleOffset);

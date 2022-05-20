@@ -89,9 +89,9 @@ export class FirePattern {
         var p = this.#makeProjectile();
 
         let tower = this.parent.getComponent(Tower);
+        p.tower = tower;
+
         p.calculateBehavior(this.fireForce, rot.normalize(), tower);
-
-
     }
 
     #burstFire() {
