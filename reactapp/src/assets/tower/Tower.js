@@ -37,7 +37,6 @@ export class Tower extends Component{
     
     onStart(){
         this.#towerFacade = this.getComponent(TowerFacade);
-        this.parent.addComponent(new Unplaceable());
 
         this.#area = this.getComponent(Area);
         
