@@ -11,6 +11,7 @@ import { Collider } from "../../../base/baseStructor/collider/Collider";
 import { AudioManager } from "../../../sound/AudioManager";
 import { random } from "../../app/functions/random";
 import { randomInt } from "../../app/functions/randomInt";
+import { enemyTypesImagePaths } from "./EnemyTypes";
 
 export class Enemy extends Component {
     static count = 0;
@@ -23,17 +24,6 @@ export class Enemy extends Component {
         this.releaseFunction = releaseFunction;
         this.callbackFunctionWhenDead = callbackFunctionWhenDead;
 
-        this.imagePaths = [
-            "./images/sprite_ball_red.png",
-            "./images/sprite_ball_blue.png",
-            "./images/sprite_ball_green.png",
-            "./images/sprite_ball_yellow.png",
-            "./images/sprite_ball_pink.png",
-            "./images/sprite_ball_black.png",
-            "./images/sprite_ball_purple.png",
-            "./images/sprite_ball_white.png",
-        ];
-
         this.id = Enemy.count;
         Enemy.count += 1;
     }
@@ -43,7 +33,7 @@ export class Enemy extends Component {
     }
 
     updateIcon() {
-        this.parent.getComponent(DrawIcon).img.src = this.imagePaths[this.currentHealth - 1];
+        this.parent.getComponent(DrawIcon).img.src = enemyTypesImagePaths[this.currentHealth - 1];
     }
 
     isDead() {
@@ -64,9 +54,7 @@ export class Enemy extends Component {
         // update damage to be current health
         this.damage = this.currentHealth;
 
-        let drawIconComponent = this.parent.getComponent(DrawIcon);
-
-        drawIconComponent.img.src = this.imagePaths[this.currentHealth - 1];
+        this.updateIcon();
 
         Player.bank.add(1);
 
