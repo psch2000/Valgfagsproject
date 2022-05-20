@@ -12,11 +12,21 @@ export class FollowPath extends Component {
     }
 
     onStart() {
-        if (this.followCenterOfPath) this.#offsetWaypoints();
+        this.#onChangePath();
     }
 
     onUpdate() {
         this.#moveOnPath();
+    }
+
+    setPath(path) {
+        this.waypoints = [...path.waypoints];
+
+        this.#onChangePath();
+    }
+
+    #onChangePath() {
+        if (this.followCenterOfPath) this.#offsetWaypoints();
     }
 
     #moveOnPath() {

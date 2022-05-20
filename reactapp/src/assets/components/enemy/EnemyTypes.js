@@ -1,6 +1,6 @@
 import { Enemy } from "./Enemy";
 
-const enemyTypesHealth = {
+export const enemyTypesHealth = {
     "red": 1,
     "blue": 2,
     "green": 3,
@@ -11,7 +11,7 @@ const enemyTypesHealth = {
     "white": 8
 }
 
-export function getEnemy(color, callbackFunctionWhenDead) {
-    let enemyHealth = enemyTypesHealth[color];
-    return new Enemy(enemyHealth, callbackFunctionWhenDead);
+export function getEnemy(type, releaseFunction, callbackFunctionWhenDead) {
+    let enemyHealth = enemyTypesHealth[type];
+    return new Enemy(enemyHealth, releaseFunction, callbackFunctionWhenDead);
 }

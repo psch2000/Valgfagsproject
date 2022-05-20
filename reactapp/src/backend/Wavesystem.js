@@ -10,6 +10,7 @@ import { sleep } from "../base/Sleep";
 import { EventHandler } from "../base/baseBehaviour/EventHandler";
 import { Player } from "../assets/components/bank/Player";
 import { getEnemy } from "../assets/components/enemy/EnemyTypes";
+import { EnemyPool } from "../assets/pools/EnemyPool";
 
 class WaveSystem {
     constructor(path) {
@@ -37,8 +38,7 @@ class WaveSystem {
         this.onWaveChange.invoke();
 
         for (let index = 0; index < this.spawAmount; index++) {
-            var enemy = this.spawnEnemy();
-            enemy.addComponent(getEnemy("red", this.enemyDead));
+            this.spawnEnemy();
             await sleep(250);
         }
 
@@ -58,18 +58,10 @@ class WaveSystem {
     }
 
     spawnEnemy() {
-        let enemyComposit = new Composit("enemy" + this.enemiesSpawnedTotal);
-        enemyComposit.addComponent(new DrawIcon("", true));
-        enemyComposit.addComponent(new CircleCollider(15, true));
-        enemyComposit.addComponent(new FollowPath(this.path, 1, true));
-        enemyComposit.transform.position = this.path.waypoints[0]
-            .addNumbers(this.path.pathWidth / 2, 0)
-            .subtractNumbers(0, this.path.pathWidth);
-        instantiate(enemyComposit);
+        EnemyPool.getInstance().acquireReuseable("red", this.path, this.enemyDead);
 
         this.enemiesSpawnedTotal += 1;
         this.enemiesRemainingThisRound += 1;
-        return enemyComposit;
     }
 }
 

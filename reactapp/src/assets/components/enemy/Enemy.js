@@ -15,11 +15,12 @@ import { randomInt } from "../../app/functions/randomInt";
 export class Enemy extends Component {
     static count = 0;
 
-    constructor(health, callbackFunctionWhenDead) {
+    constructor(health, releaseFunction, callbackFunctionWhenDead) {
         super();
         this.startHealth = health;
         this.currentHealth = health;
         this.damage = health; // damage is just equal to the current health of the enemy
+        this.releaseFunction = releaseFunction;
         this.callbackFunctionWhenDead = callbackFunctionWhenDead;
 
         this.imagePaths = [
@@ -38,6 +39,10 @@ export class Enemy extends Component {
     }
 
     onStart() {
+        this.updateIcon();
+    }
+
+    updateIcon() {
         this.parent.getComponent(DrawIcon).img.src = this.imagePaths[this.currentHealth - 1];
     }
 
@@ -89,6 +94,6 @@ export class Enemy extends Component {
         var rand = randomInt(1, 4);
         // console.log('pop' + rand);
         AudioManager.play('pop' + rand);
-        App.game.removeComposit(this.parent);
+        this.releaseFunction(this.parent);
     }
 }

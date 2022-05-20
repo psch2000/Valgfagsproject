@@ -31,7 +31,7 @@ export class EnemyPool extends ReuseablePool {
 
         let enemyComponent = reuseable.getComponent(Enemy);
         enemyComponent.currentHealth = enemyTypesHealth[enemyType];
-        enemyComponent.updateImage();
+        enemyComponent.updateIcon();
 
         this.#setEnemyPositionToStartOfPath(reuseable, path);
         reuseable.getComponent(FollowPath).setPath(path);
