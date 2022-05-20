@@ -8,11 +8,14 @@ import { Path } from "../assets/components/Path";
 import { Vector2d } from "../base/baseStructor/Vector2d";
 import { sleep } from "../base/Sleep";
 import { EventHandler } from "../base/baseBehaviour/EventHandler";
+import { Player } from "../assets/components/bank/Player";
+import { getRedEnemy } from "../assets/components/enemy/EnemyTypes";
 
 class WaveSystem {
     constructor(path) {
         this.path = path;
         this.round = 0;
+        this.spawAmount = 20;
         this.isWaveActive = false;
         this.enemiesSpawnedTotal = 0;
         this.enemiesRemainingThisRound = 0;
@@ -33,10 +36,15 @@ class WaveSystem {
 
         this.onWaveChange.invoke();
 
-        for (let index = 0; index < this.round; index++) {
-            this.spawnEnemy(8);
-            await sleep(1000);
+        console.log(this.spawAmount)
+
+        for (let index = 0; index < this.spawAmount; index++) {
+            var enemy = this.spawnEnemy();
+            enemy.addComponent(getRedEnemy(this.enemyDead))
+            await sleep(250);
         }
+
+        this.spawAmount += 5;
     }
 
     enemyDead = () => {
@@ -48,19 +56,20 @@ class WaveSystem {
         console.log("end round (WaveSystem)");
         this.isWaveActive = false;
         this.onWaveChange.invoke();
+        Player.bank.add(100 + this.round);
     }
 
-    spawnEnemy(enemyHealth) {
+    spawnEnemy() {
         let enemyComposit = new Composit("enemy" + this.enemiesSpawnedTotal);
         enemyComposit.addComponent(new DrawIcon("", true))
         enemyComposit.addComponent(new CircleCollider(15, true));
         enemyComposit.addComponent(new FollowPath(this.path, 1, true));
-        enemyComposit.addComponent(new Enemy(enemyHealth, this.enemyDead));
         enemyComposit.transform.position = this.path.waypoints[0].copy()
         instantiate(enemyComposit);
 
         this.enemiesSpawnedTotal += 1;
         this.enemiesRemainingThisRound += 1;
+        return enemyComposit;
     }
 }
 
