@@ -45,7 +45,7 @@ export class EnemyPool extends ReuseablePool {
         enemyComposit.addComponent(new DrawIcon("", true));
         enemyComposit.addComponent(new CircleCollider(this.colliderRadius, true));
         enemyComposit.addComponent(new FollowPath(path, 1, true));
-        enemyComposit.addComponent(getEnemy(enemyType, this.releaseReuseable, callbackFunctionWhenDead))
+        enemyComposit.addComponent(getEnemy(enemyType, this.releaseReuseable, callbackFunctionWhenDead));
         this.#setEnemyPositionToStartOfPath(enemyComposit, path);
         instantiate(enemyComposit);
     }
@@ -57,7 +57,9 @@ export class EnemyPool extends ReuseablePool {
     }
 
     #setEnemyPositionToStartOfPath(enemyComposit, path) {
-        enemyComposit.transform.position = path.waypoints[0].addNumbers(path.pathWidth / 2, 0).subtractNumbers(0, path.pathWidth);
+        enemyComposit.transform.position = path.waypoints[0]
+            .addNumbers(path.pathWidth / 2, 0)
+            .subtractNumbers(0, path.pathWidth);
     }
 }
 
