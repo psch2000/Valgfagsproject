@@ -59,7 +59,7 @@ class WaveSystem {
 
     spawnEnemy() {
         let enemyComposit = new Composit("enemy" + this.enemiesSpawnedTotal);
-        enemyComposit.addComponent(new DrawIcon("", true))
+        enemyComposit.addComponent(new DrawIcon("", true));
         enemyComposit.addComponent(new CircleCollider(15, true));
         enemyComposit.addComponent(new FollowPath(this.path, 1, true));
         enemyComposit.transform.position = this.path.waypoints[0]
