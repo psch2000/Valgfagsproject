@@ -33,8 +33,7 @@ export class TowerPool extends ReuseablePool{
     makeReuseable(){
         var towerType = TowerPlacere.getInstance().getTowerType();
 
-        var {radius, color, range} = towerType;
-
+        var { radius, color, range, useRotation, imagePath, useArea } = towerType;
 
         var rangeComposit = new Composit("TowerRange");
         rangeComposit.addComponent(new CircleRenderer(range, "#000000CC", true));
@@ -43,7 +42,7 @@ export class TowerPool extends ReuseablePool{
 
         var towerComposit = new Composit("TowerComposit");
         //towerComposit.addComponent(new CircleRenderer(radius, color));
-        towerComposit.addComponent(new DrawIcon(towerType.imagePath, true, true))
+        towerComposit.addComponent(new DrawIcon(imagePath, true, useRotation));
         towerComposit.addComponent(new CircleCollider(radius));
         towerComposit.addComponent(new CircleRenderer(0, towerType.color));
         towerComposit.addComponent(new Tower(towerType));
