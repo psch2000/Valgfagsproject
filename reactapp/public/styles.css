@@ -1,3 +1,4 @@
+/*Global variables colors*/
 :root{
     --lightblue: #00cfef;
     --blue: #0020C2;
@@ -15,6 +16,7 @@
 
 }
 
+/*General settings that effect body*/
 body {
     margin: 0;
     font-family: "Luckiest Guy", sans-serif;
