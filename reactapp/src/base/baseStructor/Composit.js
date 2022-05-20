@@ -104,7 +104,11 @@ export class Composit extends Component {
     onStart() {  
         this.#components.forEach(c => {            
             try { c.onStart(); } 
-            catch (ex) { console.log("An error happened in onStart - " + c.constructor.name + ": " + ex); }
+            catch (ex) { 
+                // console.log("An error happened in onStart - " + c.constructor.name + ": " + ex); 
+                console.log(ex)
+                debugger;
+            }
         });
     }
 
@@ -113,7 +117,11 @@ export class Composit extends Component {
         this.#components.forEach(c => {
             if (c.isActive == true){
                 try { c.onUpdate(); } 
-                catch (ex) { console.log("An error happened in onUpdate - " + c.constructor.name + ": " + ex); }
+                catch (ex) { 
+                    // console.log("An error happened in onUpdate - " + c.constructor.name + ": " + ex); 
+                    console.log(ex)
+                    debugger;
+                }
             }
         }); 
     }

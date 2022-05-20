@@ -2,6 +2,7 @@ import { RgbColor } from "../../base/baseStructor/RgbColor";
 import { AreaFirePatthernBuilder } from "./firePattern/patterns/AreaFirePatthernBuilder";
 import { BoomerangFirePatternBuilder } from "./firePattern/patterns/BoomerangFirePatternBuilder";
 import { SingleFirePatternBuilder } from "./firePattern/patterns/SingleFirePatternBuilder";
+import { SuperMonkeyFirePattern } from "./firePattern/patterns/SuperMonkeyFirePattern";
 import { TackShooterFirePatternBuilder } from "./firePattern/patterns/TackShooterFirePatternBuilder";
 import { TrippleFirePatternBuilder } from "./firePattern/patterns/TrippleFirePatternBuilder";
 
@@ -31,6 +32,8 @@ export class TowerType{
         this.useRotation = useRotation;
         this.areaColor = areaColor;
     }
+
+  
 
     
 }

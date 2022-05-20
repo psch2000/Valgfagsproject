@@ -71,6 +71,16 @@ export class FirePatternBuilder {
         return this;
     }
 
+    setOffsetFire(value){
+        this.#firePattern.offsetFire = value;
+        return this;
+    }
+
+    addOffset(offset){
+        this.#firePattern.offsets.push(offset);
+        return this;
+    }
+
     getProduct(){
         var product = this.#firePattern;
         this.#reset();
