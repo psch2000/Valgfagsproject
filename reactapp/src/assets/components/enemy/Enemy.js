@@ -63,7 +63,7 @@ export class Enemy extends Component {
 
         drawIconComponent.img.src = this.imagePaths[this.currentHealth - 1];
 
-        Player.bank.add(1);
+        Player.bank.add(incomingDamage);
 
         if (this.isDead()) this.#destroy();
     }
