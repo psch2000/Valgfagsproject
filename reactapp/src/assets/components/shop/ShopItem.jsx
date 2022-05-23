@@ -33,8 +33,7 @@ export const ShopButton = ({ towerType, towerName }) => {
     }
 
     function onHoverEnter() {
-        TowerTextObj.towerText = towerName;
-        TowerTextObj.onSetText.invoke();
+        TowerTextObj.setTowerText(towerName);
     }
 
     const buttonStyle = disable ? Styles[1] : Styles[0];

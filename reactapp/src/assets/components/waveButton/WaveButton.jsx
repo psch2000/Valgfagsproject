@@ -33,17 +33,15 @@ const Styles = [
     function handleOnClick() {
       onClick();
       changeTowerText();
-      TowerTextObj.onSetText.invoke();
     }
 
     function onHoverEnter() {
       changeTowerText();
-      TowerTextObj.onSetText.invoke();
     }
 
     function changeTowerText() {
       let text = waveSystem.isWaveActive ? "Round is active" : "Start round";
-      TowerTextObj.towerText = text;
+      TowerTextObj.setTowerText(text);
     }
 
     // const CheckButtonStyle = Styles.includes(buttonStyle) 
