@@ -9,6 +9,8 @@ export class SuperMonkeyFirePattern {
         .addOffset(new Vector2d(0, 20))
         .addOffset(new Vector2d(0, -20))
         .setOffsetFire(true)
+        .setFireInterval(.03)
+        .setFireForce(10)
         .setRotateProjectile(true);
 
 
