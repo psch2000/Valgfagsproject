@@ -117,7 +117,7 @@ function placeBorders(){
     //topBorder.addComponent(new SquareRenderer(700, 50, "red"));
     topBorder.addComponent(new RectangleCollider(700, 50, true));
     topBorder.addComponent(new Unplaceable());
-    topBorder.transform.setPosition(new Vector2d(0, -55));
+    topBorder.transform.setPosition(new Vector2d(0, -50));
     instantiate(topBorder);
 
     let bottomBorder = new Composit("bottomBorder");
