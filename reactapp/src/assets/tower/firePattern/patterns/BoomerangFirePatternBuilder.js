@@ -4,7 +4,8 @@ import { FirePatternBuilder } from "../FirePatternBuilder";
 export class BoomerangFirePatternBuilder {
     getProduct() {
         var builder = new FirePatternBuilder()
-        .setProjectileType(BoomerangProjectile);
+        .setProjectileType(BoomerangProjectile)
+        .setRotateProjectile(true);
 
         return builder.getProduct();
     }
