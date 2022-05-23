@@ -30,7 +30,7 @@ export const ShopButton = ({
 
     useEffect(()=> {
       Player.bank.onSetBalance.addListener(onSetBalance);
-
+      onSetBalance();
     })
 
     function onSetBalance(){
