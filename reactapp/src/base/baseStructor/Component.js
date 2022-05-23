@@ -21,6 +21,8 @@ export class Component {
     onUpdate(){}
     onDraw(context){}
 
+    onDestroy() {}
+
     getComponent(type){
         if (this.parent == null) return;
         return this.parent.getComponent(type);

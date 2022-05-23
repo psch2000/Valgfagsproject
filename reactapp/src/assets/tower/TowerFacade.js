@@ -20,6 +20,7 @@ export class TowerFacade extends Component{
         super();
         this.#towerType = towerType;
         this.#rangeComposit = rangeComposit;
+        this.range = this.#rangeComposit.getComponent(CircleCollider).radius;
     }
    
 
@@ -39,6 +40,9 @@ export class TowerFacade extends Component{
         this.#towerCollider = this.getComponent(CircleCollider);
     }
     
+    canHitEnemy(){
+        return this.#range.enemiesInRange.length > 0;
+    }
 
     getEnemiesInRange(){
         return this.#range.enemiesInRange;

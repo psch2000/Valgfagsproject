@@ -65,10 +65,7 @@ export class DrawIcon extends Component{
         if (rotationAngle !== null) {
             context.restore();
         }
-
     }
-    
-  
 }
 
 
