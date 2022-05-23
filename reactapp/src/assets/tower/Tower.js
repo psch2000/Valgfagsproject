@@ -77,7 +77,6 @@ export class Tower extends Component{
     onUpdate(){
 
         if (Input.getKeyDown('0') == true){
-            console.log(this.#hitCursor)
             this.#towerFacade.showRange(this.#hitCursor);
         }
 
