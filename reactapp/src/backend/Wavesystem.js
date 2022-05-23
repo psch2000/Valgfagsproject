@@ -11,6 +11,7 @@ import { EventHandler } from "../base/baseBehaviour/EventHandler";
 import { Player } from "../assets/components/bank/Player";
 import { getEnemy } from "../assets/components/enemy/EnemyTypes";
 import { EnemyPool } from "../assets/pools/EnemyPool";
+import { enemyTypesHealth } from "../assets/components/enemy/EnemyTypes";
 
 class WaveSystem {
     constructor(path) {
@@ -37,9 +38,11 @@ class WaveSystem {
 
         this.onWaveChange.invoke();
 
+        let enemyTypeToSpawn = this.#getEnemyTypeByRound(this.round);
+
         for (let index = 0; index < this.spawAmount; index++) {
-            this.spawnEnemy();
-            await sleep(250);
+            this.spawnEnemy(enemyTypeToSpawn);
+            await sleep(600);
         }
 
         this.spawAmount += 5;
@@ -57,11 +60,26 @@ class WaveSystem {
         Player.bank.add(100 + this.round);
     }
 
-    spawnEnemy() {
-        EnemyPool.getInstance().acquireReuseable("red", this.path, this.enemyDead);
+    spawnEnemy(enemyType) {
+        EnemyPool.getInstance().acquireReuseable(enemyType, this.path, this.enemyDead);
 
         this.enemiesSpawnedTotal += 1;
         this.enemiesRemainingThisRound += 1;
+    }
+
+    #getEnemyTypeByRound(round) {
+        let enemyTypes = Object.keys(enemyTypesHealth);
+        let enemyTypeIndex = round % enemyTypes.length;
+
+        return enemyTypes[enemyTypeIndex];
+    }
+
+    #getRandomEnemyType() {
+        // inspired from https://thewebdev.info/2021/06/03/how-to-pick-a-random-property-from-a-javascript-object/
+        let enemyTypes = Object.keys(enemyTypesHealth);
+        let randomIndex = Math.floor(Math.random() * enemyTypes.length);
+
+        return enemyTypes[randomIndex];
     }
 }
 

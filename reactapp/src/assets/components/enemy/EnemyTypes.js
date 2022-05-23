@@ -1,4 +1,3 @@
-import { Enemy } from "./Enemy";
 
 export const enemyTypesHealth = {
     "red": 1,
@@ -11,7 +10,13 @@ export const enemyTypesHealth = {
     "white": 8
 }
 
-export function getEnemy(type, releaseFunction, callbackFunctionWhenDead) {
-    let enemyHealth = enemyTypesHealth[type];
-    return new Enemy(enemyHealth, releaseFunction, callbackFunctionWhenDead);
-}
+export const enemyTypesImagePaths = [
+    "./images/sprite_ball_red.png",
+    "./images/sprite_ball_blue.png",
+    "./images/sprite_ball_green.png",
+    "./images/sprite_ball_yellow.png",
+    "./images/sprite_ball_pink.png",
+    "./images/sprite_ball_black.png",
+    "./images/sprite_ball_purple.png",
+    "./images/sprite_ball_white.png",
+];
