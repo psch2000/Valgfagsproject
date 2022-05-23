@@ -123,7 +123,7 @@ export class FirePattern {
         });
     }
 
-    #makeProjectile() {
+    #makeProjectile(from = null) {
         var c = ProjectilePool.getInstance().acquireReuseable(this.imagepath, this.damage, this.projectileType, this.rotateProjectile);
 
         if (from != null){
