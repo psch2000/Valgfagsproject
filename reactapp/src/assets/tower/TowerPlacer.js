@@ -37,7 +37,6 @@ export class TowerPlacere extends Component{
             this.#map = App.game.find("Map").getComponent(Map);
             this.#canPlaceTower = false;
             this.onCancel = new EventHandler();
-            // Eventhandler til at opdatere buttons
         }
     }
 
@@ -82,8 +81,6 @@ export class TowerPlacere extends Component{
         document.addEventListener('contextmenu', function(e) {            
             e.preventDefault();
           }, false);
-
-
     }
 
     onUpdate(){
@@ -117,8 +114,7 @@ export class TowerPlacere extends Component{
             } 
         }
 
-        if(Input.getKeyDown('2')){
-            
+        if(Input.getKeyDown('2')){ 
             this.onCancel.invoke();
             this.parent.setActive(false);
             this.#canPlaceTower = false;
@@ -145,6 +141,7 @@ export class TowerPlacere extends Component{
             let c = new Composit("towerPlacer");
             c.layer = 1;
             this.#instance = c.addComponent(new TowerPlacere());
+            c.setActive(false); // by default not active before being activated else where
             instantiate(c);
         }
 

@@ -21,6 +21,5 @@ export class NormalProjectile extends Projectile {
         let moveComponent = this.getComponent(MoveDirection);
         moveComponent.speed = speed;
         moveComponent.direction = direction;
-        this.tower = tower;
     }
 }
