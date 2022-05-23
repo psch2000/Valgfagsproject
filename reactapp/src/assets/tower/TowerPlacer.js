@@ -14,6 +14,7 @@ import { TowerRange } from "./TowerRange";
 import { DrawIcon } from "../../base/baseStructor/DrawIcon";
 import { AudioManager } from "../../sound/AudioManager";
 import { Unplaceable } from "./Unplaceable";
+import { EventHandler } from "../../base/baseBehaviour/EventHandler";
 
 export class TowerPlacere extends Component{
 
@@ -35,7 +36,7 @@ export class TowerPlacere extends Component{
             super();
             this.#map = App.game.find("Map").getComponent(Map);
             this.#canPlaceTower = false;
-
+            this.onCancel = new EventHandler();
             // Eventhandler til at opdatere buttons
         }
     }
@@ -76,11 +77,13 @@ export class TowerPlacere extends Component{
         this.#followMouse = this.parent.addComponent(new FollowCanvasMouse());
         this.#collision = this.parent.addComponent(new CircleCollider(1, true));
 
-        
-
+        // Disables regular menu right click
+        // Makes it so the player can give right click input without a menu appearing
         document.addEventListener('contextmenu', function(e) {            
             e.preventDefault();
           }, false);
+
+
     }
 
     onUpdate(){
@@ -115,6 +118,8 @@ export class TowerPlacere extends Component{
         }
 
         if(Input.getKeyDown('2')){
+            
+            this.onCancel.invoke();
             this.parent.setActive(false);
             this.#canPlaceTower = false;
         }
@@ -126,6 +131,7 @@ export class TowerPlacere extends Component{
 
     // We set the towerType of the towerPlacer to the towerType being selected
     setTowerType(towerType){
+        this.onCancel.invoke();
         this.#rangeRenderer.radius = towerType.range;
         this.#spriteRenderer.img.src = towerType.imagePath;
         this.#towerType = towerType;
