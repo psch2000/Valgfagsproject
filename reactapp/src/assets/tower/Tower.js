@@ -84,9 +84,9 @@ export class Tower extends Component{
         
         if (this.isUsingArea == true) {
             this.#area.canIncrease = this.#towerFacade.canHitEnemy();
-            
             return;
         }
+        
         this.#setTarget();
 
         if (this.isUsingArea == true) {
@@ -96,10 +96,6 @@ export class Tower extends Component{
         this.firePattern.fireRoutine();
     }
 
-    // #enemyInRange(){
-
-    //     return this.#towerFacade.getEnemiesInRange().length = 0;
-    // }
 
 
     #setTarget(){
