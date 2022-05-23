@@ -74,7 +74,7 @@ export class TowerPlacere extends Component{
         this.#rangeRenderer = this.parent.addComponent(new CircleRenderer(20, '#030f1191', true));
         this.#spriteRenderer = this.parent.addComponent(new DrawIcon("", true))
         this.#followMouse = this.parent.addComponent(new FollowCanvasMouse());
-        this.#collision = this.parent.addComponent(new CircleCollider(1, true));
+        this.#collision = this.parent.addComponent(new CircleCollider(1));
 
         
 
