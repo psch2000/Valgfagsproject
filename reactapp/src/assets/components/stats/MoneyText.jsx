@@ -28,7 +28,7 @@ export const MoneyText = ({textStyle, rect, offset}) => {
     ? textStyle
     : Styles[0];
 
-    return <p style={style} className={`MoneyInfo ${CheckTextStyle}`}>
+    return <p style={style} className={`MoneyInfo ${CheckTextStyle} noselect`}>
     {"$" + Player.bank.getBalance()}
     </p>
 }

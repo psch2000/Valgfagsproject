@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { waveSystem } from "../../../backend/Wavesystem";
+import { useForceRerenderer } from "../../hooks/useForceRenderer";
+import { TowerTextObj } from "../stats/TowerTextObj";
 import "../shop/shop.css"
 
 const Styles = [
@@ -17,9 +20,37 @@ const Styles = [
     offset
   }) => {
   
-    const CheckButtonStyle = Styles.includes(buttonStyle) 
-    ? buttonStyle 
-    : Styles[2];
+    const rerender = useForceRerenderer();
+
+    useEffect(() => {
+      waveSystem.onWaveChange.addListener(onWaveChange);
+    }, [])
+
+    function onWaveChange() {
+      rerender();
+    }
+
+    function handleOnClick() {
+      onClick();
+      changeTowerText();
+      TowerTextObj.onSetText.invoke();
+    }
+
+    function onHoverEnter() {
+      changeTowerText();
+      TowerTextObj.onSetText.invoke();
+    }
+
+    function changeTowerText() {
+      let text = waveSystem.isWaveActive ? "Round is active" : "Start round";
+      TowerTextObj.towerText = text;
+    }
+
+    // const CheckButtonStyle = Styles.includes(buttonStyle) 
+    // ? buttonStyle 
+    // : Styles[2];
+
+    const CheckButtonStyle = waveSystem.isWaveActive ? Styles[1] : Styles[2];
   
     const CheckButtonSize = Sizes.includes(buttonSize)
     ? buttonSize
@@ -32,9 +63,10 @@ const Styles = [
     
     return(
       <button style={style}
-        className={`btn ${CheckButtonStyle} ${CheckButtonSize}`} onClick={onClick}>
+        onMouseEnter={onHoverEnter}
+        className={`btn ${CheckButtonStyle} ${CheckButtonSize}`} onClick={handleOnClick}>
           <div className="waveContainer">
-            <img className="waveIcon" src="./images/sprite_play.png"></img>
+            <img draggable={false} className="waveIcon noselect" src="./images/sprite_play.png"></img>
           </div>
       </button>
     )

@@ -37,6 +37,30 @@ export class Vector2d {
         return new Vector2d(this.x, this.y);
     }
 
+    add(other) {
+        return Vector2d.add(this, other);
+    }
+
+    addNum(number) {
+        return Vector2d.addNum(this, number);
+    }
+
+    addNumbers(numberX, numberY) {
+        return Vector2d.addNumbers(this, numberX, numberY);
+    }
+
+    subtract(other) {
+        return Vector2d.subtract(this, other);
+    }
+
+    subtractNum(number) {
+        return Vector2d.subtractNum(this, number);
+    }
+
+    subtractNumbers(numberX, numberY) {
+        return Vector2d.subtractNumbers(this, numberX, numberY);
+    }
+
     toString() {
         return `(${this.x}, ${this.y})`
     }
@@ -66,8 +90,16 @@ export class Vector2d {
         return new Vector2d(vector.x + number, vector.y + number);
     }
 
+    static addNumbers(vector, numberX, numberY) {
+        return new Vector2d(vector.x + numberX, vector.y + numberY);
+    }
+
     static subtractNum(vector, number) {
         return new Vector2d(vector.x - number, vector.y - number);
+    }
+
+    static subtractNumbers(vector, numberX, numberY) {
+        return new Vector2d(vector.x - numberX, vector.y - numberY);
     }
 
     static multiplyNum(vector, number) {

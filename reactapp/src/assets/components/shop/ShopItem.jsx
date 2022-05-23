@@ -42,7 +42,7 @@ export const ShopButton = ({
       }
     }
 
-    function hover(){
+    function onHoverEnter(){
       TowerTextObj.towerText = towerName;
       TowerTextObj.onSetText.invoke();
     }
@@ -64,14 +64,14 @@ export const ShopButton = ({
   
     return(
       <button 
-        onMouseEnter={hover}
+        onMouseEnter={onHoverEnter}
         className={`btn ${CheckButtonStyle()} ${CheckButtonSize}`}
         onClick={onClick}
         disabled={disable}
       >
         <div className="shopInfo">
-            <img className="shopImage" src={towerType.imagePath}></img>
-            <p className="shopPrice">{towerType.price}$</p>
+            <img draggable={false} className="shopImage noselect" src={towerType.imagePath}></img>
+            <p className="shopPrice noselect">{towerType.price}$</p>
         </div>
       </button>
     )

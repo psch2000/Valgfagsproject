@@ -10,30 +10,28 @@ import { SquareRenderer } from "../components/SquareRenderer";
 import { DamageWhenCollide } from "../components/DamageWhenCollide";
 import { Enemy } from "../components/enemy/Enemy";
 import { NormalProjectile } from "../composits/NormalProjectile";
+import { DrawIcon } from "../../base/baseStructor/DrawIcon";
 
-
-export class ProjectilePool extends ReuseablePool{
-
+export class ProjectilePool extends ReuseablePool {
     static #instance;
-    constructor(){
+    constructor() {
         if (ProjectilePool.#instance !== undefined) return;
         super();
         this.radius = 5;
     }
 
     static getInstance() {
-
-        if (this.#instance === undefined){
+        if (this.#instance === undefined) {
             this.#instance = new ProjectilePool();
         }
 
         return this.#instance;
     }
 
-    acquireReuseable(color, damage, projectileType){
-        let reuseable = this.#getReuseableWithColor(color, projectileType);
-        
-        if (reuseable === null) return this.makeReuseable(color, damage, projectileType);
+    acquireReuseable(imagepath, damage, projectileType, rotateProjectile) {
+        let reuseable = this.#getReuseableWithImage(imagepath, projectileType);
+
+        if (reuseable === null) return this.makeReuseable(imagepath, damage, projectileType, rotateProjectile);
 
         reuseable.getComponent(DamageWhenCollide).damage = damage;
 
@@ -41,23 +39,23 @@ export class ProjectilePool extends ReuseablePool{
         return reuseable;
     }
 
-    makeReuseable(color, damage, projectileType) {
+    makeReuseable(imagepath, damage, projectileType, rotateProjectile) {
         // console.log("constructing a projectile of type: " + projectileType.name)
-        let c = new projectileType(this.radius, color, damage, this.releaseReuseable);
+        let c = new projectileType(this.radius, imagepath, damage, this.releaseReuseable, rotateProjectile);
 
         return instantiate(c);
     }
 
-    #getReuseableWithColor(color, projectileType) {
+    #getReuseableWithImage(imagepath, projectileType) {
         for (let index = 0; index < this._reuseables.length; index++) {
             const reuseable = this._reuseables[index];
 
-            if (projectileType !== null && reuseable instanceof projectileType && reuseable.getComponent(CircleRenderer).color === color) {
+            if (projectileType !== null && reuseable instanceof projectileType && reuseable.getComponent(DrawIcon).img.src === imagepath) {
                 this._reuseables.splice(index, 1);
                 return reuseable;
             }
 
-            if (projectileType === null && reuseable.getComponent(CircleRenderer).color === color) {
+            if (projectileType === null && reuseable.getComponent(DrawIcon).img.src === imagepath) {
                 this._reuseables.splice(index, 1);
                 return reuseable;
             }
@@ -65,5 +63,4 @@ export class ProjectilePool extends ReuseablePool{
 
         return null;
     }
-
 }

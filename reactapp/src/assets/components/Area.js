@@ -19,7 +19,7 @@ export class Area extends Component{
         this.increasValue = increasValue;
         this.maxRadius = maxRadius;
         this.onReachedMaxRadius = new EventHandler();
-        this.canIncrease = true;
+        this.canIncrease = false;
     }
 
 

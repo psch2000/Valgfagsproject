@@ -56,18 +56,18 @@ export class FirePatternBuilder {
         return this;
     }
 
+    setLookAtTarget(value) {
+        this.#firePattern.lookAtTarget = value;
+        return this;
+    }
+
     setProjectileType(value) {
         this.#firePattern.projectileType = value;
         return this;
     }
 
-    setOffsetFire(value){
-        this.#firePattern.offsetFire = value;
-        return this;
-    }
-
-    addOffset(offset){
-        this.#firePattern.offsets.push(offset);
+    setRotateProjectile(value) {
+        this.#firePattern.rotateProjectile = value;
         return this;
     }
 

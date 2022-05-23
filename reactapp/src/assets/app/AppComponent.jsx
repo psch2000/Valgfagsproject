@@ -24,9 +24,9 @@ import { MakeMapState } from "./states/initializestates/MakeMapState";
 import { TowerText } from "../components/stats/TowerText";
 import { Player } from "../components/bank/Player";
 import { RestartMenu } from "../components/restart/RestartMenu";
+import { waveSystem } from "../../backend/Wavesystem";
 import { AudioManager } from "../../sound/AudioManager";
-
-let path = null;
+import { Unplaceable } from "../tower/Unplaceable";
 
 export const AppComponent = () => {
     const init = new StateHandler(new MakeMapState());
@@ -34,14 +34,13 @@ export const AppComponent = () => {
 
     useEffect(() =>{
 
-        AudioManager.addSound("pop", "pop.wav");
+        // AudioManager.addSound("pop", "pop.wav");
         init.execute();
         OnEndResize.addListener(onEndResize, 0);
         App.run();
+        waveSystem.initialize();
         TowerPlacere.getInstance().parent.setActive(false);
-        
         placeObjectsOnCanvas();
-
     }, [])
 
     const setWindowRect = () => {
@@ -64,49 +63,65 @@ export const AppComponent = () => {
         <ShopMenu offset={{x:750, y:65}} rect={App.windowRect}></ShopMenu>
         <GameTitle></GameTitle>
 
-        <WaveButton offset={{x:750, y:420}} rect={App.windowRect} onClick={createEnemy}></WaveButton>
+        <WaveButton offset={{x:750, y:420}} rect={App.windowRect} onClick={nextRound}></WaveButton>
         <MoneyText offset={{x:170, y: 0}} rect={App.windowRect}></MoneyText>
         <HealthText offset={{x:50, y:0}} rect={App.windowRect}></HealthText>
         <WaveText offset={{x: 550, y:0}} rect={App.windowRect}></WaveText>
-        <TowerText offset={{x: 750, y:7}} rect={App.windowRect}></TowerText>
+        <TowerText offset={{x: 740, y:7}} rect={App.windowRect}></TowerText>
         <RestartMenu offset={{x: 250, y: 230}} rect={App.windowRect}></RestartMenu>
     </div>
 
     
 }
 
-function createEnemy() {
-    console.log("create enemy");
-    let enemyComposit = new Composit("enemy");
-    enemyComposit.addComponent(new SquareRenderer(path.pathWidth, path.pathWidth, "red"));
-    enemyComposit.addComponent(new RectangleCollider(path.pathWidth, path.pathWidth, true));
-    enemyComposit.addComponent(new FollowPath(path));
-    enemyComposit.addComponent(new Enemy(1, 20, 60));
-    enemyComposit.transform.position = path.waypoints[0].copy()
-    instantiate(enemyComposit);
+function nextRound() {
+    waveSystem.nextRound();
 }
 
 function placeObjectsOnCanvas() {
-    path = new Path([
-        new Vector2d(50, 0),
-        new Vector2d(50, 165),
-        new Vector2d(215, 165),
-        new Vector2d(215, 275),
-        new Vector2d(50, 275),
-        new Vector2d(50, 410),
-        new Vector2d(325, 410),
-        new Vector2d(325, 80),
-        new Vector2d(575, 80),
-        new Vector2d(575, 215),
-        new Vector2d(455, 215),
-        new Vector2d(455, 345),
-        new Vector2d(570, 345),
-        new Vector2d(570, 429),
-    ], "#ff00ff91", 50);
 
+    placeBorders();
+    
     let playerBase = new Composit("playerBase");
     playerBase.addComponent(new SquareRenderer(50, 20, "blue"));
+    playerBase.addComponent(new RectangleCollider(50, 20, true));
+    playerBase.addComponent(new Unplaceable());
     playerBase.addComponent(Player.base);
     playerBase.transform.setPosition(new Vector2d(570, 480));
     instantiate(playerBase);
+
+    
+    
+    
+}
+
+function placeBorders(){
+    let rightBorder = new Composit("rightBorder");
+    //rightBorder.addComponent(new SquareRenderer(50, 500, "red"));
+    rightBorder.addComponent(new RectangleCollider(50, 500, true));
+    rightBorder.addComponent(new Unplaceable());
+    rightBorder.transform.setPosition(new Vector2d(700, 0));
+    instantiate(rightBorder);
+
+    let leftBorder = new Composit("leftBorder");
+    //leftBorder.addComponent(new SquareRenderer(50, 500, "red"));
+    leftBorder.addComponent(new RectangleCollider(50, 500, true));
+    leftBorder.addComponent(new Unplaceable());
+    leftBorder.transform.setPosition(new Vector2d(-50, 0));
+    instantiate(leftBorder);
+
+    let topBorder = new Composit("topBorder");
+    //topBorder.addComponent(new SquareRenderer(700, 50, "red"));
+    topBorder.addComponent(new RectangleCollider(700, 50, true));
+    topBorder.addComponent(new Unplaceable());
+    topBorder.transform.setPosition(new Vector2d(0, -55));
+    instantiate(topBorder);
+
+    let bottomBorder = new Composit("bottomBorder");
+    //bottomBorder.addComponent(new SquareRenderer(700, 50, "red"));
+    bottomBorder.addComponent(new RectangleCollider(700, 50, true));
+    bottomBorder.addComponent(new Unplaceable());
+    bottomBorder.transform.setPosition(new Vector2d(0, 500));
+    instantiate(bottomBorder);
+
 }

@@ -22,18 +22,19 @@ export class FirePattern {
         this.fireInterval = 1;
         this.fireForce = 1;
         this.followTarget = true;
+        this.lookAtTarget = true;
         this.target = null;
         this.parent = null;
         this.burst = false;
-        this.color = "green";
+        this.imagepath = "";
         this.damage = null;
         this.isArea = false;
 
-        this.offsets = [];
-        this.offsetFire = false;
         
     
         this.projectileType = NormalProjectile;
+        this.lookDirection = null;
+        this.rotateProjectile = false;
     }
 
     fireRoutine() {
@@ -50,17 +51,6 @@ export class FirePattern {
         if (this.fireAngels.length == 0) throw new Error("a fire angle is needed.");
     }
 
-    #offsetFire(){
-        var direction = this.#getDirection();
-        this.offsets.forEach(offset => {
-
-            var from = this.parent.transform.position;
-            var firePoint = Vector2d.add(from, offset);
-
-            this.#fireBullet(direction, firePoint);
-        })
-    }
-
     #fire() {
         if (this.target == null) return;
         if (this.target.getComponent(Enemy).isDead()) {
@@ -70,11 +60,8 @@ export class FirePattern {
 
         this.#time = 0;
 
-        if (this.offsetFire == true){
-            this.#offsetFire();
-            return;
-        }
-
+        if (this.lookAtTarget) this.lookDirection = this.#getDirection();
+        
         if (this.burst == true) {
             this.#burstFire();
             return;
@@ -98,10 +85,8 @@ export class FirePattern {
         i = 0;
     }
 
-    #fireBullet(rot, from = null) {
-        var p = this.#makeProjectile(from);
-
-
+    #fireBullet(rot) {
+        var p = this.#makeProjectile();
 
         let tower = this.parent.getComponent(Tower);
         p.calculateBehavior(this.fireForce, rot.normalize(), tower);
@@ -119,13 +104,8 @@ export class FirePattern {
         });
     }
 
-    #makeProjectile(from = null) {
-        var c = ProjectilePool.getInstance().acquireReuseable(this.color, this.damage, this.projectileType);
-        
-        if (from != null){
-            c.transform.position = from.copy();
-            return c;
-        }
+    #makeProjectile() {
+        var c = ProjectilePool.getInstance().acquireReuseable(this.imagepath, this.damage, this.projectileType, this.rotateProjectile);
         c.transform.position = this.parent.transform.position.copy();
         return c;
     }
@@ -137,6 +117,7 @@ export class FirePattern {
 
         var to = this.target.getComponent(Enemy).getCenterPosition();
         var from = this.parent.transform.position;
+
         // this.markShootPosition(to);
         return Vector2d.subtract(to, from);
     }

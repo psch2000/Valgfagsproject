@@ -2,6 +2,7 @@ import { CircleCollider } from "../../base/baseStructor/collider/CircleCollider"
 import { RectangleCollider } from "../../base/baseStructor/collider/RectangleCollider";
 import { Component } from "../../base/baseStructor/Component";
 import { App } from "../app/App";
+import { TowerRange } from "../tower/TowerRange";
 
 export class OutOfBounceDelete extends Component {
     constructor(releaseCallback) {
@@ -31,10 +32,19 @@ export class OutOfBounceDelete extends Component {
             collider.type === "CircleCollider" ? this.transform.position.x - collider.radius : this.transform.position.x;
         let topSide =
             collider.type === "CircleCollider" ? this.transform.position.y - collider.radius : this.transform.position.y;
-
+  
         // if out of bounce
-        if (rightSide < 0 || leftSide > App.windowRect.width || bottomSide < 0 || topSide > App.windowRect.height) {
+        if (rightSide < 0 || leftSide > App.windowRect.width - 290 || bottomSide < 0 || topSide > App.windowRect.height) {
             this.releaseCallback(this.parent);
         }
+    }
+
+    onExit(other){
+
+        let towerRange = this.parent.tower.getTowerFacade().getTowerRange();
+        
+        if (other.getComponent(TowerRange) == towerRange){
+            this.releaseCallback(this.parent);
+        }        
     }
 }

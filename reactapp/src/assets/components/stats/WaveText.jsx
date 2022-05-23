@@ -1,7 +1,7 @@
+import React, { useEffect } from "react";
+import { useForceRerenderer } from "../../hooks/useForceRenderer";
+import { waveSystem } from "../../../backend/Wavesystem";
 import "./stats.css"
-import React from "react";
-
-export const WAVE = 0;
 
 const Styles = [
     "text--style--1"
@@ -9,6 +9,15 @@ const Styles = [
 
 
 export const WaveText = ({textStyle, rect, offset}) => {
+    const rerenderer = useForceRerenderer();
+
+    useEffect(() => {
+        waveSystem.onWaveChange.addListener(onUpdateWave);
+    }, [])
+
+    function onUpdateWave() {
+        rerenderer();
+    }
 
     const style = {
         left: `${rect.x + offset.x}px`,
@@ -19,7 +28,7 @@ export const WaveText = ({textStyle, rect, offset}) => {
     ? textStyle
     : Styles[0];
 
-    return <p style={style} className={`WaveInfo ${CheckTextStyle}`}>
-    {"ROUND " + WAVE}
+    return <p style={style} className={`WaveInfo ${CheckTextStyle} noselect`}>
+    {"ROUND " + waveSystem.round}
     </p>
 }

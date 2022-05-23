@@ -1,15 +1,17 @@
+import { Move } from "../../assets/components/Move";
+import { Tower } from "../../assets/tower/Tower";
 import { Component } from "./Component";
+import { Vector2d } from "./Vector2d";
 
 
 export class DrawIcon extends Component{
 
-    constructor(path, useOrigen = false){
+    constructor(path, useOrigen = false, useRotation = false){
         super();
         this.img= new Image();
         this.img.src = path;
         this.useOrigen = useOrigen;
-
-
+        this.useRotation = useRotation;
 
         // this.image.width *= 1;
         // this.image.height *= 1;
@@ -22,21 +24,48 @@ export class DrawIcon extends Component{
         var position = this.transform.position;
         var size = this.transform.size;
 
+        let rotationAngle = null;
+
+        if (this.useRotation) {
+            // code for rotating an image is inspired from https://stackoverflow.com/a/17412387/12276054
+            let direction = null;
+
+            if (this.parent.name === "projectile") {
+                direction = this.parent.getComponent(Move).direction;
+            } else {
+                direction = this.parent.getComponent(Tower).firePattern.lookDirection;
+            }
+
+            if (direction !== null) {
+                context.save();
+                context.translate(position.x, position.y);
+
+                rotationAngle = direction.getAngle();
+                rotationAngle += 90; // offset angle with 90 degrees
+
+                let radians = rotationAngle * (Math.PI / 180);
+                context.rotate(radians)
+            }
+        }
 
         // var downscaledImage = downScaleImage(this.image, .1);
         // downscaledImage.style.color = 'transparent';
 
 
-        if(this.useOrigen){
+        if (this.useRotation && rotationAngle !== null) {
+            context.drawImage(this.img, 0 - this.img.width / 2, 0 - this.img.height / 2);
+        }
+        else if(this.useOrigen) {
             context.drawImage(this.img, position.x-this.img.width/2, position.y-this.img.height/2);
         }
-        else{
+        else {
             context.drawImage(this.img, position.x, position.y);
         }
 
+        if (rotationAngle !== null) {
+            context.restore();
+        }
     }
-    
-  
 }
 
 

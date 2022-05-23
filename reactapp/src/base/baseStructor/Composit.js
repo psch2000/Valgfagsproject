@@ -90,7 +90,7 @@ export class Composit extends Component {
     onDestroy(){
         this.#components.forEach(c => {
             try {c.onDestroy();}
-            catch {}
+            catch (ex) { console.log("An error happened in onDestroy - " + c.constructor.name + ": " + ex); }
         })
     }
 
@@ -123,7 +123,7 @@ export class Composit extends Component {
                     debugger;
                 }
             }
-        });
+        }); 
     }
 
     onDraw(context){

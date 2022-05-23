@@ -44,6 +44,31 @@ export class Collider extends Component {
         })
     }
 
+    onIntersect(other){
+        var index = other.i;
+
+        if (this.hits[index] === undefined || this.hits[index] === false){
+            this.parent.onEnter(other.parent);
+            this.hits[index] = true;
+            this.colliders.push(other);
+        }
+    }
+
+
+    onUpdate(){
+
+        
+
+        this.colliders.forEach(other => {
+            if (this.doesOverlap(other) === false || other.parent.isActive === false){
+                this.hits[other.i] = false;
+                this.parent.onExit(other.parent);
+                var index = this.colliders.indexOf(other);
+                this.colliders.splice(index, 1);
+            }
+        })
+    }
+
     getOrigo(){
         throw new Error('getOrigo() is not defined');
     }

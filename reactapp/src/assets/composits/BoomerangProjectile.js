@@ -7,21 +7,22 @@ import { OutOfBounceDelete } from "../components/OutOfBounceDelete";
 import { DamageWhenCollide } from "../components/DamageWhenCollide";
 import { Enemy } from "../components/enemy/Enemy";
 import { getAnglesEquallySpaces, getPointsOnCircleCircumference } from "../../base/baseStructor/CircleFunctions";
+import { DrawIcon } from "../../base/baseStructor/DrawIcon";
+import { Projectile } from "./Projectile";
 
-export class BoomerangProjectile extends Composit {
-    constructor(radius, color, damage, releaseFunction) {
-        super("projectile");
-        this.addComponent(new CircleRenderer(radius, color, false));
+export class BoomerangProjectile extends Projectile {
+    constructor(radius, imagepath, damage, releaseFunction, useRotate = false) {
+        super(radius, imagepath, damage, releaseFunction, useRotate);
+        this.tower = null;
+
         this.addComponent(new MovePath(new Vector2d(0, 0), 1, releaseFunction));
-        this.addComponent(new CircleCollider(radius));
-        this.addComponent(new OutOfBounceDelete(releaseFunction));
-        this.addComponent(new DamageWhenCollide(Enemy, damage, releaseFunction));
     }
 
     calculateBehavior(speed, direction, tower) {
         let moveComponent = this.getComponent(MovePath);
         moveComponent.speed = speed;
         moveComponent.direction = direction;
+        this.tower = tower;
 
         let circleOffset = Vector2d.multiplyNum(direction, tower.towerType.range / 2);
         let circleCenter = Vector2d.add(tower.transform.position, circleOffset);

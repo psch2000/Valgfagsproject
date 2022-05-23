@@ -4,6 +4,10 @@ import { Vector2d } from "../../../base/baseStructor/Vector2d";
 import { PlayerBase } from "../PlayerBase";
 import { Time } from "../../../base/Time";
 import { RectangleCollider } from "../../../base/baseStructor/collider/RectangleCollider";
+import { Player } from "../bank/Player";
+import { DrawIcon } from "../../../base/baseStructor/DrawIcon";
+import { TackShooterFirePatternBuilder } from "../../tower/firePattern/patterns/TackShooterFirePatternBuilder";
+import { Collider } from "../../../base/baseStructor/collider/Collider";
 import { AudioManager } from "../../../sound/AudioManager";
 import { random } from "../../app/functions/random";
 import { randomInt } from "../../app/functions/randomInt";
@@ -11,92 +15,85 @@ import { randomInt } from "../../app/functions/randomInt";
 export class Enemy extends Component {
     static count = 0;
 
-    constructor(health, damage, attackRange) {
+    constructor(health, releaseFunction, callbackFunctionWhenDead) {
         super();
-        this.health = health;
-        this.damage = damage;
-        this.attackRange = attackRange;
+        this.startHealth = health;
+        this.currentHealth = health;
+        this.damage = health; // damage is just equal to the current health of the enemy
+        this.releaseFunction = releaseFunction;
+        this.callbackFunctionWhenDead = callbackFunctionWhenDead;
 
-        this.baseToAttack = null;
-
-        // cooldown in seconds
-        this.cooldownAttack = 2;
-
-        this.time = 0;
-
-        this.#resetAttackCooldown();
+        this.imagePaths = [
+            "./images/sprite_ball_red.png",
+            "./images/sprite_ball_blue.png",
+            "./images/sprite_ball_green.png",
+            "./images/sprite_ball_yellow.png",
+            "./images/sprite_ball_pink.png",
+            "./images/sprite_ball_black.png",
+            "./images/sprite_ball_purple.png",
+            "./images/sprite_ball_white.png",
+        ];
 
         this.id = Enemy.count;
         Enemy.count += 1;
     }
 
+    onStart() {
+        this.updateIcon();
+    }
+
+    updateIcon() {
+        this.parent.getComponent(DrawIcon).img.src = this.imagePaths[this.currentHealth - 1];
+    }
+
     isDead() {
-        return this.health <= 0;
+        return this.currentHealth <= 0;
     }
 
-    onUpdate() {
-        this.#getBaseToAttack();
-        this.#tryAttack();
-    }
+    onEnter(other) {
+        if (other.name !== "playerBase") return;
 
-    #tryAttack() {
-        if (this.baseToAttack == null) return;
+        let playerBase = other.getComponent(PlayerBase);
 
-        if (this.baseToAttack.isDead()) {
-            this.baseToAttack = null;
-            return;
-        }
-
-        // time since last attack
-        this.time += Time.deltaTime;
-
-        // if still in cooldown
-        if (this.time < this.cooldownAttack) return;
-
-        // if not in range of baseToAttack
-        if (!this.#inAttackRange()) return;
-
-        this.attack(this.baseToAttack);
-    }
-
-    #inAttackRange() {
-        return Vector2d.distance(this.transform.position, this.baseToAttack.transform.position) < this.attackRange;
-    }
-
-    #resetAttackCooldown() {
-        this.time = 0;
-    }
-
-    #getBaseToAttack() {
-        if (this.baseToAttack !== null) return;
-
-        this.baseToAttack = App.game.getComposit("playerBase")?.getComponent(PlayerBase);
+        this.attack(playerBase);
     }
 
     takeDamage(incomingDamage) {
-        this.health -= incomingDamage;
+        this.currentHealth -= incomingDamage;
+
+        // update damage to be current health
+        this.damage = this.currentHealth;
+
+        let drawIconComponent = this.parent.getComponent(DrawIcon);
+
+        drawIconComponent.img.src = this.imagePaths[this.currentHealth - 1];
+
+        Player.bank.add(1);
 
         if (this.isDead()) this.#destroy();
     }
 
     attack(other) {
         other.takeDamage(this.damage);
-        this.#resetAttackCooldown();
 
         this.#destroy();
     }
 
     getCenterPosition() {
-        let rectangleCollider = this.parent.getComponent(RectangleCollider);
+        let collider = this.parent.getComponent(Collider);
 
-        return Vector2d.add(this.transform.position, new Vector2d(rectangleCollider.width / 2, rectangleCollider.height / 2));
+        let offsetX = collider instanceof RectangleCollider ? collider.width / 2 : 0;
+        let offsetY = collider instanceof RectangleCollider ? collider.height / 2 : 0;
+
+        return Vector2d.add(this.transform.position, new Vector2d(offsetX, offsetY));
     }
 
     #destroy() {
+        this.currentHealth = 0;
+        this.callbackFunctionWhenDead();
         var rand = randomInt(1, 4);
         // console.log('pop' + rand);
         AudioManager.play('pop' + rand);
-        this.health = 0;
-        App.game.removeComposit(this.parent);
+        this.releaseFunction(this.parent);
     }
 }
