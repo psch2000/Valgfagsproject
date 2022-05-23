@@ -22,7 +22,7 @@ export class MovePath extends Move {
     }
 
     #move() {
-        if (Vector2d.distance(this.transform.position, this.path[0]) < 1) {
+        if (Vector2d.distance(this.transform.position, this.path[0]) < 3) {
             this.path.shift();
             // console.log("next waypoint in path"); // debug
             return;

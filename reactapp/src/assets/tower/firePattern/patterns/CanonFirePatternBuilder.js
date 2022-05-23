@@ -1,13 +1,14 @@
+import { CanonProjectile } from "../../../composits/CanonProjectile";
 import { FirePatternBuilder } from "../FirePatternBuilder"
 
-
-export class SingleFirePatternBuilder {
+export class CanonFirePatternBuilder {
 
 
     getProduct(){
         var builder = new FirePatternBuilder()
-        .setFireForce(4)
-        .setFireInterval(0.5)
+        .setProjectileType(CanonProjectile)
+        .setFireForce(2.5)
+        .setFireInterval(1.8)
         .setRotateProjectile(true)
 
         return builder.getProduct();
@@ -16,4 +17,3 @@ export class SingleFirePatternBuilder {
     
 
 }
-

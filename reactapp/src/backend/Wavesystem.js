@@ -65,6 +65,7 @@ class WaveSystem {
 
         this.enemiesSpawnedTotal += 1;
         this.enemiesRemainingThisRound += 1;
+        return enemyComposit;
     }
 
     #getEnemyTypeByRound(round) {
