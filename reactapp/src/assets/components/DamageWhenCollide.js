@@ -1,11 +1,12 @@
 import { Component } from "../../base/baseStructor/Component";
 
 export class DamageWhenCollide extends Component {
-    constructor(classToCollide, damage, releaseFunction) {
+    constructor(classToCollide, damage, releaseFunction, useRelease) {
         super();
         this.classToCollide = classToCollide;
         this.damage = damage;
         this.releaseFunction = releaseFunction;
+        this.useRelease = useRelease;
     }
 
     onEnter(other) {
@@ -18,8 +19,9 @@ export class DamageWhenCollide extends Component {
         // console.log("projectile damages " + this.classToCollide.name + ": " + this.damage);
         compositToAttack.takeDamage(this.damage);
 
+        if(this.useRelease === false) return;
+        
         if (this.releaseFunction === undefined || this.releaseFunction === null) return;
-
         this.releaseFunction(this.parent);
     }
 }

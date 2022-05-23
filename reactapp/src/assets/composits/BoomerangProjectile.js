@@ -12,7 +12,7 @@ import { Projectile } from "./Projectile";
 
 export class BoomerangProjectile extends Projectile {
     constructor(radius, imagepath, damage, releaseFunction, useRotate = false) {
-        super(radius, imagepath, damage, releaseFunction, useRotate);
+        super(radius, imagepath, damage, releaseFunction, false, useRotate);
         this.tower = null;
 
         this.addComponent(new MovePath(new Vector2d(0, 0), 1, releaseFunction));
