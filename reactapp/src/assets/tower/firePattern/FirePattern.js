@@ -13,6 +13,7 @@ import { BoomerangProjectile } from "../../composits/BoomerangProjectile";
 import { NormalProjectile } from "../../composits/NormalProjectile";
 import { TowerRange } from "../TowerRange";
 import { TowerFacade } from "../TowerFacade";
+import { rotatePoint } from "../../app/functions/rotatePoint";
 
 export class FirePattern {
     #time = 0;
@@ -30,9 +31,10 @@ export class FirePattern {
         this.damage = null;
         this.isArea = false;
 
+        this.useOffsets = false;
         this.offsets = [];
-        this.offsetFire = false;
         
+    
         this.projectileType = NormalProjectile;
         this.lookDirection = null;
         this.rotateProjectile = false;
@@ -52,17 +54,6 @@ export class FirePattern {
         if (this.fireAngels.length == 0) throw new Error("a fire angle is needed.");
     }
 
-    #offsetFire(){
-        var direction = this.#getDirection();
-        this.offsets.forEach(offset => {
-
-            var from = this.parent.transform.position;
-            var firePoint = Vector2d.add(from, offset);
-
-            this.#fireBullet(direction, firePoint);
-        })
-    }
-
     #fire() {
         if (this.target == null) return;
         if (this.target.getComponent(Enemy).isDead()) {
@@ -73,18 +64,36 @@ export class FirePattern {
         this.#time = 0;
 
         if (this.lookAtTarget) this.lookDirection = this.#getDirection();
-        
-        if (this.offsetFire == true){
-            this.#offsetFire();
+
+        if (this.useOffsets == true){
+            this.#fireFromOffsets();
             return;
         }
-
+        
         if (this.burst == true) {
             this.#burstFire();
             return;
         }
 
         this.#sekventialFire();
+    }
+
+    #fireFromOffsets(){
+
+        var dir = this.#getDirection().normalize();
+
+        var radians = Math.atan2(dir.y, dir.x);
+
+
+        this.offsets.forEach(offset => {
+            
+            var from = this.parent.transform.position;
+            var point = Vector2d.add(from, offset);
+            var rotPoint = rotatePoint(point, from, radians);
+            
+            this.#fireBullet(dir, rotPoint);
+
+        })
     }
 
     #sekventialFire() {
@@ -102,15 +111,13 @@ export class FirePattern {
         i = 0;
     }
 
-    #fireBullet(rot, from = null) {
+    #fireBullet(dir, from = null) {
         var p = this.#makeProjectile(from);
 
-
-
         let tower = this.parent.getComponent(Tower);
-        p.tower = tower;
+        p.calculateBehavior(this.fireForce, dir.normalize(), tower);
 
-        p.calculateBehavior(this.fireForce, rot.normalize(), tower);
+        return p;
     }
 
     #burstFire() {
@@ -123,15 +130,15 @@ export class FirePattern {
         });
     }
 
-    #makeProjectile(from = null) {
+    #makeProjectile(from) {
         var c = ProjectilePool.getInstance().acquireReuseable(this.imagepath, this.damage, this.projectileType, this.rotateProjectile);
-
-        if (from != null){
-            c.transform.position = from.copy();
+        
+        if (from == null){
+            c.transform.position = this.parent.transform.position.copy();
             return c;
         }
-
-        c.transform.position = this.parent.transform.position.copy();
+      
+        c.transform.position = from.copy();
         return c;
     }
 

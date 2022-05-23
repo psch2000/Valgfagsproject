@@ -9,6 +9,7 @@ import { Area } from "../../../components/Area";
 import { CircleRenderer } from "../../../components/CircleRenderer";
 import { FollowCanvasMouse } from "../../../components/FollowCanvasMouse";
 import { Map } from "../../../components/Map";
+import { Test } from "../../../components/Test";
 import { instantiate } from "../../functions/instantiate";
 import { UpdateUIState } from "./UpdateUIState";
 
@@ -27,14 +28,21 @@ export class MakeMapState extends State{
         instantiate(map);
 
 
-        var c = new Composit();
-        c.addComponent(new CircleRenderer(0, 'white'));
-        c.addComponent(new CircleCollider(10));
-        var test = c.addComponent(new Area(1, 30));
-        c.addComponent(new FollowCanvasMouse());
-        // instantiate(c);
-        c.layer = 2;
+        // var c = new Composit();
+        // c.addComponent(new CircleRenderer(0, 'white'));
+        // c.addComponent(new CircleCollider(10));
+        // var test = c.addComponent(new Area(1, 30));
+        // c.addComponent(new FollowCanvasMouse());
+        // // instantiate(c);
+        // c.layer = 2;
 
+
+        var c = new Composit();
+        c.addComponent(new CircleRenderer(10, 'white'));
+        c.addComponent(new Test());
+        c.layer = 2;
+        
+        // instantiate(c, new Vector2d(300, 300));
 
 
         this.context.transitionTo(new UpdateUIState());

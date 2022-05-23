@@ -6,8 +6,6 @@ import { DamageWhenCollide } from "../components/DamageWhenCollide";
 import { Enemy } from "../components/enemy/Enemy";
 
 export class Projectile extends Composit {
-    #radius;
-
     constructor(radius, imagepath, damage, releaseFunction, useRelease, useRotate = false) {
         super("projectile");
 
@@ -18,20 +16,9 @@ export class Projectile extends Composit {
         //this.addComponent(new CircleRenderer(radius, color, false));
         this.addComponent(new DrawIcon(imagepath, true, useRotate));
         this.addComponent(new CircleCollider(radius));
-        this.#radius = radius;
-    }
-
-    setRadius(value) {
-        // this.getComponent(CircleRenderer).radius = value;
-        this.getComponent(CircleCollider).radius = value;
-        this.#radius = value;
-    }
-
-    getRadius() {
-        return this.#radius;
     }
 
     calculateBehavior(speed, direction, tower) {
-        throw new Error("method 'calculateBehavior' is not implemented.");
+        throw new Error("method 'calculateBehavior' is not implemented.")
     }
 }

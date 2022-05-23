@@ -56,7 +56,7 @@ export class Enemy extends Component {
 
         this.updateIcon();
 
-        Player.bank.add(1);
+        Player.bank.add(incomingDamage);
 
         if (this.isDead()) this.#destroy();
     }
