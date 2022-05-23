@@ -24,8 +24,6 @@ export class TowerType{
         this.dsbImage = dsbImage;
         this.imagePath = imagePath;
         this.size = size;
-        //this.normalColor = color;
-        //this.dsbColor = RgbColor.darkenHex(color, 0.5);
         this.firePatternBuilder = firePatternBuilder;
         this.damage = damage;
         this.useArea = useArea;
