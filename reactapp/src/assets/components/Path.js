@@ -42,7 +42,7 @@ export class Path extends Component {
             let topLeft = direction.equals(Vector2d.down) || direction.equals(Vector2d.right) ? waypoint1 : waypoint2;
 
             // create rectangle
-            let rectangle = new RectangleCollider(width, height, true);
+            let rectangle = new RectangleCollider(width, height, false);
             rectangle.transform.position = topLeft;
 
             this.rectangles.push(rectangle);
@@ -89,7 +89,7 @@ export class Path extends Component {
     #createCanvasRectangle(rectangle) {
         let canvasRectangle = new Composit("pathRectangle");
         canvasRectangle.transform.position = rectangle.transform.position;
-        canvasRectangle.addComponent(new SquareRenderer(rectangle.width, rectangle.height, this.pathColor));
+        // canvasRectangle.addComponent(new SquareRenderer(rectangle.width, rectangle.height, this.pathColor));
         canvasRectangle.addComponent(rectangle);
         canvasRectangle.addComponent(new Unplaceable());
 
