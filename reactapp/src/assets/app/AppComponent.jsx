@@ -78,6 +78,7 @@ function nextRound() {
     waveSystem.nextRound();
 }
 
+// This method is responsible for placing objects on canvas upon starting the game
 function placeObjectsOnCanvas() {
 
     placeBorders();
@@ -95,6 +96,8 @@ function placeObjectsOnCanvas() {
     
 }
 
+// This method is responsible for placing borders around the map
+// The borders are given the Unplaceable component, so we can prevent the player from placing towers outside the map.
 function placeBorders(){
     let rightBorder = new Composit("rightBorder");
     //rightBorder.addComponent(new SquareRenderer(50, 500, "red"));
