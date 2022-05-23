@@ -13,6 +13,7 @@ import { BoomerangProjectile } from "../../composits/BoomerangProjectile";
 import { NormalProjectile } from "../../composits/NormalProjectile";
 import { TowerRange } from "../TowerRange";
 import { TowerFacade } from "../TowerFacade";
+import { rotatePoint } from "../../app/functions/rotatePoint";
 
 export class FirePattern {
     #time = 0;
@@ -30,6 +31,8 @@ export class FirePattern {
         this.damage = null;
         this.isArea = false;
 
+        this.useOffsets = false;
+        this.offsets = [];
         
     
         this.projectileType = NormalProjectile;
@@ -61,6 +64,11 @@ export class FirePattern {
         this.#time = 0;
 
         if (this.lookAtTarget) this.lookDirection = this.#getDirection();
+
+        if (this.useOffsets == true){
+            this.#fireFromOffsets();
+            return;
+        }
         
         if (this.burst == true) {
             this.#burstFire();
@@ -68,6 +76,24 @@ export class FirePattern {
         }
 
         this.#sekventialFire();
+    }
+
+    #fireFromOffsets(){
+
+        var dir = this.#getDirection().normalize();
+
+        var radians = Math.atan2(dir.y, dir.x);
+
+
+        this.offsets.forEach(offset => {
+            
+            var from = this.parent.transform.position;
+            var point = Vector2d.add(from, offset);
+            var rotPoint = rotatePoint(point, from, radians);
+            
+            this.#fireBullet(dir, rotPoint);
+
+        })
     }
 
     #sekventialFire() {
@@ -85,13 +111,13 @@ export class FirePattern {
         i = 0;
     }
 
-    #fireBullet(rot) {
-        var p = this.#makeProjectile();
+    #fireBullet(dir, from = null) {
+        var p = this.#makeProjectile(from);
 
         let tower = this.parent.getComponent(Tower);
-        p.calculateBehavior(this.fireForce, rot.normalize(), tower);
+        p.calculateBehavior(this.fireForce, dir.normalize(), tower);
 
-
+        return p;
     }
 
     #burstFire() {
@@ -104,9 +130,15 @@ export class FirePattern {
         });
     }
 
-    #makeProjectile() {
+    #makeProjectile(from) {
         var c = ProjectilePool.getInstance().acquireReuseable(this.imagepath, this.damage, this.projectileType, this.rotateProjectile);
-        c.transform.position = this.parent.transform.position.copy();
+        
+        if (from == null){
+            c.transform.position = this.parent.transform.position.copy();
+            return c;
+        }
+      
+        c.transform.position = from.copy();
         return c;
     }
 
