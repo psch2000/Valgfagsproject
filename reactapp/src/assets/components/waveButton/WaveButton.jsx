@@ -16,6 +16,7 @@ export const WaveButton = ({ onClick, rect, offset }) => {
     }, []);
 
     function onWaveChange() {
+        changeTowerText();
         rerender();
     }
 
