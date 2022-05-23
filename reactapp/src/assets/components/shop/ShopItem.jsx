@@ -4,7 +4,6 @@ import { Player } from "../bank/Player";
 import { TowerPlacere } from "../../tower/TowerPlacer";
 import { TowerTextObj } from "../stats/TowerTextObj";
 import "./shop.css"
-import { toBeEnabled } from "@testing-library/jest-dom/dist/matchers";
 
 
 const Styles = [
@@ -31,13 +30,8 @@ export const ShopButton = ({
 
     useEffect(()=> {
       Player.bank.onSetBalance.addListener(onSetBalance);
-      TowerPlacere.getInstance().onCancel.addListener(enableButton);
-      // Event tower placer
+      onSetBalance();
     })
-
-    function enableButton(){
-      setDisable(false);
-    }
 
     function onSetBalance(){
       if(towerType.price <= Player.bank.getBalance()){
