@@ -34,7 +34,7 @@ export class TowerPlacere extends Component{
     constructor(){
         if (TowerPlacere.#instance == null){
             super();
-            this.#map = App.game.find("Map").getComponent(Map);
+            //this.#map = App.game.find("Map").getComponent(Map);
             this.#canPlaceTower = false;
             this.onCancel = new EventHandler();
         }
@@ -126,6 +126,7 @@ export class TowerPlacere extends Component{
     }
 
     // We set the towerType of the towerPlacer to the towerType being selected
+    // onCancel is called to make the last button clickable once again
     setTowerType(towerType){
         this.onCancel.invoke();
         this.#rangeRenderer.radius = towerType.range;
