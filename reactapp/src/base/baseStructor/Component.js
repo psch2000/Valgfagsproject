@@ -1,6 +1,4 @@
-
 export class Component {
-    
     constructor() {
         this.type = this.constructor.name;
         this.parent = null;
@@ -8,22 +6,22 @@ export class Component {
         this.isActive = true;
     }
 
-    setActive(value){
+    setActive(value) {
         this.isActive = value;
     }
 
-    onEnter(other){}
+    onEnter(other) {}
     onOverlap(other) {}
     onExit(other) {}
 
-    onStart(){}
-    onUpdate(){}
-    onDraw(context){}
+    onStart() {}
+    onUpdate() {}
+    onDraw(context) {}
 
     onDestroy() {}
 
-    getComponent(type){
+    getComponent(type) {
         if (this.parent == null) return;
         return this.parent.getComponent(type);
-    }   
+    }
 }
