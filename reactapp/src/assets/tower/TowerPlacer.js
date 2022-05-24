@@ -31,7 +31,7 @@ export class TowerPlacere extends Component{
             super();
             //this.#map = App.game.find("Map").getComponent(Map);
             this.#canPlaceTower = false;
-            this.onCancel = new EventHandler();
+            this.onSelectedTowerChange = new EventHandler();
         }
     }
 
@@ -106,14 +106,20 @@ export class TowerPlacere extends Component{
                 //Towerplacer is disabled
                 this.parent.setActive(false);
                 this.#canPlaceTower = false;
+                this.#resetTowerType();
             } 
         }
 
-        if(Input.getKeyDown('2')){ 
-            this.onCancel.invoke();
+        if(Input.getKeyDown('2')){
             this.parent.setActive(false);
             this.#canPlaceTower = false;
+            this.#resetTowerType();
         }
+    }
+
+    #resetTowerType() {
+        this.#towerType = null;
+        this.onSelectedTowerChange.invoke();
     }
 
     getTowerType(){
@@ -121,13 +127,15 @@ export class TowerPlacere extends Component{
     }
 
     // We set the towerType of the towerPlacer to the towerType being selected
-    // onCancel is called to make the last button clickable once again
+    // onSelectedTowerChange is invoked to update what shop button is selected
     setTowerType(towerType){
-        this.onCancel.invoke();
         this.#rangeRenderer.radius = towerType.range;
         this.#spriteRenderer.img.src = towerType.imagePath;
         this.#towerType = towerType;
-        this.#collision.radius = towerType.size;        
+        this.#collision.radius = towerType.size;
+
+        this.onSelectedTowerChange.invoke();
+        this.parent.setActive(true);
     }
 
     // Gets an instance. If theres none, makes one

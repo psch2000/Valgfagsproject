@@ -17,6 +17,7 @@ export class AddSoundState extends State{
 
 var bool = false;
 
+// We need a click detection in order to play sound
 document.body.addEventListener('click', function(){
     if (bool == true) return;
     AudioManager.play("theme");
