@@ -1,6 +1,6 @@
 import { StopWatch } from "../assets/StopWatch";
 import { EventHandler } from "../base/baseBehaviour/EventHandler";
-import { Collider, COLLIDERS } from "../base/baseStructor/collider/Collider";
+import { COLLIDERS } from "../base/baseStructor/collider/Collider";
 import { Vector2d } from "../base/baseStructor/Vector2d";
 import { callAndSetInterval } from "../base/callAndSetInterval";
 import { Time } from "../base/Time";

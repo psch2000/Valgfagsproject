@@ -7,8 +7,6 @@ export class TowerRange extends Component{
     #circleRenderer;
     #hitCursor = false;
 
-    
-    
     constructor(range, circleRenderer){
         super();
         this.#range = range;
@@ -43,7 +41,6 @@ export class TowerRange extends Component{
 
     }
 
-
     onUpdate() {
         this.enemiesInRange.forEach((enemy, index) => {
             if (enemy.getComponent(Enemy).isDead()) {
@@ -56,21 +53,6 @@ export class TowerRange extends Component{
         // this.#circleRenderer.range = value;
         this.#range = value;
     }
-
-
-    setIsShowingRange(value){
-        // this.#circleRenderer.setActive(value);
-    }
-
-
-
-
-
-    setRange(value){
-        // this.#circleRenderer.range = value;
-        this.#range = value;
-    }
-
 
     setIsShowingRange(value){
         // this.#circleRenderer.setActive(value);

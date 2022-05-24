@@ -16,13 +16,9 @@ export class PlayerBase extends Component {
     }
 
     takeDamage(damage) {
-        console.log("PlayerBase is taking damage: " + damage);
         this.health -= damage;
 
-
         if (this.isDead()) {
-            console.log(this.health)
-            console.log("PLAYER BASE DEAD");
             this.onSetHealth.invoke();
             this.health = 0;
 
@@ -30,6 +26,5 @@ export class PlayerBase extends Component {
         }
 
         this.onSetHealth.invoke();
-
     }
 }

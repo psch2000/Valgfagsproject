@@ -61,14 +61,14 @@ export class BroadPhase{
 
             this.ctx.moveTo(average, node.prevAverage)
             var height = window.innerHeight;
-            var height = node.isLeftNode ? -height : height;
+            height = node.isLeftNode ? -height : height;
             this.ctx.lineTo(average, height);
             this.ctx.stroke();
             return;
         }
 
         var width = window.innerWidth;
-        var width = node.isLeftNode ? -width : width;
+        width = node.isLeftNode ? -width : width;
         this.ctx.moveTo(node.prevAverage, average);
         this.ctx.lineTo(width, average);
         this.ctx.stroke();

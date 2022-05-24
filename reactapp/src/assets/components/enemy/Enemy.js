@@ -76,7 +76,6 @@ export class Enemy extends Component {
         this.currentHealth = 0;
         this.callbackFunctionWhenDead();
         var rand = randomInt(1, 4);
-        // console.log('pop' + rand);
         AudioManager.play('pop' + rand);
         this.releaseFunction(this.parent);
     }
