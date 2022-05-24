@@ -25,6 +25,7 @@ export class BoomerangProjectile extends Projectile {
         let angles = getAnglesEquallySpaces(numAngles, false);
         let points = getPointsOnCircleCircumference(circleCenter, tower.towerType.range / 2, angles, tower.transform.position, direction);
 
+        // add tower's position to be the last point the boomerang projectile moves to
         points.push(tower.transform.position);
 
         moveComponent.path = points;
