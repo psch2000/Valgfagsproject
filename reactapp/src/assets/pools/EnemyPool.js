@@ -43,7 +43,7 @@ export class EnemyPool extends ReuseablePool {
     makeReuseable(enemyType, path, callbackFunctionWhenDead) {
         let enemyComposit = new Composit("enemy");
         enemyComposit.addComponent(new DrawIcon("", true));
-        enemyComposit.addComponent(new CircleCollider(this.colliderRadius, true));
+        enemyComposit.addComponent(new CircleCollider(this.colliderRadius));
         enemyComposit.addComponent(new FollowPath(path, 1, true));
         enemyComposit.addComponent(getEnemy(enemyType, this.releaseReuseable, callbackFunctionWhenDead));
         this.#setEnemyPositionToStartOfPath(enemyComposit, path);
