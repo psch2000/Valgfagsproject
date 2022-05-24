@@ -3,6 +3,8 @@ import { MovePath } from "../components/MovePath";
 import { getAnglesEquallySpaces, getPointsOnCircleCircumference } from "../../base/baseStructor/CircleFunctions";
 import { Projectile } from "./Projectile";
 
+// this projectile spawns a projectile which
+// follows a circular path, and dosent get destroyed on impact with balls
 export class BoomerangProjectile extends Projectile {
     constructor(radius, imagepath, damage, releaseFunction, useRotate = false) {
         super(radius, imagepath, damage, releaseFunction, false, useRotate);
@@ -23,18 +25,7 @@ export class BoomerangProjectile extends Projectile {
         let angles = getAnglesEquallySpaces(numAngles, false);
         let points = getPointsOnCircleCircumference(circleCenter, tower.towerType.range / 2, angles, tower.transform.position, direction);
 
-        // add tower's position to be the last point the boomerang projectile moves to
         points.push(tower.transform.position);
-
-        // let colors = ["#ff0000", "#00ff00", "#0000ff", "yellow", "black"];
-
-        // // visualizing points
-        // points.forEach((point) => {
-        //     let composit = new Composit("testCirclePoint");
-        //     composit.addComponent(new CircleRenderer(3, colors[this.testIndex], false));
-        //     composit.transform.position = point;
-        //     instantiate(composit);
-        // });
 
         moveComponent.path = points;
     }

@@ -7,7 +7,7 @@ const Styles = [
     "text--style--1"
 ];
 
-
+//this is a text component that display the current wave
 export const WaveText = ({textStyle, rect, offset}) => {
     const rerenderer = useForceRerenderer();
 
