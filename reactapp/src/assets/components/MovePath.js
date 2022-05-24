@@ -32,8 +32,4 @@ export class MovePath extends Move {
 
         this.transform.translate(moveAmount);
     }
-
-    // setPath(newPath) {
-    //     this.path = newPath;
-    // }
 }

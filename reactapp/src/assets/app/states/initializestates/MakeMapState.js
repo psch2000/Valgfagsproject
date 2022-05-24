@@ -3,7 +3,6 @@ import { State } from "../../../../base/baseBehaviour/State";
 import { RectangleCollider } from "../../../../base/baseStructor/collider/RectangleCollider";
 import { Composit } from "../../../../base/baseStructor/Composit";
 import { Map } from "../../../components/Map";
-import { Test } from "../../../components/Test";
 import { instantiate } from "../../functions/instantiate";
 import { UpdateUIState } from "./UpdateUIState";
 

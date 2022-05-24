@@ -29,7 +29,6 @@ export const TowerText = ({ textStyle, rect, offset }) => {
     return (
         <p style={style} className={`TowerText ${CheckTextStyle} noselect`}>
             {TowerTextObj.towerText}
-            {/* {console.log("hover")} */}
         </p>
     );
 };

@@ -1,6 +1,6 @@
 import { TowerType } from "../../tower/TowerType";
 import "./shop.css"
-import { ShopButton, ShopItem } from "./ShopItem"
+import { ShopButton } from "./ShopItem"
 
 //this contains our 6 different types of towers
 export const ShopMenuObject = {  
