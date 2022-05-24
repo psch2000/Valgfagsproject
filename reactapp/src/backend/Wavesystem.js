@@ -42,7 +42,7 @@ class WaveSystem {
 
         for (let index = 0; index < this.spawAmount; index++) {
             this.spawnEnemy(enemyTypeToSpawn);
-            await sleep(600);
+            await sleep(400);
         }
 
         this.spawAmount += 5;
