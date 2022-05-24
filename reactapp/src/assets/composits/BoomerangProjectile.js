@@ -4,7 +4,7 @@ import { getAnglesEquallySpaces, getPointsOnCircleCircumference } from "../../ba
 import { Projectile } from "./Projectile";
 
 // this projectile spawns a projectile which
-// follows a circular path, and dosent get destroyed on impact with balls
+// follows a circular path, and doesn't get destroyed on impact with balls
 export class BoomerangProjectile extends Projectile {
     constructor(radius, imagepath, damage, releaseFunction, useRotate = false) {
         super(radius, imagepath, damage, releaseFunction, false, useRotate);
