@@ -150,6 +150,7 @@ export class FirePattern {
         return Vector2d.subtract(to, from);
     }
 
+    // debug method to debug where the firePatterns shoots at
     markShootPosition(position) {
         let t = new Composit("test position shoot");
         t.addComponent(new CircleRenderer(5, this.color, false));
