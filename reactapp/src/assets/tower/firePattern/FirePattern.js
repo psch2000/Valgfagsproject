@@ -117,7 +117,6 @@ export class FirePattern {
 
         let tower = this.parent.getComponent(Tower);
         p.tower = tower;
-
         p.calculateBehavior(this.fireForce, dir.normalize(), tower);
 
         return p;

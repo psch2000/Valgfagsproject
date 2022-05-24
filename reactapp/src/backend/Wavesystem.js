@@ -17,6 +17,7 @@ class WaveSystem {
     constructor(path) {
         this.path = path;
         this.round = 0;
+        this.roundUpscale = 0;
         this.spawAmount = 20;
         this.isWaveActive = false;
         this.enemiesSpawnedTotal = 0;
@@ -40,9 +41,11 @@ class WaveSystem {
 
         let enemyTypeToSpawn = this.#getEnemyTypeByRound(this.round);
 
+        console.log(enemyTypeToSpawn)
+
         for (let index = 0; index < this.spawAmount; index++) {
             this.spawnEnemy(enemyTypeToSpawn);
-            await sleep(600);
+            await sleep(400);
         }
 
         this.spawAmount += 5;
@@ -69,9 +72,12 @@ class WaveSystem {
 
     #getEnemyTypeByRound(round) {
         let enemyTypes = Object.keys(enemyTypesHealth);
-        let enemyTypeIndex = round % enemyTypes.length;
 
-        return enemyTypes[enemyTypeIndex];
+        if(round % 3 == 0 && this.roundUpscale < enemyTypes.length - 1){
+            this.roundUpscale += 1;
+        }
+
+        return enemyTypes[this.roundUpscale];
     }
 
     #getRandomEnemyType() {

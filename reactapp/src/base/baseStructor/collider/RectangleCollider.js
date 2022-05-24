@@ -2,7 +2,7 @@ import { Vector2d } from "../Vector2d";
 import { Collider } from "./Collider";
 
 export class RectangleCollider extends Collider {
-    constructor(width, height, showBounds) {
+    constructor(width, height, showBounds = false) {
         super();
         this.width = width;
         this.height = height;
