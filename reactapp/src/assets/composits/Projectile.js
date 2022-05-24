@@ -6,7 +6,6 @@ import { DamageWhenCollide } from "../components/DamageWhenCollide";
 import { Enemy } from "../components/enemy/Enemy";
 
 // Projectile is the super class for other projectiles like normal projectiles
-// it contains components like
 export class Projectile extends Composit {
     constructor(radius, imagepath, damage, releaseFunction, useRelease, useRotate = false) {
         super("projectile");
