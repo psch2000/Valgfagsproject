@@ -10,12 +10,6 @@ export class DrawIcon extends Component{
         this.img.src = path;
         this.useOrigen = useOrigen;
         this.useRotation = useRotation;
-
-        // this.image.width *= 1;
-        // this.image.height *= 1;
-        // this.image.style.width = `${this.image.width}px`;
-        // this.image.style.height = `${this.image.height}px`;
-        // console.log(this.image);
     }
 
     onDraw(context){
@@ -45,10 +39,6 @@ export class DrawIcon extends Component{
                 context.rotate(radians)
             }
         }
-
-        // var downscaledImage = downScaleImage(this.image, .1);
-        // downscaledImage.style.color = 'transparent';
-
 
         if (this.useRotation && rotationAngle !== null) {
             context.drawImage(this.img, 0 - this.img.width / 2, 0 - this.img.height / 2);

@@ -16,20 +16,15 @@ export class Composit extends Component {
         this.components = this.#components;
     }
 
-
-   
-
     #addTransform(){
         this.transform = new Transform();
         this.addComponent(this.transform);
     }
 
-
     addComponent(component, index){
         component.transform = this.transform;
         component.parent = this;
-        
-   
+
         try{
             component.components?.forEach(c => {
                 c.transform = this.transform;
@@ -38,7 +33,6 @@ export class Composit extends Component {
         catch (ex){
             console.log("An error happened in addComponent: " + ex)
         }
-        
 
         if (index == undefined){
             this.#components.push(component);
@@ -57,7 +51,6 @@ export class Composit extends Component {
 
     getComponent(type){
         var temp = null;
-
 
         this.#components.forEach(c => {
             if (c.constructor.name == type.name){
@@ -103,11 +96,7 @@ export class Composit extends Component {
     onStart() {  
         this.#components.forEach(c => {            
             try { c.onStart(); } 
-            catch (ex) { 
-                // console.log("An error happened in onStart - " + c.constructor.name + ": " + ex); 
-                console.log(ex)
-                debugger;
-            }
+            catch (ex) { console.log("An error happened in onStart - " + c.constructor.name + ": " + ex); }
         });
     }
 
@@ -116,11 +105,7 @@ export class Composit extends Component {
         this.#components.forEach(c => {
             if (c.isActive == true){
                 try { c.onUpdate(); } 
-                catch (ex) { 
-                    // console.log("An error happened in onUpdate - " + c.constructor.name + ": " + ex); 
-                    console.log(ex)
-                    debugger;
-                }
+                catch (ex) { console.log("An error happened in onUpdate - " + c.constructor.name + ": " + ex); }
             }
         }); 
     }
@@ -134,5 +119,4 @@ export class Composit extends Component {
             }       
         });
     }
-
 }

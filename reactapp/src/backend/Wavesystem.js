@@ -34,8 +34,6 @@ class WaveSystem {
 
         let enemyTypeToSpawn = this.#getEnemyTypeByRound(this.round);
 
-        console.log(enemyTypeToSpawn)
-
         for (let index = 0; index < this.spawAmount; index++) {
             this.spawnEnemy(enemyTypeToSpawn);
             await sleep(400);
