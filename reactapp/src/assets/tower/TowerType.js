@@ -1,11 +1,8 @@
-import { RgbColor } from "../../base/baseStructor/RgbColor";
-import { AreaFirePatthernBuilder } from "./firePattern/patterns/AreaFirePatthernBuilder";
 import { BoomerangFirePatternBuilder } from "./firePattern/patterns/BoomerangFirePatternBuilder";
 import { CanonFirePatternBuilder } from "./firePattern/patterns/CanonFirePatternBuilder";
 import { SingleFirePatternBuilder } from "./firePattern/patterns/SingleFirePatternBuilder";
 import { SuperMonkeyFirePattern } from "./firePattern/patterns/SuperMonkeyFirePattern";
 import { TackShooterFirePatternBuilder } from "./firePattern/patterns/TackShooterFirePatternBuilder";
-import { TrippleFirePatternBuilder } from "./firePattern/patterns/TrippleFirePatternBuilder";
 
 export class TowerType {
     static blueTower = new TowerType("Monkey", 100, "./images/sprite_dart.png", 170, "./images/sprite_monkey1.png", "./images/sprite_greymonkey1.png", 25, 1, new SingleFirePatternBuilder());

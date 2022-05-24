@@ -1,6 +1,4 @@
 
-
-
 export class Command {
 
     onEnter(){}

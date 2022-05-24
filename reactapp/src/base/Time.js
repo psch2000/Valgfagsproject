@@ -1,5 +1,3 @@
-
-
 // Defines the games time
 export class Time {
 

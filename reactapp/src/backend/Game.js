@@ -1,20 +1,11 @@
-import { instantiate } from "../assets/app/functions/instantiate";
-import { SquareRenderer } from "../assets/components/SquareRenderer";
 import { StopWatch } from "../assets/StopWatch";
 import { EventHandler } from "../base/baseBehaviour/EventHandler";
 import { Collider, COLLIDERS } from "../base/baseStructor/collider/Collider";
-import { RectangleCollider } from "../base/baseStructor/collider/RectangleCollider";
-import { Composit } from "../base/baseStructor/Composit";
-import { Intersect } from "../base/baseStructor/Intersect";
 import { Vector2d } from "../base/baseStructor/Vector2d";
 import { callAndSetInterval } from "../base/callAndSetInterval";
 import { Time } from "../base/Time";
 import { Input } from "../GameEngine/input/Input";
-import { BroadPhase } from "../kd-tree/BroadPhase";
-import { Node } from "../kd-tree/Node";
 import { QuadTreeNode } from "../quadtree/QuadTreeNode";
-import { AudioManager } from "../sound/AudioManager";
-import { KeyValuePair } from "./data-structors/KeyValuePair";
 
 
 export class Game {

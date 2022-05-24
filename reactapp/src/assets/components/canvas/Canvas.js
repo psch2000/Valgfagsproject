@@ -1,7 +1,3 @@
-
-
-
-
 export class Canvas {
     constructor(rect){
         this.rect = rect;

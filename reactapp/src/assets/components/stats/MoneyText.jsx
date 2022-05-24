@@ -2,7 +2,6 @@ import "./stats.css"
 import React, { useEffect } from "react";
 import { Player } from "../bank/Player";
 import { useForceRerenderer } from "../../hooks/useForceRenderer";
-import { render } from "@testing-library/react";
 
 export const MONEY = 20650;
 

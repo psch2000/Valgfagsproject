@@ -1,15 +1,6 @@
 import { ReuseablePool } from "../../base/baseConstructors/ReuseablePool";
-import { Composit } from "../../base/baseStructor/Composit";
-import { Vector2d } from "../../base/baseStructor/Vector2d";
 import { instantiate } from "../app/functions/instantiate";
-import { OutOfBounceDelete } from "../components/OutOfBounceDelete";
-import { CircleRenderer } from "../components/CircleRenderer";
-import { CircleCollider } from "../../base/baseStructor/collider/CircleCollider";
-import { MoveDirection } from "../components/MoveDirection";
-import { SquareRenderer } from "../components/SquareRenderer";
 import { DamageWhenCollide } from "../components/DamageWhenCollide";
-import { Enemy } from "../components/enemy/Enemy";
-import { NormalProjectile } from "../composits/NormalProjectile";
 import { DrawIcon } from "../../base/baseStructor/DrawIcon";
 
 export class ProjectilePool extends ReuseablePool {

@@ -1,4 +1,3 @@
-import { Collider } from "./collider/Collider";
 import { Component } from "./Component";
 import { Transform } from "./Transform";
 

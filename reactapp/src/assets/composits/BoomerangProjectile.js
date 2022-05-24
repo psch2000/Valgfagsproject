@@ -1,13 +1,6 @@
-import { Composit } from "../../base/baseStructor/Composit";
 import { Vector2d } from "../../base/baseStructor/Vector2d";
-import { CircleRenderer } from "../components/CircleRenderer";
 import { MovePath } from "../components/MovePath";
-import { CircleCollider } from "../../base/baseStructor/collider/CircleCollider";
-import { OutOfBounceDelete } from "../components/OutOfBounceDelete";
-import { DamageWhenCollide } from "../components/DamageWhenCollide";
-import { Enemy } from "../components/enemy/Enemy";
 import { getAnglesEquallySpaces, getPointsOnCircleCircumference } from "../../base/baseStructor/CircleFunctions";
-import { DrawIcon } from "../../base/baseStructor/DrawIcon";
 import { Projectile } from "./Projectile";
 
 export class BoomerangProjectile extends Projectile {

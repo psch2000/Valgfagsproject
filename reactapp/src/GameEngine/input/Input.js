@@ -1,6 +1,4 @@
 
-
-
  // Makes it possible to read the uses keyboard and mouse inputs
 export class Input {
 

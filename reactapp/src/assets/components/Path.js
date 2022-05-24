@@ -2,7 +2,6 @@ import { Component } from "../../base/baseStructor/Component";
 import { Vector2d } from "../../base/baseStructor/Vector2d";
 import { RectangleCollider } from "../../base/baseStructor/collider/RectangleCollider";
 import { Composit } from "../../base/baseStructor/Composit";
-import { SquareRenderer } from "./SquareRenderer";
 import { instantiate } from "../app/functions/instantiate";
 import { Intersect } from "../../base/baseStructor/Intersect";
 import { Unplaceable } from "../tower/Unplaceable";

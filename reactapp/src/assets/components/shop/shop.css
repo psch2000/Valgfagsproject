@@ -24,6 +24,11 @@
     border: 2px solid var(--blue);
 }
 
+.btn--shop--selected{
+    background-color: #2b87ff;
+    border: 2px solid var(--blue);
+}
+
 .btn--shop--grey--solid{
     background-color: var(--lightblue);
     filter: grayscale(0.8);
