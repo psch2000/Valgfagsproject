@@ -1,6 +1,7 @@
 import { FirePattern } from "./FirePattern";
 
 
+// A fire pattern builder that makes it easier to build towers.
 export class FirePatternBuilder {
 
     #firePattern;

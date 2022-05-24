@@ -11,7 +11,6 @@ import { TowerPlacere } from "../tower/TowerPlacer";
 import { TowerRange } from "../tower/TowerRange";
 import { Unplaceable } from "../tower/Unplaceable";
 
-
 export class TowerPool extends ReuseablePool{
 
     static #instance;
@@ -30,6 +29,8 @@ export class TowerPool extends ReuseablePool{
         return this.#instance;
     }
 
+    // Makes two composits one that represents the towers range and the other the tower.
+    // Returns the tower composit.
     makeReuseable(){
         var towerType = TowerPlacere.getInstance().getTowerType();
 

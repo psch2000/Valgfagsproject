@@ -1,7 +1,7 @@
 import { State } from "../../../../base/baseBehaviour/State";
 import { AudioManager } from "../../../../sound/AudioManager";
 
-
+// Adds sounds to the game.
 export class AddSoundState extends State{
 
     execute(){

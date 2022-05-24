@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-
+// A hook that represents a rectangle
 export const useRect = (initRect) =>{
     const [x, setX] = useState(initRect.x);
     const [y, setY] = useState(initRect.y);

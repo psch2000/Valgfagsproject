@@ -1,3 +1,5 @@
+
+
 export class RgbColor {
     constructor(r, g, b, a = null) {
         this.r = r;

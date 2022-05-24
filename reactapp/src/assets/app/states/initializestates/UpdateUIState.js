@@ -14,7 +14,7 @@ import { CircleCollider } from "../../../../base/baseStructor/collider/CircleCol
 import { Vector2d } from "../../../../base/baseStructor/Vector2d";
 import { AddSoundState } from "./AddSoundState";
 
-
+// Makes the canvas game UI.
 export class UpdateUIState extends State{
 
     constructor(){
@@ -50,6 +50,7 @@ export class UpdateUIState extends State{
         instantiate(ShopUI, new Vector2d(700, 0));
 
 
+        // Makes the cursor
         var cursor = new Composit("Cursor");
         cursor.addComponent(new CircleRenderer(3, 'white', true));
         cursor.addComponent(new FollowCanvasMouse());

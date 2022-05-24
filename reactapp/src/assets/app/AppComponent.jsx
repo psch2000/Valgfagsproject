@@ -32,9 +32,8 @@ export const AppComponent = () => {
     const init = new StateHandler(new MakeMapState());
     const rerenderer = useForceRerenderer();
 
+    // Initializes and runs the app
     useEffect(() =>{
-
-        // AudioManager.addSound("pop", "pop.wav");
         init.execute();
         OnEndResize.addListener(onEndResize, 0);
         App.run();
@@ -43,6 +42,7 @@ export const AppComponent = () => {
         placeObjectsOnCanvas();
     }, [])
 
+    
     const setWindowRect = () => {
         var rect = App.windowRect;
         rect.x = window.innerWidth / 2 - 500;
