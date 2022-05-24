@@ -9,7 +9,6 @@ import { Area } from "../../../components/Area";
 import { CircleRenderer } from "../../../components/CircleRenderer";
 import { FollowCanvasMouse } from "../../../components/FollowCanvasMouse";
 import { Map } from "../../../components/Map";
-import { Test } from "../../../components/Test";
 import { instantiate } from "../../functions/instantiate";
 import { UpdateUIState } from "./UpdateUIState";
 
