@@ -8,6 +8,7 @@ const Styles = ["btn--primary--solid", "btn--shop--grey--solid", "btn--succes--s
 
 const Sizes = ["btn--shop", "btn--wave"];
 
+//this is a button component that starts the round
 export const WaveButton = ({ onClick, rect, offset }) => {
     const rerender = useForceRerenderer();
 

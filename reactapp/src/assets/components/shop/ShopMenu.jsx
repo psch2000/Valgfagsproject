@@ -2,8 +2,7 @@ import { TowerType } from "../../tower/TowerType";
 import "./shop.css"
 import { ShopButton, ShopItem } from "./ShopItem"
 
-
-
+//this contains our 6 different types of towers
 export const ShopMenuObject = {  
     
     towerTypes: [
@@ -16,6 +15,7 @@ export const ShopMenuObject = {
     ]
 }
 
+//this display a shopmenu, which is a placable grid with the ShopItem buttons
 export const ShopMenu = ({rect, offset}) =>{
 
     var style = {
@@ -30,9 +30,6 @@ export const ShopMenu = ({rect, offset}) =>{
         {towerTypes.map((item, index) => {
 
             return (<ShopButton towerType={item}  key={index} towerName={item.name}></ShopButton>)
-            //{console.log(item.imagePath)}
-            //return (<ShopButton key={index} price={item.price} imagePath={item.imagePath}></ShopButton>)           
-
         })}
     </div>
 

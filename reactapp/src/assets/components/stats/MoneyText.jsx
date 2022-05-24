@@ -3,12 +3,11 @@ import React, { useEffect } from "react";
 import { Player } from "../bank/Player";
 import { useForceRerenderer } from "../../hooks/useForceRenderer";
 
-export const MONEY = 20650;
-
 const Styles = [
     "text--style--1"
 ];
 
+//this is a text component that display the amount of money the player has
 
 export const MoneyText = ({textStyle, rect, offset}) => {
 
