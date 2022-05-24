@@ -1,6 +1,5 @@
 import { Input } from "./Input";
 
-
 export class InputHandler {
 
     static #keyCommandPair = [];

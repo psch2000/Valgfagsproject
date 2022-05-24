@@ -1,15 +1,8 @@
-import { Composit } from "../base/baseStructor/Composit";
-import { DrawIcon } from "../base/baseStructor/DrawIcon";
-import { CircleCollider } from "../base/baseStructor/collider/CircleCollider";
-import { FollowPath } from "../assets/components/enemy/FollowPath";
-import { Enemy } from "../assets/components/enemy/Enemy";
-import { instantiate } from "../assets/app/functions/instantiate";
 import { Path } from "../assets/components/Path";
 import { Vector2d } from "../base/baseStructor/Vector2d";
 import { sleep } from "../base/Sleep";
 import { EventHandler } from "../base/baseBehaviour/EventHandler";
 import { Player } from "../assets/components/bank/Player";
-import { getEnemy } from "../assets/components/enemy/EnemyTypes";
 import { EnemyPool } from "../assets/pools/EnemyPool";
 import { enemyTypesHealth } from "../assets/components/enemy/EnemyTypes";
 
@@ -17,6 +10,7 @@ class WaveSystem {
     constructor(path) {
         this.path = path;
         this.round = 0;
+        this.roundUpscale = 0;
         this.spawAmount = 20;
         this.isWaveActive = false;
         this.enemiesSpawnedTotal = 0;
@@ -34,15 +28,17 @@ class WaveSystem {
 
         this.isWaveActive = true;
         this.round += 1;
-        this.enemiesRemainingThisRound = 0;
+        this.enemiesRemainingThisRound = this.spawAmount;
 
         this.onWaveChange.invoke();
 
         let enemyTypeToSpawn = this.#getEnemyTypeByRound(this.round);
 
+        console.log(enemyTypeToSpawn)
+
         for (let index = 0; index < this.spawAmount; index++) {
             this.spawnEnemy(enemyTypeToSpawn);
-            await sleep(600);
+            await sleep(400);
         }
 
         this.spawAmount += 5;
@@ -54,7 +50,7 @@ class WaveSystem {
     }
 
     endRound() {
-        console.log("end round (WaveSystem)");
+        if (this.isWaveActive === false) return;
         this.isWaveActive = false;
         this.onWaveChange.invoke();
         Player.bank.add(100 + this.round);
@@ -64,14 +60,16 @@ class WaveSystem {
         EnemyPool.getInstance().acquireReuseable(enemyType, this.path, this.enemyDead);
 
         this.enemiesSpawnedTotal += 1;
-        this.enemiesRemainingThisRound += 1;
     }
 
     #getEnemyTypeByRound(round) {
         let enemyTypes = Object.keys(enemyTypesHealth);
-        let enemyTypeIndex = round % enemyTypes.length;
 
-        return enemyTypes[enemyTypeIndex];
+        if(round % 3 == 0 && this.roundUpscale < enemyTypes.length - 1){
+            this.roundUpscale += 1;
+        }
+
+        return enemyTypes[this.roundUpscale];
     }
 
     #getRandomEnemyType() {

@@ -1,5 +1,6 @@
 import { EventHandler } from "../../../base/baseBehaviour/EventHandler";
 
+//this sets the text that TowerText.jsx displays
 export class TowerTextObj{
     
     static towerText = "Hello Player!";

@@ -1,6 +1,4 @@
-import { Tower } from "../assets/tower/Tower";
 import { Component } from "../base/baseStructor/Component";
-import { Vector2d } from "../base/baseStructor/Vector2d";
 // import { App } from "../../assets/app/App";
 
 

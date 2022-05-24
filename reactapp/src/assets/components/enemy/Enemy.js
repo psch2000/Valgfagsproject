@@ -1,15 +1,11 @@
 import { Component } from "../../../base/baseStructor/Component";
-import { App } from "../../app/App";
 import { Vector2d } from "../../../base/baseStructor/Vector2d";
 import { PlayerBase } from "../PlayerBase";
-import { Time } from "../../../base/Time";
 import { RectangleCollider } from "../../../base/baseStructor/collider/RectangleCollider";
 import { Player } from "../bank/Player";
 import { DrawIcon } from "../../../base/baseStructor/DrawIcon";
-import { TackShooterFirePatternBuilder } from "../../tower/firePattern/patterns/TackShooterFirePatternBuilder";
 import { Collider } from "../../../base/baseStructor/collider/Collider";
 import { AudioManager } from "../../../sound/AudioManager";
-import { random } from "../../app/functions/random";
 import { randomInt } from "../../app/functions/randomInt";
 import { enemyTypesImagePaths } from "./EnemyTypes";
 

@@ -8,7 +8,7 @@ const Styles = [
     "text--style--1"
 ];
 
-
+//this is a text component that display the amount of health the player has
 export const HealthText = ({textStyle, rect, offset}) => {
 
     const rerender = useForceRerenderer();

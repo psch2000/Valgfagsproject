@@ -1,6 +1,5 @@
 import { Component } from "./Component";
 
-
 export class DrawText extends Component{
 
     constructor(){

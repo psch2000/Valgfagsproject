@@ -2,6 +2,7 @@ import { Component } from "../../base/baseStructor/Component";
 import { SquareRenderer } from "./SquareRenderer";
 import { Vector2d } from "../../base/baseStructor/Vector2d";
 
+// Makes a map that tower and enemies use.
 export class Map extends Component {
 
     #squareRenderer;

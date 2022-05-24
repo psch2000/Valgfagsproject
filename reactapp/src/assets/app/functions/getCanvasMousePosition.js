@@ -3,6 +3,8 @@ import { getMousePosition } from "../../../functions/getMousePosition"
 import { App } from "../App";
 
 
+// Returns the current mouse position in the Canvas.
+// The canvas is the game window.
 export const getCanvasMousePosition = () =>{
 
     var windowMousePos = getMousePosition();

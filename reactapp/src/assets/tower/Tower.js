@@ -1,21 +1,11 @@
 import { Component } from "../../base/baseStructor/Component";
-import { Vector2d } from "../../base/baseStructor/Vector2d";
-import { Time } from "../../base/Time";
-import { getCanvasMousePosition } from "../app/functions/getCanvasMousePosition";
-import { ProjectilePool } from "../pools/ProjectilePool";
-import { MoveDirection } from "../components/MoveDirection";
 import { TowerFacade } from "./TowerFacade";
 import { Input } from "../../GameEngine/input/Input";
-import { FirePattern } from "./firePattern/FirePattern";
-import { App } from "../app/App";
-import { TowerType } from "./TowerType";
-import { TackShooterFirePatternBuilder } from "./firePattern/patterns/TackShooterFirePatternBuilder";
-import { Unplaceable } from "./Unplaceable";
 import { Area } from "../components/Area";
 import { Enemy } from "../components/enemy/Enemy";
 
 
-
+// Makes a tower that has a defined fire pattern
 export class Tower extends Component{
 
     #towerFacade;
@@ -62,10 +52,7 @@ export class Tower extends Component{
         }
     }
 
-    onPop(tower){
-
-
-        
+    onPop(tower){      
         var enemies = tower.#towerFacade.getEnemiesInRange();
 
         

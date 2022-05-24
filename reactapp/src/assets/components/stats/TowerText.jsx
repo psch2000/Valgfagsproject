@@ -5,6 +5,8 @@ import { useForceRerenderer } from "../../hooks/useForceRenderer";
 
 const Styles = ["text--style--1"];
 
+//this is a text component that display text according to TowerTextObj.js 
+
 export const TowerText = ({ textStyle, rect, offset }) => {
     const [count, setCount] = useState(0);
     const rerender = useForceRerenderer();

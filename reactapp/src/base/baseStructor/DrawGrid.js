@@ -1,7 +1,6 @@
 import { Game } from "../../assets/app/App";
 import { Component } from "./Component";
 
-
 export class DrawGrid extends Component{
 
 

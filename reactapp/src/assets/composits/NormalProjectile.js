@@ -1,14 +1,9 @@
-import { Composit } from "../../base/baseStructor/Composit";
 import { Vector2d } from "../../base/baseStructor/Vector2d";
-import { CircleRenderer } from "../components/CircleRenderer";
 import { MoveDirection } from "../components/MoveDirection";
-import { CircleCollider } from "../../base/baseStructor/collider/CircleCollider";
-import { OutOfBounceDelete } from "../components/OutOfBounceDelete";
-import { DamageWhenCollide } from "../components/DamageWhenCollide";
-import { Enemy } from "../components/enemy/Enemy";
-import { DrawIcon } from "../../base/baseStructor/DrawIcon";
 import { Projectile } from "./Projectile";
 
+// this projectile follows a straight and gets destroyed
+// when colliding with an enemy
 export class NormalProjectile extends Projectile {
     constructor(radius, imagepath, damage, releaseFunction, useRotate = false) {
         super(radius, imagepath, damage, releaseFunction, true, useRotate);

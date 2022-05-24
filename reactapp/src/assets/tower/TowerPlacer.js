@@ -1,18 +1,13 @@
 import { CircleCollider } from "../../base/baseStructor/collider/CircleCollider";
-import { RectangleCollider } from "../../base/baseStructor/collider/RectangleCollider";
 import { Component } from "../../base/baseStructor/Component";
 import { Composit } from "../../base/baseStructor/Composit";
 import { Input } from "../../GameEngine/input/Input";
-import { App } from "../app/App";
 import { instantiate } from "../app/functions/instantiate";
 import { CircleRenderer } from "../components/CircleRenderer";
 import { FollowCanvasMouse } from "../components/FollowCanvasMouse";
 import { Player } from "../components/bank/Player";
 import { TowerPool } from "../pools/TowerPool";
-import { TowerFacade } from "./TowerFacade";
-import { TowerRange } from "./TowerRange";
 import { DrawIcon } from "../../base/baseStructor/DrawIcon";
-import { AudioManager } from "../../sound/AudioManager";
 import { Unplaceable } from "./Unplaceable";
 import { EventHandler } from "../../base/baseBehaviour/EventHandler";
 
@@ -132,7 +127,7 @@ export class TowerPlacere extends Component{
     }
 
     // We set the towerType of the towerPlacer to the towerType being selected
-    // onCancel is called to make the last button clickable once again
+    // onSelectedTowerChange is invoked to update what shop button is selected
     setTowerType(towerType){
         this.#rangeRenderer.radius = towerType.range;
         this.#spriteRenderer.img.src = towerType.imagePath;

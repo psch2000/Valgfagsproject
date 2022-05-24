@@ -1,6 +1,5 @@
 import { FirePatternBuilder } from "../FirePatternBuilder"
 
-
 export class TackShooterFirePatternBuilder {
     
     getProduct(){

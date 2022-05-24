@@ -1,6 +1,7 @@
 import { Component } from "./Component";
 import { Vector2d } from "./Vector2d";
 
+// Defines a position and size in the game world
 export class Transform extends Component {
     constructor() {
         super();

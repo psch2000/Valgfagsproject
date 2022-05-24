@@ -1,20 +1,11 @@
-import { instantiate } from "../assets/app/functions/instantiate";
-import { SquareRenderer } from "../assets/components/SquareRenderer";
 import { StopWatch } from "../assets/StopWatch";
 import { EventHandler } from "../base/baseBehaviour/EventHandler";
 import { Collider, COLLIDERS } from "../base/baseStructor/collider/Collider";
-import { RectangleCollider } from "../base/baseStructor/collider/RectangleCollider";
-import { Composit } from "../base/baseStructor/Composit";
-import { Intersect } from "../base/baseStructor/Intersect";
 import { Vector2d } from "../base/baseStructor/Vector2d";
 import { callAndSetInterval } from "../base/callAndSetInterval";
 import { Time } from "../base/Time";
 import { Input } from "../GameEngine/input/Input";
-import { BroadPhase } from "../kd-tree/BroadPhase";
-import { Node } from "../kd-tree/Node";
 import { QuadTreeNode } from "../quadtree/QuadTreeNode";
-import { AudioManager } from "../sound/AudioManager";
-import { KeyValuePair } from "./data-structors/KeyValuePair";
 
 
 export class Game {
@@ -92,162 +83,6 @@ export class Game {
     }
 
  
-
-    
-    setGridColliders(size){
-
-        // var width = this.canvas.rect.width / size;
-        // var height = this.canvas.rect.height / size;
-
-
-        // for (let row = 0; row < size; row++){
-
-        //     for (let col = 0; col < size; col++){
-
-        //         var rect = new RectangleCollider(width, height, true);
-        //         rect.transform.position = new Vector2d(col * width, row * height);
-
-        //         this.#gridRectangles.push({collider: rect, overlaps: []});
-        //     }
-        // }
-
-
-    }
-
-    #checkGridRectangleCollision(){
-        
-
-        // this.#stopWatch.start();
-        // for (let i = 0; i < this.#gridRectangles.length; i++){
-
-        //     var obj = this.#gridRectangles[i];
-
-
-        //     for (let j = 0; j < this.#colliders.length; j++){
-
-        //         var collider = this.#colliders[j];
-
-        //         if (collider.parent == null) continue;
-
-
-        //         if (obj.collider.doesOverlap(collider) == true){
-
-        //             if (obj.overlaps.includes(collider) == false){
-        //                 obj.overlaps.push(collider);
-        //             }
-        //             continue;
-        //         }
-
-        //         if (obj.overlaps.includes(collider) == true){
-        //             var index = obj.overlaps.indexOf(collider);
-        //             obj.overlaps.splice(index, 1);
-        //         }
-
-        //     }
-        // }
-
-        // this.#stopWatch.stop();
-        // var time = this.#stopWatch.getTime();
-        // console.log("First")
-
-        // console.log(time);
-        
-
-    }
-
-    #checkCollision(){
-
-        // this.#stopWatch.start();
-
-        // this.#rootNode.nodes = [];
-        // this.#broadPhase.reset();
-        // this.#broadPhase.handleNode(this.#rootNode);
-        
-        // this.#broadPhase.endNodes.forEach(endNode => {
-
-        //     var colliders = endNode.colliders;
-
-        //     for (let i = 0; i < colliders.length; i++){
-
-        //         var collider = colliders[i];
-                
-        //         for (let j = 0; j < colliders.length; j++){
-        //             if (i == j) continue;
-        //             var other = colliders[j];
-                    
-        //             var pair = collider.overlaps;
-
-        //             if (collider.doesOverlap(other)){
-        //                 if (pair.hasKey(other) == false){
-        //                     pair.addKeyValue(other, false);
-        //                 }
-
-        //                 if (pair.getValue(other) == false){
-        //                     collider.parent.onEnter(other.parent);
-        //                     pair.setValue(other, true);
-        //                     continue;
-        //                 }
-
-        //                 collider.parent.onOverlap(other.parent);
-        //                 continue;
-        //             }
-
-        //             if (pair.hasKey(other) == false) continue;
-        //             if (pair.getValue(other) == false) continue;
-        //             collider.parent.onExit(other.parent);
-        //             pair.setValue(other, false);
-                    
-        //         }
-
-        //     }
-
-        // })
-
-        // for (let i = 0; i < this.#gridRectangles.length; i++){
-        //     var obj = this.#gridRectangles[i];
-        //     var colliders = obj.overlaps;
-
-        //     var length = colliders.length;
-        //     // console.log(obj)
-
-        //     for (let j = 0; j < length; j++){
-        //         var collider = colliders[j];
-
-        //         for (let k = 0; k < length; k++){
-        //             if (j == k) continue;
-        //             var other = colliders[k];
-        //             var pair = collider.overlaps;
-
-        //             if (collider.doesOverlap(other)){
-        //                 if (pair.hasKey(other) == false){
-        //                     pair.addKeyValue(other, false);
-        //                 }
-
-        //                 if (pair.getValue(other) == false){
-        //                     collider.parent.onEnter(other.parent);
-        //                     pair.setValue(other, true);
-        //                     continue;
-        //                 }
-
-        //                 collider.parent.onOverlap(other.parent);
-        //                 continue;
-        //             }
-
-        //             if (pair.hasKey(other) == false) continue;
-        //             if (pair.getValue(other) == false) continue;
-        //             collider.parent.onExit(other.parent);
-        //             pair.setValue(other, false);
-        //         }
-        //     }
-            
-        // }
-
-
-        this.#stopWatch.stop();
-        var time = this.#stopWatch.getTime();
-        // console.log("second")
-        // console.log(time);
-    }
 
     #quadTreeCollision(){
 

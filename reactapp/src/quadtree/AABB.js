@@ -1,5 +1,5 @@
 
-
+// Represents a Axis Aligned Boundry Box. Which is a rect that is aligned with the x and y axis.
 export class AABB {
 
     constructor(position, width, height){
@@ -13,6 +13,7 @@ export class AABB {
     getTop = () => this.position.y;
     getBottom = () => this.position.y + this.height;
 
+    // Checks if a point is within a AABB
     contains(point){
         return (
             point.x > this.getLeft() &&
@@ -22,6 +23,7 @@ export class AABB {
         );
     }
 
+    // Checks if an AABB intersects this AABB
     intersectsAABB(other){
         return (
             this.getRight() >= other.getLeft() &&
@@ -31,7 +33,7 @@ export class AABB {
         );
     }
 
-
+    // Draws the AABB
     draw(ctx){
         ctx.beginPath();
         ctx.fillStyle = 'blue';

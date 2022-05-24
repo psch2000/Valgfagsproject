@@ -1,8 +1,6 @@
 import { Move } from "../../assets/components/Move";
 import { Tower } from "../../assets/tower/Tower";
 import { Component } from "./Component";
-import { Vector2d } from "./Vector2d";
-
 
 export class DrawIcon extends Component{
 

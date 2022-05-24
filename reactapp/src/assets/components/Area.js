@@ -1,10 +1,9 @@
 import { EventHandler } from "../../base/baseBehaviour/EventHandler";
 import { CircleCollider } from "../../base/baseStructor/collider/CircleCollider";
 import { Component } from "../../base/baseStructor/Component";
-import { Input } from "../../GameEngine/input/Input";
 import { CircleRenderer } from "./CircleRenderer";
 
-
+// Makes an area effect that invokes a event, when it should use the effekt.
 export class Area extends Component{
     
     #renderer;
@@ -44,7 +43,7 @@ export class Area extends Component{
             if (this.canIncrease == false) return;  
             return;
         }
-        this.#fire();
+        this.#increase();
     }
 
     #setRadius(value){
@@ -54,7 +53,8 @@ export class Area extends Component{
     }
 
 
-    #fire(){
+    // Increases the current radius, when it hits max it invokes the onReachedMaxRadius event.
+    #increase(){
 
         this.#setRadius(this.#radius + this.increasValue);
 

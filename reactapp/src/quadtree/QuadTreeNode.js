@@ -3,6 +3,7 @@ import { Vector2d } from "../base/baseStructor/Vector2d.js";
 import { AABB } from "./AABB.js";
 
 
+// Represents a part of a devided space in the game.
 export class QuadTreeNode {
     
     constructor(pos, width, height, root = null){
@@ -16,19 +17,24 @@ export class QuadTreeNode {
         this.isLeafNode = true;
     }
 
+    // Handles the given node
     handleNode(i){
 
+        // If there is not enought AABBs dont continue.
         if (this.aabbs.length <= 1) return;
 
+        // If we're on the fouth iteration define this as an end node and dont continue.
         if (i > 4){
             this.root.leafNodes.push(this);
             return;
         }
         
 
+        // Split the current AABB into four smalle AABBs that fills up this AABB
         this.subdevide();
 
 
+        // Add all the AABBs in this node to the right defined space in the devided spaces. 
         this.aabbs.forEach(aabb => {
             this.insert(this.topLeftNode, aabb);
             this.insert(this.topRightNode, aabb);
@@ -36,12 +42,14 @@ export class QuadTreeNode {
             this.insert(this.botRightNode, aabb);
         });
 
+        // Handles the devided nodes.
         this.topLeftNode.handleNode(i + 1);
         this.topRightNode.handleNode(i + 1);
         this.botLeftNode.handleNode(i + 1);
         this.botRightNode.handleNode(i + 1);
     }
 
+    // Inserts a AABB into a nodes AABB collection.
     insert(node, aabb){
 
         if (node.bounds.intersectsAABB(aabb)){
@@ -50,6 +58,7 @@ export class QuadTreeNode {
     }
 
     
+    // Devides the current AABB into four equal sized spizes that defines this spaze
     subdevide(){
         var {position, width, height} = this.bounds;
         var halfWidth = width/2;

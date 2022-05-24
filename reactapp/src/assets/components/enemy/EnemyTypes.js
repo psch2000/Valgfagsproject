@@ -1,4 +1,5 @@
 
+//This javascript is used to switch the values on enemy
 export const enemyTypesHealth = {
     "red": 1,
     "blue": 2,

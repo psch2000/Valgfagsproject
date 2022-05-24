@@ -1,5 +1,3 @@
-
-
 export class StateHandler {
 
     constructor(state){

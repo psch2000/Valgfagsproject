@@ -1,15 +1,10 @@
-import { Composit } from "../../base/baseStructor/Composit";
 import { Vector2d } from "../../base/baseStructor/Vector2d";
-import { CircleRenderer } from "../components/CircleRenderer";
 import { MovePath } from "../components/MovePath";
-import { CircleCollider } from "../../base/baseStructor/collider/CircleCollider";
-import { OutOfBounceDelete } from "../components/OutOfBounceDelete";
-import { DamageWhenCollide } from "../components/DamageWhenCollide";
-import { Enemy } from "../components/enemy/Enemy";
 import { getAnglesEquallySpaces, getPointsOnCircleCircumference } from "../../base/baseStructor/CircleFunctions";
-import { DrawIcon } from "../../base/baseStructor/DrawIcon";
 import { Projectile } from "./Projectile";
 
+// this projectile spawns a projectile which
+// follows a circular path, and doesn't get destroyed on impact with balls
 export class BoomerangProjectile extends Projectile {
     constructor(radius, imagepath, damage, releaseFunction, useRotate = false) {
         super(radius, imagepath, damage, releaseFunction, false, useRotate);
@@ -32,16 +27,6 @@ export class BoomerangProjectile extends Projectile {
 
         // add tower's position to be the last point the boomerang projectile moves to
         points.push(tower.transform.position);
-
-        // let colors = ["#ff0000", "#00ff00", "#0000ff", "yellow", "black"];
-
-        // // visualizing points
-        // points.forEach((point) => {
-        //     let composit = new Composit("testCirclePoint");
-        //     composit.addComponent(new CircleRenderer(3, colors[this.testIndex], false));
-        //     composit.transform.position = point;
-        //     instantiate(composit);
-        // });
 
         moveComponent.path = points;
     }

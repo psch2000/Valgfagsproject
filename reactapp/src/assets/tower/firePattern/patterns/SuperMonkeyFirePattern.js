@@ -1,7 +1,6 @@
 import { Vector2d } from "../../../../base/baseStructor/Vector2d";
 import { FirePatternBuilder } from "../FirePatternBuilder";
 
-
 export class SuperMonkeyFirePattern {
 
     getProduct(){
