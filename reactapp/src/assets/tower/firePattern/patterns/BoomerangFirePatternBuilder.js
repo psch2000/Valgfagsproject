@@ -5,7 +5,9 @@ export class BoomerangFirePatternBuilder {
     getProduct() {
         var builder = new FirePatternBuilder()
         .setProjectileType(BoomerangProjectile)
-        .setRotateProjectile(true);
+        .setRotateProjectile(true)
+        .setFireForce(3)
+        .setFireInterval(1.2)
 
         return builder.getProduct();
     }

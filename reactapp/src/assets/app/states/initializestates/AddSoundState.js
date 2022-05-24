@@ -19,7 +19,7 @@ var bool = false;
 
 document.body.addEventListener('click', function(){
     if (bool == true) return;
-    // AudioManager.play("theme");
+    AudioManager.play("theme");
     bool = true;
 })
 
