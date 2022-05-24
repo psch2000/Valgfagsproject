@@ -1,6 +1,6 @@
 import { Move } from "./Move";
 
-
+// Moves a composit with a given velocity
 export class MoveDirection extends Move{
 
 

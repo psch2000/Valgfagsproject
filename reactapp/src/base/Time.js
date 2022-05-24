@@ -1,7 +1,9 @@
 
 
+// Defines the games time
 export class Time {
 
+    // Defies the time between previous and current frame.
     static deltaTime;
     static #currentTime;
     static #previousTime = this.#getDateTime();

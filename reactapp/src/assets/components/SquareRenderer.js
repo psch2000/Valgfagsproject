@@ -1,7 +1,7 @@
 import { Component } from "../../base/baseStructor/Component";
 import { Input } from "../../GameEngine/input/Input";
 
-
+// Draws a square.
 export class SquareRenderer extends Component{
 
     constructor(width, height, color){

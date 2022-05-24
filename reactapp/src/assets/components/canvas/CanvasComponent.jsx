@@ -5,6 +5,7 @@ import { useForceRerenderer } from "../../hooks/useForceRenderer";
 import { useRect } from "../../hooks/useRect";
 
 
+// A react component that makes a canvas element.
 export const CanvasComponent = ({canvas}) => {
 
     const rect = useRect(canvas.rect);

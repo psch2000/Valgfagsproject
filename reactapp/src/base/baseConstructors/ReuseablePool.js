@@ -1,6 +1,8 @@
 import { Vector2d } from "../baseStructor/Vector2d";
 
 
+
+// Makes it possible to reuse defined reusables.
 export class ReuseablePool {
     
     _reuseables;

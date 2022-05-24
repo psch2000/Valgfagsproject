@@ -1,9 +1,11 @@
 
-
+// Represents a sound.
 export class AudioSource{
 
     #filePath;
     #audio;
+
+    // Makes a new sound with the given path and defines if it should loop.
     constructor(filePath, loop = false){
         this.#filePath = filePath;
         this.#audio = new Audio(filePath);

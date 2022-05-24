@@ -15,6 +15,7 @@ import { TowerRange } from "../TowerRange";
 import { TowerFacade } from "../TowerFacade";
 import { rotatePoint } from "../../app/functions/rotatePoint";
 
+// A fire pattern, that defines how a tower fires.
 export class FirePattern {
     #time = 0;
     #index = 0;
