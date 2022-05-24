@@ -1,15 +1,8 @@
 import { Rect } from "../../../../backend/data-structors/Rect";
 import { State } from "../../../../base/baseBehaviour/State";
-import { CircleCollider } from "../../../../base/baseStructor/collider/CircleCollider";
-import { Collider } from "../../../../base/baseStructor/collider/Collider";
 import { RectangleCollider } from "../../../../base/baseStructor/collider/RectangleCollider";
 import { Composit } from "../../../../base/baseStructor/Composit";
-import { Vector2d } from "../../../../base/baseStructor/Vector2d";
-import { Area } from "../../../components/Area";
-import { CircleRenderer } from "../../../components/CircleRenderer";
-import { FollowCanvasMouse } from "../../../components/FollowCanvasMouse";
 import { Map } from "../../../components/Map";
-import { Test } from "../../../components/Test";
 import { instantiate } from "../../functions/instantiate";
 import { UpdateUIState } from "./UpdateUIState";
 
