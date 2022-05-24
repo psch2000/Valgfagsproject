@@ -28,7 +28,7 @@ class WaveSystem {
 
         this.isWaveActive = true;
         this.round += 1;
-        this.enemiesRemainingThisRound = 0;
+        this.enemiesRemainingThisRound = this.spawAmount;
 
         this.onWaveChange.invoke();
 
@@ -50,7 +50,7 @@ class WaveSystem {
     }
 
     endRound() {
-        console.log("end round (WaveSystem)");
+        if (this.isWaveActive === false) return;
         this.isWaveActive = false;
         this.onWaveChange.invoke();
         Player.bank.add(100 + this.round);
@@ -60,7 +60,6 @@ class WaveSystem {
         EnemyPool.getInstance().acquireReuseable(enemyType, this.path, this.enemyDead);
 
         this.enemiesSpawnedTotal += 1;
-        this.enemiesRemainingThisRound += 1;
     }
 
     #getEnemyTypeByRound(round) {
