@@ -1,6 +1,5 @@
 import { Node } from "./Node";
 
-
 export class BroadPhase{
 
     constructor(ctx){

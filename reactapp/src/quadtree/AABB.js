@@ -1,5 +1,4 @@
 
-
 // Represents a Axis Aligned Boundry Box. Which is a rect that is aligned with the x and y axis.
 export class AABB {
 

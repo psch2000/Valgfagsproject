@@ -1,15 +1,8 @@
-import { Composit } from "../base/baseStructor/Composit";
-import { DrawIcon } from "../base/baseStructor/DrawIcon";
-import { CircleCollider } from "../base/baseStructor/collider/CircleCollider";
-import { FollowPath } from "../assets/components/enemy/FollowPath";
-import { Enemy } from "../assets/components/enemy/Enemy";
-import { instantiate } from "../assets/app/functions/instantiate";
 import { Path } from "../assets/components/Path";
 import { Vector2d } from "../base/baseStructor/Vector2d";
 import { sleep } from "../base/Sleep";
 import { EventHandler } from "../base/baseBehaviour/EventHandler";
 import { Player } from "../assets/components/bank/Player";
-import { getEnemy } from "../assets/components/enemy/EnemyTypes";
 import { EnemyPool } from "../assets/pools/EnemyPool";
 import { enemyTypesHealth } from "../assets/components/enemy/EnemyTypes";
 

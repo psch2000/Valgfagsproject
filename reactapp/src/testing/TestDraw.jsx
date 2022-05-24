@@ -9,7 +9,6 @@ import { instantiate } from "../assets/app/functions/instantiate";
 import { CircleRenderer } from "../assets/components/CircleRenderer";
 import { GameTitle } from "../assets/components/gameTitle/GameTitle";
 import { getAnglesEquallySpaces, getPointsOnCircleCircumference } from "../base/baseStructor/CircleFunctions";
-import { DrawIcon } from "../base/baseStructor/DrawIcon";
 import { DrawIconTest } from "./DrawIconTest";
 import { CircleCollider } from "../base/baseStructor/collider/CircleCollider";
 

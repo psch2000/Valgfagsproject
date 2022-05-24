@@ -1,7 +1,5 @@
 import { Component } from "../../base/baseStructor/Component";
-import { Input } from "../../GameEngine/input/Input";
 import { Enemy } from "../components/enemy/Enemy";
-
 
 export class TowerRange extends Component{
 
