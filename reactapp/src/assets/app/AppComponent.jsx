@@ -8,8 +8,6 @@ import { HealthText } from "../components/stats/HealthText";
 import { MoneyText } from "../components/stats/MoneyText";
 import { Composit } from "../../base/baseStructor/Composit";
 import { SquareRenderer } from "../components/SquareRenderer";
-import { FollowPath } from "../components/enemy/FollowPath";
-import { Path } from "../components/Path";
 import { Vector2d } from "../../base/baseStructor/Vector2d";
 import { instantiate } from "./functions/instantiate";
 import { RectangleCollider } from "../../base/baseStructor/collider/RectangleCollider";
@@ -17,15 +15,12 @@ import { WaveButton } from "../components/waveButton/WaveButton";
 import { WaveText } from "../components/stats/WaveText";
 import { App } from "./App";
 import { TowerPlacere } from "../tower/TowerPlacer";
-import { PlayerBase } from "../components/PlayerBase";
-import { Enemy } from "../components/enemy/Enemy";
 import { useForceRerenderer } from "../hooks/useForceRenderer";
 import { MakeMapState } from "./states/initializestates/MakeMapState";
 import { TowerText } from "../components/stats/TowerText";
 import { Player } from "../components/bank/Player";
 import { RestartMenu } from "../components/restart/RestartMenu";
 import { waveSystem } from "../../backend/Wavesystem";
-import { AudioManager } from "../../sound/AudioManager";
 import { Unplaceable } from "../tower/Unplaceable";
 
 export const AppComponent = () => {

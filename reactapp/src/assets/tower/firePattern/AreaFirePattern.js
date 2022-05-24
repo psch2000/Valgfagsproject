@@ -1,6 +1,3 @@
-import { Time } from "../../../base/Time";
-
-
 export class AreaFirePattern{
 
 

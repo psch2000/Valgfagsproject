@@ -1,15 +1,9 @@
 import { DrawIcon } from "../../../../base/baseStructor/DrawIcon";
-import { DrawText } from "../../../../base/baseStructor/DrawText";
 import { Composit } from "../../../../base/baseStructor/Composit";
 import { State } from "../../../../base/baseBehaviour/State";
-import { Game } from "../../../../assets/app/App";
 import { instantiate } from "../../functions/instantiate";
 import { CircleRenderer } from "../../../components/CircleRenderer";
 import { FollowCanvasMouse } from "../../../components/FollowCanvasMouse";
-import { Map } from "../../../components/Map";
-import { Rect } from "../../../../backend/data-structors/Rect";
-import { RectangleCollider } from "../../../../base/baseStructor/collider/RectangleCollider";
-import { Collider } from "../../../../base/baseStructor/collider/Collider";
 import { CircleCollider } from "../../../../base/baseStructor/collider/CircleCollider";
 import { Vector2d } from "../../../../base/baseStructor/Vector2d";
 import { AddSoundState } from "./AddSoundState";

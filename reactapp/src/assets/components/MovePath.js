@@ -1,4 +1,3 @@
-import { App } from "../app/App";
 import { Move } from "./Move";
 import { Vector2d } from "../../base/baseStructor/Vector2d";
 

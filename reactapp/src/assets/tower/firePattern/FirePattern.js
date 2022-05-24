@@ -1,18 +1,12 @@
 import { Vector2d } from "../../../base/baseStructor/Vector2d";
 import { Time } from "../../../base/Time";
-import { MoveDirection } from "../../components/MoveDirection";
 import { ProjectilePool } from "../../pools/ProjectilePool";
 import { Enemy } from "../../components/enemy/Enemy";
 import { Composit } from "../../../base/baseStructor/Composit";
 import { CircleRenderer } from "../../components/CircleRenderer";
 import { instantiate } from "../../app/functions/instantiate";
-import { Move } from "../../components/Move";
-import { getPointsOnCircleCircumference, getAnglesEquallySpaces } from "../../../base/baseStructor/CircleFunctions";
 import { Tower } from "../Tower";
-import { BoomerangProjectile } from "../../composits/BoomerangProjectile";
 import { NormalProjectile } from "../../composits/NormalProjectile";
-import { TowerRange } from "../TowerRange";
-import { TowerFacade } from "../TowerFacade";
 import { rotatePoint } from "../../app/functions/rotatePoint";
 
 // A fire pattern, that defines how a tower fires.

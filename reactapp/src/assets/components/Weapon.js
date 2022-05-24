@@ -1,9 +1,6 @@
 import { Component } from "../../base/baseStructor/Component";
 import { Vector2d } from "../../base/baseStructor/Vector2d";
 import { ProjectilePool, ProjectilePoolInstance } from "../pools/ProjectilePool";
-import { MoveDirection } from "./MoveDirection";
-
-
 
 export class Weapon extends Component{
 
