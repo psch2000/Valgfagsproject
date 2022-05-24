@@ -5,9 +5,18 @@ import { TowerPlacere } from "../../tower/TowerPlacer";
 import { TowerTextObj } from "../stats/TowerTextObj";
 import "./shop.css";
 
-const Styles = ["btn--shop--solid", "btn--shop--grey--solid", "btn--succes--solid"];
+/*
+This ReactComponent is used by the ShopMenu to display buttons of the
+towers you can buy in the game
+*/
 
+// array to switch between 2 different styles
+const Styles = ["btn--shop--solid", "btn--shop--grey--solid"];
+
+// array to switch between different sizes of buttons, it does
+// not need more than 1 though.
 const Sizes = ["btn--shop", "btn--wave"];
+
 
 export const ShopButton = ({ towerType, towerName }) => {
     const [disable, setDisable] = useState(false);
@@ -18,12 +27,14 @@ export const ShopButton = ({ towerType, towerName }) => {
         onSetBalance();
     }, []);
 
+    // when clicked towerplacer puts a tower on the curser
     const onClick = () => {
         TowerPlacere.getInstance().setTowerType(towerType);
         TowerPlacere.getInstance().parent.setActive(true);
         setDisable(true);
     };
 
+    // disables buttons with towers that the player cant afford
     function onSetBalance() {
         if (towerType.price <= Player.bank.getBalance()) {
             setDisable(false);
@@ -32,6 +43,7 @@ export const ShopButton = ({ towerType, towerName }) => {
         }
     }
 
+    // when button is hovered the text at the top of the shop changes to the buttons corresponding tower name
     function onHoverEnter() {
         TowerTextObj.setTowerText(towerName);
     }
