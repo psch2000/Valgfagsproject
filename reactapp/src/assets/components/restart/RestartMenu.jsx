@@ -11,7 +11,8 @@ const Styles = [
 
   const Sizes = ["btn--shop", "btn--wave", "btn--lost"];
 
-
+// this component is a button that reload the site
+// used to restart the game
 export const RestartMenu = ({
     onClick,
     buttonStyle, 
